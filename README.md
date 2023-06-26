@@ -39,6 +39,10 @@ Papan Kontrol Kejaksaan Negeri Penajam Paser Utara
   - Gedung Kantor
   - Kendaraan Dinas
 
+#Demo
+http://simplejakppu.id/
+USER LOGIN : superadmin /admin123!
+
 #Web Developer
 Agus Puryanto
 wa.me/6282244492100
