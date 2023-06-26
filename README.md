@@ -1,12 +1,44 @@
-# AdminLTE-CRUD-With-Codeigniter
-CRUD dengan Template Admin LTE menggunakan Codeigniter
+# simplejakppu
+Papan Kontrol Kejaksaan Negeri Penajam Paser Utara
 
-Fitur : 
-  1. CRUD with Ajax
-  2. Datatable
-  3. Export dan Import ke Excel
-  4. Chart
-  
-Akun Login :
-  1. username : auwfar / password : auwfar
-  2. username : ozil / password : ozil
+## Fitur
+- Login
+- Dashboard
+- Papan Kontrol Pidum
+  - Perkara
+  - Penahanan
+  - PNBP
+  - Perkara Inkracth
+  - Barang Bukti Pemusnahan
+  - Barang Bukti Dikembalikan
+  - Barang Bukti Rampas Negara
+  - Barang Bukti Belum Lelang
+
+- Papan Kontrol Pidsus
+  - Perkara
+  - Penahanan
+  - PNBP
+
+- Papan Kontrol Intel
+  - Surat Perintah Tugas
+  - Operasi Intelijen Yustisial
+  - Pencegahan dan Penangkalan
+  - Tangkap Buron
+  - Pengawasan Lalu Lintas WNA
+  - WNA Terlibat Pidana
+  - Data Proyek Strategis
+  - Pemberantasan Mafia Tanah
+  - Percepatan Investasi
+
+- Papan Kontrol Datun 
+  - (filter by bulan & rekap)
+
+- Papan Kontrol Pembinaan
+  - Realisasi Anggaran
+  - Rumah Dinas
+  - Gedung Kantor
+  - Kendaraan Dinas
+
+#Web Developer
+Agus Puryanto
+wa.me/6282244492100
