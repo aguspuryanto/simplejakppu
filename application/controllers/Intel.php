@@ -189,7 +189,12 @@ class Intel extends AUTH_Controller {
 	public function awas_wna() {
 		$data['userdata'] 	= $this->userdata;
 
-		$options = array('jenis_module' => 'intelijen');
+		$data['model'] = $this->M_cegahtangkal;
+		// $options = array('jenis_module' => 'cegah_tangkal');
+		$data['dataSptugas'] = $this->M_cegahtangkal->select_all();
+
+		$data['judul'] 		= "PENGAWASAN LALU LINTAS WNA";
+		$data['deskripsi'] 	= "";
 		$data['page'] = "Intelijen";
 
 		$this->template->views('intel/awas_wna', $data);
