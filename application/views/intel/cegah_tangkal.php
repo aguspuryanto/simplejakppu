@@ -13,7 +13,7 @@
                 <div class="clearfix"></div>
             </div>
             <div class="panel-body">
-                <?php //include_once('_list_perkara.php'); ?>
+                <?php include_once('_list_cegahtangkal.php'); ?>
             </div>
         </div>
   </div>

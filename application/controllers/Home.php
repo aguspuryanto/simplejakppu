@@ -53,8 +53,8 @@ class Home extends AUTH_Controller {
 			$index++;
 		}
 
-		$data['data_perkara'] = ($data_perkara) ? json_encode($data_perkara) : [];
-		$data['data_pnbp'] = ($data_pnbp) ? json_encode($data_pnbp) : [];
+		$data['data_perkara'] = isset($data_perkara) ? json_encode($data_perkara) : [];
+		$data['data_pnbp'] = isset($data_pnbp) ? json_encode($data_pnbp) : [];
 
 		$data['page'] 			= "home";
 		$data['judul'] 			= "Beranda";

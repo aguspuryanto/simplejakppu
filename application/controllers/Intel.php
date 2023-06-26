@@ -146,45 +146,6 @@ class Intel extends AUTH_Controller {
 	public function op_intelijen() {
 		$data['userdata'] 	= $this->userdata;
 
-		if($this->input->post()) {
-			$this->load->library('form_validation');
-
-			$model = $this->M_sptugas;
-
-			$this->form_validation->set_rules($model->rules());
-
-			$this->form_validation->set_message('required', 'Mohon lengkapi {field}!');
-
-			if (!$this->form_validation->run()) {
-				foreach($model->rules() as $key => $val) {
-					$json = array_merge($json, array(
-						$val['field'] => form_error($val['field'], '<p class="mt-3 text-danger">', '</p>')
-					));
-				}
-			} else {
-				$data = array(
-					'sumber_info' => $this->input->post('sumber_info'),
-					'sp_tugas' => $this->input->post('sp_tugas'),
-					'objek_tugas' => $this->input->post('objek_tugas'),
-					'kasus_posisi' => $this->input->post('kasus_posisi'),
-					'permasalahan' => $this->input->post('permasalahan'),
-					'potensi_aght' => $this->input->post('potensi_aght'),
-					'tahapan' => $this->input->post('tahapan'),
-					'keterangan' => $this->input->post('keterangan'),
-					'jenis_module' => $this->input->post('jenis_module'),
-				);
-	
-				$model->save($data);
-				$this->session->set_flashdata('success', 'Berhasil disimpan');
-				$json = array('success' => true, 'message' => 'Berhasil disimpan');
-				
-			}
-
-			$this->output
-			->set_content_type('application/json')
-			->set_output(json_encode($json));
-		}
-
 		$data['model'] = $this->M_sptugas;
 		$options = array('jenis_module' => 'opintelijen');
 		$data['dataSptugas'] = $this->M_sptugas->select_all($options);
@@ -199,7 +160,12 @@ class Intel extends AUTH_Controller {
 	public function cegah_tangkal() {
 		$data['userdata'] 	= $this->userdata;
 
-		$options = array('jenis_module' => 'intelijen');
+		$data['model'] = $this->M_cegahtangkal;
+		// $options = array('jenis_module' => 'cegah_tangkal');
+		$data['dataSptugas'] = $this->M_cegahtangkal->select_all();
+
+		$data['judul'] 		= "Pencegahan dan Penangkalan";
+		$data['deskripsi'] 	= "";
 		$data['page'] = "Intelijen";
 
 		$this->template->views('intel/cegah_tangkal', $data);

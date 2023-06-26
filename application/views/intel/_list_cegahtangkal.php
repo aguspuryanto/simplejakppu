@@ -27,7 +27,7 @@
     </table>
 </div>
 
-<?php include_once('_modal_op_intelijen.php'); ?>
+<?php include_once('_modal_cegahtangkal.php'); ?>
 
 <script type="text/javascript">
 $( document ).ready(function() {
