@@ -10,6 +10,9 @@ class Intel extends AUTH_Controller {
 		$this->load->model('M_pnbp');
 		$this->load->model('M_sptugas');
 		$this->load->model('M_cegahtangkal');
+		$this->load->model('M_buron');
+		$this->load->model('M_traffikwna');
+		$this->load->model('M_wnapidana');
 	}
 
 	public function index() {
@@ -162,7 +165,6 @@ class Intel extends AUTH_Controller {
 		$data['userdata'] 	= $this->userdata;
 
 		$data['model'] = $this->M_cegahtangkal;
-		// $options = array('jenis_module' => 'cegah_tangkal');
 		$data['dataSptugas'] = $this->M_cegahtangkal->select_all();
 
 		$data['judul'] 		= "Pencegahan dan Penangkalan";
@@ -175,9 +177,8 @@ class Intel extends AUTH_Controller {
 	public function tangkap_buron() {
 		$data['userdata'] 	= $this->userdata;
 
-		$data['model'] = $this->M_cegahtangkal;
-		// $options = array('jenis_module' => 'cegah_tangkal');
-		$data['dataSptugas'] = $this->M_cegahtangkal->select_all();
+		$data['model'] = $this->M_buron;
+		$data['dataSptugas'] = $this->M_buron->select_all();
 
 		$data['judul'] 		= "Tangkap Buron";
 		$data['deskripsi'] 	= "";
@@ -189,9 +190,8 @@ class Intel extends AUTH_Controller {
 	public function awas_wna() {
 		$data['userdata'] 	= $this->userdata;
 
-		$data['model'] = $this->M_cegahtangkal;
-		// $options = array('jenis_module' => 'cegah_tangkal');
-		$data['dataSptugas'] = $this->M_cegahtangkal->select_all();
+		$data['model'] = $this->M_traffikwna;
+		$data['dataSptugas'] = $this->M_traffikwna->select_all();
 
 		$data['judul'] 		= "PENGAWASAN LALU LINTAS WNA";
 		$data['deskripsi'] 	= "";
@@ -204,7 +204,11 @@ class Intel extends AUTH_Controller {
 	public function pidana_wna() {
 		$data['userdata'] 	= $this->userdata;
 
-		$options = array('jenis_module' => 'intelijen');
+		$data['model'] = $this->M_wnapidana;
+		$data['dataSptugas'] = $this->M_wnapidana->select_all();
+
+		$data['judul'] 		= "PENGAWASAN LALU LINTAS WNA";
+		$data['deskripsi'] 	= "";
 		$data['page'] = "Intelijen";
 
 		$this->template->views('intel/pidana_wna', $data);
@@ -213,7 +217,12 @@ class Intel extends AUTH_Controller {
 	public function proyek_strategis() {
 		$data['userdata'] 	= $this->userdata;
 
-		$options = array('jenis_module' => 'intelijen');
+		$this->load->model('M_proyek');
+		$data['model'] = $this->M_proyek;
+		$data['dataSptugas'] = $this->M_proyek->select_all();
+
+		$data['judul'] 		= "PROYEK STRATEGIS";
+		$data['deskripsi'] 	= "";
 		$data['page'] = "Intelijen";
 
 		$this->template->views('intel/proyek_strategis', $data);
@@ -222,7 +231,12 @@ class Intel extends AUTH_Controller {
 	public function berantas_mafia() {
 		$data['userdata'] 	= $this->userdata;
 
-		$options = array('jenis_module' => 'intelijen');
+		$this->load->model('M_mafia');
+		$data['model'] = $this->M_mafia;
+		$data['dataSptugas'] = $this->M_mafia->select_all();
+
+		$data['judul'] 		= "TIM PEMBERANTASAN MAFIA TANAH";
+		$data['deskripsi'] 	= "";
 		$data['page'] = "Intelijen";
 
 		$this->template->views('intel/berantas_mafia', $data);
