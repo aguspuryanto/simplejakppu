@@ -9,6 +9,7 @@ class Intel extends AUTH_Controller {
 		$this->load->model('M_penahanan');
 		$this->load->model('M_pnbp');
 		$this->load->model('M_sptugas');
+		$this->load->model('M_cegahtangkal');
 	}
 
 	public function index() {
@@ -174,7 +175,12 @@ class Intel extends AUTH_Controller {
 	public function tangkap_buron() {
 		$data['userdata'] 	= $this->userdata;
 
-		$options = array('jenis_module' => 'intelijen');
+		$data['model'] = $this->M_cegahtangkal;
+		// $options = array('jenis_module' => 'cegah_tangkal');
+		$data['dataSptugas'] = $this->M_cegahtangkal->select_all();
+
+		$data['judul'] 		= "Tangkap Buron";
+		$data['deskripsi'] 	= "";
 		$data['page'] = "Intelijen";
 
 		$this->template->views('intel/tangkap_buron', $data);
