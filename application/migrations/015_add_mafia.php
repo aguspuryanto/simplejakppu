@@ -1,8 +1,8 @@
 <?php 
 defined('BASEPATH') OR exit('No direct script access allowed'); 
 
-class Migration_add_trafikwna extends CI_Migration { 
-    public $table_name = 'epak_trafikwna';
+class Migration_add_mafia extends CI_Migration { 
+    public $table_name = 'epak_mafia';
 
     public function up() { 
         $this->dbforge->add_field(array(
@@ -12,57 +12,45 @@ class Migration_add_trafikwna extends CI_Migration {
                 'unsigned' => TRUE,
                 'auto_increment' => TRUE
             ),
-            'asal_wna' => array(
+            'sumber_info' => array(
                 'type' => 'VARCHAR',
                 'constraint' => '100'
             ),
-            'pnduduk_wna' => array(
+            'lokasi' => array(
                 'type' => 'VARCHAR',
                 'constraint' => '100'
             ),
-            'tnaga_kerja' => array(
+            'pemilik' => array(
                 'type' => 'VARCHAR',
                 'constraint' => '100'
             ),
-            'plajar' => array(
+            'bukti' => array(
                 'type' => 'VARCHAR',
                 'constraint' => '100'
             ),
-            'pneliti' => array(
+            'luas' => array(
                 'type' => 'VARCHAR',
                 'constraint' => '100'
             ),
-            'kluarga' => array(
+            'ksus_posisi' => array(
                 'type' => 'VARCHAR',
                 'constraint' => '100'
             ),
-            'rohaniwan' => array(
+            'prmasalahan' => array(
                 'type' => 'VARCHAR',
                 'constraint' => '100'
             ),
-            'ilegal' => array(
+            'potensi_mafia' => array(
                 'type' => 'VARCHAR',
                 'constraint' => '100'
             ),
-            'usaha' => array(
-                'type' => 'VARCHAR',
-                'constraint' => '100'
-            ),
-            'sosbud' => array(
-                'type' => 'VARCHAR',
-                'constraint' => '100'
-            ),
-            'wisata' => array(
+            'tahapan' => array(
                 'type' => 'VARCHAR',
                 'constraint' => '100'
             ),
             'keterangan' => array(
                 'type' => 'TEXT',
                 'null' => TRUE
-            ),
-            'jenis_module' => array(
-                'type' => 'VARCHAR',
-                'constraint' => '50'
             ),
             'created_at' => array('type' => 'timestamp')
         ));

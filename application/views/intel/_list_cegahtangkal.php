@@ -10,13 +10,12 @@
                 foreach($dataSptugas as $row) {
                     echo '<tr>
                         <td>'.$id.'</td>
-                        <td>'.$row->sumber_info.'</td>
-                        <td>'.$row->sp_tugas.'</td>
-                        <td>'.$row->objek_tugas.'</td>
+                        <td>'.$row->identitas.'</td>
+                        <td>'.$row->srt_mohon.'</td>
                         <td>'.$row->kasus_posisi.'</td>
-                        <td>'.$row->permasalahan.'</td>
-                        <td>'.$row->potensi_aght.'</td>
-                        <td>'.$row->tahapan.'</td>
+                        <td>'.$row->kepja_no.'</td>
+                        <td>'.$row->tgl_mulai.'</td>
+                        <td>'.$row->tgl_akhir.'</td>
                         <td>'.$row->keterangan.'</td>
                     </tr>';
                     $id++;
@@ -27,7 +26,7 @@
     </table>
 </div>
 
-<?php include_once('_modal_op_intelijen.php'); ?>
+<?php include_once('_modal_cegahtangkal.php'); ?>
 
 <script type="text/javascript">
 $( document ).ready(function() {
