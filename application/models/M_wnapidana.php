@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class M_pidanawna extends CI_Model {
+class M_wnapidana extends CI_Model {
     public $table_name = "epak_pidanawna";
 
     public function rules()
