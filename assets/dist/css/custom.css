@@ -1,0 +1,10 @@
+.main-header .logo { width: auto; }
+.logo-mini {
+    padding: 5px;
+}
+
+.logo-lg img {
+    display: inline;
+}
+
+.user-panel { display: none; }
