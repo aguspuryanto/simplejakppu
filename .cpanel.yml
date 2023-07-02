@@ -6,3 +6,4 @@ deployment:
     - /bin/cp -r application/models/* $DEPLOYPATH
     - /bin/cp -r application/migrations/* $DEPLOYPATH    
     - /bin/cp -r application/helpers/* $DEPLOYPATH
+    - /bin/cp -r application/config/migration.php $DEPLOYPATH
