@@ -60,10 +60,6 @@ class Migration_add_trafikwna extends CI_Migration {
                 'type' => 'TEXT',
                 'null' => TRUE
             ),
-            'jenis_module' => array(
-                'type' => 'VARCHAR',
-                'constraint' => '50'
-            ),
             'created_at' => array('type' => 'timestamp')
         ));
         $this->dbforge->add_key('id', TRUE);

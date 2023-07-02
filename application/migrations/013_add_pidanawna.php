@@ -28,9 +28,9 @@ class Migration_add_pidanawna extends CI_Migration {
                 'type' => 'VARCHAR',
                 'constraint' => '100'
             ),
-            'jenis_module' => array(
-                'type' => 'VARCHAR',
-                'constraint' => '50'
+            'keterangan' => array(
+                'type' => 'TEXT',
+                'null' => TRUE
             ),
             'created_at' => array('type' => 'timestamp')
         ));

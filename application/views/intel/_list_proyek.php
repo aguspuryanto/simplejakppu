@@ -11,17 +11,17 @@
                 foreach($dataProvider as $row) {
                     echo '<tr>
                         <td>'.$id.'</td>
-                        <td>'.$row->asal_wna.'</td>
+                        <td>'.$row->nama_pkerjaan.'</td>
                         <td>'.$row->pnduduk_wna.'</td>
-                        <td>'.$row->tnaga_kerja.'</td>
-                        <td>'.$row->plajar.'</td>
-                        <td>'.$row->pneliti.'</td>
-                        <td>'.$row->kluarga.'</td>
-                        <td>'.$row->rohaniwan.'</td>
-                        <td>'.$row->ilegal.'</td>
-                        <td>'.$row->usaha.'</td>
-                        <td>'.$row->sosbud.'</td>
-                        <td>'.$row->wisata.'</td>
+                        <td>'.$row->instansi.'</td>
+                        <td>'.$row->kontraktor.'</td>
+                        <td>'.$row->nilai.'</td>
+                        <td>'.$row->sumber.'</td>
+                        <td>'.$row->wktu.'</td>
+                        <td>'.$row->lokasi.'</td>
+                        <td>'.$row->kdudukan.'</td>
+                        <td>'.$row->potensi_aght.'</td>
+                        <td>'.$row->tahapan.'</td>
                         <td>'.$row->keterangan.'</td>
                     </tr>';
                     $id++;
@@ -32,7 +32,7 @@
     </table>
 </div>
 
-<?php include_once('_modal_awaswna.php'); ?>
+<?php include_once('_modal_proyek.php'); ?>
 
 <script type="text/javascript">
 $( document ).ready(function() {

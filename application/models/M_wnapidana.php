@@ -8,11 +8,9 @@ class M_wnapidana extends CI_Model {
     {
         return [
             ['field' => 'identitas', 'label' => 'IDENTITAS', 'rules' => 'required'],
-            ['field' => 'srt_mohon', 'label' => 'SURAT PERMOHONAN','rules' => 'required'],
+            ['field' => 'asal_wna', 'label' => 'SURAT PERMOHONAN','rules' => 'required'],
             ['field' => 'kasus_posisi', 'label' => 'KASUS POSISI','rules' => 'required'],
-            ['field' => 'kepja_no', 'label' => 'KEPJA RI NO','rules' => 'required'],
-            ['field' => 'tgl_mulai', 'label' => 'TANGGAL MULAI','rules' => 'required'],
-            ['field' => 'tgl_akhir', 'label' => 'TANGGAL AKHIR','rules' => 'required'],
+            ['field' => 'tahap', 'label' => 'KEPJA RI NO','rules' => 'required'],
             ['field' => 'keterangan', 'label' => 'KETERANGAN']
         ];
     }

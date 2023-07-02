@@ -11,17 +11,15 @@
                 foreach($dataProvider as $row) {
                     echo '<tr>
                         <td>'.$id.'</td>
-                        <td>'.$row->asal_wna.'</td>
-                        <td>'.$row->pnduduk_wna.'</td>
-                        <td>'.$row->tnaga_kerja.'</td>
-                        <td>'.$row->plajar.'</td>
-                        <td>'.$row->pneliti.'</td>
-                        <td>'.$row->kluarga.'</td>
-                        <td>'.$row->rohaniwan.'</td>
-                        <td>'.$row->ilegal.'</td>
-                        <td>'.$row->usaha.'</td>
-                        <td>'.$row->sosbud.'</td>
-                        <td>'.$row->wisata.'</td>
+                        <td>'.$row->sumber_info.'</td>
+                        <td>'.$row->lokasi.'</td>
+                        <td>'.$row->pemilik.'</td>
+                        <td>'.$row->bukti.'</td>
+                        <td>'.$row->luas.'</td>
+                        <td>'.$row->ksus_posisi.'</td>
+                        <td>'.$row->prmasalahan.'</td>
+                        <td>'.$row->potensi_mafia.'</td>
+                        <td>'.$row->tahapan.'</td>
                         <td>'.$row->keterangan.'</td>
                     </tr>';
                     $id++;
@@ -32,7 +30,7 @@
     </table>
 </div>
 
-<?php include_once('_modal_awaswna.php'); ?>
+<?php include_once('_modal_brantasmafia.php'); ?>
 
 <script type="text/javascript">
 $( document ).ready(function() {
@@ -44,9 +42,12 @@ $( document ).ready(function() {
 
         $.ajax({
             type: "POST",
-            url: "<?=site_url('Intel/awaswna_add');?>", 
+            url: "<?=site_url('Intel/berantasmafia_add');?>", 
             data: $("#form").serialize(),
-            dataType: "json",  
+            dataType: "json",
+            beforeSend : function(xhr, opts){
+                $(this).attr('disable').text('Loading...');
+            },
             success: function(data){
                 console.log(data, "data");
                 if(data.success == true){

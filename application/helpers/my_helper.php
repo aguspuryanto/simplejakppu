@@ -92,19 +92,24 @@
 		return $id;
 	}
 
-	function get_header_table($model) {
+	function get_header_table($model, $extra="") {
+		if(empty($extra)) $extra = '<th>#</th>';
+
 		$header_tag = '<tr><th>NO</th>';
 		foreach ($model->rules() as $key => $val) {
-			// $header[$val['field']] = $val['label'];
 			$header_tag .= '<th>' . $val['label'] . '</th>';
 		}
+
+		if($extra) $header_tag .= $extra;
+
 		$header_tag .= '</tr>';
 
 		return $header_tag;
 	}
 
-	function get_header_table_inkracth($model, $field="") {
-		$field = array('setor_negara', 'ntb', 'ntpn', 'b18', 'bast_barang', 'ba21', 'pendapat_hkm', 'p48', 'putusan', 'pnetapan', 'ba_sita', 'sp_sita');
+	function get_header_table_inkracth($model, $field="", $extra="") {
+		if(empty($extra)) $extra = '<th>#</th>';
+		if(!$field && empty($field)) $field = array('setor_negara', 'ntb', 'ntpn', 'b18', 'bast_barang', 'ba21', 'pendapat_hkm', 'p48', 'putusan', 'pnetapan', 'ba_sita', 'sp_sita');
 
 		foreach ($model->rules() as $key => $object) {
 			if (!in_array($object['field'], $field)) {
@@ -114,16 +119,19 @@
 
 		$header_tag = '<tr><th>NO</th>';
 		foreach ($newmodel as $key => $val) {
-			// $header[$val['field']] = $val['label'];
 			$header_tag .= '<th>' . $val['label'] . '</th>';
 		}
+
+		if($extra) $header_tag .= $extra;
+
 		$header_tag .= '</tr>';
 
 		return $header_tag;
 	}
 
-	function get_header_table_lelang($model, $field="") {
-		$field = array('setor_negara', 'ntb', 'ntpn');
+	function get_header_table_lelang($model, $field="", $extra="") {
+		if(empty($extra)) $extra = '<th>#</th>';
+		if(!$field && empty($field)) $field = array('setor_negara', 'ntb', 'ntpn');
 
 		foreach ($model->rules() as $key => $object) {
 			if (!in_array($object['field'], $field)) {
@@ -133,9 +141,33 @@
 
 		$header_tag = '<tr><th>NO</th>';
 		foreach ($newmodel as $key => $val) {
-			// $header[$val['field']] = $val['label'];
 			$header_tag .= '<th>' . $val['label'] . '</th>';
 		}
+
+		if($extra) $header_tag .= $extra;
+
+		$header_tag .= '</tr>';
+
+		return $header_tag;
+	}
+
+	function get_header_table_awaswna($model, $field="", $extra="") {
+		if(empty($extra)) $extra = '<th>#</th>';
+		if(!$field && empty($field)) $field = array('jenis_module');
+
+		foreach ($model->rules() as $key => $object) {
+			if (!in_array($object['field'], $field)) {
+				$newmodel[] = $object;
+			}
+		}
+
+		$header_tag = '<tr><th>NO</th>';
+		foreach ($newmodel as $key => $val) {
+			$header_tag .= '<th>' . $val['label'] . '</th>';
+		}
+
+		if($extra) $header_tag .= $extra;
+		
 		$header_tag .= '</tr>';
 
 		return $header_tag;
@@ -157,7 +189,6 @@
 
 			if(isset($attributes['type']) && $attributes['type'] === 'textarea') {
 				if ($field) $attributes['name'] = $field;
-				// $form .= form_textarea($field, '', $attributes);
 				$form .= form_textarea($attributes);
 			} else {
 				$form .= form_input($field, '', $attributes);
@@ -165,8 +196,7 @@
 
 			$form .= '<div id="error"></div>
 			</div>';
-
-			// echo json_encode($attributes);
+			
 			return $form;
 		}
 	}

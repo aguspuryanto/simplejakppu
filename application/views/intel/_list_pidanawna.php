@@ -11,18 +11,10 @@
                 foreach($dataProvider as $row) {
                     echo '<tr>
                         <td>'.$id.'</td>
+                        <td>'.$row->identitas.'</td>
                         <td>'.$row->asal_wna.'</td>
-                        <td>'.$row->pnduduk_wna.'</td>
-                        <td>'.$row->tnaga_kerja.'</td>
-                        <td>'.$row->plajar.'</td>
-                        <td>'.$row->pneliti.'</td>
-                        <td>'.$row->kluarga.'</td>
-                        <td>'.$row->rohaniwan.'</td>
-                        <td>'.$row->ilegal.'</td>
-                        <td>'.$row->usaha.'</td>
-                        <td>'.$row->sosbud.'</td>
-                        <td>'.$row->wisata.'</td>
-                        <td>'.$row->keterangan.'</td>
+                        <td>'.$row->kasus_posisi.'</td>
+                        <td>'.$row->tahap.'</td>
                     </tr>';
                     $id++;
                 }
@@ -32,7 +24,7 @@
     </table>
 </div>
 
-<?php include_once('_modal_awaswna.php'); ?>
+<?php include_once('_modal_pidanawna.php'); ?>
 
 <script type="text/javascript">
 $( document ).ready(function() {
@@ -44,7 +36,7 @@ $( document ).ready(function() {
 
         $.ajax({
             type: "POST",
-            url: "<?=site_url('Intel/awaswna_add');?>", 
+            url: "<?=site_url('Intel/pidanawna_add');?>", 
             data: $("#form").serialize(),
             dataType: "json",  
             success: function(data){

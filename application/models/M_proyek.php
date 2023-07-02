@@ -7,12 +7,16 @@ class M_proyek extends CI_Model {
     public function rules()
     {
         return [
-            ['field' => 'identitas', 'label' => 'IDENTITAS', 'rules' => 'required'],
-            ['field' => 'srt_mohon', 'label' => 'SURAT PERMOHONAN','rules' => 'required'],
-            ['field' => 'kasus_posisi', 'label' => 'KASUS POSISI','rules' => 'required'],
-            ['field' => 'kepja_no', 'label' => 'KEPJA RI NO','rules' => 'required'],
-            ['field' => 'tgl_mulai', 'label' => 'TANGGAL MULAI','rules' => 'required'],
-            ['field' => 'tgl_akhir', 'label' => 'TANGGAL AKHIR','rules' => 'required'],
+            ['field' => 'nama_pkerjaan', 'label' => 'NAMA PEKERJAAN', 'rules' => 'required'],
+            ['field' => 'instansi', 'label' => 'INSTANSI PEMILIK PEKERJAAN','rules' => 'required'],
+            ['field' => 'kontraktor', 'label' => 'KONTRAKTOR PELAKSANA','rules' => 'required'],
+            ['field' => 'nilai', 'label' => 'NILAI KONTRAK','rules' => 'required'],
+            ['field' => 'sumber', 'label' => 'SUMBER PEMBIAYAAN','rules' => 'required'],
+            ['field' => 'wktu', 'label' => 'JANGKA WAKTU PELAKSANAAN','rules' => 'required'],
+            ['field' => 'lokasi', 'label' => 'LOKASI PEKERJAAN','rules' => 'required'],
+            ['field' => 'kdudukan', 'label' => 'KEDUDUKAN PEKERJAAN','rules' => 'required'],
+            ['field' => 'potensi_aght', 'label' => 'POTENSI AGHT','rules' => 'required'],
+            ['field' => 'tahapan', 'label' => 'TAHAPAN','rules' => 'required'],
             ['field' => 'keterangan', 'label' => 'KETERANGAN']
         ];
     }

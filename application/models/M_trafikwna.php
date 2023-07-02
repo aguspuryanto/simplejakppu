@@ -1,18 +1,23 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class M_traffikwna extends CI_Model {
-    public $table_name = "epak_traffikwna";
+class M_trafikwna extends CI_Model {
+    public $table_name = "epak_trafikwna";
 
     public function rules()
     {
         return [
-            ['field' => 'identitas', 'label' => 'IDENTITAS', 'rules' => 'required'],
-            ['field' => 'srt_mohon', 'label' => 'SURAT PERMOHONAN','rules' => 'required'],
-            ['field' => 'kasus_posisi', 'label' => 'KASUS POSISI','rules' => 'required'],
-            ['field' => 'kepja_no', 'label' => 'KEPJA RI NO','rules' => 'required'],
-            ['field' => 'tgl_mulai', 'label' => 'TANGGAL MULAI','rules' => 'required'],
-            ['field' => 'tgl_akhir', 'label' => 'TANGGAL AKHIR','rules' => 'required'],
+            ['field' => 'asal_wna', 'label' => 'ASAL NEGARA', 'rules' => 'required'],
+            ['field' => 'pnduduk_wna', 'label' => 'ORANG ASING PENDUDUK','rules' => 'required'],
+            ['field' => 'tnaga_kerja', 'label' => 'TENAGA KERJA','rules' => 'required'],
+            ['field' => 'plajar', 'label' => 'PELAJAR/MAHASISWA','rules' => 'required'],
+            ['field' => 'pneliti', 'label' => 'PENELITI','rules' => 'required'],
+            ['field' => 'kluarga', 'label' => 'KELUARGA','rules' => 'required'],
+            ['field' => 'rohaniwan', 'label' => 'ROHANIAWAN','rules' => 'required'],
+            ['field' => 'ilegal', 'label' => 'PENDATANG ILEGAL','rules' => 'required'],
+            ['field' => 'usaha', 'label' => 'USAHA','rules' => 'required'],
+            ['field' => 'sosbud', 'label' => 'SOSBUD','rules' => 'required'],
+            ['field' => 'wisata', 'label' => 'WISATA','rules' => 'required'],
             ['field' => 'keterangan', 'label' => 'KETERANGAN']
         ];
     }
