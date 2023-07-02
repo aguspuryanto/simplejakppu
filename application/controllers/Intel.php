@@ -377,7 +377,12 @@ class Intel extends AUTH_Controller {
 	public function cepat_investasi() {
 		$data['userdata'] 	= $this->userdata;
 
-		$options = array('jenis_module' => 'intelijen');
+		$this->load->model('M_investasi');
+		$data['model'] = $this->M_investasi;
+		$data['dataProvider'] = $this->M_investasi->select_all();
+
+		$data['judul'] 		= "PERCEPATAN INVESTASI";
+		$data['deskripsi'] 	= "";		
 		$data['page'] = "Intelijen";
 
 		$this->template->views('intel/cepat_investasi', $data);
