@@ -391,7 +391,7 @@ class Intel extends AUTH_Controller {
 	public function investasi_add() {
 		$this->load->library('form_validation');
 
-		$model = $this->M_mafia;
+		$model = $this->M_investasi;
 
 		$this->form_validation->set_rules($model->rules());
 
@@ -406,15 +406,15 @@ class Intel extends AUTH_Controller {
 			}
 		} else {
 			$data = array(
-				'sumber_info' => $this->input->post('sumber_info'),
+				'sp' => $this->input->post('sp'),
+				'nama_pemodal' => $this->input->post('nama_pemodal'),
+				'bidang_usaha' => $this->input->post('bidang_usaha'),
+				'nilai' => $this->input->post('nilai'),
+				'wktu' => $this->input->post('wktu'),
 				'lokasi' => $this->input->post('lokasi'),
-				'pemilik' => $this->input->post('pemilik'),
-				'bukti' => $this->input->post('bukti'),
-				'luas' => $this->input->post('luas'),
-				'ksus_posisi' => $this->input->post('ksus_posisi'),
-				'prmasalahan' => $this->input->post('prmasalahan'),
-				'potensi_mafia' => $this->input->post('potensi_mafia'),
+				'tipe' => $this->input->post('tipe'),
 				'tahapan' => $this->input->post('tahapan'),
+				'potensi_aght' => $this->input->post('potensi_aght'),
 				'keterangan' => $this->input->post('keterangan')
 			);
 
