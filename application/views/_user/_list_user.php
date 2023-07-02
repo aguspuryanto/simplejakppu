@@ -1,7 +1,7 @@
 <div class="table-responsive">
     <table id="example1" class="table table-striped table-bordered" style="width:100%">
         <thead>
-            <?=get_header_table_custom($model, array('password'), 'false');?>
+            <?=get_header_table_custom($model, array('password', 'foto'), 'false');?>
         </thead>
         <tbody>
             <?php
@@ -11,7 +11,6 @@
                         <td>'.$row->id.'</td>
                         <td>'.$row->username.'</td>
                         <td>'.$row->nama.'</td>
-                        <td>'.$row->foto.'</td>
                         <td>'.$row->area_kerja.'</td>
                         <td>'.$row->rule.'</td>
                     </tr>';

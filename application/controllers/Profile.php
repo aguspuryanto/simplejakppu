@@ -36,7 +36,8 @@ class Profile extends AUTH_Controller {
 		$id = $this->userdata->id;
 		$data = $this->input->post();
 		if ($this->form_validation->run() == TRUE) {
-			$config['upload_path'] = './assets/img/';
+			// $config['upload_path'] = './assets/img/';
+			$config['upload_path']	 = FCPATH . '/assets/img/';
 			$config['allowed_types'] = 'jpg|png';
 			
 			$this->load->library('upload', $config);
@@ -101,7 +102,8 @@ class Profile extends AUTH_Controller {
 	}
 
 	public function useradd() {
-		$config['upload_path']          = './assets/img/';
+		// $config['upload_path']          = './assets/img/';
+		$config['upload_path']          = FCPATH . '/assets/img/';
 		$config['allowed_types']        = 'gif|jpg|png';
 		$config['overwrite']        	= TRUE;
 		$config['max_size']             = '100';

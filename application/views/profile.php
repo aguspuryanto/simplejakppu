@@ -90,7 +90,6 @@
 
 <div class="row" style="<?php echo ($userdata->rule=="admin") ? 'display:block' : 'display:none'; ?>">
   <div class="col-md-12">
-    <?=json_encode($userdata); ?>
     <div class="panel panel-default">
     <div class="panel-body m0">
           <div class="panel panel-default">
