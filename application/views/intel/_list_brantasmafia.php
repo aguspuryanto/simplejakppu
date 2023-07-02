@@ -21,6 +21,12 @@
                         <td>'.$row->potensi_mafia.'</td>
                         <td>'.$row->tahapan.'</td>
                         <td>'.$row->keterangan.'</td>
+                        <td style="min-width:115px">
+                            <div class="btn-group" role="group">
+                                <button type="button" class="btn btn-default">Edit</button>
+                                <button type="button" class="btn btn-danger">Hapus</button>
+                            </div>
+                        </td>
                     </tr>';
                     $id++;
                 }
@@ -46,7 +52,7 @@ $( document ).ready(function() {
             data: $("#form").serialize(),
             dataType: "json",
             beforeSend : function(xhr, opts){
-                $(this).attr('disable').text('Loading...');
+                $('#form-submit').text('Loading...').prop("disabled", true);
             },
             success: function(data){
                 console.log(data, "data");
@@ -60,7 +66,10 @@ $( document ).ready(function() {
                         $('#input-' + key).parents('.form-group').find('#error').html(value);
                     });
                 }
-            }
+            },
+            complete: function() {
+                $('#form-submit').prop("disabled", false);
+            },
         });
     });
 

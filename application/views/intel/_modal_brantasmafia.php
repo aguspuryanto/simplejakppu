@@ -20,11 +20,11 @@
 
             <?=get_form_input($model, 'luas'); ?>
 
-            <?=get_form_input($model, 'ksus_posisi'); ?>
+            <?=get_form_input($model, 'ksus_posisi', array('type' => 'textarea', 'rows' => '3', 'cols' => '10')); ?>
 
-            <?=get_form_input($model, 'prmasalahan'); ?>
+            <?=get_form_input($model, 'prmasalahan', array('type' => 'textarea', 'rows' => '3', 'cols' => '10')); ?>
 
-            <?=get_form_input($model, 'potensi_mafia'); ?>
+            <?=get_form_input($model, 'potensi_mafia', array('type' => 'textarea', 'rows' => '3', 'cols' => '10')); ?>
 
             <?=get_form_input($model, 'tahapan'); ?>
 

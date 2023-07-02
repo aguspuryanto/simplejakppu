@@ -22,6 +22,9 @@
 
 <script>
 $(document).ready(function () {
-    $('#example1').DataTable();
+    var myTable = $('#example1').DataTable({
+        "autoWidth":false,
+    });
+    myTable.columns.adjust().draw();
 });
 </script>

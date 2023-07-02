@@ -253,7 +253,7 @@ class Intel extends AUTH_Controller {
 		$data['userdata'] 	= $this->userdata;
 
 		$data['model'] = $this->M_wnapidana;
-		$data['dataSptugas'] = $this->M_wnapidana->select_all();
+		$data['dataProvider'] = $this->M_wnapidana->select_all();
 
 		$data['judul'] 		= "PENGAWASAN LALU LINTAS WNA";
 		$data['deskripsi'] 	= "";

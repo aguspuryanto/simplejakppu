@@ -50,6 +50,9 @@ $( document ).ready(function() {
             url: "<?=site_url('papan-kontrol/pidum_pnbp');?>", 
             data: $("#formPnbp").serialize(),
             dataType: "json",  
+            beforeSend : function(xhr, opts){
+                $('#form-pnbp').text('Loading...').prop("disabled", true);
+            },
             success: function(data){
                 console.log(data, "data");
                 if(data.success == true){
