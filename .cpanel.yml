@@ -2,6 +2,7 @@
 deployment:
   tasks:
     - export DEPLOYPATH=/home/simk9757/public_html/
+    #- /bin/cp -r * $DEPLOYPATH
     - /bin/cp -R application/controllers $DEPLOYPATH
     - /bin/cp -R application/models $DEPLOYPATH
     - /bin/cp -R application/views $DEPLOYPATH
