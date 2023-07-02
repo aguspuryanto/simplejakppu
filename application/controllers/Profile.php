@@ -13,6 +13,8 @@ class Profile extends AUTH_Controller {
 		$data['page'] 			= "profile";
 		$data['judul'] 			= "Profile";
 		$data['deskripsi'] 		= "Setting Profile";
+
+		$data['listuser']		= [];
 		$this->template->views('profile', $data);
 	}
 

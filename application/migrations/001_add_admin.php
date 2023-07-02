@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed'); 
 
 class Migration_add_admin extends CI_Migration { 
-    public $table_name = 'admin';
+    public $table_name = 'epak_admin';
 
     public function up() { 
         if (!$this->db->table_exists($this->table_name) )
