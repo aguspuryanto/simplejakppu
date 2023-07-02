@@ -25,6 +25,12 @@
                         <td>'.$row->ba20_pengembalin.'</td>
                         <td>'.$row->alamat_bb.'</td>
                         <td>'.$row->no_telp.'</td>
+                        <td style="min-width:115px">
+                            <div class="btn-group" role="group">
+                                <button type="button" class="btn btn-default">Edit</button>
+                                <button type="button" class="btn btn-danger">Hapus</button>
+                            </div>
+                        </td>
                     </tr>';
                     $id++;
                 }

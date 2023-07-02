@@ -1,34 +1,24 @@
 <div class="table-responsive">
     <table id="example1" class="table table-striped table-bordered" style="width:100%">
         <thead>
-            <tr>
-                <th>NO</th>
-                <th>SURAT PERMOHONAN/ SKK</th>
-                <th>KEGIATAN</th>
-                <th>PENGGUGAT/ PEMOHON/PELAWAN</th>
-                <th>TERGUGAT/ TERMOHON/TERLAWAN</th>
-                <th>SEKSI</th>
-                <th>SP/SK TIM JPN</th>
-                <th>POSISI KASUS</th>
-                <th>TAHAP</th>
-                <th>KET.</th>
-            </tr>
+            <?=get_header_table_custom($model, array('password'));?>
         </thead>
         <tbody>
             <?php
-            if($dataDatun) :
-                foreach($dataDatun as $row) {
+            if($dataProvider) :
+                foreach($dataProvider as $row) {
                     echo '<tr>
                         <td>'.$row->id.'</td>
-                        <td>'.$row->skk.'</td>
-                        <td>'.$row->kegiatan.'</td>
-                        <td>'.$row->penggugat.'</td>
-                        <td>'.$row->tergugat.'</td>
-                        <td>'.$row->seksi.'</td>
-                        <td>'.$row->sk_tim.'</td>
-                        <td>'.$row->posisi_kasus.'</td>
-                        <td>'.$row->tahap.'</td>
-                        <td>'.$row->keterangan.'</td>
+                        <td>'.$row->username.'</td>
+                        <td>'.$row->nama.'</td>
+                        <td>'.$row->foto.'</td>
+                        <td>'.$row->rule.'</td>
+                        <td style="min-width:115px">
+                            <div class="btn-group" role="group">
+                                <button type="button" class="btn btn-default">Edit</button>
+                                <button type="button" class="btn btn-danger">Hapus</button>
+                            </div>
+                        </td>
                     </tr>';
                 }
             endif;
@@ -37,7 +27,7 @@
     </table>
 </div>
 
-<?php include_once('_modal_perkara.php'); ?>
+<?php include_once('_modal_user.php'); ?>
 
 <script type="text/javascript">
 $( document ).ready(function() {
@@ -46,23 +36,30 @@ $( document ).ready(function() {
 
     $('#form-submit').on('click', function (e) {
         e.preventDefault();
+        var form_data = new FormData($('#formAdd')[0]);
 
         $.ajax({
             type: "POST",
-            url: "<?=site_url('Datun/datun_add');?>", 
-            data: $("#form").serialize(),
-            dataType: "json",  
+            url: "<?=site_url('Profile/useradd');?>",
+            data: form_data,
+            processData: false,
+            contentType: false,
+            cache: false,
+            beforeSend : function(xhr, opts){
+                // $('#form-submit').text('Loading...').prop("disabled", true);
+            },
             success: function(data){
+                // data = JSON.parse(data);
                 console.log(data, "data");
                 if(data.success == true){
-                    setTimeout(function(){
-                        window.location.reload();
-                    }, 3000);
+                    // setTimeout(function(){
+                    //     window.location.reload();
+                    // }, 3000);
                 } else {
-                    $.each(data, function(key, value) {
-                        $('#input-' + key).addClass('is-invalid');
-                        $('#input-' + key).parents('.form-group').find('#error').html(value);
-                    });
+                    if(data.error) {
+                        $('#input-foto').addClass('is-invalid');
+                        $('#input-foto').parents('.form-group').find('#error').html(data.error);
+                    }
                 }
             }
         });
