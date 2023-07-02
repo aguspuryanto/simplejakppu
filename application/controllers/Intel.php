@@ -382,6 +382,48 @@ class Intel extends AUTH_Controller {
 
 		$this->template->views('intel/cepat_investasi', $data);
 	}
+
+	public function investasi_add() {
+		$this->load->library('form_validation');
+
+		$model = $this->M_mafia;
+
+		$this->form_validation->set_rules($model->rules());
+
+		$this->form_validation->set_message('required', 'Mohon lengkapi {field}!');
+
+		$json = array();
+		if (!$this->form_validation->run()) {
+			foreach($model->rules() as $key => $val) {
+				$json = array_merge($json, array(
+					$val['field'] => form_error($val['field'], '<p class="mt-3 text-danger">', '</p>')
+				));
+			}
+		} else {
+			$data = array(
+				'sumber_info' => $this->input->post('sumber_info'),
+				'lokasi' => $this->input->post('lokasi'),
+				'pemilik' => $this->input->post('pemilik'),
+				'bukti' => $this->input->post('bukti'),
+				'luas' => $this->input->post('luas'),
+				'ksus_posisi' => $this->input->post('ksus_posisi'),
+				'prmasalahan' => $this->input->post('prmasalahan'),
+				'potensi_mafia' => $this->input->post('potensi_mafia'),
+				'tahapan' => $this->input->post('tahapan'),
+				'keterangan' => $this->input->post('keterangan')
+			);
+
+			$model->save($data);
+			$this->session->set_flashdata('success', 'Berhasil disimpan');
+			$json = array('success' => true, 'message' => 'Berhasil disimpan');
+			
+		}
+
+		$this->output
+		->set_content_type('application/json')
+		->set_output(json_encode($json));
+
+	}
 }
 
 /* End of file Intel.php */

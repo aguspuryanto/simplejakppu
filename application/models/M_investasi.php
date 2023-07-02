@@ -2,17 +2,20 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class M_investasi extends CI_Model {
-    public $table_name = "epak_cegahtangkal";
+    public $table_name = "epak_investasi";
 
     public function rules()
     {
         return [
-            ['field' => 'identitas', 'label' => 'IDENTITAS', 'rules' => 'required'],
-            ['field' => 'srt_mohon', 'label' => 'SURAT PERMOHONAN','rules' => 'required'],
-            ['field' => 'kasus_posisi', 'label' => 'KASUS POSISI','rules' => 'required'],
-            ['field' => 'kepja_no', 'label' => 'KEPJA RI NO','rules' => 'required'],
-            ['field' => 'tgl_mulai', 'label' => 'TANGGAL MULAI','rules' => 'required'],
-            ['field' => 'tgl_akhir', 'label' => 'TANGGAL AKHIR','rules' => 'required'],
+            ['field' => 'sp', 'label' => 'SURAT PERINTAH/NAMA TIM', 'rules' => 'required'],
+            ['field' => 'nama_pemodal', 'label' => 'NAMA PENANAM MODAL','rules' => 'required'],
+            ['field' => 'bidang_usaha', 'label' => 'BIDANG USAHA','rules' => 'required'],
+            ['field' => 'nilai', 'label' => 'NILAI INVESTASI','rules' => 'required'],
+            ['field' => 'wktu', 'label' => 'JANGKA WAKTU PELAKSANAAN','rules' => 'required'],
+            ['field' => 'lokasi', 'label' => 'LOKASI INVESTASI','rules' => 'required'],
+            ['field' => 'tipe', 'label' => 'PMDN/PMA','rules' => 'required'],
+            ['field' => 'tahapan', 'label' => 'TAHAPAN','rules' => 'required'],
+            ['field' => 'potensi_aght', 'label' => 'POTENSI AGHT','rules' => 'required'],
             ['field' => 'keterangan', 'label' => 'KETERANGAN']
         ];
     }
