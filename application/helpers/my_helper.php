@@ -108,51 +108,18 @@
 	}
 
 	function get_header_table_inkracth($model, $field="", $extra="") {
-		if(empty($extra)) $extra = '<th>#</th>';
 		if(!$field && empty($field)) $field = array('setor_negara', 'ntb', 'ntpn', 'b18', 'bast_barang', 'ba21', 'pendapat_hkm', 'p48', 'putusan', 'pnetapan', 'ba_sita', 'sp_sita');
 
-		foreach ($model->rules() as $key => $object) {
-			if (!in_array($object['field'], $field)) {
-				$newmodel[] = $object;
-			}
-		}
-
-		$header_tag = '<tr><th>NO</th>';
-		foreach ($newmodel as $key => $val) {
-			$header_tag .= '<th>' . $val['label'] . '</th>';
-		}
-
-		if($extra) $header_tag .= $extra;
-
-		$header_tag .= '</tr>';
-
-		return $header_tag;
+		return get_header_table_custom($model, $field);
 	}
 
 	function get_header_table_lelang($model, $field="", $extra="") {
-		if(empty($extra)) $extra = '<th>#</th>';
 		if(!$field && empty($field)) $field = array('setor_negara', 'ntb', 'ntpn');
 
-		foreach ($model->rules() as $key => $object) {
-			if (!in_array($object['field'], $field)) {
-				$newmodel[] = $object;
-			}
-		}
-
-		$header_tag = '<tr><th>NO</th>';
-		foreach ($newmodel as $key => $val) {
-			$header_tag .= '<th>' . $val['label'] . '</th>';
-		}
-
-		if($extra) $header_tag .= $extra;
-
-		$header_tag .= '</tr>';
-
-		return $header_tag;
+		return get_header_table_custom($model, $field);
 	}
 
-	function get_header_table_awaswna($model, $field="", $extra="") {
-		if(empty($extra)) $extra = '<th>#</th>';
+	function get_header_table_custom($model, $field="", $extra="") {
 		if(!$field && empty($field)) $field = array('jenis_module');
 
 		foreach ($model->rules() as $key => $object) {
@@ -166,7 +133,10 @@
 			$header_tag .= '<th>' . $val['label'] . '</th>';
 		}
 
-		if($extra) $header_tag .= $extra;
+		if(empty($extra)) {
+			$extra = '<th>#</th>';
+			$header_tag .= $extra;
+		}
 		
 		$header_tag .= '</tr>';
 
@@ -181,7 +151,8 @@
 				$attributes[$key] = $val;
 			}
 		}
-		
+		// echo json_encode($attributes);
+
 		$key = array_search($field, array_column($model->rules(), 'field'));
 		if($key >= 0) {
 			$form = '<div class="form-group">
@@ -190,6 +161,13 @@
 			if(isset($attributes['type']) && $attributes['type'] === 'textarea') {
 				if ($field) $attributes['name'] = $field;
 				$form .= form_textarea($attributes);
+
+			} elseif(isset($attributes['type']) && $attributes['type'] === 'password') {
+				$form .= form_input($attributes);
+
+			} elseif(isset($attributes['type']) && $attributes['type'] === 'file') {
+				$form .= form_input($attributes);
+
 			} else {
 				$form .= form_input($field, '', $attributes);
 			}

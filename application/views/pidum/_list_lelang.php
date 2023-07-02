@@ -30,6 +30,12 @@
                         <td>'.$row->pnetapan.'</td>
                         <td>'.$row->ba_sita.'</td>
                         <td>'.$row->sp_sita.'</td>
+                        <td style="min-width:115px">
+                            <div class="btn-group" role="group">
+                                <button type="button" class="btn btn-default">Edit</button>
+                                <button type="button" class="btn btn-danger">Hapus</button>
+                            </div>
+                        </td>
                     </tr>';
                     $id++;
                 }
