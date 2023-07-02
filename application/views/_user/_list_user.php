@@ -1,7 +1,7 @@
 <div class="table-responsive">
     <table id="example1" class="table table-striped table-bordered" style="width:100%">
         <thead>
-            <?=get_header_table_custom($model, array('password'));?>
+            <?=get_header_table_custom($model, array('password'), 'false');?>
         </thead>
         <tbody>
             <?php
@@ -12,13 +12,8 @@
                         <td>'.$row->username.'</td>
                         <td>'.$row->nama.'</td>
                         <td>'.$row->foto.'</td>
+                        <td>'.$row->area_kerja.'</td>
                         <td>'.$row->rule.'</td>
-                        <td style="min-width:115px">
-                            <div class="btn-group" role="group">
-                                <button type="button" class="btn btn-default">Edit</button>
-                                <button type="button" class="btn btn-danger">Hapus</button>
-                            </div>
-                        </td>
                     </tr>';
                 }
             endif;
@@ -46,19 +41,19 @@ $( document ).ready(function() {
             contentType: false,
             cache: false,
             beforeSend : function(xhr, opts){
-                // $('#form-submit').text('Loading...').prop("disabled", true);
+                $('#form-submit').text('Loading...').prop("disabled", true);
             },
             success: function(data){
-                // data = JSON.parse(data);
+                $('#form-submit').text('Simpan Data').prop("disabled", false);
                 console.log(data, "data");
                 if(data.success == true){
-                    // setTimeout(function(){
-                    //     window.location.reload();
-                    // }, 3000);
+                    setTimeout(function(){
+                        window.location.reload();
+                    }, 3000);
                 } else {
                     if(data.error) {
                         $('#input-foto').addClass('is-invalid');
-                        $('#input-foto').parents('.form-group').find('#error').html(data.error);
+                        $('#input-foto').parents('.form-group').find('#error').html(data.error).addClass('text-danger');
                     }
                 }
             }

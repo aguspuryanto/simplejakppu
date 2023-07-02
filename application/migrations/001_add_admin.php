@@ -30,6 +30,10 @@ class Migration_add_admin extends CI_Migration {
                     'type' => 'VARCHAR',
                     'constraint' => '255'
                 ),
+                'area_kerja' => array(
+                    'type' => 'VARCHAR',
+                    'constraint' => '50' //kajari,kasi,staff
+                ),
                 'rule' => array(
                     'type' => 'VARCHAR',
                     'constraint' => '50' //kajari,kasi,staff

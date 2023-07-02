@@ -19,13 +19,40 @@
             <?=get_form_input($model, 'foto', array('type'=>'file', 'name'=>'foto')); ?>
 
             <?php //echo get_form_input($model, 'rule'); ?>
-            <?php
-            $options = array(
-              'kasi' => 'Kasi',
-              'staff' => 'Staff',
-            );      
-            echo form_dropdown('rule', $options, '');
-            ?>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>RULE</label>
+                  <?php
+                  $options = array(
+                    // 'kajari' => 'Kajari',
+                    'kasi' => 'Kasi',
+                    'staff' => 'Staff',
+                  );
+                  
+                  echo form_dropdown('rule', $options, '', array('class' => 'form-control', 'id' => 'input-rule'));
+                  ?>
+                  <div id="error"></div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>AREA KERJA</label>
+                  <?php
+                  $options = array(
+                    '*' => 'Semua Area',
+                    'pidum' => 'Pidum',
+                    'intel' => 'Intel',
+                    'datun' => 'datun',
+                    'bin' => 'Pembinaan',
+                  );
+                  
+                  echo form_dropdown('area_kerja', $options, '', array('class' => 'form-control', 'id' => 'input-rule'));
+                  ?>
+                  <div id="error"></div>
+                </div>
+              </div>
+            </div>
 
             <button type="submit" class="btn btn-primary" id="form-submit">Simpan Data</button>
             <button type="reset" class="btn btn-default">Kosongkan Data</button>

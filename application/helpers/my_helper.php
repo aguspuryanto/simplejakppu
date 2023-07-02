@@ -120,7 +120,6 @@
 	}
 
 	function get_header_table_custom($model, $field="", $extra="") {
-		if(empty($extra)) $extra = '<th>#</th>';
 		if(!$field && empty($field)) $field = array('jenis_module');
 
 		foreach ($model->rules() as $key => $object) {
@@ -134,7 +133,10 @@
 			$header_tag .= '<th>' . $val['label'] . '</th>';
 		}
 
-		if($extra) $header_tag .= $extra;
+		if(empty($extra)) {
+			$extra = '<th>#</th>';
+			$header_tag .= $extra;
+		}
 		
 		$header_tag .= '</tr>';
 

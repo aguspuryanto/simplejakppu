@@ -31,6 +31,7 @@
         array(
           'title' => 'PIDUM',
           'url' => 'Pidum',
+          'show_menu' => ($userdata->rule=="admin" || $userdata->area_kerja=="pidum") ? TRUE : FALSE,
           'submenu' => array(
             array('title' => 'Perkara', 'url' => 'pidum'),
             array('title' => 'Penahanan', 'url' => 'pidum_penahanan'),
@@ -45,6 +46,7 @@
         array(
           'title' => 'PIDSUS',
           'url' => 'Pidsus',
+          'show_menu' => ($userdata->rule=="admin" || $userdata->area_kerja=="pidsus") ? TRUE : FALSE,
           'submenu' => array(
             array('title' => 'Perkara', 'url' => 'pidsus'),
             array('title' => 'Penahanan', 'url' => 'pidsus_penahanan'),
@@ -54,6 +56,7 @@
         array(
           'title' => 'INTEL',
           'url' => 'Intel',
+          'show_menu' => ($userdata->rule=="admin" || $userdata->area_kerja=="intel") ? TRUE : FALSE,
           'submenu' => array(
             array('title' => 'Surat Perintah Tugas', 'url' => 'sp_tugas'),
             array('title' => 'Operasi Intelijen', 'url' => 'op_intelijen'),
@@ -69,6 +72,7 @@
         array(
           'title' => 'DATUN',
           'url' => 'Datun',
+          'show_menu' => ($userdata->rule=="admin" || $userdata->area_kerja=="datun") ? TRUE : FALSE,
           'submenu' => array(
             // array('title' => 'Perkara', 'url' => 'datun'),
           ),
@@ -76,6 +80,7 @@
         array(
           'title' => 'PEMBINAAN',
           'url' => 'Pembinaan',
+          'show_menu' => ($userdata->rule=="admin" || $userdata->area_kerja=="bin") ? TRUE : FALSE,
           'submenu' => array(
             array('title' => 'Realisasi Anggaran', 'url' => 'realisasi'),
             array('title' => 'Rumah Dinas', 'url' => 'rumdinas'),
@@ -85,10 +90,12 @@
         ),
       ];
 
+      // echo json_encode($userdata->rule) . "<br>";
+      // echo json_encode($list_menu);
       foreach($list_menu as $key => $lmenu) {
       ?>
       
-      <li class="treeview <?php if ($page == 'pegawai') echo 'active'; ?>">
+      <li class="treeview <?php if ($page == 'pegawai') echo 'active'; ?>" style="<?=($lmenu['show_menu']==TRUE) ? 'display:block;' : 'display:none;';?>">
         <a href="<?=base_url($lmenu['url']); ?>">
           <i class="fa fa-user"></i>
           <span><?=$lmenu['title']; ?></span>

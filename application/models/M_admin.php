@@ -11,6 +11,7 @@ class M_admin extends CI_Model {
             ['field' => 'password', 'label' => 'PASSWORD','rules' => 'required'],
             ['field' => 'nama', 'label' => 'NAMA','rules' => 'trim|required'],
             ['field' => 'foto', 'label' => 'FOTO','rules' => 'required'],
+            ['field' => 'area_kerja', 'label' => 'AREA KERJA','rules' => 'required'],
             ['field' => 'rule', 'label' => 'RULE','rules' => 'required']
         ];
     }
