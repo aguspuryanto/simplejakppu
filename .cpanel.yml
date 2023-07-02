@@ -4,6 +4,7 @@ deployment:
     - export DEPLOYPATH=/home/simk9757/public_html/
     - /bin/cp -r application/controllers/* $DEPLOYPATH
     - /bin/cp -r application/models/* $DEPLOYPATH
+    - /bin/cp -r application/views/* $DEPLOYPATH
     - /bin/cp -r application/migrations/* $DEPLOYPATH    
     - /bin/cp -r application/helpers/* $DEPLOYPATH
     - /bin/cp -r application/config/migration.php $DEPLOYPATH
