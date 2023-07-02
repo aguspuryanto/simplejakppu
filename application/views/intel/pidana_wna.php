@@ -13,7 +13,7 @@
                 <div class="clearfix"></div>
             </div>
             <div class="panel-body">
-                <?php //include_once('_list_perkara.php'); ?>
+                <?php include_once('_list_pidanawna.php'); ?>
             </div>
         </div>
   </div>
@@ -22,6 +22,9 @@
 
 <script>
 $(document).ready(function () {
-    $('#example1').DataTable();
+    var myTable = $('#example1').DataTable({
+        "autoWidth":false,
+    });
+    myTable.columns.adjust().draw();
 });
 </script>

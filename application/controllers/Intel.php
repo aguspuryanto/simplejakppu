@@ -11,8 +11,9 @@ class Intel extends AUTH_Controller {
 		$this->load->model('M_sptugas');
 		$this->load->model('M_cegahtangkal');
 		$this->load->model('M_buron');
-		$this->load->model('M_traffikwna');
+		$this->load->model('M_trafikwna');
 		$this->load->model('M_wnapidana');
+		$this->load->model('M_mafia');
 	}
 
 	public function index() {
@@ -187,11 +188,15 @@ class Intel extends AUTH_Controller {
 		$this->template->views('intel/tangkap_buron', $data);
 	}
 
+	/*
+	 * Module : Pengawasan Lalu Lintas WNA
+	 */
+
 	public function awas_wna() {
 		$data['userdata'] 	= $this->userdata;
 
-		$data['model'] = $this->M_traffikwna;
-		$data['dataSptugas'] = $this->M_traffikwna->select_all();
+		$data['model'] = $this->M_trafikwna;
+		$data['dataProvider'] = $this->M_trafikwna->select_all();
 
 		$data['judul'] 		= "PENGAWASAN LALU LINTAS WNA";
 		$data['deskripsi'] 	= "";
@@ -200,12 +205,55 @@ class Intel extends AUTH_Controller {
 		$this->template->views('intel/awas_wna', $data);
 	}
 
+	public function awaswna_add() {		
+		$this->load->library('form_validation');
+
+		$model = $this->M_trafikwna;
+
+		$this->form_validation->set_rules($model->rules());
+
+		$this->form_validation->set_message('required', 'Mohon lengkapi {field}!');
+
+		$json = array();
+		if (!$this->form_validation->run()) {
+			foreach($model->rules() as $key => $val) {
+				$json = array_merge($json, array(
+					$val['field'] => form_error($val['field'], '<p class="mt-3 text-danger">', '</p>')
+				));
+			}
+		} else {
+			$data = array(
+				'asal_wna' => $this->input->post('asal_wna'),
+				'pnduduk_wna' => $this->input->post('pnduduk_wna'),
+				'tnaga_kerja' => $this->input->post('tnaga_kerja'),
+				'plajar' => $this->input->post('plajar'),
+				'pneliti' => $this->input->post('pneliti'),
+				'kluarga' => $this->input->post('kluarga'),
+				'rohaniwan' => $this->input->post('rohaniwan'),
+				'ilegal' => $this->input->post('ilegal'),
+				'usaha' => $this->input->post('usaha'),
+				'sosbud' => $this->input->post('sosbud'),
+				'wisata' => $this->input->post('wisata'),
+				'keterangan' => $this->input->post('keterangan'),
+			);
+
+			$model->save($data);
+			$this->session->set_flashdata('success', 'Berhasil disimpan');
+			$json = array('success' => true, 'message' => 'Berhasil disimpan');
+			
+		}
+
+		$this->output
+		->set_content_type('application/json')
+		->set_output(json_encode($json));
+	}
+
 	// pidana_wna, proyek_strategis, berantas_mafia, cepat_investasi
 	public function pidana_wna() {
 		$data['userdata'] 	= $this->userdata;
 
 		$data['model'] = $this->M_wnapidana;
-		$data['dataSptugas'] = $this->M_wnapidana->select_all();
+		$data['dataProvider'] = $this->M_wnapidana->select_all();
 
 		$data['judul'] 		= "PENGAWASAN LALU LINTAS WNA";
 		$data['deskripsi'] 	= "";
@@ -214,12 +262,52 @@ class Intel extends AUTH_Controller {
 		$this->template->views('intel/pidana_wna', $data);
 	}
 
+	public function pidanawna_add() {
+		$this->load->library('form_validation');
+
+		$model = $this->M_wnapidana;
+
+		$this->form_validation->set_rules($model->rules());
+
+		$this->form_validation->set_message('required', 'Mohon lengkapi {field}!');
+
+		$json = array();
+		if (!$this->form_validation->run()) {
+			foreach($model->rules() as $key => $val) {
+				$json = array_merge($json, array(
+					$val['field'] => form_error($val['field'], '<p class="mt-3 text-danger">', '</p>')
+				));
+			}
+		} else {
+			$data = array(
+				'identitas' => $this->input->post('identitas'),
+				'asal_wna' => $this->input->post('asal_wna'),
+				'kasus_posisi' => $this->input->post('kasus_posisi'),
+				'tahap' => $this->input->post('tahap'),
+				'jenis_module' => $this->input->post('jenis_module'),
+			);
+
+			$model->save($data);
+			$this->session->set_flashdata('success', 'Berhasil disimpan');
+			$json = array('success' => true, 'message' => 'Berhasil disimpan');
+			
+		}
+
+		$this->output
+		->set_content_type('application/json')
+		->set_output(json_encode($json));
+
+	}
+
+	/*
+	 * Module : Data Proyek Strategis
+	 */
 	public function proyek_strategis() {
 		$data['userdata'] 	= $this->userdata;
 
 		$this->load->model('M_proyek');
 		$data['model'] = $this->M_proyek;
-		$data['dataSptugas'] = $this->M_proyek->select_all();
+		$data['dataProvider'] = $this->M_proyek->select_all();
 
 		$data['judul'] 		= "PROYEK STRATEGIS";
 		$data['deskripsi'] 	= "";
@@ -228,18 +316,62 @@ class Intel extends AUTH_Controller {
 		$this->template->views('intel/proyek_strategis', $data);
 	}
 
+	/*
+	 * Module : Tim Pemberatasan Mafia Tanah
+	 */
 	public function berantas_mafia() {
 		$data['userdata'] 	= $this->userdata;
 
 		$this->load->model('M_mafia');
 		$data['model'] = $this->M_mafia;
-		$data['dataSptugas'] = $this->M_mafia->select_all();
+		$data['dataProvider'] = $this->M_mafia->select_all();
 
 		$data['judul'] 		= "TIM PEMBERANTASAN MAFIA TANAH";
 		$data['deskripsi'] 	= "";
 		$data['page'] = "Intelijen";
 
 		$this->template->views('intel/berantas_mafia', $data);
+	}
+
+	public function berantasmafia_add() {
+		$this->load->library('form_validation');
+
+		$model = $this->M_mafia;
+
+		$this->form_validation->set_rules($model->rules());
+
+		$this->form_validation->set_message('required', 'Mohon lengkapi {field}!');
+
+		$json = array();
+		if (!$this->form_validation->run()) {
+			foreach($model->rules() as $key => $val) {
+				$json = array_merge($json, array(
+					$val['field'] => form_error($val['field'], '<p class="mt-3 text-danger">', '</p>')
+				));
+			}
+		} else {
+			$data = array(
+				'sumber_info' => $this->input->post('sumber_info'),
+				'lokasi' => $this->input->post('lokasi'),
+				'pemilik' => $this->input->post('pemilik'),
+				'bukti' => $this->input->post('bukti'),
+				'luas' => $this->input->post('luas'),
+				'ksus_posisi' => $this->input->post('ksus_posisi'),
+				'prmasalahan' => $this->input->post('prmasalahan'),
+				'potensi_mafia' => $this->input->post('potensi_mafia'),
+				'tahapan' => $this->input->post('tahapan'),
+				'keterangan' => $this->input->post('keterangan')
+			);
+
+			$model->save($data);
+			$this->session->set_flashdata('success', 'Berhasil disimpan');
+			$json = array('success' => true, 'message' => 'Berhasil disimpan');
+			
+		}
+
+		$this->output
+		->set_content_type('application/json')
+		->set_output(json_encode($json));
 	}
 
 	public function cepat_investasi() {
@@ -249,6 +381,48 @@ class Intel extends AUTH_Controller {
 		$data['page'] = "Intelijen";
 
 		$this->template->views('intel/cepat_investasi', $data);
+	}
+
+	public function investasi_add() {
+		$this->load->library('form_validation');
+
+		$model = $this->M_mafia;
+
+		$this->form_validation->set_rules($model->rules());
+
+		$this->form_validation->set_message('required', 'Mohon lengkapi {field}!');
+
+		$json = array();
+		if (!$this->form_validation->run()) {
+			foreach($model->rules() as $key => $val) {
+				$json = array_merge($json, array(
+					$val['field'] => form_error($val['field'], '<p class="mt-3 text-danger">', '</p>')
+				));
+			}
+		} else {
+			$data = array(
+				'sumber_info' => $this->input->post('sumber_info'),
+				'lokasi' => $this->input->post('lokasi'),
+				'pemilik' => $this->input->post('pemilik'),
+				'bukti' => $this->input->post('bukti'),
+				'luas' => $this->input->post('luas'),
+				'ksus_posisi' => $this->input->post('ksus_posisi'),
+				'prmasalahan' => $this->input->post('prmasalahan'),
+				'potensi_mafia' => $this->input->post('potensi_mafia'),
+				'tahapan' => $this->input->post('tahapan'),
+				'keterangan' => $this->input->post('keterangan')
+			);
+
+			$model->save($data);
+			$this->session->set_flashdata('success', 'Berhasil disimpan');
+			$json = array('success' => true, 'message' => 'Berhasil disimpan');
+			
+		}
+
+		$this->output
+		->set_content_type('application/json')
+		->set_output(json_encode($json));
+
 	}
 }
 

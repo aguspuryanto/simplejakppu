@@ -18,6 +18,12 @@
                         <td>'.$row->potensi_aght.'</td>
                         <td>'.$row->tahapan.'</td>
                         <td>'.$row->keterangan.'</td>
+                        <td style="min-width:115px">
+                            <div class="btn-group" role="group">
+                                <button type="button" class="btn btn-default">Edit</button>
+                                <button type="button" class="btn btn-danger">Hapus</button>
+                            </div>
+                        </td>
                     </tr>';
                     $id++;
                 }
@@ -42,6 +48,9 @@ $( document ).ready(function() {
             url: "<?=site_url('Intel/sp_tugas_add');?>", 
             data: $("#form").serialize(),
             dataType: "json",  
+            beforeSend : function(xhr, opts){
+                $('#form-submit').text('Loading...').prop("disabled", true);
+            },
             success: function(data){
                 console.log(data, "data");
                 if(data.success == true){

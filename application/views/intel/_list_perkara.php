@@ -71,6 +71,9 @@ $( document ).ready(function() {
             url: "<?=site_url('papan-kontrol/intel_add');?>", 
             data: $("#form").serialize(),
             dataType: "json",  
+            beforeSend : function(xhr, opts){
+                $('#form-submit').text('Loading...').prop("disabled", true);
+            },
             success: function(data){
                 console.log(data, "data");
                 if(data.success == true){

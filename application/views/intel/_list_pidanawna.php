@@ -1,33 +1,29 @@
 <div class="table-responsive">
     <table id="example1" class="table table-striped table-bordered" style="width:100%">
         <thead>
-            <tr>
-                <th>NO</th>
-                <th>NAMA TERPIDANA</th>
-                <th>JENIS PERKARA</th>
-                <th>PUTUSAN INKRACHT</th>
-                <th>PASAL TERBUKTI</th>
-                <th>JENIS PNBP</th>
-                <th>JUMLAH</th>
-                <th>BUKTI SETOR</th>
-                <th>KET.</th>
-            </tr>
+            <?php //$except = array('jenis_module'); ?>
+            <?=get_header_table($model);?>
         </thead>
         <tbody>
             <?php
-            if($dataPnbp) : 
-                foreach($dataPnbp as $row) {
+            if($dataProvider) :
+                $id=1;
+                foreach($dataProvider as $row) {
                     echo '<tr>
-                        <td>'.$row->id.'</td>
-                        <td>'.$row->nama_tsk.'</td>
-                        <td>'.$row->jenis_perkara.'</td>
-                        <td>'.$row->putusan_perkara.'</td>
-                        <td>'.$row->pasal_terbukti.'</td>
-                        <td>'.$row->jenis_pnpb.'</td>
-                        <td>'.$row->jumlah_pnpb.'</td>
-                        <td>'.$row->bukti_pnpb.'</td>
+                        <td>'.$id.'</td>
+                        <td>'.$row->identitas.'</td>
+                        <td>'.$row->asal_wna.'</td>
+                        <td>'.$row->kasus_posisi.'</td>
+                        <td>'.$row->tahap.'</td>
                         <td>'.$row->keterangan.'</td>
+                        <td style="min-width:115px">
+                            <div class="btn-group" role="group">
+                                <button type="button" class="btn btn-default">Edit</button>
+                                <button type="button" class="btn btn-danger">Hapus</button>
+                            </div>
+                        </td>
                     </tr>';
+                    $id++;
                 }
             endif;
             ?>
@@ -35,23 +31,23 @@
     </table>
 </div>
 
-<?php include_once('_modal_pnbp.php'); ?>
+<?php include_once('_modal_pidanawna.php'); ?>
 
 <script type="text/javascript">
 $( document ).ready(function() {
-    // $(".datepicker").datepicker();
+    $(".datepicker").datepicker();
     $('#error').html(" ");
 
-    $('#form-pnbp').on('click', function (e) {
+    $('#form-submit').on('click', function (e) {
         e.preventDefault();
 
         $.ajax({
             type: "POST",
-            url: "<?=site_url('papan-kontrol/pidum_pnbp');?>", 
-            data: $("#formPnbp").serialize(),
+            url: "<?=site_url('Intel/pidanawna_add');?>", 
+            data: $("#form").serialize(),
             dataType: "json",  
             beforeSend : function(xhr, opts){
-                $('#form-pnbp').text('Loading...').prop("disabled", true);
+                $('#form-submit').text('Loading...').prop("disabled", true);
             },
             success: function(data){
                 console.log(data, "data");
@@ -69,7 +65,7 @@ $( document ).ready(function() {
         });
     });
 
-    $('#formPnbp input').on('keyup', function () { 
+    $('#form input').on('keyup', function () { 
         $(this).removeClass('is-invalid').addClass('is-valid');
         $(this).parents('.form-group').find('#error').html(" ");
     });

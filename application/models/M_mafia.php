@@ -7,12 +7,15 @@ class M_mafia extends CI_Model {
     public function rules()
     {
         return [
-            ['field' => 'identitas', 'label' => 'IDENTITAS', 'rules' => 'required'],
-            ['field' => 'srt_mohon', 'label' => 'SURAT PERMOHONAN','rules' => 'required'],
-            ['field' => 'kasus_posisi', 'label' => 'KASUS POSISI','rules' => 'required'],
-            ['field' => 'kepja_no', 'label' => 'KEPJA RI NO','rules' => 'required'],
-            ['field' => 'tgl_mulai', 'label' => 'TANGGAL MULAI','rules' => 'required'],
-            ['field' => 'tgl_akhir', 'label' => 'TANGGAL AKHIR','rules' => 'required'],
+            ['field' => 'sumber_info', 'label' => 'SUMBER INFORMASI', 'rules' => 'required'],
+            ['field' => 'lokasi', 'label' => 'LOKASI','rules' => 'required'],
+            ['field' => 'pemilik', 'label' => 'PEMILIK TANAH','rules' => 'required'],
+            ['field' => 'bukti', 'label' => 'BUKTI KEPEMILIKAN','rules' => 'required'],
+            ['field' => 'luas', 'label' => 'LUAS & PERKIRAAN NILAI TANAH','rules' => 'required'],
+            ['field' => 'ksus_posisi', 'label' => 'KASUS POSISI','rules' => 'required'],
+            ['field' => 'prmasalahan', 'label' => 'PERMASALAHAN','rules' => 'required'],
+            ['field' => 'potensi_mafia', 'label' => 'POTENSI KETERLIBATAN MAFIA TANAH','rules' => 'required'],
+            ['field' => 'tahapan', 'label' => 'TAHAPAN','rules' => 'required'],
             ['field' => 'keterangan', 'label' => 'KETERANGAN']
         ];
     }

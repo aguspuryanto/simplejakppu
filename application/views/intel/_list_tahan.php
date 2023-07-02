@@ -53,6 +53,9 @@ $( document ).ready(function() {
             url: "<?=site_url('papan-kontrol/pidum_tahan');?>", 
             data: $("#formPenahanan").serialize(),
             dataType: "json",  
+            beforeSend : function(xhr, opts){
+                $('#formPenahanan').text('Loading...').prop("disabled", true);
+            },
             success: function(data){
                 console.log(data, "data");
                 if(data.success == true){

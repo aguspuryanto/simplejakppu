@@ -1,22 +1,25 @@
 <div class="table-responsive">
     <table id="example1" class="table table-striped table-bordered" style="width:100%">
         <thead>
+            <?php //$except = array('jenis_module'); ?>
             <?=get_header_table($model);?>
         </thead>
         <tbody>
             <?php
-            if($dataSptugas) :
+            if($dataProvider) :
                 $id=1;
-                foreach($dataSptugas as $row) {
+                foreach($dataProvider as $row) {
                     echo '<tr>
                         <td>'.$id.'</td>
-                        <td>'.$row->sumber_info.'</td>
-                        <td>'.$row->sp_tugas.'</td>
-                        <td>'.$row->objek_tugas.'</td>
-                        <td>'.$row->kasus_posisi.'</td>
-                        <td>'.$row->permasalahan.'</td>
-                        <td>'.$row->potensi_aght.'</td>
+                        <td>'.$row->sp.'</td>
+                        <td>'.$row->nama_pemodal.'</td>
+                        <td>'.$row->bidang_usaha.'</td>
+                        <td>'.$row->nilai.'</td>
+                        <td>'.$row->wktu.'</td>
+                        <td>'.$row->lokasi.'</td>
+                        <td>'.$row->tipe.'</td>
                         <td>'.$row->tahapan.'</td>
+                        <td>'.$row->potensi_aght.'</td>
                         <td>'.$row->keterangan.'</td>
                         <td style="min-width:115px">
                             <div class="btn-group" role="group">
@@ -33,7 +36,7 @@
     </table>
 </div>
 
-<?php include_once('_modal_op_intelijen.php'); ?>
+<?php include_once('_modal_investasi.php'); ?>
 
 <script type="text/javascript">
 $( document ).ready(function() {
@@ -45,7 +48,7 @@ $( document ).ready(function() {
 
         $.ajax({
             type: "POST",
-            url: "<?=site_url('Intel/sp_tugas_add');?>", 
+            url: "<?=site_url('Intel/investasi_add');?>", 
             data: $("#form").serialize(),
             dataType: "json",  
             beforeSend : function(xhr, opts){
@@ -53,6 +56,7 @@ $( document ).ready(function() {
             },
             success: function(data){
                 console.log(data, "data");
+                $(this).prop("disabled", false);
                 if(data.success == true){
                     setTimeout(function(){
                         window.location.reload();
