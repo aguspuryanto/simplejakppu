@@ -19,7 +19,7 @@
       <li class="header">LIST MENU</li>
       <!-- Optionally, you can add icons to the links -->
 
-      <li <?php if ($page == 'home') {echo 'class="active"';} ?>>
+      <li <?php if ($page == 'home') {echo 'class="active"';} ?> style="<?=($userdata->rule=="admin" || $userdata->rule=="kasi") ? 'display:block;' : 'display:none;';?>">
         <a href="<?php echo base_url('Home'); ?>">
           <i class="fa fa-home"></i>
           <span>DASHBOARD</span>
