@@ -23,6 +23,17 @@
 
 <?php include_once('_modal_user.php'); ?>
 
+<style>
+.icon.spinner.spin{
+    animation: spin 1.3s ease-in-out infinite;
+}
+@keyframes spin {
+    100%{
+        transform: rotate(360deg);
+    }
+}
+</style>
+
 <script type="text/javascript">
 $( document ).ready(function() {
     $(".datepicker").datepicker();
@@ -40,7 +51,7 @@ $( document ).ready(function() {
             contentType: false,
             cache: false,
             beforeSend : function(xhr, opts){
-                $('#form-submit').text('Loading...').prop("disabled", true);
+                $('#form-submit').addClass('spin').text('Loading...').prop("disabled", true);
             },
             success: function(data){
                 $('#form-submit').text('Simpan Data').prop("disabled", false);

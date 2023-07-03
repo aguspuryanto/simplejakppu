@@ -128,6 +128,7 @@ class Profile extends AUTH_Controller {
 				'password' => md5($this->input->post('password')),
 				'nama' => $this->input->post('nama'),
 				'foto' => $_FILES['foto']['name'], //$this->input->post('foto'),
+				'area_kerja' => $this->input->post('area_kerja'),
 				'rule' => $this->input->post('rule'),
 			);
 

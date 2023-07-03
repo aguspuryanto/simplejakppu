@@ -54,7 +54,7 @@
               </div>
             </div>
 
-            <button type="submit" class="btn btn-primary" id="form-submit">Simpan Data</button>
+            <button type="submit" class="btn btn-primary" id="form-submit"><i class="fa fa-circle-o-notch icon spinner" aria-hidden="true"></i> Simpan Data</button>
             <button type="reset" class="btn btn-default">Kosongkan Data</button>
         <?=form_close();?>
       </div>
