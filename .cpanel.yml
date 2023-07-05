@@ -2,7 +2,7 @@
 deployment:
   tasks:
     - export DEPLOYPATH=/home/simk9757/public_html/
-    - /bin/cp -r!(application/config/database.php) * $DEPLOYPATH
+    - /bin/cp -r *!(application/config/database.php) $DEPLOYPATH
     #- /bin/cp -r application/controllers/* $DEPLOYPATH
     #- /bin/cp -r application/models/* $DEPLOYPATH
     #- /bin/cp -r application/migrations/* $DEPLOYPATH    
