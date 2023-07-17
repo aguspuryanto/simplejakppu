@@ -35,4 +35,11 @@ class M_penahanan extends CI_Model {
         $data = $this->db->get($this->table_name);
         return $data->num_rows();
     }
+
+    public function select_by_module($module) {
+        $this->db->select('COUNT(*) as jml');
+        $this->db->where('jenis_module', $module);
+        $data = $this->db->get($this->table_name);
+        return $data->row();
+    }
 }

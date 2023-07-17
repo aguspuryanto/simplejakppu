@@ -12,16 +12,77 @@ class Pidum extends AUTH_Controller {
 	}
 
 	public function index() {
-		$data['userdata'] 	= $this->userdata;
+		// Statistik Pidum :
+		// 1. Perkara Pidum
+		// a. Spdp
+		// b. Pratut
+		// c. TUT
+		// d. Eksekusi
+		// d. Upaya Hukum (Banding)
+		// e. Upaya Hukum (Kasasi)
+		// f. Upaya Hukum Luar Biasa (PK)
+		// g. Lain-lain
 
-		// $data['page'] 		= "kota";
-		// $data['judul'] 		= "Data Kota";
-		// $data['deskripsi'] 	= "Manage Data Kota";
+		// 2. Jenis perkara : 
+		// a. Tindak Pidana Narkotika dan Zat Adiktif Lainnya ; 
+		// b. TP Terhadap Orang dan Harta Benda ; 
+		// c. TP Terhadap Keamanan Negara, Ketertiban Umum dan TP Umum Lainnya; 
+		// d. TP Terorisme dan Lintas Negara;
+
+		// 3. Jumlah Tersangka, Terdakwa dan Terpidana (Laki, perempuan dan anak)
+		// 4. Jumlah Tahanan (Laki, perempuan dan anak)
+
+		// $data['jml_perkara'] 	= $this->M_perkara->total_rows();
+		$data['jml_perkara'] 	= $this->M_perkara->select_by(['jenis_module'=>'pidum'])->jml;
+		$data['jml_penahanan'] 	= $this->M_penahanan->total_rows();
+		$data['jml_pnbp'] 		= $this->M_pnbp->total_pnbp();
+		$data['userdata'] 		= $this->userdata;
+
+		$rand = array('0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f');
+		
+		$perkara = $this->M_perkara->select_all();
+		$index = 0;
+		foreach ($perkara as $value) {
+		    $color = '#' .$rand[rand(0,15)] .$rand[rand(0,15)] .$rand[rand(0,15)] .$rand[rand(0,15)] .$rand[rand(0,15)] .$rand[rand(0,15)];
+
+			// $pegawai_by_posisi = $this->M_pegawai->select_by_posisi($value->id);
+			$module = $this->M_perkara->select_by(['jenis_module'=>$value->jenis_module]);
+
+			$data_perkara[$index]['value'] = $module->jml;
+			$data_perkara[$index]['color'] = $color;
+			$data_perkara[$index]['highlight'] = $color;
+			$data_perkara[$index]['label'] = ucwords($value->jenis_module);
+			
+			$index++;
+		}
+
+		$pnbp = $this->M_pnbp->select_all();
+		$index = 0;
+		foreach ($pnbp as $value) {
+		    $color = '#'.$rand[rand(0,15)].$rand[rand(0,15)].$rand[rand(0,15)].$rand[rand(0,15)].$rand[rand(0,15)].$rand[rand(0,15)];
+
+			// $pegawai_by_kota = $this->M_pegawai->select_by_kota($value->id);
+			$pnbp_by_jenis = $this->M_pnbp->select_by_perkara($value->jenis_pnpb);
+
+			$data_pnbp[$index]['value'] = $pnbp_by_jenis->jumlah_pnpb;
+			$data_pnbp[$index]['color'] = $color;
+			$data_pnbp[$index]['highlight'] = $color;
+			$data_pnbp[$index]['label'] = $value->jenis_pnpb;
+			
+			$index++;
+		}
+
+		$data['data_perkara'] = isset($data_perkara) ? json_encode($data_perkara) : [];
+		$data['data_pnbp'] = isset($data_pnbp) ? json_encode($data_pnbp) : [];
+
+		$data['page'] 			= "home";
+		$data['judul'] 			= "Statistik";
+		$data['deskripsi'] 		= "";
 
 		// $data['modal_tambah_kota'] = show_my_modal('modals/modal_tambah_kota', 'tambah-kota', $data);
 
-		// $this->template->views('kota/home', $data);
-		redirect('/Pidum/pidum');
+		$this->template->views('pidum/home', $data);
+		// redirect('/Pidum/pidum');
 	}
 
 	public function pidum() {

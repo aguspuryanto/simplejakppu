@@ -60,9 +60,12 @@ class M_perkara extends CI_Model {
         return $data->num_rows();
     }
 
-    public function select_by_module($module) {
+    public function select_by($module=[]) {
+        $key = array_keys($module)[0];
+        $value = array_values($module)[0];
+
         $this->db->select('COUNT(*) as jml');
-        $this->db->where('jenis_module', $module);
+        $this->db->where($key, $value);
         $data = $this->db->get($this->table_name);
         return $data->row();
     }

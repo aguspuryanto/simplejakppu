@@ -33,6 +33,7 @@
           'url' => 'Pidum',
           'show_menu' => ($userdata->rule=="admin" || $userdata->area_kerja=="pidum") ? TRUE : FALSE,
           'submenu' => array(
+            array('title' => 'Statistik', 'url' => 'index'),
             array('title' => 'Perkara', 'url' => 'pidum'),
             array('title' => 'Penahanan', 'url' => 'pidum_penahanan'),
             array('title' => 'PNBP', 'url' => 'pidum_pnbp'),
@@ -48,6 +49,7 @@
           'url' => 'Pidsus',
           'show_menu' => ($userdata->rule=="admin" || $userdata->area_kerja=="pidsus") ? TRUE : FALSE,
           'submenu' => array(
+            array('title' => 'Statistik', 'url' => 'index'),
             array('title' => 'Perkara', 'url' => 'pidsus'),
             array('title' => 'Penahanan', 'url' => 'pidsus_penahanan'),
             array('title' => 'PNBP', 'url' => 'pidsus_pnbp'),
@@ -58,6 +60,7 @@
           'url' => 'Intel',
           'show_menu' => ($userdata->rule=="admin" || $userdata->area_kerja=="intel") ? TRUE : FALSE,
           'submenu' => array(
+            array('title' => 'Statistik', 'url' => 'index'),
             array('title' => 'Surat Perintah Tugas', 'url' => 'sp_tugas'),
             array('title' => 'Operasi Intelijen', 'url' => 'op_intelijen'),
             array('title' => 'Pencegahan & Penangkalan', 'url' => 'cegah_tangkal'),
@@ -74,6 +77,7 @@
           'url' => 'Datun',
           'show_menu' => ($userdata->rule=="admin" || $userdata->area_kerja=="datun") ? TRUE : FALSE,
           'submenu' => array(
+            array('title' => 'Statistik', 'url' => 'index'),
             // array('title' => 'Perkara', 'url' => 'datun'),
           ),
         ),
