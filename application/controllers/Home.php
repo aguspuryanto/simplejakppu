@@ -27,7 +27,7 @@ class Home extends AUTH_Controller {
 		    $color = '#' .$rand[rand(0,15)] .$rand[rand(0,15)] .$rand[rand(0,15)] .$rand[rand(0,15)] .$rand[rand(0,15)] .$rand[rand(0,15)];
 
 			// $pegawai_by_posisi = $this->M_pegawai->select_by_posisi($value->id);
-			$module = $this->M_perkara->select_by_module($value->jenis_module);
+			$module = $this->M_perkara->select_by(['jenis_module'=>$value->jenis_module]);
 
 			$data_perkara[$index]['value'] = $module->jml;
 			$data_perkara[$index]['color'] = $color;
