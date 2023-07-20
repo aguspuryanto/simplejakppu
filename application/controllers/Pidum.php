@@ -76,7 +76,7 @@ class Pidum extends AUTH_Controller {
 		$data['data_pnbp'] = isset($data_pnbp) ? json_encode($data_pnbp) : [];
 
 		$data['page'] 			= "home";
-		$data['judul'] 			= "Statistik";
+		$data['judul'] 			= "Statistik Pidana Umum (Pidum)";
 		$data['deskripsi'] 		= "";
 
 		// $data['modal_tambah_kota'] = show_my_modal('modals/modal_tambah_kota', 'tambah-kota', $data);

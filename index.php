@@ -304,19 +304,14 @@ switch (ENVIRONMENT)
 	}
 
 	define('VIEWPATH', $view_folder.DIRECTORY_SEPARATOR);
+	
+	// Startup
+	// require_once('startup.php');
 
-/*
- * --------------------------------------------------------------------
- * LOAD PHP DOT ENV FILE
- * --------------------------------------------------------------------
- *
- * And away we go...
- *
- */
-require_once BASEPATH . 'dotenv/autoloader.php';
-
-$dotenv = new Dotenv\Dotenv(__DIR__);
-$dotenv->load();
+	// dotenv
+	// $dotenv = new Dotenv\Dotenv(__DIR__);
+	// $dotenv = Dotenv\Dotenv::create(dirname(__DIR__), 'custom env');
+	// $dotenv->load();
 
 /*
  * --------------------------------------------------------------------
