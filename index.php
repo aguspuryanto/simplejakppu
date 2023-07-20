@@ -313,6 +313,9 @@ switch (ENVIRONMENT)
 	// $dotenv = Dotenv\Dotenv::create(dirname(__DIR__), 'custom env');
 	// $dotenv->load();
 
+	// $dotenv = \Dotenv\Dotenv::createImmutable(FCPATH);
+	// $dotenv->safeLoad();
+
 /*
  * --------------------------------------------------------------------
  * LOAD THE BOOTSTRAP FILE
