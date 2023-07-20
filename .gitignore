@@ -1,9 +1,9 @@
 .DS_Store
 
-.env
+.env.development
 
 #application/config/*
-!application/config/config.php
+application/config/database.php
 
 application/cache/*
 !application/cache/index.html
