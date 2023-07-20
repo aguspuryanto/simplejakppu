@@ -1,6 +1,8 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+use Dotenv\Dotenv;
+
 /*
 | -------------------------------------------------------------------------
 | Hooks
@@ -11,8 +13,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |	https://codeigniter.com/user_guide/general/hooks.html
 |
 */
+
 // Use this code if your .env files on *CodeIgniter ROOT* folder
 $hook['pre_system'] = function() {
-	$dotenv = Dotenv\Dotenv::create(FCPATH);
-	$dotenv->load();
+    // $dotenv = Dotenv\Dotenv::create(__DIR__);
+	// $dotenv = Dotenv\Dotenv::create(FCPATH);
+    // $dotenv = Dotenv\Dotenv::createImmutable(APPPATH);
+	// $dotenv->load();
 };

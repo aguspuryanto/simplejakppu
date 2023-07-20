@@ -1,5 +1,10 @@
 .DS_Store
 
+.env
+
+#application/config/*
+!application/config/config.php
+
 application/cache/*
 !application/cache/index.html
 !application/cache/.htaccess
