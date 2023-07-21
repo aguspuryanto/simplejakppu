@@ -49,9 +49,8 @@
         </div>
       </div>
       <div class="box-body">
-        <!-- <canvas id="data-posisi" style="height:250px"></canvas> -->
-        <div class="chart">
-          <canvas id="barChart" style="height:250px"></canvas>
+        <div class="chart" style="height:300px">
+          <canvas id="barChart" style="height:290px"></canvas>
         </div>
       </div>
     </div>
@@ -61,7 +60,7 @@
     <div class="box box-primary">
       <div class="box-header with-border">
         <i class="fa fa-briefcase"></i>
-        <h3 class="box-title">Statistik Data PNBP</h3>
+        <h3 class="box-title">Statistik Jenis Perkara</h3>
 
         <div class="box-tools pull-right">
           <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -70,44 +69,54 @@
         </div>
       </div>
       <div class="box-body">
-        <canvas id="data-pnbp" style="height:250px"></canvas>
+        <div class="chart" style="height:300px">
+          <canvas id="data-pnbp" style="height:290px"></canvas>
+        </div>
       </div>
     </div>
   </div>
+
+  <div class="col-lg-7 col-xs-12">
+    <div class="box box-primary">
+      <div class="box-header with-border">
+        <i class="fa fa-briefcase"></i>
+        <h3 class="box-title">Statistik Tersangka, Terdakwa dan Terpidana</h3>
+
+        <div class="box-tools pull-right">
+          <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+          </button>
+          <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+        </div>
+      </div>
+      <div class="box-body">
+        <div class="chart" style="height:300px">
+          <canvas id="barPerkara" style="height:290px"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-5 col-xs-12"></div>
 </div>
 
 <?php
-$labels = json_encode(['Spdp', 'Pratut', 'Tut', 'Eksekusi', 'Banding', 'Kasasi', 'PK', 'Lain-lain']);
-$labels_data = json_encode([65, 59, 80, 81, 56, 55, 40, 27]);
+foreach($data_statistik as $key => $stat) {
+  $labels[] = $key;
+  $labels_data[] = $stat;
+}
+
+// tersangka, terdakwa, terpidana
+foreach($data_statistik_pidana as $key => $stat) {
+  $labels_pidana[] = $stat->tot_tsk;
+  $labels_pidana_data[] = $stat->tottsk;
+}
 ?>
 
 <script src="<?php echo base_url(); ?>assets/plugins/chartjs/Chart.min.js"></script>
 <script>
-  //data posisi
-  // var pieChartCanvas = $("#data-posisi").get(0).getContext("2d");
-  // var pieChart = new Chart(pieChartCanvas);
-  // var PieData = <?php echo $data_perkara; ?>;
-
-  // var pieOptions = {
-  //   segmentShowStroke: true,
-  //   segmentStrokeColor: "#fff",
-  //   segmentStrokeWidth: 2,
-  //   percentageInnerCutout: 50,
-  //   animationSteps: 100,
-  //   animationEasing: "easeOutBounce",
-  //   animateRotate: true,
-  //   animateScale: false,
-  //   responsive: true,
-  //   maintainAspectRatio: true,
-  //   legendTemplate: "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<segments.length; i++){%><li><span style=\"background-color:<%=segments[i].fillColor%>\"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>"
-  // };
-
-  // pieChart.Doughnut(PieData, pieOptions);
-
   //data kota
   var pieChartCanvas = $("#data-pnbp").get(0).getContext("2d");
   var pieChart = new Chart(pieChartCanvas);
-  var PieData = <?php echo $data_pnbp; ?>;
+  var PieData = <?php echo $data_statistik_perkara; ?>;
 
   var pieOptions = {
     segmentShowStroke: true,
@@ -129,7 +138,7 @@ $labels_data = json_encode([65, 59, 80, 81, 56, 55, 40, 27]);
   //- BAR CHART -
   //-------------
   var areaChartData = {
-    labels  : JSON.parse(<?= json_encode($labels); ?>), //['Spdp', 'Pratut', 'Tut', 'Eksekusi', 'Banding', 'Kasasi', 'PK', 'Lain-lain'],
+    labels  : <?= json_encode($labels); ?>, //['Spdp', 'Pratut', 'Tut', 'Eksekusi', 'Banding', 'Kasasi', 'PK', 'Lain-lain'],
     datasets: [
       {
         // label               : 'Electronics',
@@ -139,7 +148,7 @@ $labels_data = json_encode([65, 59, 80, 81, 56, 55, 40, 27]);
         pointStrokeColor    : '#c1c7d1',
         pointHighlightFill  : '#fff',
         pointHighlightStroke: 'rgba(220,220,220,1)',
-        data                : JSON.parse(<?= json_encode($labels_data); ?>)
+        data                : <?= json_encode($labels_data); ?>
       },
       // {
       //   label               : 'Digital Goods',
@@ -190,4 +199,31 @@ $labels_data = json_encode([65, 59, 80, 81, 56, 55, 40, 27]);
 
   barChartOptions.datasetFill = false
   barChart.Bar(barChartData, barChartOptions)
+
+//-------------
+//- TERSANGKA CHART -
+//-------------
+var areaChartTersangka = {
+  labels  : <?= json_encode($labels_pidana); ?>,
+  datasets: [
+    {
+      // label               : 'Electronics',
+      fillColor           : 'rgba(60,141,188,0.9)',
+      strokeColor         : 'rgba(60,141,188,0.8)',
+      pointColor          : '#3b8bba',
+      pointStrokeColor    : 'rgba(60,141,188,1)',
+      pointHighlightFill  : '#fff',
+      pointHighlightStroke: 'rgba(60,141,188,1)',
+      data                : <?= json_encode($labels_pidana_data); ?>
+    }
+  ]
+}
+
+var barChartCanvas2                   = $('#barPerkara').get(0).getContext('2d')
+var barChart2                         = new Chart(barChartCanvas2)
+var barChartData2                     = areaChartTersangka
+barChartData2.datasets[0].fillColor   = '#3b8bba'
+barChartData2.datasets[0].strokeColor = '#3b8bba'
+barChartData2.datasets[0].pointColor  = '#3b8bba'
+barChart2.Bar(barChartData2, barChartOptions)
 </script>

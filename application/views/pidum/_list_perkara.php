@@ -60,8 +60,10 @@
 
 <script type="text/javascript">
 $( document ).ready(function() {
+    $.fn.datepicker.defaults.format = "dd/mm/yyyy";
     $(".datepicker").datepicker();
     $('#error').html(" ");
+    $('#example1').DataTable();
 
     $('#form-submit').on('click', function (e) {
         e.preventDefault();

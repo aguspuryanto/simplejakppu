@@ -74,12 +74,28 @@ class Pidum extends AUTH_Controller {
 
 		$data['data_perkara'] = isset($data_perkara) ? json_encode($data_perkara) : [];
 		$data['data_pnbp'] = isset($data_pnbp) ? json_encode($data_pnbp) : [];
+		$data['data_statistik'] = $this->M_perkara->stat_pidum();
+
+		$statistik_perkara = $this->M_perkara->stat_pidum_perkara();
+		$index = 0;
+		foreach($statistik_perkara as $key => $stat) {
+		    $color = '#'.$rand[rand(0,15)].$rand[rand(0,15)].$rand[rand(0,15)].$rand[rand(0,15)].$rand[rand(0,15)].$rand[rand(0,15)];
+
+			$data_statistik_perkara[$index]['value'] = $stat;
+			$data_statistik_perkara[$index]['color'] = $color;
+			$data_statistik_perkara[$index]['highlight'] = $color;
+			$data_statistik_perkara[$index]['label'] = strtoupper($key);
+			
+			$index++;
+		}
+		$data['data_statistik_perkara'] = isset($data_statistik_perkara) ? json_encode($data_statistik_perkara) : [];
+
+		$data['data_statistik_pidana'] = $this->M_perkara->stat_pidum_terpidana();
+		// echo json_encode($data_statistik_pidana);
 
 		$data['page'] 			= "home";
 		$data['judul'] 			= "Statistik Pidana Umum (Pidum)";
 		$data['deskripsi'] 		= "";
-
-		// $data['modal_tambah_kota'] = show_my_modal('modals/modal_tambah_kota', 'tambah-kota', $data);
 
 		$this->template->views('pidum/home', $data);
 		// redirect('/Pidum/pidum');

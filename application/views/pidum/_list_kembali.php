@@ -38,6 +38,7 @@
 
 <script type="text/javascript">
 $( document ).ready(function() {
+    $.fn.datepicker.defaults.format = "dd/mm/yyyy";
     $(".datepicker").datepicker();
     $('#error').html(" ");
 

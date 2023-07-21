@@ -14,19 +14,19 @@ class M_perkara extends CI_Model {
             ['field' => 'nama_tsk', 'label' => 'NAMA TSK/TDKW/TPDANA','rules' => 'required'],
             ['field' => 'pasal_tsk', 'label' => 'PASAL DISANGKA/DIDAKWA/DITUNTUT/TERBUKTI','rules' => 'required'],
             ['field' => 'jenis_perkara', 'label' => 'JENIS PERKARA/ PERMASALAHAN','rules' => 'required'],
-            ['field' => 'tahap_1', 'label' => 'TAHAP 1','rules' => 'required'],
+            ['field' => 'tahap_1', 'label' => 'TAHAP 1','rules' => ''],
             ['field' => 'tahap_1_tipe', 'label' => 'TIPE TAHAP','rules' => 'required'],
-            ['field' => 'tahap_1_proses', 'label' => 'P-18/P-19/P-21','rules' => 'required'],
-            ['field' => 'tahap_2', 'label' => 'TAHAP II & P-16A NO/TGL/NAMA JAKSA','rules' => 'required'],
-            ['field' => 'limpah_pn', 'label' => 'LIMPAH PN','rules' => 'required'],
-            ['field' => 'putus_pn', 'label' => 'PUTUS PN','rules' => 'required'],
-            ['field' => 'banding_pn', 'label' => 'BANDING','rules' => 'required'],
-            ['field' => 'kasasi_pn', 'label' => 'KASASI','rules' => 'required'],
-            ['field' => 'eksekusi_pn', 'label' => 'EKSEKUSI','rules' => 'required'],
-            ['field' => 'grasi_pn', 'label' => 'GRASI','rules' => 'required'],
-            ['field' => 'pk_pn', 'label' => 'PK','rules' => 'required'],
-            ['field' => 'pekating_pn', 'label' => 'PEKATING','rules' => 'required'],
-            ['field' => 'jenis_perkara', 'label' => 'JENIS PERKARA','rules' => 'required'],
+            ['field' => 'tahap_1_proses', 'label' => 'P-18/P-19/P-21','rules' => ''],
+            ['field' => 'tahap_2', 'label' => 'TAHAP II & P-16A NO/TGL/NAMA JAKSA','rules' => ''],
+            ['field' => 'limpah_pn', 'label' => 'LIMPAH PN','rules' => ''],
+            ['field' => 'putus_pn', 'label' => 'PUTUS PN','rules' => ''],
+            ['field' => 'banding_pn', 'label' => 'BANDING','rules' => ''],
+            ['field' => 'kasasi_pn', 'label' => 'KASASI','rules' => ''],
+            ['field' => 'eksekusi_pn', 'label' => 'EKSEKUSI','rules' => ''],
+            ['field' => 'grasi_pn', 'label' => 'GRASI','rules' => ''],
+            ['field' => 'pk_pn', 'label' => 'PK','rules' => ''],
+            ['field' => 'pekating_pn', 'label' => 'PEKATING','rules' => ''],
+            ['field' => 'jenis_perkara', 'label' => 'JENIS PERKARA','rules' => ''],
             ['field' => 'keterangan', 'label' => 'KETERANGAN']
         ];
     }
@@ -68,5 +68,51 @@ class M_perkara extends CI_Model {
         $this->db->where($key, $value);
         $data = $this->db->get($this->table_name);
         return $data->row();
+    }
+
+    public function stat_pidum() {
+        $query = $this->db->query("SELECT IFNULL(COUNT(penyidikan_no),0) AS Spdp, 
+        COALESCE(COUNT(tahap_1),0) AS Pratut, 
+        SUM(case when tahap_2 is null then 0 ELSE 1 END) AS Tut, 
+        IFNULL(SUM(eksekusi_pn),0) AS Eksekusi, 
+        SUM(case when banding_pn is null then 0 ELSE 1 END) AS Banding, 
+        SUM(case when kasasi_pn is null then 0 ELSE 1 END) AS Kasasi, 
+        IFNULL(SUM(pk_pn),0) AS PK, 
+        IFNULL(SUM(grasi_pn),0) AS Lain
+        FROM epak_perkara WHERE jenis_module='pidum'");
+
+        return $query->row_array();
+    }
+
+    /*
+     * OHARDA, KAMNEGTIBUM DAN TPUL, NARKOTIKA, TERORISME
+     */
+    public function stat_pidum_perkara($jenis_module = "pidum") {
+        $query = $this->db->query("SELECT SUM(CASE WHEN jenis_perkara='TPUL' THEN 1 ELSE 0 END) tpul,
+        SUM(CASE WHEN jenis_perkara='OHARDA' THEN 1 ELSE 0 END) oharda,
+        SUM(CASE WHEN jenis_perkara='NARKOTIKA' THEN 1 ELSE 0 END) narkotika,
+        SUM(CASE WHEN jenis_perkara='TERORISME' THEN 1 ELSE 0 END) terorisme,
+        SUM(CASE WHEN jenis_perkara='KAMNEGTIBUM' THEN 1 ELSE 0 END) kamnegtibum
+        FROM epak_perkara WHERE jenis_module='".$jenis_module."'");
+
+        return $query->row_array();
+    }
+
+    /*
+     * Jumlah Tersangka, Terdakwa dan Terpidana
+     * Tersangka = epak_perkara
+     * Terdakwa = epak_inkracth
+     * Terpidana = epak_tahan
+     */
+    public function stat_pidum_terpidana($jenis_module = "pidum") {
+        $query = $this->db->query("SELECT * FROM (
+            SELECT 'tot_tsk', COUNT(nama_tsk) AS tottsk FROM epak_perkara WHERE jenis_module='".$jenis_module."'
+            UNION ALL
+            SELECT 'tot_dakwa', COUNT(nama_terdakwa) AS tottsk FROM epak_inkracth
+            UNION ALL
+            SELECT 'tot_pidana', COUNT(nama_tsk) AS tottsk FROM epak_tahan WHERE jenis_module='".$jenis_module."'
+        ) t");
+
+        return $query->result();
     }
 }
