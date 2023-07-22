@@ -39,7 +39,7 @@ class Pidsus extends AUTH_Controller {
 		// $data['data_pnbp'] = isset($data_pnbp) ? json_encode($data_pnbp) : [];
 		$data['data_perkara'] = $this->M_perkara->getPerkaraAll();
 		$data['data_pnbp'] = $this->M_pnbp->statistik_pnbp();
-		$data['data_statistik'] = $this->M_perkara->stat_pidum();
+		$data['data_statistik'] = $this->M_perkara->stat_perkara('pidsus');
 		
 		$data['data_statistik_perkara'] = $this->M_perkara->getPerkaraStatistik('pidsus');
 		$data['data_statistik_pidana'] = $this->M_perkara->getTerpidanaStatistik('pidsus');

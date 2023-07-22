@@ -94,7 +94,8 @@ class M_perkara extends CI_Model {
 	}
 
     public function getPerkaraStatistik($jenis_module = "pidum") {
-        $statistik_perkara = $this->stat_perkara($jenis_module);
+        $statistik_perkara = $this->stat_jnsperkara($jenis_module);
+        // echo json_encode($statistik_perkara);
 		$index = 0;
 		foreach($statistik_perkara as $key => $stat) {
 		    $color = '#'.$this->rand[rand(0,15)].$this->rand[rand(0,15)].$this->rand[rand(0,15)].$this->rand[rand(0,15)].$this->rand[rand(0,15)].$this->rand[rand(0,15)];
@@ -106,9 +107,11 @@ class M_perkara extends CI_Model {
 			
 			$index++;
 		}
+
+        return $data_statistik_perkara;
     }
 
-    public function stat_pidum() {
+    public function stat_perkara($jenis_module = "pidum") {
         $query = $this->db->query("SELECT IFNULL(COUNT(penyidikan_no),0) AS Spdp, 
         COALESCE(COUNT(tahap_1),0) AS Pratut, 
         SUM(case when tahap_2 is null then 0 ELSE 1 END) AS Tut, 
@@ -117,7 +120,7 @@ class M_perkara extends CI_Model {
         SUM(case when kasasi_pn is null then 0 ELSE 1 END) AS Kasasi, 
         IFNULL(SUM(pk_pn),0) AS PK, 
         IFNULL(SUM(grasi_pn),0) AS Lain
-        FROM epak_perkara WHERE jenis_module='pidum'");
+        FROM epak_perkara WHERE jenis_module='".$jenis_module."'");
 
         return $query->row_array();
     }
@@ -125,7 +128,7 @@ class M_perkara extends CI_Model {
     /*
      * OHARDA, KAMNEGTIBUM DAN TPUL, NARKOTIKA, TERORISME
      */
-    public function stat_perkara($jenis_module = "pidum") {
+    public function stat_jnsperkara($jenis_module = "pidum") {
         $query = $this->db->query("SELECT SUM(CASE WHEN jenis_perkara='TPUL' THEN 1 ELSE 0 END) tpul,
         SUM(CASE WHEN jenis_perkara='OHARDA' THEN 1 ELSE 0 END) oharda,
         SUM(CASE WHEN jenis_perkara='NARKOTIKA' THEN 1 ELSE 0 END) narkotika,
@@ -133,6 +136,7 @@ class M_perkara extends CI_Model {
         SUM(CASE WHEN jenis_perkara='KAMNEGTIBUM' THEN 1 ELSE 0 END) kamnegtibum
         FROM epak_perkara WHERE jenis_module='".$jenis_module."'");
 
+        // echo $this->db->last_query();
         return $query->row_array();
     }
 
@@ -151,6 +155,7 @@ class M_perkara extends CI_Model {
             SELECT 'tot_pidana', COUNT(nama_tsk) AS tottsk FROM epak_tahan WHERE jenis_module='".$jenis_module."'
         ) t");
 
+        // echo $this->db->last_query();
         return $query->result();
     }
 }

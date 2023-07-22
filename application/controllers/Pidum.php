@@ -38,13 +38,11 @@ class Pidum extends AUTH_Controller {
 		$data['jml_pnbp'] 		= $this->M_pnbp->total_pnbp();
 		$data['userdata'] 		= $this->userdata;
 
-		$rand = array('0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f');
-
 		// $data['data_perkara'] = isset($data_perkara) ? json_encode($data_perkara) : [];
 		// $data['data_pnbp'] = isset($data_pnbp) ? json_encode($data_pnbp) : [];
 		$data['data_perkara'] = $this->M_perkara->getPerkaraAll();
 		$data['data_pnbp'] = $this->M_pnbp->statistik_pnbp();
-		$data['data_statistik'] = $this->M_perkara->stat_pidum();
+		$data['data_statistik'] = $this->M_perkara->stat_perkara();
 		
 		$data['data_statistik_perkara'] = $this->M_perkara->getPerkaraStatistik();
 		$data['data_statistik_pidana'] = $this->M_perkara->getTerpidanaStatistik();
@@ -54,6 +52,7 @@ class Pidum extends AUTH_Controller {
 		$data['judul'] 			= "Statistik Pidana Umum (Pidum)";
 		$data['deskripsi'] 		= "";
 
+		// echo json_encode($data['data_statistik_perkara']);
 		$this->template->views('pidum/home', $data);
 		// redirect('/Pidum/pidum');
 	}

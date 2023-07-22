@@ -118,7 +118,7 @@ foreach($data_statistik_pidana as $key => $stat) {
   //data kota
   var pieChartCanvas = $("#data-pnbp").get(0).getContext("2d");
   var pieChart = new Chart(pieChartCanvas);
-  var PieData = <?= $data_statistik_perkara; ?>;
+  var PieData = <?= json_encode($data_statistik_perkara); ?>;
 
   var pieOptions = {
     segmentShowStroke: true,

@@ -2,6 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Intel extends AUTH_Controller {
+	public $jenis_module = 'intel';
 	public function __construct() {
 		parent::__construct();
 		$this->load->model('M_perkara');
@@ -17,17 +18,47 @@ class Intel extends AUTH_Controller {
 	}
 
 	public function index() {
-		$data['userdata'] 	= $this->userdata;
+		// Statistik Intelijen
+		// 1.	Sprintug
+		// 2.	Ops Intelijen
+		// 3.	Penyuluhan hukum dan Penerangan hukum
+		// 4.	Jaksa Jaga Desa
+		// 5.	Pakem
+		// 6.	DPO
+		// 7.	Om Jak Menjawab
+		// 8.	Tim Pemberantasan Mafia Tanah
+		// 9.	Tim Percepatan Investasi
+		// 10.	Kegiatan supporting PPS propinsi dan Pusat serta PPS Daerah
+		// 11.	Kegiatan penanggulangan Stunting
+		// 12.	Kegiatan dukungan penggunaan TKDN
+		// 13.	Kegiatan penanggulangan dampak inflasi daerah
+		// 14.	Kegiatan penanggulangan kemisikinan ekstrim
+		// 15.	Kegiatan dukungan UMKM
+		// 16.	Kegiatan supporting bidang lain
+		// 17.	Kegiatan suporting IKN
 
-		// $data['page'] 		= "kota";
-		// $data['judul'] 		= "Data Kota";
-		// $data['deskripsi'] 	= "Manage Data Kota";
+		// $data['jml_perkara'] 	= $this->M_perkara->total_rows();
+		$data['jml_perkara'] 	= $this->M_perkara->select_by(['jenis_module'=>$this->jenis_module])->jml;
+		$data['jml_penahanan'] 	= $this->M_penahanan->total_rows();
+		$data['jml_pnbp'] 		= $this->M_pnbp->total_pnbp();
+		$data['userdata'] 		= $this->userdata;
 
-		// $data['modal_tambah_kota'] = show_my_modal('modals/modal_tambah_kota', 'tambah-kota', $data);
+		// $data['data_perkara'] = isset($data_perkara) ? json_encode($data_perkara) : [];
+		// $data['data_pnbp'] = isset($data_pnbp) ? json_encode($data_pnbp) : [];
+		$data['data_perkara'] = $this->M_perkara->getPerkaraAll();
+		$data['data_pnbp'] = $this->M_pnbp->statistik_pnbp();
+		$data['data_statistik'] = $this->M_perkara->stat_perkara($this->jenis_module);
+		
+		$data['data_statistik_perkara'] = $this->M_perkara->getPerkaraStatistik($this->jenis_module);
+		$data['data_statistik_pidana'] = $this->M_perkara->getTerpidanaStatistik($this->jenis_module);
+		// echo json_encode($data_statistik_pidana);
 
-		// $this->template->views('kota/home', $data);
+		$data['page'] 			= "home";
+		$data['judul'] 			= "Statistik Intelijen";
+		$data['deskripsi'] 		= "";
+
+		$this->template->views('pidum/home', $data);
 		// redirect('/papan-kontrol/pidum');
-		echo "Hallo Intelijen";
 	}
 
 	public function intel() {
