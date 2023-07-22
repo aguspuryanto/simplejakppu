@@ -2,6 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Pidsus extends AUTH_Controller {
+	public $jenis_module = 'pidsus';
 	public function __construct() {
 		parent::__construct();
 		$this->load->model('M_perkara');
@@ -30,7 +31,7 @@ class Pidsus extends AUTH_Controller {
 		// 4. Tim pemberantasan mafia pelabuhan
 
 		// $data['jml_perkara'] 	= $this->M_perkara->total_rows();
-		$data['jml_perkara'] 	= $this->M_perkara->select_by(['jenis_module'=>'pidsus'])->jml;
+		$data['jml_perkara'] 	= $this->M_perkara->select_by(['jenis_module'=>$this->jenis_module])->jml;
 		$data['jml_penahanan'] 	= $this->M_penahanan->total_rows();
 		$data['jml_pnbp'] 		= $this->M_pnbp->total_pnbp();
 		$data['userdata'] 		= $this->userdata;
@@ -39,10 +40,10 @@ class Pidsus extends AUTH_Controller {
 		// $data['data_pnbp'] = isset($data_pnbp) ? json_encode($data_pnbp) : [];
 		$data['data_perkara'] = $this->M_perkara->getPerkaraAll();
 		$data['data_pnbp'] = $this->M_pnbp->statistik_pnbp();
-		$data['data_statistik'] = $this->M_perkara->stat_perkara('pidsus');
+		$data['data_statistik'] = $this->M_perkara->stat_perkara($this->jenis_module);
 		
-		$data['data_statistik_perkara'] = $this->M_perkara->getPerkaraStatistik('pidsus');
-		$data['data_statistik_pidana'] = $this->M_perkara->getTerpidanaStatistik('pidsus');
+		$data['data_statistik_perkara'] = $this->M_perkara->getPerkaraStatistik($this->jenis_module);
+		$data['data_statistik_pidana'] = $this->M_perkara->getTerpidanaStatistik($this->jenis_module);
 		// echo json_encode($data_statistik_pidana);
 
 		$data['page'] 			= "home";
@@ -56,7 +57,7 @@ class Pidsus extends AUTH_Controller {
 	public function pidsus() {
 		$data['userdata'] 	= $this->userdata;
 
-		$options = array('jenis_module' => 'pidsus');
+		$options = array('jenis_module' => $this->jenis_module);
 		$data['dataPidum'] = $this->M_perkara->select_all($options);
 		$data['dataPenahanan'] = $this->M_penahanan->select_all($options);
 		$data['dataPnbp'] = $this->M_pnbp->select_all($options);
@@ -69,7 +70,7 @@ class Pidsus extends AUTH_Controller {
 	public function pidsus_penahanan() {
 		$data['userdata'] 	= $this->userdata;
 
-		$options = array('jenis_module' => 'pidsus');
+		$options = array('jenis_module' => $this->jenis_module);
 		$data['dataPidum'] = $this->M_perkara->select_all($options);
 		$data['dataPenahanan'] = $this->M_penahanan->select_all($options);
 		$data['dataPnbp'] = $this->M_pnbp->select_all($options);
@@ -82,7 +83,7 @@ class Pidsus extends AUTH_Controller {
 	public function pidsus_pnbp() {
 		$data['userdata'] 	= $this->userdata;
 
-		$options = array('jenis_module' => 'pidsus');
+		$options = array('jenis_module' => $this->jenis_module);
 		$data['dataPidum'] = $this->M_perkara->select_all($options);
 		$data['dataPenahanan'] = $this->M_penahanan->select_all($options);
 		$data['dataPnbp'] = $this->M_pnbp->select_all($options);
@@ -129,7 +130,7 @@ class Pidsus extends AUTH_Controller {
 				'grasi_pn' => $this->input->post('grasi_pn'),
 				'pk_pn' => $this->input->post('pk_pn'),
 				'pekating_pn' => $this->input->post('pekating_pn'),
-				'jenis_module' => 'pidsus',
+				'jenis_module' => $this->jenis_module,
 				'keterangan' => $this->input->post('description'),
 			);
 

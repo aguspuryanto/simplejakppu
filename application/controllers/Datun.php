@@ -2,6 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Datun extends AUTH_Controller {
+	public $jenis_module = 'datun';
 	public function __construct() {
 		parent::__construct();
 		$this->load->model('M_perkara');
@@ -12,24 +13,18 @@ class Datun extends AUTH_Controller {
 	}
 
 	public function index() {
-		// Statistik Intelijen
-		// 1.	Sprintug
-		// 2.	Ops Intelijen
-		// 3.	Penyuluhan hukum dan Penerangan hukum
-		// 4.	Jaksa Jaga Desa
-		// 5.	Pakem
-		// 6.	DPO
-		// 7.	Om Jak Menjawab
-		// 8.	Tim Pemberantasan Mafia Tanah
-		// 9.	Tim Percepatan Investasi
-		// 10.	Kegiatan supporting PPS propinsi dan Pusat serta PPS Daerah
-		// 11.	Kegiatan penanggulangan Stunting
-		// 12.	Kegiatan dukungan penggunaan TKDN
-		// 13.	Kegiatan penanggulangan dampak inflasi daerah
-		// 14.	Kegiatan penanggulangan kemisikinan ekstrim
-		// 15.	Kegiatan dukungan UMKM
-		// 16.	Kegiatan supporting bidang lain
-		// 17.	Kegiatan suporting IKN
+		// Statistik DATUN
+		// 1.	Bantuan Hukum (Litigasi dan non Litigasi)
+		// 2.	Pertimbangan Hukum (pendampingan hukum, pendapat hukum dan audit hukum)
+		// 3.	Tindakan Hukum Lain
+		// 4.	Penegakan Hukum
+		// 5.	Pelayanan Hukum (tertulis dan lisan)
+		// 6.	Kegiatan penanggulangan Stunting
+		// 7.	Kegiatan dukungan penggunaan TKDN
+		// 8.	Kegiatan penanggulangan dampak inflasi daerah
+		// 9.	Kegiatan penanggulangan kemisikinan ekstrim
+		// 10.	Kegiatan dukungan UMKM
+		// 11.	Kegiatan suporting IKN
 
 		// $data['jml_perkara'] 	= $this->M_perkara->total_rows();
 		$data['jml_perkara'] 	= $this->M_perkara->select_by(['jenis_module'=>$this->jenis_module])->jml;
@@ -48,7 +43,7 @@ class Datun extends AUTH_Controller {
 		// echo json_encode($data_statistik_pidana);
 
 		$data['page'] 			= "home";
-		$data['judul'] 			= "Statistik Intelijen";
+		$data['judul'] 			= "Statistik Datun";
 		$data['deskripsi'] 		= "";
 
 		$this->template->views('datun/home', $data);

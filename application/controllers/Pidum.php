@@ -2,6 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Pidum extends AUTH_Controller {
+	public $jenis_module = 'pidum';
 	public function __construct() {
 		parent::__construct();
 		$this->load->model('M_perkara');
@@ -33,7 +34,7 @@ class Pidum extends AUTH_Controller {
 		// 4. Jumlah Tahanan (Laki, perempuan dan anak)
 
 		// $data['jml_perkara'] 	= $this->M_perkara->total_rows();
-		$data['jml_perkara'] 	= $this->M_perkara->select_by(['jenis_module'=>'pidum'])->jml;
+		$data['jml_perkara'] 	= $this->M_perkara->select_by(['jenis_module'=>$this->jenis_module])->jml;
 		$data['jml_penahanan'] 	= $this->M_penahanan->total_rows();
 		$data['jml_pnbp'] 		= $this->M_pnbp->total_pnbp();
 		$data['userdata'] 		= $this->userdata;
@@ -128,7 +129,7 @@ class Pidum extends AUTH_Controller {
 				'grasi_pn' => $this->input->post('grasi_pn'),
 				'pk_pn' => $this->input->post('pk_pn'),
 				'pekating_pn' => $this->input->post('pekating_pn'),
-				'jenis_module' => 'pidum',
+				'jenis_module' => $this->jenis_module,
 				'keterangan' => $this->input->post('description'),
 			);
 
@@ -169,7 +170,7 @@ class Pidum extends AUTH_Controller {
 				'lokasi_tahan' => $this->input->post('lokasi_tahan'),
 				'keadaan_tahan' => $this->input->post('keadaan_tahan'),
 				'tahap_perkara' => $this->input->post('tahap_perkara'),
-				'jenis_module' => ($this->input->post('jenis_module')) ? $this->input->post('jenis_module') : 'pidum',
+				'jenis_module' => ($this->input->post('jenis_module')) ? $this->input->post('jenis_module') : $this->jenis_module,
 				'keterangan' => $this->input->post('description'),
 			);
 
@@ -210,7 +211,7 @@ class Pidum extends AUTH_Controller {
 				'jenis_pnpb' => $this->input->post('jenis_pnpb'),
 				'jumlah_pnpb' => $this->input->post('jumlah_pnpb'),
 				'bukti_pnpb' => $this->input->post('bukti_pnpb'),
-				'jenis_module' => ($this->input->post('jenis_module')) ? $this->input->post('jenis_module') : 'pidum',
+				'jenis_module' => ($this->input->post('jenis_module')) ? $this->input->post('jenis_module') : $this->jenis_module,
 				'keterangan' => $this->input->post('description'),
 			);
 
