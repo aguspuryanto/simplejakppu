@@ -11,15 +11,45 @@ class Pidsus extends AUTH_Controller {
 	}
 
 	public function index() {
-		// $data['userdata'] 	= $this->userdata;
+		// Statistik Pidsus :
+		// 1. Perkara Pidsus
+		// a. Sprintug
+		// b. Penyelidikan
+		// c. Penyidikan
+		// d. Spdp
+		// b. Pratut
+		// c. TUT
+		// d. Eksekusi
+		// d. Upaya Hukum (Banding)
+		// e. Upaya Hukum (Kasasi)
+		// f. Upaya Hukum Luar Biasa (PK)
+		// g. Lain-lain
 
-		// $data['page'] 		= "kota";
-		// $data['judul'] 		= "Data Kota";
-		// $data['deskripsi'] 	= "Manage Data Kota";
+		// 2. Jumlah Tersangka, Terdakwa dan Terpidana (Laki dan perempuan)
+		// 3. Jumlah Tahanan  (Laki, perempuan dan anak)
+		// 4. Tim pemberantasan mafia pelabuhan
 
-		// $data['modal_tambah_kota'] = show_my_modal('modals/modal_tambah_kota', 'tambah-kota', $data);
+		// $data['jml_perkara'] 	= $this->M_perkara->total_rows();
+		$data['jml_perkara'] 	= $this->M_perkara->select_by(['jenis_module'=>'pidsus'])->jml;
+		$data['jml_penahanan'] 	= $this->M_penahanan->total_rows();
+		$data['jml_pnbp'] 		= $this->M_pnbp->total_pnbp();
+		$data['userdata'] 		= $this->userdata;
 
-		// $this->template->views('kota/home', $data);
+		// $data['data_perkara'] = isset($data_perkara) ? json_encode($data_perkara) : [];
+		// $data['data_pnbp'] = isset($data_pnbp) ? json_encode($data_pnbp) : [];
+		$data['data_perkara'] = $this->M_perkara->getPerkaraAll();
+		$data['data_pnbp'] = $this->M_pnbp->statistik_pnbp();
+		$data['data_statistik'] = $this->M_perkara->stat_pidum();
+		
+		$data['data_statistik_perkara'] = $this->M_perkara->getPerkaraStatistik('pidsus');
+		$data['data_statistik_pidana'] = $this->M_perkara->getTerpidanaStatistik('pidsus');
+		// echo json_encode($data_statistik_pidana);
+
+		$data['page'] 			= "home";
+		$data['judul'] 			= "Statistik Pidana Khusus (Pidsus)";
+		$data['deskripsi'] 		= "";
+
+		$this->template->views('pidum/home', $data);
 		// redirect('/papan-kontrol/pidum');
 	}
 

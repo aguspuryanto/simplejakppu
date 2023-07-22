@@ -39,58 +39,15 @@ class Pidum extends AUTH_Controller {
 		$data['userdata'] 		= $this->userdata;
 
 		$rand = array('0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f');
-		
-		$perkara = $this->M_perkara->select_all();
-		$index = 0;
-		foreach ($perkara as $value) {
-		    $color = '#' .$rand[rand(0,15)] .$rand[rand(0,15)] .$rand[rand(0,15)] .$rand[rand(0,15)] .$rand[rand(0,15)] .$rand[rand(0,15)];
 
-			// $pegawai_by_posisi = $this->M_pegawai->select_by_posisi($value->id);
-			$module = $this->M_perkara->select_by(['jenis_module'=>$value->jenis_module]);
-
-			$data_perkara[$index]['value'] = $module->jml;
-			$data_perkara[$index]['color'] = $color;
-			$data_perkara[$index]['highlight'] = $color;
-			$data_perkara[$index]['label'] = ucwords($value->jenis_module);
-			
-			$index++;
-		}
-
-		$pnbp = $this->M_pnbp->select_all();
-		$index = 0;
-		foreach ($pnbp as $value) {
-		    $color = '#'.$rand[rand(0,15)].$rand[rand(0,15)].$rand[rand(0,15)].$rand[rand(0,15)].$rand[rand(0,15)].$rand[rand(0,15)];
-
-			// $pegawai_by_kota = $this->M_pegawai->select_by_kota($value->id);
-			$pnbp_by_jenis = $this->M_pnbp->select_by_perkara($value->jenis_pnpb);
-
-			$data_pnbp[$index]['value'] = $pnbp_by_jenis->jumlah_pnpb;
-			$data_pnbp[$index]['color'] = $color;
-			$data_pnbp[$index]['highlight'] = $color;
-			$data_pnbp[$index]['label'] = $value->jenis_pnpb;
-			
-			$index++;
-		}
-
-		$data['data_perkara'] = isset($data_perkara) ? json_encode($data_perkara) : [];
-		$data['data_pnbp'] = isset($data_pnbp) ? json_encode($data_pnbp) : [];
+		// $data['data_perkara'] = isset($data_perkara) ? json_encode($data_perkara) : [];
+		// $data['data_pnbp'] = isset($data_pnbp) ? json_encode($data_pnbp) : [];
+		$data['data_perkara'] = $this->M_perkara->getPerkaraAll();
+		$data['data_pnbp'] = $this->M_pnbp->statistik_pnbp();
 		$data['data_statistik'] = $this->M_perkara->stat_pidum();
-
-		$statistik_perkara = $this->M_perkara->stat_pidum_perkara();
-		$index = 0;
-		foreach($statistik_perkara as $key => $stat) {
-		    $color = '#'.$rand[rand(0,15)].$rand[rand(0,15)].$rand[rand(0,15)].$rand[rand(0,15)].$rand[rand(0,15)].$rand[rand(0,15)];
-
-			$data_statistik_perkara[$index]['value'] = $stat;
-			$data_statistik_perkara[$index]['color'] = $color;
-			$data_statistik_perkara[$index]['highlight'] = $color;
-			$data_statistik_perkara[$index]['label'] = strtoupper($key);
-			
-			$index++;
-		}
-		$data['data_statistik_perkara'] = isset($data_statistik_perkara) ? json_encode($data_statistik_perkara) : [];
-
-		$data['data_statistik_pidana'] = $this->M_perkara->stat_pidum_terpidana();
+		
+		$data['data_statistik_perkara'] = $this->M_perkara->getPerkaraStatistik();
+		$data['data_statistik_pidana'] = $this->M_perkara->getTerpidanaStatistik();
 		// echo json_encode($data_statistik_pidana);
 
 		$data['page'] 			= "home";

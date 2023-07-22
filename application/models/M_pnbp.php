@@ -50,4 +50,26 @@ class M_pnbp extends CI_Model {
         $data = $this->db->get($this->table_name);
         return $data->row();
     }
+
+    public function statistik_pnbp() {
+		$rand = array('0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f');
+
+		// $pnbp = $this->select_all();
+		$index = 0;
+		foreach ($this->select_all() as $value) {
+		    $color = '#'.$rand[rand(0,15)].$rand[rand(0,15)].$rand[rand(0,15)].$rand[rand(0,15)].$rand[rand(0,15)].$rand[rand(0,15)];
+
+			// $pegawai_by_kota = $this->M_pegawai->select_by_kota($value->id);
+			$pnbp_by_jenis = $this->select_by_perkara($value->jenis_pnpb);
+
+			$data_pnbp[$index]['value'] = $pnbp_by_jenis->jumlah_pnpb;
+			$data_pnbp[$index]['color'] = $color;
+			$data_pnbp[$index]['highlight'] = $color;
+			$data_pnbp[$index]['label'] = $value->jenis_pnpb;
+			
+			$index++;
+		}
+
+        return $data_pnbp;
+    }
 }

@@ -15,6 +15,7 @@ class M_datun extends CI_Model {
             ['field' => 'sk_tim', 'label' => 'SP/SK TIM JPN','rules' => 'required'],
             ['field' => 'posisi_kasus', 'label' => 'POSISI KASUS/PERMASALAHAN/OBYEK PERKARA','rules' => 'required'],
             ['field' => 'tahap', 'label' => 'TAHAP','rules' => 'required'],
+            ['field' => 'periode', 'label' => 'PERIODE','rules' => 'required'],
             ['field' => 'keterangan', 'label' => 'KETERANGAN']
         ];
     }
