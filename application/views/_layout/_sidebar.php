@@ -78,7 +78,7 @@
           'show_menu' => ($userdata->rule=="admin" || $userdata->area_kerja=="datun") ? TRUE : FALSE,
           'submenu' => array(
             array('title' => 'Statistik', 'url' => 'index'),
-            // array('title' => 'Perkara', 'url' => 'datun'),
+            array('title' => 'Perkara', 'url' => 'datun'),
           ),
         ),
         array(

@@ -57,7 +57,7 @@ class Intel extends AUTH_Controller {
 		$data['judul'] 			= "Statistik Intelijen";
 		$data['deskripsi'] 		= "";
 
-		$this->template->views('pidum/home', $data);
+		$this->template->views('intel/home', $data);
 		// redirect('/papan-kontrol/pidum');
 	}
 
