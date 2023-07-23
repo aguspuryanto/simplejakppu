@@ -11,6 +11,11 @@
       <div class="modal-body">        
         <?=form_open('Datun/datun_add', array('id' => 'form', 'role' => 'form'));?>
             <div class="form-group">
+                <label><?=form_label($model->rules()[8]['label']); ?></label>
+                <?=form_input('periode', '', array('class' => 'form-control', 'id' => 'input-periode'));?>
+                <div id="error"></div>
+            </div>
+            <div class="form-group">
                 <label><?=form_label($model->rules()[0]['label']); ?></label>
                 <?=form_input('skk', '', array('class' => 'form-control', 'id' => 'input-skk'));?>
                 <div id="error"></div>

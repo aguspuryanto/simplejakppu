@@ -88,6 +88,7 @@ class Datun extends AUTH_Controller {
 				'sk_tim' => $this->input->post('sk_tim'),
 				'posisi_kasus' => $this->input->post('posisi_kasus'),
 				'tahap' => $this->input->post('tahap'),
+				'periode' => $this->input->post('periode'),
 				'keterangan' => $this->input->post('description'),
 			);
 

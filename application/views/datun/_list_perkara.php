@@ -46,7 +46,12 @@
 
 <script type="text/javascript">
 $( document ).ready(function() {
-    $(".datepicker").datepicker();
+    $.fn.datepicker.defaults.format = "dd/mm/yyyy";
+    $("#input-periode").datepicker({
+        viewMode: "months", 
+        minViewMode: "months",
+        format: 'mm-yyyy',
+    });
     $('#error').html(" ");
 
     $('#form-submit').on('click', function (e) {
