@@ -6,6 +6,7 @@ class Pidum extends AUTH_Controller {
 
     public function __construct() {
 		parent::__construct();
+		$this->load->model('M_inkracth');
     }
 
     public function index() {
