@@ -93,6 +93,19 @@ class Pidsus extends AUTH_Controller {
 		$this->template->views('pidsus/pnbp', $data);
 	}
 
+	public function pidsus_mafia_pelabuhan() {
+		$data['userdata'] 	= $this->userdata;
+
+		$options = array('jenis_module' => $this->jenis_module);
+		$data['dataPidum'] = $this->M_perkara->select_all($options);
+		$data['dataPenahanan'] = $this->M_penahanan->select_all($options);
+		$data['dataPnbp'] = $this->M_pnbp->select_all($options);
+
+		$data['page'] 		= "Pidana Khusus";
+
+		$this->template->views('pidsus/pnbp', $data);
+	}
+
 	public function pidsus_add() {
 		$this->load->library('form_validation');
 		
