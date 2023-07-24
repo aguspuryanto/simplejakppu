@@ -85,6 +85,10 @@
 		}
 	}
 
+	function show_my_menu($userdata, $menu) {
+		return ($userdata->rule=="admin" || $userdata->area_kerja==$menu) ? TRUE : FALSE;
+	}
+
 	function tahap1_type($id) {
 		// if($id == "0") return "P-18";
 		// if($id == "1") return "P-19";

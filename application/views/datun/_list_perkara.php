@@ -50,7 +50,7 @@ $( document ).ready(function() {
     $("#input-periode").datepicker({
         viewMode: "months", 
         minViewMode: "months",
-        format: 'mm-yyyy',
+        format: 'MM-yyyy',
     });
     $('#error').html(" ");
 

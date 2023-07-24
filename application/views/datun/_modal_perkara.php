@@ -56,7 +56,7 @@
                 <div id="error"></div>
             </div>
             <div class="form-group">
-                <label><?=form_label($model->rules()[8]['label']); ?></label>
+                <label><?=form_label($model->rules()[9]['label']); ?></label>
                 <?=form_input('description', '', array('class' => 'form-control', 'id' => 'input-description'));?>
                 <div id="error"></div>
             </div>
