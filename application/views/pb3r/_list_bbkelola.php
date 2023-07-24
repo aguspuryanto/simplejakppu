@@ -72,5 +72,11 @@ $( document ).ready(function() {
         $(this).parents('.form-group').find('#error').html(" ");
     });
 
+    new DataTable('#example1', {
+        info: false,
+        ordering: false,
+        paging: false
+    });
+
 });
 </script>

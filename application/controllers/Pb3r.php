@@ -7,6 +7,7 @@ class Pb3r extends AUTH_Controller {
     public function __construct() {
 		parent::__construct();
 		$this->load->model('M_inkracth');
+		$this->load->model('M_bbkelola');
     }
 
     public function index() {
@@ -26,7 +27,7 @@ class Pb3r extends AUTH_Controller {
 	public function bbkelola() {
 		$data['userdata'] 	= $this->userdata;
 
-		$data['model'] = $this->M_inkracth;
+		$data['model'] = $this->M_bbkelola;
 		$options = array('jenis_module' => 'bbkembali');
 		$data['dataInkracth'] = $this->M_inkracth->select_all($options);
 
