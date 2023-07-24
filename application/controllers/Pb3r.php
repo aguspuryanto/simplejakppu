@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Pidum extends AUTH_Controller {
+class Pb3r extends AUTH_Controller {
 	public $jenis_module = 'pidum';
 
     public function __construct() {
