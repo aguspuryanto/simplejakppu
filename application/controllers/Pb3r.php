@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Pb3r extends AUTH_Controller {
-	public $jenis_module = 'pidum';
+	// public $jenis_module = 'pidum';
 
     public function __construct() {
 		parent::__construct();
