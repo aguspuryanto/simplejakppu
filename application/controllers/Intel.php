@@ -53,6 +53,23 @@ class Intel extends AUTH_Controller {
 		$data['data_statistik_pidana'] = $this->M_perkara->getTerpidanaStatistik($this->jenis_module);
 		// echo json_encode($data_statistik_pidana);
 
+		/*
+		 * Sprintug = count from M_sptugas where jenis_module = sptugas
+		 * Ops Intelijen = count from M_sptugas where jenis_module = opintelijen
+		 */
+		$data['data_statistik_intel'] = $this->M_sptugas->getStatistik();
+		// echo json_encode($data['data_statistik_intel']);
+		$data['data_statistik_intel'] = array_merge($data['data_statistik_intel'], [
+			array('jenis_module' => 'penyuluhan_hukum', 'tot' => 0),
+			array('jenis_module' => 'jaksa_jaga_desa', 'tot' => 0),
+			array('jenis_module' => 'pakem', 'tot' => 0),
+			array('jenis_module' => 'dpo', 'tot' => 0),
+			array('jenis_module' => 'omjak_menjawab', 'tot' => 0),
+			array('jenis_module' => 'mafia', 'tot' => 0),
+			array('jenis_module' => 'investasi', 'tot' => 0),
+		]);
+		// echo json_encode($data['data_statistik_intel']);
+
 		$data['page'] 			= "home";
 		$data['judul'] 			= "Statistik Intelijen";
 		$data['deskripsi'] 		= "";

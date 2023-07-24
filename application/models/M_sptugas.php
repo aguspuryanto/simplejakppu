@@ -53,4 +53,10 @@ class M_sptugas extends CI_Model {
         $data = $this->db->get($this->table_name);
         return $data->row();
     }
+
+    public function getStatistik() {
+        $query = $this->db->query("SELECT DISTINCT jenis_module, COUNT(jenis_module) AS tot FROM epak_sptugas GROUP BY jenis_module");
+
+        return $query->result_array();
+    }
 }

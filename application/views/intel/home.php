@@ -100,9 +100,9 @@
 
 <?php
 // echo json_encode($data_statistik);
-foreach($data_statistik as $key => $stat) {
-  $labels[] = $key;
-  $labels_data[] = $stat;
+foreach($data_statistik_intel as $key => $stat) {
+  $labels[] = $stat['jenis_module'];
+  $labels_data[] = $stat['tot'];
 }
 
 // tersangka, terdakwa, terpidana
