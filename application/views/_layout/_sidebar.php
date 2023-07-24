@@ -31,7 +31,7 @@
         array(
           'title' => 'PIDUM',
           'url' => 'Pidum',
-          'show_menu' => show_my_menu($userdata, 'pidum'), //($userdata->rule=="admin" || $userdata->area_kerja=="pidum") ? TRUE : FALSE,
+          'show_menu' => show_my_menu($userdata, 'pidum'),
           'submenu' => array(
             array('title' => 'Statistik', 'url' => 'index'),
             array('title' => 'Data Perkara', 'url' => 'pidum'),
@@ -39,7 +39,7 @@
             array('title' => 'PNBP', 'url' => 'pidum_pnbp'),
             array('title' => 'Perkara Inkracth', 'url' => 'pidum_inkracth'),
             array('title' => 'Barang Bukti Pemusnahan', 'url' => 'pidum_bbmusnah'),
-            array('title' => 'Barang Bukti Dikembalikan', 'url' => 'pidum_bbkembali'),
+            // array('title' => 'Barang Bukti Dikembalikan', 'url' => 'pidum_bbkembali'),
             array('title' => 'Barang Bukti Rampas Negara', 'url' => 'pidum_bbrampas'),
             array('title' => 'Barang Bukti Belum Lelang', 'url' => 'pidum_bblelang'),
           ),
@@ -47,7 +47,7 @@
         array(
           'title' => 'PIDSUS',
           'url' => 'Pidsus',
-          'show_menu' => show_my_menu($userdata, 'pidus'), //($userdata->rule=="admin" || $userdata->area_kerja=="pidsus") ? TRUE : FALSE,
+          'show_menu' => show_my_menu($userdata, 'pidus'),
           'submenu' => array(
             array('title' => 'Statistik', 'url' => 'index'),
             array('title' => 'Data Perkara', 'url' => 'pidsus'),
@@ -59,7 +59,7 @@
         array(
           'title' => 'INTEL',
           'url' => 'Intel',
-          'show_menu' => show_my_menu($userdata, 'intel'), //($userdata->rule=="admin" || $userdata->area_kerja=="intel") ? TRUE : FALSE,
+          'show_menu' => show_my_menu($userdata, 'intel'),
           'submenu' => array(
             array('title' => 'Statistik', 'url' => 'index'),
             array('title' => 'Surat Perintah Tugas', 'url' => 'sp_tugas'),
@@ -76,7 +76,7 @@
         array(
           'title' => 'DATUN',
           'url' => 'Datun',
-          'show_menu' => show_my_menu($userdata, 'datun'), //($userdata->rule=="admin" || $userdata->area_kerja=="datun") ? TRUE : FALSE,
+          'show_menu' => show_my_menu($userdata, 'datun'),
           'submenu' => array(
             array('title' => 'Statistik', 'url' => 'index'),
             array('title' => 'Data Perkara', 'url' => 'datun'),
@@ -85,7 +85,7 @@
         array(
           'title' => 'PEMBINAAN',
           'url' => 'Pembinaan',
-          'show_menu' => show_my_menu($userdata, 'bin'), //($userdata->rule=="admin" || $userdata->area_kerja=="bin") ? TRUE : FALSE,
+          'show_menu' => show_my_menu($userdata, 'bin'),
           'submenu' => array(
             array('title' => 'Realisasi Anggaran', 'url' => 'realisasi'),
             array('title' => 'Rumah Dinas', 'url' => 'rumdinas'),
@@ -93,6 +93,14 @@
             array('title' => 'Kendaraan Dinas', 'url' => 'kendaraan'),
           )
         ),
+        array(
+          'title' => 'PB3R',
+          'url' => 'pb3r',
+          'show_menu' => show_my_menu($userdata, 'pb3r'),
+          'submenu' => array(            
+            array('title' => 'Barang Bukti Dikembalikan', 'url' => 'bbkembali'),
+          )
+        )
       ];
 
       // echo json_encode($userdata->rule) . "<br>";
