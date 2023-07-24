@@ -47,7 +47,7 @@
         array(
           'title' => 'PIDSUS',
           'url' => 'Pidsus',
-          'show_menu' => show_my_menu($userdata, 'pidus'),
+          'show_menu' => show_my_menu($userdata, 'pidsus'),
           'submenu' => array(
             array('title' => 'Statistik', 'url' => 'index'),
             array('title' => 'Data Perkara', 'url' => 'pidsus'),

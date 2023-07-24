@@ -41,10 +41,12 @@
                   <?php
                   $options = array(
                     '*' => 'Semua Area',
-                    'pidum' => 'Pidum',
-                    'intel' => 'Intel',
-                    'datun' => 'datun',
+                    'pidum' => 'Tindak Pidana Umum (Pidum)',
+                    'pidsus' => 'Tindak Pidana Khusus (Pidsus)',
+                    'intel' => 'Intelijen',
+                    'datun' => 'Bidang Perdata dan Tata Usaha Negara (Datun)',
                     'bin' => 'Pembinaan',
+                    'pb3r' => 'PB3R',
                   );
                   
                   echo form_dropdown('area_kerja', $options, '', array('class' => 'form-control', 'id' => 'input-rule'));

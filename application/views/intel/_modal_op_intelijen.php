@@ -22,7 +22,7 @@
 
             <?=get_form_input($model, 'potensi_aght', array('type' => 'textarea', 'rows' => '3', 'cols' => '10')); ?>
 
-            <?=get_form_input($model, 'tahapan'); ?>
+            <?=get_form_input($model, 'tahapan', array('type' => 'textarea', 'rows' => '3', 'cols' => '10')); ?>
 
             <div class="form-group">
                 <label>KETERANGAN</label>
