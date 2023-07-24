@@ -1,19 +1,15 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class M_sptugas extends CI_Model {
-    public $table_name = "epak_sptugas";
+class M_bbtidaklaku extends CI_Model {
+    public $table_name = "epak_bbtidaklaku";
 
     public function rules()
     {
         return [
-            ['field' => 'sumber_info', 'label' => 'SUMBER INFORMASI', 'rules' => 'required'],
-            ['field' => 'sp_tugas', 'label' => 'SURAT PERINITAH/NAMA TIM','rules' => 'required'],
-            ['field' => 'objek_tugas', 'label' => 'OBYEK PERINTAH TUGAS','rules' => 'required'],
-            ['field' => 'kasus_posisi', 'label' => 'KASUS POSISI','rules' => 'required'],
-            ['field' => 'permasalahan', 'label' => 'PERMASALAHAN','rules' => 'required'],
-            ['field' => 'potensi_aght', 'label' => 'POTENSI AGHT','rules' => 'required'],
-            ['field' => 'tahapan', 'label' => 'TAHAPAN','rules' => 'required'],
+            ['field' => 'tahun', 'label' => 'TAHUN', 'rules' => 'required'],
+            ['field' => 'jml', 'label' => 'JUMLAH','rules' => 'required'],
+            ['field' => 'hasil', 'label' => 'HASIL','rules' => 'required'],
             ['field' => 'keterangan', 'label' => 'KETERANGAN']
         ];
     }
@@ -52,11 +48,5 @@ class M_sptugas extends CI_Model {
         $this->db->where('jenis_module', $module);
         $data = $this->db->get($this->table_name);
         return $data->row();
-    }
-
-    public function getStatistik() {
-        $query = $this->db->query("SELECT jenis_module, COUNT(*) AS tot FROM epak_sptugas GROUP BY jenis_module");
-
-        return $query->result_array();
     }
 }

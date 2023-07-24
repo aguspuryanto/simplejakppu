@@ -98,7 +98,10 @@
           'url' => 'pb3r',
           'show_menu' => show_my_menu($userdata, 'pb3r'),
           'submenu' => array(            
-            array('title' => 'Barang Bukti Dikembalikan', 'url' => 'index'),
+            array('title' => 'Barang Bukti Dikelola', 'url' => 'bbkelola'),
+            array('title' => 'Barang Bukti Disita', 'url' => 'bbsita'),
+            array('title' => 'Barang Bukti Dikembalikan', 'url' => 'bbkembali'),
+            array('title' => 'Barang Bukti Dilelang', 'url' => 'bblelang'),
           )
         )
       ];
