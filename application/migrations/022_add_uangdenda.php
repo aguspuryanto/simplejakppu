@@ -39,3 +39,4 @@ class Migration_add_uangdenda extends CI_Migration {
     public function down() { 
         if ($this->db->table_exists($this->table_name)) $this->dbforge->drop_table($this->table_name);
     }
+}

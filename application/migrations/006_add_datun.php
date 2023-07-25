@@ -50,6 +50,12 @@ class Migration_add_datun extends CI_Migration {
             ),
             'created_at' => array('type' => 'timestamp')
         ));
+
+        // $fields = array(
+        //     'periode' => array('type' => 'VARCHAR', 'constraint' => '100')
+        // );
+        // $this->dbforge->add_column($this->table_name, $fields);
+
         $this->dbforge->add_key('id', TRUE);
         if (!$this->db->table_exists($this->table_name)) $this->dbforge->create_table($this->table_name, TRUE);
     }

@@ -14,7 +14,8 @@ class Migration_add_bbkelola extends CI_Migration {
             ),
             'tahun' => array(
                 'type' => 'VARCHAR',
-                'constraint' => '100'
+                'constraint' => '4',
+                'unique' => TRUE
             ),
             'jmlbb' => array(
                 'type' => 'VARCHAR',
@@ -39,3 +40,4 @@ class Migration_add_bbkelola extends CI_Migration {
     public function down() { 
         if ($this->db->table_exists($this->table_name)) $this->dbforge->drop_table($this->table_name);
     }
+}

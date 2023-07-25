@@ -21,10 +21,11 @@ class Migrate extends CI_Controller
 
 		if ($this->migration->current() === FALSE)
         {
-            echo $this->migration->error_string();
-        }else{
-            echo "version: " . $this->migration->version(17) . ". Table Migrated Successfully.";
+            show_error($this->migration->error_string());
+            exit;
         }
+        $version = $this->migration->current();
+        echo 'Migration Done for Migration_id : ' . $version;
     }
 
 }

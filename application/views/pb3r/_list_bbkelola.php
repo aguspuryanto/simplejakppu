@@ -35,7 +35,42 @@
     </table>
 </div>
 
-<?php include_once('_modal_kembali.php'); ?>
+<?php //include_once('_modal_kembali.php'); ?>
+<!-- Modal -->
+<div id="myModalInkracth" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Tambah Data</h4>
+      </div>
+      <div class="modal-body">
+        <?=form_open('pb3r/bbkelola_add', array('id' => 'formInkracth', 'role' => 'form'));?>
+            <?=get_form_input($model, 'tahun'); ?>
+
+            <?=get_form_input($model, 'jmlbb'); ?>
+
+            <?=get_form_input($model, 'jmlperkara'); ?>      
+
+            <div class="form-group">
+                <label>KETERANGAN</label>
+                <?=form_input('keterangan', '', array('class' => 'form-control', 'id' => 'input-keterangan'));?>
+                <div id="error"></div>
+            </div>
+
+            <!-- one field -->
+            <?=form_hidden('jenis_module', 'bbkembali'); ?>
+
+            <button type="submit" class="btn btn-primary" id="formInkracth">Simpan Data</button>
+            <button type="reset" class="btn btn-default">Kosongkan Data</button>
+        <?=form_close();?>
+      </div>
+    </div>
+
+  </div>
+</div>
 
 <script type="text/javascript">
 $( document ).ready(function() {
@@ -43,20 +78,28 @@ $( document ).ready(function() {
     $(".datepicker").datepicker();
     $('#error').html(" ");
 
+    // $('#example1').DataTable();
+    var table = $('#example1').DataTable({
+        "bFilter": false, //hide Search bar
+        "bInfo": false, //Dont display info e.g. "Showing 1 to 4 of 4 entries"
+        "paging": false,//Dont want paging                
+        "bPaginate": false,//Dont want paging
+    })
+
     $('button#formInkracth').on('click', function (e) {
         e.preventDefault();
 
         $.ajax({
             type: "POST",
-            url: "<?=site_url('Pidum/pidum_inkracth_add');?>", 
+            url: "<?=site_url('pb3r/bbkelola_add');?>", 
             data: $("#formInkracth").serialize(),
             dataType: "json",  
             success: function(data){
                 console.log(data, "data");
                 if(data.success == true){
-                    // setTimeout(function(){
-                        // window.location.reload();
-                    // }, 3000);
+                    setTimeout(function(){
+                        window.location.reload();
+                    }, 3000);
                 } else {
                     $.each(data, function(key, value) {
                         $('#input-' + key).addClass('is-invalid');
@@ -70,12 +113,6 @@ $( document ).ready(function() {
     $('#form input').on('keyup', function () { 
         $(this).removeClass('is-invalid').addClass('is-valid');
         $(this).parents('.form-group').find('#error').html(" ");
-    });
-
-    new DataTable('#example1', {
-        info: false,
-        ordering: false,
-        paging: false
     });
 
 });

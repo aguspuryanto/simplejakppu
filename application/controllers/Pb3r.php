@@ -38,4 +38,39 @@ class Pb3r extends AUTH_Controller {
 		$this->template->views('pb3r/bbkelola', $data);
 	}
 
+	public function bbkelola_add() {		
+		$this->load->library('form_validation');
+		
+		$model = $this->M_bbkelola;
+        $json = array();
+		$this->form_validation->set_rules($model->rules());
+		$this->form_validation->set_message('required', 'Mohon lengkapi {field}!');
+
+		if (!$this->form_validation->run()) {			
+			foreach($model->rules() as $key => $val) {
+				$json = array_merge($json, array(
+					$val['field'] => form_error($val['field'], '<p class="mt-3 text-danger">', '</p>')
+				));
+			}
+		} else {
+			$data = array(
+				'tahun' => $this->input->post('tahun'),
+				'jmlbb' => $this->input->post('jmlbb'),
+				'jmlperkara' => $this->input->post('jmlperkara'),
+				'keterangan' => $this->input->post('keterangan'),
+			);
+
+			if($model->save($data)) {
+				$this->session->set_flashdata('success', 'Berhasil disimpan');
+				$json = array('success' => true, 'message' => 'Berhasil disimpan');
+			} else {
+				$json = array('success' => false, 'message' => 'Gagal disimpan');
+			}
+		}
+
+		$this->output
+        ->set_content_type('application/json')
+        ->set_output(json_encode($json));
+	}
+
 }
