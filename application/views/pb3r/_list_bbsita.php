@@ -23,8 +23,8 @@
                     echo '<tr>
                         <td>'.$id.'</td>
                         <td>'.$row->tahun.'</td>
-                        <td>'.$row->jmlbb.'</td>
-                        <td>'.$row->jmlperkara.'</td>
+                        <td>'.$row->ba20.'</td>
+                        <td>'.$row->ba23.'</td>
                         <td>'.$row->keterangan.'</td>
                     </tr>';
                     $id++;
@@ -60,9 +60,6 @@
                 <div id="error"></div>
             </div>
 
-            <!-- one field -->
-            <?=form_hidden('jenis_module', 'bbkembali'); ?>
-
             <button type="submit" class="btn btn-primary" id="formInkracth">Simpan Data</button>
             <button type="reset" class="btn btn-default">Kosongkan Data</button>
         <?=form_close();?>
@@ -91,7 +88,7 @@ $( document ).ready(function() {
 
         $.ajax({
             type: "POST",
-            url: "<?=site_url('pb3r/bbkelola_add');?>", 
+            url: "<?=site_url('pb3r/bbsita_add');?>", 
             data: $("#formInkracth").serialize(),
             dataType: "json",  
             success: function(data){
