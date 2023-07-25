@@ -10,6 +10,7 @@ class Pb3r extends AUTH_Controller {
 		$this->load->model('M_bbkelola');
 		$this->load->model('M_bbsita');
 		$this->load->model('M_bblelang');
+		$this->load->model('M_bbtidaklaku');
     }
 
     public function index() {
@@ -139,7 +140,7 @@ class Pb3r extends AUTH_Controller {
 		$data['judul'] 		= "EKSEKUSI BARANG RAMPASAN NEGARA (LELANG)";
 		$data['deskripsi'] 	= "";
 
-		$this->template->views('pb3r/blelang', $data);
+		$this->template->views('pb3r/bblelang', $data);
 	}
 
 	public function bblelang_add() {		
@@ -177,6 +178,20 @@ class Pb3r extends AUTH_Controller {
 		$this->output
         ->set_content_type('application/json')
         ->set_output(json_encode($json));		
+	}
+
+	public function bbtidaklaku() {
+		$data['userdata'] 	= $this->userdata;
+
+		$data['model'] = $this->M_bbtidaklaku;
+		$options = array();
+		$data['dataInkracth'] = $this->M_bbtidaklaku->select_all($options);
+		
+		$data['page'] 		= "blelang";
+		$data['judul'] 		= "BARANG RAMPASAN YANG TIDAK LAKU TERJUAL (LELANG)";
+		$data['deskripsi'] 	= "";
+
+		$this->template->views('pb3r/bbtidaklaku', $data);
 	}
 
 }

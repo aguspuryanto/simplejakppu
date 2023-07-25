@@ -9,8 +9,8 @@
             <tr>
                 <th>No</th>
                 <th>Tahun</th>
-                <th>Jumlah</th>
-                <th>Hasil (Rp)</th>
+                <th>Jumlah BB</th>
+                <th>Jumlah Perkara</th>
                 <th>Keterangan</th>
             </tr>
         </thead>
@@ -23,8 +23,8 @@
                     echo '<tr>
                         <td>'.$id.'</td>
                         <td>'.$row->tahun.'</td>
-                        <td>'.$row->jml.'</td>
-                        <td>'.$row->hasil.'</td>
+                        <td>'.$row->jmlbb.'</td>
+                        <td>'.$row->jmlperkara.'</td>
                         <td>'.$row->keterangan.'</td>
                     </tr>';
                     $id++;
@@ -50,9 +50,9 @@
         <?=form_open('', array('id' => 'formInkracth', 'role' => 'form'));?>
             <?=get_form_input($model, 'tahun'); ?>
 
-            <?=get_form_input($model, 'jml'); ?>
+            <?=get_form_input($model, 'jmlbb'); ?>
 
-            <?=get_form_input($model, 'hasil'); ?>      
+            <?=get_form_input($model, 'jmlperkara'); ?>      
 
             <div class="form-group">
                 <label>KETERANGAN</label>
@@ -91,7 +91,7 @@ $( document ).ready(function() {
 
         $.ajax({
             type: "POST",
-            url: "<?=site_url('pb3r/bblelang_add');?>", 
+            url: "<?=site_url('pb3r/bbkelola_add');?>", 
             data: $("#formInkracth").serialize(),
             dataType: "json",  
             success: function(data){
