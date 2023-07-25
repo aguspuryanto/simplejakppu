@@ -102,7 +102,9 @@
             array('title' => 'Barang Bukti Disita', 'url' => 'bbsita'),
             array('title' => 'Barang Bukti Dikembalikan', 'url' => 'bbkembali'),
             array('title' => 'Barang Bukti Dilelang', 'url' => 'bblelang'),
-            array('title' => 'Barang Rampasan Tidak Terjual', 'url' => 'bbtidaklaku'),
+            array('title' => 'Uang Pengganti', 'url' => 'uangganti'),
+            array('title' => 'Denda', 'url' => 'uangdenda'),
+            array('title' => 'Uang Rampasan', 'url' => 'uangrampas'),
           )
         )
       ];

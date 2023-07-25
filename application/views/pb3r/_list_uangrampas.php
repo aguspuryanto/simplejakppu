@@ -23,7 +23,7 @@
                     echo '<tr>
                         <td>'.$id.'</td>
                         <td>'.$row->tahun.'</td>
-                        <td>'.$row->jml.'</td>
+                        <td>'.$row->perkara.'</td>
                         <td>'.$row->hasil.'</td>
                         <td>'.$row->keterangan.'</td>
                     </tr>';
@@ -50,7 +50,7 @@
         <?=form_open('', array('id' => 'formInkracth', 'role' => 'form'));?>
             <?=get_form_input($model, 'tahun'); ?>
 
-            <?=get_form_input($model, 'jml'); ?>
+            <?=get_form_input($model, 'perkara'); ?>
 
             <?=get_form_input($model, 'hasil'); ?>      
 
@@ -61,7 +61,7 @@
             </div>
 
             <!-- one field -->
-            <?=form_hidden('jenis_module', 'bbkembali'); ?>
+            <?=form_hidden('jenis_module', 'uangrampas'); ?>
 
             <button type="submit" class="btn btn-primary" id="formInkracth">Simpan Data</button>
             <button type="reset" class="btn btn-default">Kosongkan Data</button>

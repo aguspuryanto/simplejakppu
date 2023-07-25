@@ -232,7 +232,7 @@ class Pb3r extends AUTH_Controller {
 
 		$this->output
         ->set_content_type('application/json')
-        ->set_output(json_encode($json));		
+        ->set_output(json_encode($json));
 	}
 
 	public function uangganti() {
@@ -275,6 +275,50 @@ class Pb3r extends AUTH_Controller {
 		$data['deskripsi'] 	= "";
 
 		$this->template->views('pb3r/uangrampas', $data);
+	}
+
+	public function uangdenda_add() {
+		$this->load->library('form_validation');
+		
+		// echo $this->input->post('jenis_module'); die();
+		$form_data = $this->input->post();
+		// echo json_encode($form_data); die();
+
+		if($form_data['jenis_module'] == 'uangganti') $model = $this->M_uangganti;
+		if($form_data['jenis_module'] == 'uangdenda') $model = $this->M_uangdenda;
+		if($form_data['jenis_module'] == 'uangrampas') $model = $this->M_uangrampas;
+
+        $json = array();
+		$this->form_validation->set_rules($model->rules());
+		$this->form_validation->set_message('required', 'Mohon lengkapi {field}!');
+
+		if (!$this->form_validation->run()) {			
+			foreach($model->rules() as $key => $val) {
+				$json = array_merge($json, array(
+					$val['field'] => form_error($val['field'], '<p class="mt-3 text-danger">', '</p>')
+				));
+			}
+		} else {
+			$data = array(
+				'tahun' => $this->input->post('tahun'),
+				'perkara' => $this->input->post('perkara'),
+				'hasil' => $this->input->post('hasil'),
+				'keterangan' => $this->input->post('keterangan'),
+			);
+
+			// if($model->save($data)) {
+				$model->save($data);
+				$this->session->set_flashdata('success', 'Berhasil disimpan');
+				$json = array('success' => true, 'message' => 'Berhasil disimpan');
+			// } else {
+			// 	$this->session->set_flashdata('error', 'Gagal disimpan');
+			// 	$json = array('success' => false, 'message' => 'Gagal disimpan');
+			// }
+		}
+
+		$this->output
+        ->set_content_type('application/json')
+        ->set_output(json_encode($json));		
 	}
 
 }
