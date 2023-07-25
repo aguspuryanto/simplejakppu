@@ -9,8 +9,8 @@
             <tr>
                 <th>No</th>
                 <th>Tahun</th>
-                <th>Jumlah BB</th>
-                <th>Jumlah Perkara</th>
+                <th>Pengembalian Barang Bukti (BA 20)</th>
+                <th>Pemusnahan (BA 23)</th>
                 <th>Keterangan</th>
             </tr>
         </thead>
@@ -50,9 +50,9 @@
         <?=form_open('', array('id' => 'formInkracth', 'role' => 'form'));?>
             <?=get_form_input($model, 'tahun'); ?>
 
-            <?=get_form_input($model, 'jmlbb'); ?>
+            <?=get_form_input($model, 'ba20'); ?>
 
-            <?=get_form_input($model, 'jmlperkara'); ?>      
+            <?=get_form_input($model, 'ba23'); ?>      
 
             <div class="form-group">
                 <label>KETERANGAN</label>

@@ -15,29 +15,17 @@ class M_bbkelola extends CI_Model {
     }
 
     public function save($data) {
-        // $this->db->trans_begin();
-        // $this->db->insert($this->table_name, $data);
-        // $this->db->trans_complete();
+        $this->db->trans_begin();
+        $this->db->insert($this->table_name, $data);
+        $this->db->trans_complete();
         
-        // if ($this->db->trans_status() === FALSE){
-        //     $this->db->trans_rollback();
-        //     return 0;
-        // } else {
-        //     $this->db->trans_commit();
-        //     $insert_id = $this->db->insert_id();
-        //     return  $insert_id;
-        // }
-
-        $result = $this->db->insert($this->table_name, $data);
-        try {
-            if ($result) {
-                return $this->db->insert_id();    
-            } else {
-                throw new Exception("database error");
-            }
-        } catch (Exception $e) {
-            log_message('error',$e->getMessage());
-            return;
+        if ($this->db->trans_status() === FALSE){
+            $this->db->trans_rollback();
+            return 0;
+        } else {
+            $this->db->trans_commit();
+            $insert_id = $this->db->insert_id();
+            return  $insert_id;
         }
     }
 

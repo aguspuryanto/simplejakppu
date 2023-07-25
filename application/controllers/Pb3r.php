@@ -8,6 +8,7 @@ class Pb3r extends AUTH_Controller {
 		parent::__construct();
 		$this->load->model('M_inkracth');
 		$this->load->model('M_bbkelola');
+		$this->load->model('M_bbsita');
     }
 
     public function index() {
@@ -28,8 +29,8 @@ class Pb3r extends AUTH_Controller {
 		$data['userdata'] 	= $this->userdata;
 
 		$data['model'] = $this->M_bbkelola;
-		$options = array('jenis_module' => 'bbkembali');
-		$data['dataInkracth'] = $this->M_inkracth->select_all($options);
+		$options = array();
+		$data['dataInkracth'] = $this->M_bbkelola->select_all($options);
 
 		$data['page'] 		= "bbkelola";
 		$data['judul'] 		= " BARANG BUKTI DIKELOLA";
@@ -64,6 +65,7 @@ class Pb3r extends AUTH_Controller {
 				$this->session->set_flashdata('success', 'Berhasil disimpan');
 				$json = array('success' => true, 'message' => 'Berhasil disimpan');
 			} else {
+				$this->session->set_flashdata('error', 'Gagal disimpan');
 				$json = array('success' => false, 'message' => 'Gagal disimpan');
 			}
 		}
@@ -71,6 +73,20 @@ class Pb3r extends AUTH_Controller {
 		$this->output
         ->set_content_type('application/json')
         ->set_output(json_encode($json));
+	}
+
+	public function bbsita() {
+		$data['userdata'] 	= $this->userdata;
+
+		$data['model'] = $this->M_bbsita;
+		$options = array();
+		$data['dataInkracth'] = $this->M_bbsita->select_all($options);
+
+		$data['page'] 		= "bbsita";
+		$data['judul'] 		= " BARANG BUKTI DI SITA";
+		$data['deskripsi'] 	= "";
+
+		$this->template->views('pb3r/bbsita', $data);
 	}
 
 }
