@@ -14,7 +14,8 @@ class Migration_add_bbtidaklaku extends CI_Migration {
             ),
             'tahun' => array(
                 'type' => 'VARCHAR',
-                'constraint' => '100'
+                'constraint' => '4',
+                'unique' => TRUE
             ),
             'jml' => array(
                 'type' => 'VARCHAR',
