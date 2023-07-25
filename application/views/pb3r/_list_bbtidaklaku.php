@@ -9,8 +9,8 @@
             <tr>
                 <th>No</th>
                 <th>Tahun</th>
-                <th>Jumlah BB</th>
-                <th>Jumlah Perkara</th>
+                <th>Jumlah</th>
+                <th>Hasil</th>
                 <th>Keterangan</th>
             </tr>
         </thead>
@@ -23,8 +23,8 @@
                     echo '<tr>
                         <td>'.$id.'</td>
                         <td>'.$row->tahun.'</td>
-                        <td>'.$row->jmlbb.'</td>
-                        <td>'.$row->jmlperkara.'</td>
+                        <td>'.$row->jml.'</td>
+                        <td>'.$row->hasil.'</td>
                         <td>'.$row->keterangan.'</td>
                     </tr>';
                     $id++;
@@ -50,18 +50,15 @@
         <?=form_open('', array('id' => 'formInkracth', 'role' => 'form'));?>
             <?=get_form_input($model, 'tahun'); ?>
 
-            <?=get_form_input($model, 'jmlbb'); ?>
+            <?=get_form_input($model, 'jml'); ?>
 
-            <?=get_form_input($model, 'jmlperkara'); ?>      
+            <?=get_form_input($model, 'hasil'); ?>      
 
             <div class="form-group">
                 <label>KETERANGAN</label>
                 <?=form_input('keterangan', '', array('class' => 'form-control', 'id' => 'input-keterangan'));?>
                 <div id="error"></div>
             </div>
-
-            <!-- one field -->
-            <?=form_hidden('jenis_module', 'bbkembali'); ?>
 
             <button type="submit" class="btn btn-primary" id="formInkracth">Simpan Data</button>
             <button type="reset" class="btn btn-default">Kosongkan Data</button>
