@@ -10,7 +10,7 @@
                 <th>No</th>
                 <th>Tahun</th>
                 <th>Jumlah</th>
-                <th>Hasil</th>
+                <th>Hasil (Rp)</th>
                 <th>Keterangan</th>
             </tr>
         </thead>
