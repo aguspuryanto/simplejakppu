@@ -11,6 +11,10 @@ class Pb3r extends AUTH_Controller {
 		$this->load->model('M_bbsita');
 		$this->load->model('M_bblelang');
 		$this->load->model('M_bbtidaklaku');
+
+		$this->load->model('M_uangganti');
+		$this->load->model('M_uangdenda');
+		$this->load->model('M_uangrampas');
     }
 
     public function index() {
@@ -229,6 +233,48 @@ class Pb3r extends AUTH_Controller {
 		$this->output
         ->set_content_type('application/json')
         ->set_output(json_encode($json));		
+	}
+
+	public function uangganti() {
+		$data['userdata'] 	= $this->userdata;
+
+		$data['model'] = $this->M_uangganti;
+		$options = array();
+		$data['dataInkracth'] = $this->M_uangganti->select_all($options);
+		
+		$data['page'] 		= "uangganti";
+		$data['judul'] 		= "Uang Pengganti";
+		$data['deskripsi'] 	= "";
+
+		$this->template->views('pb3r/uangganti', $data);
+	}
+
+	public function uangdenda() {
+		$data['userdata'] 	= $this->userdata;
+
+		$data['model'] = $this->M_uangdenda;
+		$options = array();
+		$data['dataInkracth'] = $this->M_uangdenda->select_all($options);
+		
+		$data['page'] 		= "uangdenda";
+		$data['judul'] 		= "DENDA";
+		$data['deskripsi'] 	= "";
+
+		$this->template->views('pb3r/uangdenda', $data);
+	}
+
+	public function uangrampas() {
+		$data['userdata'] 	= $this->userdata;
+
+		$data['model'] = $this->M_uangrampas;
+		$options = array();
+		$data['dataInkracth'] = $this->M_uangrampas->select_all($options);
+
+		$data['page'] 		= "uangrampas";
+		$data['judul'] 		= "UANG RAMPASAN";
+		$data['deskripsi'] 	= "";
+
+		$this->template->views('pb3r/uangrampas', $data);
 	}
 
 }

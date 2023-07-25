@@ -9,8 +9,8 @@
             <tr>
                 <th>No</th>
                 <th>Tahun</th>
-                <th>Jumlah</th>
-                <th>Hasil (Rp)</th>
+                <th>Perkara</th>
+                <th>Jumlah (Rp)</th>
                 <th>Keterangan</th>
             </tr>
         </thead>
@@ -60,6 +60,9 @@
                 <div id="error"></div>
             </div>
 
+            <!-- one field -->
+            <?=form_hidden('jenis_module', 'bbkembali'); ?>
+
             <button type="submit" class="btn btn-primary" id="formInkracth">Simpan Data</button>
             <button type="reset" class="btn btn-default">Kosongkan Data</button>
         <?=form_close();?>
@@ -88,7 +91,7 @@ $( document ).ready(function() {
 
         $.ajax({
             type: "POST",
-            url: "<?=site_url('pb3r/bbtidaklaku_add');?>", 
+            url: "<?=site_url('pb3r/uangdenda_add');?>", 
             data: $("#formInkracth").serialize(),
             dataType: "json",  
             success: function(data){
