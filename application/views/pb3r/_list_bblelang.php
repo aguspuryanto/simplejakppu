@@ -9,8 +9,8 @@
             <tr>
                 <th>No</th>
                 <th>Tahun</th>
-                <th>Jumlah BB</th>
-                <th>Jumlah Perkara</th>
+                <th>Jumlah</th>
+                <th>Hasil (Rp)</th>
                 <th>Keterangan</th>
             </tr>
         </thead>

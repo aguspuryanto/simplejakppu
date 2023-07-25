@@ -9,6 +9,7 @@ class Pb3r extends AUTH_Controller {
 		$this->load->model('M_inkracth');
 		$this->load->model('M_bbkelola');
 		$this->load->model('M_bbsita');
+		$this->load->model('M_bblelang');
     }
 
     public function index() {
@@ -33,7 +34,7 @@ class Pb3r extends AUTH_Controller {
 		$data['dataInkracth'] = $this->M_bbkelola->select_all($options);
 
 		$data['page'] 		= "bbkelola";
-		$data['judul'] 		= " BARANG BUKTI DIKELOLA";
+		$data['judul'] 		= "BARANG BUKTI YANG DI KELOLA";
 		$data['deskripsi'] 	= "";
 
 		$this->template->views('pb3r/bbkelola', $data);
@@ -84,7 +85,7 @@ class Pb3r extends AUTH_Controller {
 		$data['dataInkracth'] = $this->M_bbsita->select_all($options);
 
 		$data['page'] 		= "bbsita";
-		$data['judul'] 		= " BARANG BUKTI DI SITA";
+		$data['judul'] 		= "EKSEKUSI BARANG BUKTI SITAAN";
 		$data['deskripsi'] 	= "";
 
 		$this->template->views('pb3r/bbsita', $data);
@@ -124,8 +125,58 @@ class Pb3r extends AUTH_Controller {
 
 		$this->output
         ->set_content_type('application/json')
-        ->set_output(json_encode($json));
+        ->set_output(json_encode($json));		
+	}
+
+	public function bblelang() {
+		$data['userdata'] 	= $this->userdata;
+
+		$data['model'] = $this->M_bblelang;
+		$options = array();
+		$data['dataInkracth'] = $this->M_bblelang->select_all($options);
 		
+		$data['page'] 		= "blelang";
+		$data['judul'] 		= "EKSEKUSI BARANG RAMPASAN NEGARA (LELANG)";
+		$data['deskripsi'] 	= "";
+
+		$this->template->views('pb3r/blelang', $data);
+	}
+
+	public function bblelang_add() {		
+		$this->load->library('form_validation');
+		
+		$model = $this->M_bblelang;
+        $json = array();
+		$this->form_validation->set_rules($model->rules());
+		$this->form_validation->set_message('required', 'Mohon lengkapi {field}!');
+
+		if (!$this->form_validation->run()) {			
+			foreach($model->rules() as $key => $val) {
+				$json = array_merge($json, array(
+					$val['field'] => form_error($val['field'], '<p class="mt-3 text-danger">', '</p>')
+				));
+			}
+		} else {
+			$data = array(
+				'tahun' => $this->input->post('tahun'),
+				'jml' => $this->input->post('jml'),
+				'hasil' => $this->input->post('hasil'),
+				'keterangan' => $this->input->post('keterangan'),
+			);
+
+			// if($model->save($data)) {
+				$model->save($data);
+				$this->session->set_flashdata('success', 'Berhasil disimpan');
+				$json = array('success' => true, 'message' => 'Berhasil disimpan');
+			// } else {
+			// 	$this->session->set_flashdata('error', 'Gagal disimpan');
+			// 	$json = array('success' => false, 'message' => 'Gagal disimpan');
+			// }
+		}
+
+		$this->output
+        ->set_content_type('application/json')
+        ->set_output(json_encode($json));		
 	}
 
 }

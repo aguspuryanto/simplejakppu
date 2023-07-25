@@ -96,7 +96,7 @@ $( document ).ready(function() {
                 if(data.success == true){
                     setTimeout(function(){
                         window.location.reload();
-                    }, 3000);
+                    }, 1500);
                 } else {
                     $('#error').html(data.message);
                     $.each(data, function(key, value) {
