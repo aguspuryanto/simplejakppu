@@ -9,7 +9,7 @@ class M_bblelang extends CI_Model {
         return [
             ['field' => 'tahun', 'label' => 'TAHUN', 'rules' => 'required'],
             ['field' => 'jml', 'label' => 'JUMLAH','rules' => 'required'],
-            ['field' => 'hasil', 'label' => 'HASIL','rules' => 'required'],
+            ['field' => 'hasil', 'label' => 'HASIL (Rp)','rules' => 'required'],
             ['field' => 'keterangan', 'label' => 'KETERANGAN']
         ];
     }
