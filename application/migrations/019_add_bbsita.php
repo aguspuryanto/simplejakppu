@@ -14,7 +14,8 @@ class Migration_add_bbsita extends CI_Migration {
             ),
             'tahun' => array(
                 'type' => 'VARCHAR',
-                'constraint' => '100'
+                'constraint' => '4',
+                'unique' => TRUE
             ),
             'ba20' => array(
                 'type' => 'VARCHAR',

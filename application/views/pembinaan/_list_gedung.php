@@ -43,6 +43,13 @@ $( document ).ready(function() {
     $(".datepicker").datepicker();
     $('#error').html(" ");
 
+    $('#example1').DataTable({
+        info: false,
+        ordering: false,
+        paging: false,
+        searching: false
+    });
+
     $('#form-submit').on('click', function (e) {
         e.preventDefault();
 
@@ -56,7 +63,7 @@ $( document ).ready(function() {
                 if(data.success == true){
                     setTimeout(function(){
                         window.location.reload();
-                    }, 3000);
+                    }, 1500);
                 } else {
                     $.each(data, function(key, value) {
                         $('#input-' + key).addClass('is-invalid');

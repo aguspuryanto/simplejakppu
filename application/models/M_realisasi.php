@@ -8,12 +8,12 @@ class M_realisasi extends CI_Model {
     {
         return [
             ['field' => 'tgl', 'label' => 'TANGGAL', 'rules' => ''],
-            ['field' => 'kode_nama_kegiatan', 'label' => 'KEGIATAN','rules' => 'required'],
+            ['field' => 'kode_nama_kegiatan', 'label' => 'KODE | NAMA KEGIATAN','rules' => 'required'],
             ['field' => 'pagu', 'label' => 'PAGU','rules' => 'required'],
             ['field' => 'periode_lalu', 'label' => 'S/D PERIODE LALU','rules' => 'required'],
             ['field' => 'periode_ini', 'label' => 'PERIODE INI','rules' => 'required'],
             ['field' => 'periode_total', 'label' => 'TOTAL S/D PERIODE','rules' => 'required'],
-            ['field' => 'periode_total', 'label' => 'PRESENTASE','rules' => 'required'],
+            ['field' => 'periode_persen', 'label' => 'PRESENTASE (%)','rules' => ''],
             ['field' => 'sisa_anggaran', 'label' => 'SISA ANGGARAN','rules' => 'required']
         ];
     }

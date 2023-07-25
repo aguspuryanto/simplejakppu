@@ -128,7 +128,7 @@ class Pembinaan extends AUTH_Controller {
 		} else {
 			$data = array(
 				'kode_nama_kegiatan' => $this->input->post('kode_nama_kegiatan'),
-				'pagu' => $this->input->post('pagu'),
+				'pagu' => preg_replace("/[^0-9]/", "", $this->input->post('pagu')),
 				'periode_lalu' => preg_replace("/[^0-9]/", "", $this->input->post('periode_lalu')),
 				'periode_ini' => preg_replace("/[^0-9]/", "", $this->input->post('periode_ini')),
 				'periode_total' => preg_replace("/[^0-9]/", "", $this->input->post('periode_total')),

@@ -10,7 +10,7 @@
       </div>
       <div class="modal-body">        
         <?=form_open('Pembinaan/realisasi_add', array('id' => 'form', 'role' => 'form'));?>
-            <div class="form-group">
+            <div class="form-group hide">
                 <label><?=form_label($model->rules()[0]['label']); ?></label>
                 <?=form_input('tgl', '', array('class' => 'form-control', 'id' => 'input-kode_nama_kegiatan'));?>
                 <div id="error"></div>
@@ -40,15 +40,17 @@
                 <?=form_input('periode_total', '', array('class' => 'form-control', 'id' => 'input-periode_total'));?>
                 <div id="error"></div>
             </div>
-            <div class="form-group">
-                <label><?=form_label($model->rules()[6]['label']); ?></label>
-                <?=form_input('periode_persen', '', array('class' => 'form-control', 'id' => 'input-periode_persen'));?>
-                <div id="error"></div>
-            </div>
-            <div class="form-group">
-                <label><?=form_label($model->rules()[7]['label']); ?></label>
-                <?=form_input('sisa_anggaran', '', array('class' => 'form-control', 'id' => 'input-sisa_anggaran'));?>
-                <div id="error"></div>
+            <div class="row">
+              <div class="form-group col-md-5">
+                  <label><?=form_label($model->rules()[6]['label']); ?></label>
+                  <?=form_input('periode_persen', '', array('class' => 'form-control', 'id' => 'input-periode_persen'));?>
+                  <div id="error"></div>
+              </div>
+              <div class="form-group col-md-7">
+                  <label><?=form_label($model->rules()[7]['label']); ?></label>
+                  <?=form_input('sisa_anggaran', '', array('class' => 'form-control', 'id' => 'input-sisa_anggaran'));?>
+                  <div id="error"></div>
+              </div>
             </div>
             <?//=form_field($model, 'sisa_anggaran'); ?>
             <button type="submit" class="btn btn-primary" id="form-submit">Simpan Data</button>

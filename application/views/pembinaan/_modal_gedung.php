@@ -35,15 +35,17 @@
                 <?=form_input('nilai_barang', '', array('class' => 'form-control', 'id' => 'input-nilai_barang'));?>
                 <div id="error"></div>
             </div>
-            <div class="form-group">
-                <label><?=form_label($model->rules()[5]['label']); ?></label>
-                <?=form_input('asal_barang', '', array('class' => 'form-control', 'id' => 'input-asal_barang'));?>
-                <div id="error"></div>
-            </div>
-            <div class="form-group">
-                <label><?=form_label($model->rules()[6]['label']); ?></label>
-                <?=form_input('pj_barang', '', array('class' => 'form-control', 'id' => 'input-pj_barang'));?>
-                <div id="error"></div>
+            <div class="row">
+              <div class="form-group col-md-6">
+                  <label><?=form_label($model->rules()[5]['label']); ?></label>
+                  <?=form_input('asal_barang', '', array('class' => 'form-control', 'id' => 'input-asal_barang'));?>
+                  <div id="error"></div>
+              </div>
+              <div class="form-group col-md-6">
+                  <label><?=form_label($model->rules()[6]['label']); ?></label>
+                  <?=form_input('pj_barang', '', array('class' => 'form-control', 'id' => 'input-pj_barang'));?>
+                  <div id="error"></div>
+              </div>
             </div>
             <?php
             echo form_hidden(array('jenis_module' => 'gedung'));

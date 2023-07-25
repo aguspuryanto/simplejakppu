@@ -43,6 +43,13 @@ $( document ).ready(function() {
     $(".datepicker").datepicker();
     $('#error').html(" ");
 
+    $('#example1').DataTable({
+        info: false,
+        ordering: false,
+        paging: false,
+        searching: false,
+    });
+
     $('#form-submit').on('click', function (e) {
         e.preventDefault();
 
