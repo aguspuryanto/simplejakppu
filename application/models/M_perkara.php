@@ -100,15 +100,15 @@ class M_perkara extends CI_Model {
 		foreach($statistik_perkara as $key => $stat) {
 		    $color = '#'.$this->rand[rand(0,15)].$this->rand[rand(0,15)].$this->rand[rand(0,15)].$this->rand[rand(0,15)].$this->rand[rand(0,15)].$this->rand[rand(0,15)];
 
-			$data_statistik_perkara[$index]['value'] = $stat;
-			$data_statistik_perkara[$index]['color'] = $color;
-			$data_statistik_perkara[$index]['highlight'] = $color;
-			$data_statistik_perkara[$index]['label'] = strtoupper($key);
+			$data_statistik[$index]['value'] = $stat;
+			$data_statistik[$index]['color'] = $color;
+			$data_statistik[$index]['highlight'] = $color;
+			$data_statistik[$index]['label'] = strtoupper($key);
 			
 			$index++;
 		}
 
-        return $data_statistik_perkara;
+        return $data_statistik;
     }
 
     public function stat_perkara($jenis_module = "pidum") {
@@ -157,5 +157,31 @@ class M_perkara extends CI_Model {
 
         // echo $this->db->last_query();
         return $query->result();
+    }
+
+    public function getTahananStatistik() {
+        $query = $this->db->query("SELECT SUM(CASE WHEN jenis_kelamin='L' THEN 1 ELSE 0 END) Pria, 
+        SUM(CASE WHEN jenis_kelamin='P' THEN 1 ELSE 0 END) Wanita, 
+        SUM(CASE WHEN jenis_kelamin='A' THEN 1 ELSE 0 END) Anak 
+        FROM epak_tahan GROUP BY jenis_kelamin");
+
+        // echo $this->db->last_query();
+        // return $query->result();
+
+        $statistik_perkara = $query->row_array();
+        // echo json_encode($statistik_perkara);
+		$index = 0;
+		foreach($statistik_perkara as $key => $stat) {
+		    $color = '#'.$this->rand[rand(0,15)].$this->rand[rand(0,15)].$this->rand[rand(0,15)].$this->rand[rand(0,15)].$this->rand[rand(0,15)].$this->rand[rand(0,15)];
+
+			$data_statistik[$index]['value'] = $stat;
+			$data_statistik[$index]['color'] = $color;
+			$data_statistik[$index]['highlight'] = $color;
+			$data_statistik[$index]['label'] = strtoupper($key);
+			
+			$index++;
+		}
+
+        return $data_statistik;
     }
 }

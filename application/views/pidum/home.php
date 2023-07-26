@@ -95,7 +95,25 @@
       </div>
     </div>
   </div>
-  <div class="col-lg-5 col-xs-12"></div>
+  <div class="col-lg-5 col-xs-12">
+    <div class="box box-primary">
+      <div class="box-header with-border">
+        <i class="fa fa-briefcase"></i>
+        <h3 class="box-title">Statistik Tahanan</h3>
+
+        <div class="box-tools pull-right">
+          <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+          </button>
+          <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+        </div>
+      </div>
+      <div class="box-body">
+        <div class="chart" style="height:300px">
+          <canvas id="data-tahanan" style="height:290px"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <?php
@@ -201,6 +219,28 @@ foreach($data_statistik_pidana as $key => $stat) {
 
   barChartOptions.datasetFill = false
   barChart.Bar(barChartData, barChartOptions)
+
+
+  //data tahanan
+var pieChartCanvas = $("#data-tahanan").get(0).getContext("2d");
+var pieChart = new Chart(pieChartCanvas);
+var PieData = <?= json_encode($data_statistik_tahanan); ?>;
+
+var pieOptions = {
+  segmentShowStroke: true,
+  segmentStrokeColor: "#fff",
+  segmentStrokeWidth: 2,
+  percentageInnerCutout: 50,
+  animationSteps: 100,
+  animationEasing: "easeOutBounce",
+  animateRotate: true,
+  animateScale: false,
+  responsive: true,
+  maintainAspectRatio: true,
+  legendTemplate: "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<segments.length; i++){%><li><span style=\"background-color:<%=segments[i].fillColor%>\"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>"
+};
+
+pieChart.Doughnut(PieData, pieOptions);
 
 //-------------
 //- TERSANGKA CHART -

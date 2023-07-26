@@ -33,11 +33,11 @@ class Pidum extends AUTH_Controller {
 		// 3. Jumlah Tersangka, Terdakwa dan Terpidana (Laki, perempuan dan anak)
 		// 4. Jumlah Tahanan (Laki, perempuan dan anak)
 
+		$data['userdata'] 		= $this->userdata;
 		// $data['jml_perkara'] 	= $this->M_perkara->total_rows();
 		$data['jml_perkara'] 	= $this->M_perkara->select_by(['jenis_module'=>$this->jenis_module])->jml;
 		$data['jml_penahanan'] 	= $this->M_penahanan->total_rows();
 		$data['jml_pnbp'] 		= $this->M_pnbp->total_pnbp();
-		$data['userdata'] 		= $this->userdata;
 
 		// $data['data_perkara'] = isset($data_perkara) ? json_encode($data_perkara) : [];
 		// $data['data_pnbp'] = isset($data_pnbp) ? json_encode($data_pnbp) : [];
@@ -45,9 +45,15 @@ class Pidum extends AUTH_Controller {
 		$data['data_pnbp'] = $this->M_pnbp->statistik_pnbp();
 		$data['data_statistik'] = $this->M_perkara->stat_perkara();
 		
+		// 2. Jenis perkara : 
 		$data['data_statistik_perkara'] = $this->M_perkara->getPerkaraStatistik();
+
+		// 3. Jumlah Tersangka, Terdakwa dan Terpidana (Laki, perempuan dan anak)
 		$data['data_statistik_pidana'] = $this->M_perkara->getTerpidanaStatistik();
-		// echo json_encode($data_statistik_pidana);
+
+		// 4. Jumlah Tahanan (Laki, perempuan dan anak)
+		$data['data_statistik_tahanan'] = $this->M_perkara->getTahananStatistik();
+		// echo json_encode($data['data_statistik_tahanan']);
 
 		$data['page'] 			= "home";
 		$data['judul'] 			= "Statistik Pidana Umum (Pidum)";
