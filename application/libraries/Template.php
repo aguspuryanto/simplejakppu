@@ -37,14 +37,24 @@ class Template {
 	}
 
 	//render layout Codeigiter4
-	function render($file, $data = [])	{
-		$ci = & get_instance();
+	function render($template = NULL, $data = NULL)	{
+		if ($template != NULL) {
+			// $data['_meta']			= $this->_ci->load->view('_themes/_meta', $data, TRUE);
+			// $data['_css']			= $this->_ci->load->view('_themes/_css', $data, TRUE);
 
-		// $data = array_merge($data, [
-			// 'mainPage' => $file, 
-			// 'sessionMsg' => $ci->sessionMsg()
-		// ]);
-		$ci->load->view('layout/_template', $data);
+			$data['_navbar']		= $this->_ci->load->view('_themes/_navbar', $data, TRUE);
+			// $data['_header']		= $this->_ci->load->view('_themes/_header', $data, TRUE);
+
+			$data['_sidebar']		= $this->_ci->load->view('_themes/_sidebar', $data, TRUE);
+
+			$data['_content']		= $this->_ci->load->view($template, $data, TRUE);
+
+			$data['_footer']		= $this->_ci->load->view('_themes/_footer', $data, TRUE);
+
+			$data['_js']			= $this->_ci->load->view('_themes/_js', $data, TRUE);
+
+			echo $data['_template']	= $this->_ci->load->view('_themes/_template', $data, TRUE);
+		}
 	}
 }
 ?>
