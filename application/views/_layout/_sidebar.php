@@ -80,6 +80,13 @@
           'submenu' => array(
             array('title' => 'Statistik', 'url' => 'index'),
             array('title' => 'Data Perkara', 'url' => 'datun'),
+            array('title' => 'GAKKUM', 'url' => 'gakkum'),
+            array('title' => 'TIMKUM', 'url' => 'timkum'),
+            array('title' => 'BANKUM', 'url' => 'bankum'),
+            array('title' => 'THL', 'url' => 'thl'),
+            array('title' => 'YANKUM', 'url' => 'yankum'),
+            array('title' => 'Penyelamatan KN', 'url' => 'penyelamatan_kn'),
+            array('title' => 'Pemulihan KN', 'url' => 'pemulihan_kn'),
           ),
         ),
         array(

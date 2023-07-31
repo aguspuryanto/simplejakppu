@@ -102,6 +102,62 @@ class Datun extends AUTH_Controller {
         ->set_output(json_encode($json));
 		
 	}
+
+	public function gakkum() {
+		$data['userdata'] 	= $this->userdata;
+
+		$data['page'] 		= "DATUN";
+
+		$this->template->views('_under_develop', $data);
+	}
+
+	public function timkum() {
+		$data['userdata'] 	= $this->userdata;
+
+		$data['page'] 		= "DATUN";
+
+		$this->template->views('_under_develop', $data);
+	}
+
+	public function bankum() {
+		$data['userdata'] 	= $this->userdata;
+
+		$data['page'] 		= "DATUN";
+
+		$this->template->views('_under_develop', $data);
+	}
+
+	public function thl() {
+		$data['userdata'] 	= $this->userdata;
+
+		$data['page'] 		= "DATUN";
+
+		$this->template->views('_under_develop', $data);
+	}
+
+	public function yankum() {
+		$data['userdata'] 	= $this->userdata;
+
+		$data['page'] 		= "DATUN";
+
+		$this->template->views('_under_develop', $data);
+	}
+
+	public function penyelamatan_kn() {
+		$data['userdata'] 	= $this->userdata;
+
+		$data['page'] 		= "DATUN";
+
+		$this->template->views('_under_develop', $data);
+	}
+
+	public function pemulihan_kn() {
+		$data['userdata'] 	= $this->userdata;
+
+		$data['page'] 		= "DATUN";
+
+		$this->template->views('_under_develop', $data);
+	}
 }
 
 /* End of file Kota.php */
