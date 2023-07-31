@@ -101,10 +101,20 @@ $( document ).ready(function() {
                         window.location.reload();
                     }, 1500);
                 } else {
-                    $('#error').html(data.message);
+                    // $('#error').html(data.message);
                     $.each(data, function(key, value) {
                         $('#input-' + key).addClass('is-invalid');
                         $('#input-' + key).parents('.form-group').find('#error').html(value);
+                    });
+
+                    $('#myModalInkracth').modal('hide');
+                    Notification.requestPermission().then((permission) => {
+                        if (permission === "granted") {
+                            new Notification("Warning!", {
+                                body: data.message,
+                                icon: "",
+                            });
+                        }
                     });
                 }
             }

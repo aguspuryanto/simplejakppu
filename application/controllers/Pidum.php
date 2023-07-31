@@ -55,7 +55,7 @@ class Pidum extends AUTH_Controller {
 		$data['data_statistik_tahanan'] = $this->M_perkara->getTahananStatistik();
 		// echo json_encode($data['data_statistik_tahanan']);
 
-		$data['page'] 			= "home";
+		$data['page'] 			= "PIDUM";
 		$data['judul'] 			= "Statistik Pidana Umum (Pidum)";
 		$data['deskripsi'] 		= "";
 
@@ -70,7 +70,7 @@ class Pidum extends AUTH_Controller {
 		$data['dataPenahanan'] = $this->M_penahanan->select_all();
 		$data['dataPnbp'] = $this->M_pnbp->select_all();
 		
-		$data['page'] 		= "Pidana Umum";
+		$data['page'] 		= "PIDUM";
 		$data['judul'] 		= "Data Perkara Pidana Umum (Pidum)";
 
 		$this->template->views('pidum/index', $data);
@@ -82,7 +82,7 @@ class Pidum extends AUTH_Controller {
 		$data['dataPenahanan'] = $this->M_penahanan->select_all();
 		$data['dataPnbp'] = $this->M_pnbp->select_all();
 		
-		$data['page'] 		= "Pidana Umum";
+		$data['page'] 		= "PIDUM";
 
 		$this->template->views('pidum/penahanan', $data);
 	}
@@ -93,7 +93,7 @@ class Pidum extends AUTH_Controller {
 		$data['dataPenahanan'] = $this->M_penahanan->select_all();
 		$data['dataPnbp'] = $this->M_pnbp->select_all();
 		
-		$data['page'] 		= "PNBP";
+		$data['page'] 		= "PIDUM";
 
 		$this->template->views('pidum/pnbp', $data);
 	}
@@ -239,7 +239,7 @@ class Pidum extends AUTH_Controller {
 		$options = array('jenis_module' => 'inkracth');
 		$data['dataInkracth'] = $this->M_inkracth->select_all();
 		
-		$data['page'] 		= "INKRACTH";
+		$data['page'] 		= "PIDUM";
 
 		$this->template->views('pidum/inkracth', $data);
 	}
@@ -342,7 +342,7 @@ class Pidum extends AUTH_Controller {
 		// $data['dataProvider'] = $this->M_inkracth->select_all($options);
 		$data['dataInkracth'] = $this->M_inkracth->select_all($options);
 		
-		$data['page'] 		= "INKRACTH";
+		$data['page'] 		= "PIDUM";
 
 		$this->template->views('pidum/inkracth', $data);
 	}
@@ -356,7 +356,7 @@ class Pidum extends AUTH_Controller {
 
 		$data['judul'] 		= " BARANG BUKTI DI KEMBALIKAN";
 		$data['deskripsi'] 	= "";
-		$data['page'] 		= "INKRACTH";
+		$data['page'] 		= "PIDUM";
 
 		$this->template->views('pidum/bbkembali', $data);
 	}
@@ -368,7 +368,7 @@ class Pidum extends AUTH_Controller {
 		$options = array('jenis_module' => 'bbrampas');
 		$data['dataInkracth'] = $this->M_inkracth->select_all($options);
 
-		$data['page'] 		= "INKRACTH";
+		$data['page'] 		= "PIDUM";
 
 		$this->template->views('pidum/bbrampas', $data);
 	}
@@ -380,7 +380,7 @@ class Pidum extends AUTH_Controller {
 		$options = array('jenis_module' => 'bblelang');
 		$data['dataInkracth'] = $this->M_inkracth->select_all($options);
 
-		$data['page'] 		= "INKRACTH";
+		$data['page'] 		= "PIDUM";
 
 		$this->template->views('pidum/bblelang', $data);
 	}

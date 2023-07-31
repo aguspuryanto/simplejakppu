@@ -70,7 +70,7 @@ class Intel extends AUTH_Controller {
 		]);
 		// echo json_encode($data['data_statistik_intel']);
 
-		$data['page'] 			= "home";
+		$data['page'] 			= "INTEL";
 		$data['judul'] 			= "Statistik Intelijen";
 		$data['deskripsi'] 		= "";
 
@@ -86,7 +86,7 @@ class Intel extends AUTH_Controller {
 		$data['dataPenahanan'] = $this->M_penahanan->select_all($options);
 		$data['dataPnbp'] = $this->M_pnbp->select_all($options);
 		
-		$data['page'] 		= "Intelijen";
+		$data['page'] 		= "INTEL";
 
 		$this->template->views('intel/index', $data);
 	}
@@ -152,7 +152,7 @@ class Intel extends AUTH_Controller {
 
 		$data['judul'] 		= "Surat Perintah Tugas";
 		$data['deskripsi'] 	= "";
-		$data['page'] 		= "Intelijen";
+		$data['page'] 		= "INTEL";
 
 		$this->template->views('intel/sp_tugas', $data);
 	}
@@ -205,7 +205,7 @@ class Intel extends AUTH_Controller {
 
 		$data['judul'] 		= "Operasi Intelijen Yustisial";
 		$data['deskripsi'] 	= "";
-		$data['page'] 		= "Intelijen";
+		$data['page'] 		= "INTEL";
 
 		$this->template->views('intel/op_intelijen', $data);
 	}
@@ -218,7 +218,7 @@ class Intel extends AUTH_Controller {
 
 		$data['judul'] 		= "Pencegahan dan Penangkalan";
 		$data['deskripsi'] 	= "";
-		$data['page'] = "Intelijen";
+		$data['page'] = "INTEL";
 
 		$this->template->views('intel/cegah_tangkal', $data);
 	}
@@ -231,7 +231,7 @@ class Intel extends AUTH_Controller {
 
 		$data['judul'] 		= "Tangkap Buron";
 		$data['deskripsi'] 	= "";
-		$data['page'] = "Intelijen";
+		$data['page'] = "INTEL";
 
 		$this->template->views('intel/tangkap_buron', $data);
 	}
@@ -248,7 +248,7 @@ class Intel extends AUTH_Controller {
 
 		$data['judul'] 		= "PENGAWASAN LALU LINTAS WNA";
 		$data['deskripsi'] 	= "";
-		$data['page'] = "Intelijen";
+		$data['page'] = "INTEL";
 
 		$this->template->views('intel/awas_wna', $data);
 	}
@@ -305,7 +305,7 @@ class Intel extends AUTH_Controller {
 
 		$data['judul'] 		= "PENGAWASAN LALU LINTAS WNA";
 		$data['deskripsi'] 	= "";
-		$data['page'] = "Intelijen";
+		$data['page'] = "INTEL";
 
 		$this->template->views('intel/pidana_wna', $data);
 	}
@@ -359,7 +359,7 @@ class Intel extends AUTH_Controller {
 
 		$data['judul'] 		= "PROYEK STRATEGIS";
 		$data['deskripsi'] 	= "";
-		$data['page'] = "Intelijen";
+		$data['page'] = "INTEL";
 
 		$this->template->views('intel/proyek_strategis', $data);
 	}
@@ -376,7 +376,7 @@ class Intel extends AUTH_Controller {
 
 		$data['judul'] 		= "TIM PEMBERANTASAN MAFIA TANAH";
 		$data['deskripsi'] 	= "";
-		$data['page'] = "Intelijen";
+		$data['page'] = "INTEL";
 
 		$this->template->views('intel/berantas_mafia', $data);
 	}
@@ -431,7 +431,7 @@ class Intel extends AUTH_Controller {
 
 		$data['judul'] 		= "PERCEPATAN INVESTASI";
 		$data['deskripsi'] 	= "";		
-		$data['page'] = "Intelijen";
+		$data['page'] = "INTEL";
 
 		$this->template->views('intel/cepat_investasi', $data);
 	}

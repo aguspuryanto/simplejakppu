@@ -24,7 +24,7 @@ class Pb3r extends AUTH_Controller {
 		$options = array('jenis_module' => 'bbkembali');
 		$data['dataInkracth'] = $this->M_inkracth->select_all($options);
 
-		$data['page'] 		= "bbkembali";
+		$data['page'] 		= "PB3R";
 		$data['judul'] 		= " BARANG BUKTI DI KEMBALIKAN";
 		$data['deskripsi'] 	= "";
 
@@ -38,7 +38,7 @@ class Pb3r extends AUTH_Controller {
 		$options = array();
 		$data['dataInkracth'] = $this->M_bbkelola->select_all($options);
 
-		$data['page'] 		= "bbkelola";
+		$data['page'] 		= "PB3R";
 		$data['judul'] 		= "BARANG BUKTI YANG DI KELOLA";
 		$data['deskripsi'] 	= "";
 
@@ -89,7 +89,7 @@ class Pb3r extends AUTH_Controller {
 		$options = array();
 		$data['dataInkracth'] = $this->M_bbsita->select_all($options);
 
-		$data['page'] 		= "bbsita";
+		$data['page'] 		= "PB3R";
 		$data['judul'] 		= "EKSEKUSI BARANG BUKTI SITAAN";
 		$data['deskripsi'] 	= "";
 
@@ -140,7 +140,7 @@ class Pb3r extends AUTH_Controller {
 		$options = array();
 		$data['dataInkracth'] = $this->M_bblelang->select_all($options);
 		
-		$data['page'] 		= "blelang";
+		$data['page'] 		= "PB3R";
 		$data['judul'] 		= "EKSEKUSI BARANG RAMPASAN NEGARA (LELANG)";
 		$data['deskripsi'] 	= "";
 
@@ -191,7 +191,7 @@ class Pb3r extends AUTH_Controller {
 		$options = array();
 		$data['dataInkracth'] = $this->M_bbtidaklaku->select_all($options);
 		
-		$data['page'] 		= "blelang";
+		$data['page'] 		= "PB3R";
 		$data['judul'] 		= "BARANG RAMPASAN YANG TIDAK LAKU TERJUAL (LELANG)";
 		$data['deskripsi'] 	= "";
 
@@ -242,7 +242,7 @@ class Pb3r extends AUTH_Controller {
 		$options = array();
 		$data['dataInkracth'] = $this->M_uangganti->select_all($options);
 		
-		$data['page'] 		= "uangganti";
+		$data['page'] 		= "PB3R";
 		$data['judul'] 		= "Uang Pengganti";
 		$data['deskripsi'] 	= "";
 
@@ -256,7 +256,7 @@ class Pb3r extends AUTH_Controller {
 		$options = array();
 		$data['dataInkracth'] = $this->M_uangdenda->select_all($options);
 		
-		$data['page'] 		= "uangdenda";
+		$data['page'] 		= "PB3R";
 		$data['judul'] 		= "DENDA";
 		$data['deskripsi'] 	= "";
 
@@ -270,7 +270,7 @@ class Pb3r extends AUTH_Controller {
 		$options = array();
 		$data['dataInkracth'] = $this->M_uangrampas->select_all($options);
 
-		$data['page'] 		= "uangrampas";
+		$data['page'] 		= "PB3R";
 		$data['judul'] 		= "UANG RAMPASAN";
 		$data['deskripsi'] 	= "";
 
@@ -307,9 +307,14 @@ class Pb3r extends AUTH_Controller {
 			);
 
 			// if($model->save($data)) {
-				$model->save($data);
-				$this->session->set_flashdata('success', 'Berhasil disimpan');
-				$json = array('success' => true, 'message' => 'Berhasil disimpan');
+				$insert = $model->save($data);
+				if(!$insert) {
+					$this->session->set_flashdata('error', 'Gagal disimpan');
+					$json = array('success' => false, 'message' => 'Gagal disimpan');
+				} else {
+					$this->session->set_flashdata('success', 'Berhasil disimpan');
+					$json = array('success' => true, 'message' => 'Berhasil disimpan');
+				}
 			// } else {
 			// 	$this->session->set_flashdata('error', 'Gagal disimpan');
 			// 	$json = array('success' => false, 'message' => 'Gagal disimpan');

@@ -42,7 +42,7 @@ class Datun extends AUTH_Controller {
 		$data['data_statistik_pidana'] = $this->M_perkara->getTerpidanaStatistik($this->jenis_module);
 		// echo json_encode($data_statistik_pidana);
 
-		$data['page'] 			= "home";
+		$data['page'] 			= "DATUN";
 		$data['judul'] 			= "Statistik Datun";
 		$data['deskripsi'] 		= "";
 
@@ -56,7 +56,7 @@ class Datun extends AUTH_Controller {
 		$data['model'] = $this->M_datun;
 		$data['dataDatun'] = $this->M_datun->select_all();
 		
-		$data['page'] 		= "Perdata dan Tata Usaha Negara";
+		$data['page'] 		= "DATUN";
 
 		$this->template->views('datun/index', $data);
 	}

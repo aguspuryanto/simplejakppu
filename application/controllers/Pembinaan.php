@@ -4,10 +4,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Pembinaan extends AUTH_Controller {
 	public function __construct() {
 		parent::__construct();
-		// $this->load->model('M_perkara');
-		// $this->load->model('M_perkara_pidsus');
-		// $this->load->model('M_penahanan');
-		// $this->load->model('M_pnbp');
 		$this->load->model('M_asset');
 		$this->load->model('M_realisasi');
 	}
@@ -17,7 +13,7 @@ class Pembinaan extends AUTH_Controller {
 		$data['model'] = $this->M_realisasi;
 		$data['dataDatun'] = $this->M_realisasi->select_all();
 		
-		$data['page'] 		= "Perdata dan Tata Usaha Negara";
+		$data['page'] 		= "PEMBINAAN";
 
 		// $this->template->views('pembinaan/index', $data);
 		redirect('/Pembinaan/realisasi');
@@ -28,7 +24,7 @@ class Pembinaan extends AUTH_Controller {
 		$data['model'] = $this->M_realisasi;
 		$data['dataRealisasi'] = $this->M_realisasi->select_all();
 
-		$data['page'] 		= "Perdata dan Tata Usaha Negara";
+		$data['page'] 		= "PEMBINAAN";
 
 		$this->template->views('pembinaan/realisasi', $data);
 	}
@@ -40,7 +36,7 @@ class Pembinaan extends AUTH_Controller {
 		$options = array('jenis_module' => 'rumdinas');
 		$data['dataAsset'] = $this->M_asset->select_all($options);
 
-		$data['page'] 		= "Rumah Dinas";
+		$data['page'] 		= "PEMBINAAN";
 
 		$this->template->views('pembinaan/rumdinas', $data);
 	}
@@ -52,7 +48,7 @@ class Pembinaan extends AUTH_Controller {
 		$options = array('jenis_module' => 'gedung');
 		$data['dataAsset'] = $this->M_asset->select_all($options);
 
-		$data['page'] 		= "Page";
+		$data['page'] 		= "PEMBINAAN";
 
 		$this->template->views('pembinaan/gedung', $data);
 	}
@@ -64,7 +60,7 @@ class Pembinaan extends AUTH_Controller {
 		$options = array('jenis_module' => 'kendaraan');
 		$data['dataAsset'] = $this->M_asset->select_all($options);
 
-		$data['page'] 		= "kendaraan";
+		$data['page'] 		= "PEMBINAAN";
 
 		$this->template->views('pembinaan/kendaraan', $data);
 	}
@@ -144,6 +140,15 @@ class Pembinaan extends AUTH_Controller {
 		$this->output
         ->set_content_type('application/json')
         ->set_output(json_encode($json));
+	}
+
+	public function penyerapan() {
+		$data['userdata'] 	= $this->userdata;
+
+		$data['page'] 		= "PEMBINAAN";
+
+		$this->template->views('_under_develop', $data);
+		
 	}
 }
 

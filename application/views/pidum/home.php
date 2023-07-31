@@ -70,7 +70,7 @@
       </div>
       <div class="box-body">
         <div class="chart" style="height:300px">
-          <canvas id="data-pnbp" style="height:290px"></canvas>
+          <canvas id="data-jperkara" style="height:290px"></canvas>
         </div>
       </div>
     </div>
@@ -134,7 +134,7 @@ foreach($data_statistik_pidana as $key => $stat) {
 <script src="<?php echo base_url(); ?>assets/plugins/chartjs/Chart.min.js"></script>
 <script>
   //data kota
-  var pieChartCanvas = $("#data-pnbp").get(0).getContext("2d");
+  var pieChartCanvas = $("#data-jperkara").get(0).getContext("2d");
   var pieChart = new Chart(pieChartCanvas);
   var PieData = <?= json_encode($data_statistik_perkara); ?>;
 
@@ -153,12 +153,13 @@ foreach($data_statistik_pidana as $key => $stat) {
   };
 
   pieChart.Doughnut(PieData, pieOptions);
+  // new Chart(pieChartCanvas).Doughnut(PieData, pieOptions);
 
   //-------------
   //- BAR CHART -
   //-------------
   var areaChartData = {
-    labels  : <?= json_encode($labels); ?>, //['Spdp', 'Pratut', 'Tut', 'Eksekusi', 'Banding', 'Kasasi', 'PK', 'Lain-lain'],
+    labels  : <?= json_encode($labels); ?>,
     datasets: [
       {
         // label               : 'Electronics',
@@ -170,16 +171,6 @@ foreach($data_statistik_pidana as $key => $stat) {
         pointHighlightStroke: 'rgba(220,220,220,1)',
         data                : <?= json_encode($labels_data); ?>
       },
-      // {
-      //   label               : 'Digital Goods',
-      //   fillColor           : 'rgba(60,141,188,0.9)',
-      //   strokeColor         : 'rgba(60,141,188,0.8)',
-      //   pointColor          : '#3b8bba',
-      //   pointStrokeColor    : 'rgba(60,141,188,1)',
-      //   pointHighlightFill  : '#fff',
-      //   pointHighlightStroke: 'rgba(60,141,188,1)',
-      //   data                : [28, 48, 40, 19, 86, 27, 90, 18]
-      // }
     ]
   }
 

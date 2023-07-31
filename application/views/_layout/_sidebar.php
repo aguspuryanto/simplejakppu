@@ -88,6 +88,7 @@
           'show_menu' => show_my_menu($userdata, 'bin'),
           'submenu' => array(
             array('title' => 'Realisasi Anggaran', 'url' => 'realisasi'),
+            array('title' => 'Penyerapan Anggaran', 'url' => 'penyerapan'),
             array('title' => 'Rumah Dinas', 'url' => 'rumdinas'),
             array('title' => 'Gedung Kantor', 'url' => 'gedung'),
             array('title' => 'Kendaraan Dinas', 'url' => 'kendaraan'),
@@ -114,7 +115,7 @@
       foreach($list_menu as $key => $lmenu) {
       ?>
       
-      <li class="treeview <?php if ($page == 'pegawai') echo 'active'; ?>" style="<?=($lmenu['show_menu']==TRUE) ? 'display:block;' : 'display:none;';?>">
+      <li class="treeview <?php if ($page == $lmenu['title']) echo 'active'; ?>" style="<?=($lmenu['show_menu']==TRUE) ? 'display:block;' : 'display:none;';?>">
         <a href="<?=base_url($lmenu['url']); ?>">
           <i class="fa fa-user"></i>
           <span><?=$lmenu['title']; ?></span>

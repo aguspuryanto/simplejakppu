@@ -64,9 +64,9 @@ $( document ).ready(function() {
             success: function(data){
                 console.log(data, "data");
                 if(data.success == true){
-                    // setTimeout(function(){
-                        // window.location.reload();
-                    // }, 3000);
+                    setTimeout(function(){
+                        window.location.reload();
+                    }, 3000);
                 } else {
                     $.each(data, function(key, value) {
                         $('#input-' + key).addClass('is-invalid');

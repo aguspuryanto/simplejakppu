@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class M_uangrampas extends CI_Model {
-    public $table_name = "epak_uangrampasan";
+    private $table_name = "epak_uangrampasan";
 
     public function rules()
     {
@@ -16,7 +16,12 @@ class M_uangrampas extends CI_Model {
 
     public function save($data) {
         $this->db->trans_begin();
-        $this->db->insert($this->table_name, $data);
+        
+        // $this->db->insert($this->table_name, $data);
+        $insert_query = $this->db->insert_string($this->table_name, $data);
+        $insert_query = str_replace('INSERT INTO', 'INSERT IGNORE INTO', $insert_query);
+        $this->db->query($insert_query);
+
         $this->db->trans_complete();
         
         if ($this->db->trans_status() === FALSE){
