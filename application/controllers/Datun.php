@@ -25,11 +25,7 @@ class Datun extends AUTH_Controller {
 		// 9.	Kegiatan penanggulangan kemisikinan ekstrim
 		// 10.	Kegiatan dukungan UMKM
 		// 11.	Kegiatan suporting IKN
-
-		// $data['jml_perkara'] 	= $this->M_perkara->total_rows();
-		$data['jml_perkara'] 	= $this->M_perkara->select_by(['jenis_module'=>$this->jenis_module])->jml;
-		$data['jml_penahanan'] 	= $this->M_penahanan->total_rows();
-		$data['jml_pnbp'] 		= $this->M_pnbp->total_pnbp();
+		
 		$data['userdata'] 		= $this->userdata;
 
 		// $data['data_perkara'] = isset($data_perkara) ? json_encode($data_perkara) : [];

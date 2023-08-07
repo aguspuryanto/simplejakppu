@@ -1,38 +1,35 @@
 <div class="row">
-  <div class="col-lg-4 col-xs-6">
+  <div class="col-lg-4 col-xs-6 hide">
     <div class="small-box bg-aqua">
       <div class="inner">
         <p>Total Perkara</p>
-        <h3><?php echo $jml_perkara; ?></h3>
+        <h3><?=$jml_perkara; ?></h3>
       </div>
       <div class="icon">
         <i class="ion ion-ios-contact"></i>
       </div>
-      <!-- <a href="<?php echo base_url('Pegawai') ?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a> -->
     </div>
   </div>
-  <div class="col-lg-4 col-xs-6">
+  <div class="col-lg-4 col-xs-6 hide">
     <div class="small-box bg-green">
       <div class="inner">
         <p>Total Penahanan</p>
-        <h3><?php echo $jml_penahanan; ?></h3>
+        <h3><?=$jml_penahanan; ?></h3>
       </div>
       <div class="icon">
         <i class="ion ion-ios-briefcase-outline"></i>
       </div>
-      <!-- <a href="<?php echo base_url('Posisi') ?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a> -->
     </div>
   </div>
-  <div class="col-lg-4 col-xs-6">
+  <div class="col-lg-4 col-xs-6 hide">
     <div class="small-box bg-yellow">
       <div class="inner">
         <p>Total PNBP</p>
-        <h3>Rp. <?php echo $jml_pnbp; ?></h3>
+        <h3>Rp. <?=$jml_pnbp; ?></h3>
       </div>
       <div class="icon">
         <i class="ion ion-location"></i>
       </div>
-      <!-- <a href="<?php echo base_url('Kota') ?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a> -->
     </div>
   </div>
 
@@ -113,7 +110,7 @@ foreach($data_statistik_pidana as $key => $stat) {
 }
 ?>
 
-<script src="<?php echo base_url(); ?>assets/plugins/chartjs/Chart.min.js"></script>
+<script src="<?=base_url(); ?>assets/plugins/chartjs/Chart.min.js"></script>
 <script>
   //data kota
   var pieChartCanvas = $("#data-pnbp").get(0).getContext("2d");

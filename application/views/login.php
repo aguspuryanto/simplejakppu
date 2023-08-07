@@ -19,11 +19,21 @@
     <!-- Custom styles for this template-->
     <link href="<?= base_url(); ?>public/themes/sb-admin-2/css/sb-admin-2.min.css" rel="stylesheet">
     <style type="text/css">
-      .bg-login-image {
-        background-image: url("<?= base_url(); ?>assets/img/logo2.png");
-        background-position:center;
-        background-size:cover
-      }
+        html, body {
+            height: 100%;
+        }
+        .container, .row.justify-content-center.align-items-center {
+            height: 100%;
+            min-height: 100%;
+        }
+        .bg-login-image {
+            background-image: url("<?= base_url(); ?>assets/img/office.png");
+            background-position:center;
+            background-size:cover
+        }
+        .welcome-text h2 {
+            font-family: "Source Sans Pro", "Arial", sans-serif;
+        }
     </style>
 </head>
 
@@ -32,7 +42,7 @@
     <div class="container">
 
         <!-- Outer Row -->
-        <div class="row justify-content-center">
+        <div class="row justify-content-center align-items-center">
 
             <div class="col-xl-10 col-lg-12 col-md-9">
 
@@ -66,27 +76,15 @@
                                         <button type="submit" class="btn btn-primary btn-user btn-block">
                                         Sign In
                                         </button>
-                                        <!-- <hr>
-                                        <a href="index.html" class="btn btn-google btn-user btn-block">
-                                            <i class="fab fa-google fa-fw"></i> Login with Google
-                                        </a>
-                                        <a href="index.html" class="btn btn-facebook btn-user btn-block">
-                                            <i class="fab fa-facebook-f fa-fw"></i> Login with Facebook
-                                        </a> -->
                                     </form>
-                                    <!-- <hr>
-                                    <div class="text-center">
-                                        <a class="small" href="forgot-password.html">Forgot Password?</a>
-                                    </div>
-                                    <div class="text-center">
-                                        <a class="small" href="register.html">Create an Account!</a>
-                                    </div> -->
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
+                <div class="text-center welcome-text">
+                    <p>Copyright 2023. KEJAKSAAN NEGERI PENAJAM PASER UTARA</p>                    
+                </div>
             </div>
 
         </div>
