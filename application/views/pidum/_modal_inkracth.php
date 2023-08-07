@@ -48,6 +48,7 @@
 
             <!-- one field -->
             <?=form_hidden('jenis_module', 'inkracth'); ?>
+            <?=form_hidden('id', ''); ?>
 
             <button type="submit" class="btn btn-primary" id="formInkracth">Simpan Data</button>
             <button type="reset" class="btn btn-default">Kosongkan Data</button>

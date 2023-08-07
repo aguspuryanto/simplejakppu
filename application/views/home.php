@@ -78,7 +78,7 @@
   //data posisi
   var pieChartCanvas = $("#data-posisi").get(0).getContext("2d");
   var pieChart = new Chart(pieChartCanvas);
-  var PieData = <?php echo $data_perkara; ?>;
+  var PieData = <?php echo json_encode($data_perkara); ?>;
 
   var pieOptions = {
     segmentShowStroke: true,
@@ -99,7 +99,7 @@
   //data kota
   var pieChartCanvas = $("#data-pnbp").get(0).getContext("2d");
   var pieChart = new Chart(pieChartCanvas);
-  var PieData = <?php echo $data_pnbp; ?>;
+  var PieData = <?php echo json_encode($data_pnbp); ?>;
 
   var pieOptions = {
     segmentShowStroke: true,

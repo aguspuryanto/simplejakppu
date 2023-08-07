@@ -53,11 +53,18 @@ class Home extends AUTH_Controller {
 			$index++;
 		}
 
-		// $data['data_perkara'] = isset($data_perkara) ? json_encode($data_perkara) : [];
-		// $data['data_pnbp'] = isset($data_pnbp) ? json_encode($data_pnbp) : [];
-
 		$data['data_perkara'] = $this->M_perkara->getPerkaraAll();
 		$data['data_pnbp'] = $this->M_pnbp->statistik_pnbp();
+		$data['data_statistik'] = $this->M_perkara->stat_perkara();
+		
+		// 2. Jenis perkara : 
+		$data['data_statistik_perkara'] = $this->M_perkara->getPerkaraStatistik();
+
+		// 3. Jumlah Tersangka, Terdakwa dan Terpidana (Laki, perempuan dan anak)
+		$data['data_statistik_pidana'] = $this->M_perkara->getTerpidanaStatistik();
+
+		// 4. Jumlah Tahanan (Laki, perempuan dan anak)
+		$data['data_statistik_tahanan'] = $this->M_perkara->getTahananStatistik();
 
 		$data['page'] 			= "home";
 		$data['judul'] 			= "Beranda";

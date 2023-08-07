@@ -110,7 +110,8 @@ $( document ).ready(function() {
         var periodeTotal = $(this).val().replace(/[^\d]+/g,'');
         var paguTotal = $('#input-pagu').val().replace(/[^\d]+/g,'');
         
-        $('#input-periode_persen').val((periodeTotal/paguTotal*100).toFixed(2) + '%');
+        let presentaseTotal = (periodeTotal/paguTotal*100).toFixed(2) + '%';
+        $('#input-periode_persen').val(presentaseTotal);
 
         let rupiahFormat = (paguTotal-periodeTotal).toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
         $('#input-sisa_anggaran').val(rupiahFormat);
