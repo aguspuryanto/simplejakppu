@@ -113,6 +113,7 @@ $( document ).ready(function() {
         console.log(paguTotal, '_paguTotal');
         console.log((periodeTotal/paguTotal*100).toFixed(2) + '%', '_periode_persen');
         $('#input-periode_persen').val((periodeTotal/paguTotal*100).toFixed(2) + '%');
+        $('#input-sisa_anggaran').val(paguTotal-periodeTotal).toFixed(2);
     });
 
     $('#form-submit').on('click', function (e) {
