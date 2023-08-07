@@ -38,10 +38,10 @@
             array('title' => 'Penahanan', 'url' => 'pidum_penahanan'),
             array('title' => 'PNBP', 'url' => 'pidum_pnbp'),
             array('title' => 'Perkara Inkracth', 'url' => 'pidum_inkracth'),
-            array('title' => 'Barang Bukti Pemusnahan', 'url' => 'pidum_bbmusnah'),
+            // array('title' => 'Barang Bukti Pemusnahan', 'url' => 'pidum_bbmusnah'),
             // array('title' => 'Barang Bukti Dikembalikan', 'url' => 'pidum_bbkembali'),
-            array('title' => 'Barang Bukti Rampas Negara', 'url' => 'pidum_bbrampas'),
-            array('title' => 'Barang Bukti Belum Lelang', 'url' => 'pidum_bblelang'),
+            // array('title' => 'Barang Bukti Rampas Negara', 'url' => 'pidum_bbrampas'),
+            // array('title' => 'Barang Bukti Belum Lelang', 'url' => 'pidum_bblelang'),
           ),
         ),
         array(
