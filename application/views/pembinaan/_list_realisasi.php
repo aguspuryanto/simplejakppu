@@ -107,8 +107,10 @@ $( document ).ready(function() {
     });
 
     $('#input-periode_total').on('change', function(e) {
-        var periodeTotal = $(this).val();
-        var paguTotal = $('#input-pagu').val();
+        var periodeTotal = parseInt($(this).val());
+        var paguTotal = parseInt($('#input-pagu').val());
+        console.log(periodeTotal, '_periode_persen');
+        console.log(paguTotal, '_paguTotal');
         console.log((periodeTotal/paguTotal*100).toFixed(2) + '%', '_periode_persen');
         $('#input-periode_persen').val((periodeTotal/paguTotal*100).toFixed(2) + '%');
     });
