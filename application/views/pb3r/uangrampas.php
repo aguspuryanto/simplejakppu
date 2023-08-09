@@ -38,12 +38,23 @@ foreach($dataInkracth as $row) {
 
   new Chart(ctx, {
     type: 'bar',
+    options: {
+      animation: false,
+      plugins: {
+        legend: {
+          display: false
+        },
+        tooltip: {
+          enabled: false
+        }
+      }
+    },
     data: {
       labels: data.map(row => row.tahun),
       datasets: [{
         label: 'Hasil (Rp)',
         data: data.map(row => row.hasil),
-        borderWidth: 1
+        borderWidth: 1,
       }]
     },
     options: {

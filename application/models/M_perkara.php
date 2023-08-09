@@ -52,6 +52,8 @@ class M_perkara extends CI_Model {
             $this->db->where($options);
         }
 
+        $this->db->distinct();
+        $this->db->select('jenis_module');
         $data = $this->db->get($this->table_name);
         return $data->result();
     }
