@@ -53,7 +53,11 @@ class Home extends AUTH_Controller {
 			$index++;
 		}
 
-		$data['data_perkara'] = $this->M_perkara->getPerkaraAll();
+		// $listperkara = $this->M_perkara->getPerkaraAll();
+		$listperkara = array_reverse(array_values(array_column(
+			array_reverse($this->M_perkara->getPerkaraAll()), null, 'label'
+		)));
+		$data['data_perkara'] = $listperkara;
 		$data['data_pnbp'] = $this->M_pnbp->statistik_pnbp();
 		$data['data_statistik'] = $this->M_perkara->stat_perkara();
 		
