@@ -7,7 +7,6 @@
         <thead>
             <?//=get_header_table($model);?>
             <tr>
-                <th>No</th>
                 <th>Tahun</th>
                 <th>Jumlah BB</th>
                 <th>Jumlah Perkara</th>
@@ -21,7 +20,6 @@
                 $id=1;
                 foreach($dataInkracth as $row) {
                     echo '<tr>
-                        <td>'.$id.'</td>
                         <td>'.$row->tahun.'</td>
                         <td>'.$row->jmlbb.'</td>
                         <td>'.$row->jmlperkara.'</td>
