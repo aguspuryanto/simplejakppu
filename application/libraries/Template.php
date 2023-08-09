@@ -36,21 +36,17 @@ class Template {
 		}
 	}
 
-	//render layout Codeigiter4
+	/*
+	 * SB Admin 2
+	 * Bootstrap 4
+	 */
 	function render($template = NULL, $data = NULL)	{
 		if ($template != NULL) {
-			// $data['_meta']			= $this->_ci->load->view('_themes/_meta', $data, TRUE);
-			// $data['_css']			= $this->_ci->load->view('_themes/_css', $data, TRUE);
 
 			$data['_navbar']		= $this->_ci->load->view('_themes/_navbar', $data, TRUE);
-			// $data['_header']		= $this->_ci->load->view('_themes/_header', $data, TRUE);
-
 			$data['_sidebar']		= $this->_ci->load->view('_themes/_sidebar', $data, TRUE);
-
 			$data['_content']		= $this->_ci->load->view($template, $data, TRUE);
-
 			$data['_footer']		= $this->_ci->load->view('_themes/_footer', $data, TRUE);
-
 			$data['_js']			= $this->_ci->load->view('_themes/_js', $data, TRUE);
 
 			echo $data['_template']	= $this->_ci->load->view('_themes/_template', $data, TRUE);

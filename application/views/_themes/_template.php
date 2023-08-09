@@ -10,7 +10,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Dashboard</title>
+    <title>SIMPLE JAKPPU | <?=($page) ? $page : 'Dashboard'; ?></title>
 
     <!-- Custom fonts for this template-->
     <link href="<?= base_url(); ?>public/themes/sb-admin-2/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -20,7 +20,7 @@
 
     <!-- Custom styles for this template-->
     <link href="<?= base_url(); ?>public/themes/sb-admin-2/css/sb-admin-2.min.css" rel="stylesheet">
-
+    <script src="<?= base_url(); ?>public/themes/sb-admin-2/vendor/jquery/jquery.min.js"></script>
 </head>
 
 <body id="page-top">

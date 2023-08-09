@@ -3,8 +3,6 @@
         <thead>
             <tr>
                 <th>NO</th>
-                <!-- <th>NO PULBAKET/ TGL/NAMA JAKSA</th>
-                <th>NO PENYELIDIKAN/ TGL/NAMA JAKSA</th> -->
                 <th>NO P16/ TGL/NAMA JAKSA</th>
                 <th>INSTANSI ASAL</th>
                 <th>NAMA TSK/TDKW/TPDANA</th>
@@ -22,11 +20,12 @@
                 <th>PK</th>
                 <th>PEKATING</th>
                 <th>KET.</th>
+                <th>#</th>
             </tr>
+            <?//=get_header_table($model);?>
         </thead>
         <tbody>
             <?php
-            // echo json_encode($dataPidum);
             if($dataPidum) :
                 foreach($dataPidum as $row) {
                     echo '<tr>
@@ -48,6 +47,15 @@
                         <td>'.$row->pk_pn.'</td>
                         <td>'.$row->pekating_pn.'</td>
                         <td>'.$row->keterangan.'</td>
+                        <td style="min-width:115px">
+                            <p>
+                                <button type="button" data-id="'.$row->id.'" class="btn btn-info btn-block btnNote">Tambah Note</button>
+                            </p>
+                            <div class="btn-group" role="group">
+                                <button type="button" data-id="'.$row->id.'" class="btn btn-default btnEdit" data-toggle="modal" data-target="#myModalPerkara">Edit</button>
+                                <button type="button" data-id="'.$row->id.'" class="btn btn-danger btnRemove">Hapus</button>
+                            </div>
+                        </td>
                     </tr>';
                 }
             endif;
@@ -89,9 +97,31 @@ $( document ).ready(function() {
         });
     });
 
-    $('#form input').on('keyup', function () { 
+    $('#formInkracth input').on('keyup', function () { 
         $(this).removeClass('is-invalid').addClass('is-valid');
         $(this).parents('.form-group').find('#error').html(" ");
+    });
+
+    $('.btnNote').on('click', function (e) {
+        e.preventDefault();
+
+    });
+
+    $('.btnEdit').on('click', function (e) {
+        e.preventDefault();
+        var dataId = $(this).attr("data-id");
+        console.log(dataId, '_dataId');
+
+        $('#formInkracth input[name=id]').val(dataId);
+
+        $.get("demo_test.asp", function(data, status){
+            // alert("Data: " + data + "\nStatus: " + status);
+        });
+    });
+
+    $('.btnRemove').on('click', function (e) {
+        e.preventDefault();
+
     });
 
 });

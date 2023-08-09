@@ -66,6 +66,8 @@ class Pidum extends AUTH_Controller {
 
 	public function pidum() {
 		$data['userdata'] 	= $this->userdata;
+
+		$data['model'] = $this->M_perkara;
 		$data['dataPidum'] = $this->M_perkara->select_all();
 		$data['dataPenahanan'] = $this->M_penahanan->select_all();
 		$data['dataPnbp'] = $this->M_pnbp->select_all();
@@ -236,7 +238,7 @@ class Pidum extends AUTH_Controller {
 		$data['userdata'] 	= $this->userdata;
 
 		$data['model'] = $this->M_inkracth;
-		$options = array('jenis_module' => 'inkracth');
+		// $options = array('jenis_module' => 'inkracth');
 		$data['dataInkracth'] = $this->M_inkracth->select_all();
 		
 		$data['page'] 		= "PIDUM";
