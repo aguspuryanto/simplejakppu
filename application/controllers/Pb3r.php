@@ -134,7 +134,7 @@ class Pb3r extends AUTH_Controller {
         ->set_output(json_encode($json));		
 	}
 
-	public function pidum_bbkembali() {
+	public function bbkembali() {
 		$data['userdata'] 	= $this->userdata;
 
 		$data['model'] = $this->M_inkracth;
