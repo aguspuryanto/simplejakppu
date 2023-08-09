@@ -141,9 +141,9 @@ class Pb3r extends AUTH_Controller {
 		$options = array('jenis_module' => 'bbkembali');
 		$data['dataInkracth'] = $this->M_inkracth->select_all($options);
 
-		$data['judul'] 		= " BARANG BUKTI DI KEMBALIKAN";
+		$data['judul'] 		= "BARANG BUKTI DI KEMBALIKAN";
 		$data['deskripsi'] 	= "";
-		$data['page'] 		= "PIDUM";
+		$data['page'] 		= "PB3R";
 
 		$this->template->views('pb3r/bbkembali', $data);
 	}
