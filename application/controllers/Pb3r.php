@@ -134,6 +134,20 @@ class Pb3r extends AUTH_Controller {
         ->set_output(json_encode($json));		
 	}
 
+	public function pidum_bbkembali() {
+		$data['userdata'] 	= $this->userdata;
+
+		$data['model'] = $this->M_inkracth;
+		$options = array('jenis_module' => 'bbkembali');
+		$data['dataInkracth'] = $this->M_inkracth->select_all($options);
+
+		$data['judul'] 		= " BARANG BUKTI DI KEMBALIKAN";
+		$data['deskripsi'] 	= "";
+		$data['page'] 		= "PIDUM";
+
+		$this->template->views('pb3r/bbkembali', $data);
+	}
+
 	public function bblelang() {
 		$data['userdata'] 	= $this->userdata;
 
