@@ -42,8 +42,8 @@ class Pb3r extends AUTH_Controller {
 		$data['judul'] 		= "BARANG BUKTI YANG DI KELOLA";
 		$data['deskripsi'] 	= "";
 
-		// $this->template->views('pb3r/bbkelola', $data);
-		$this->template->render('sbadmin/pb3r/bbkelola', $data);
+		$this->template->views('pb3r/bbkelola', $data);
+		// $this->template->render('sbadmin/pb3r/bbkelola', $data);
 	}
 
 	public function bbkelola_add() {		
