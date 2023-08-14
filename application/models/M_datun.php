@@ -2,21 +2,37 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class M_datun extends CI_Model {
-    public $table_name = "epak_datun";
+    // public $table_name = "epak_datun";
+    public $table_name = "epak_datun_rev";
 
     public function rules()
     {
         return [
-            ['field' => 'skk', 'label' => 'SURAT PERMOHONAN/SKK', 'rules' => 'required'],
-            ['field' => 'kegiatan', 'label' => 'KEGIATAN','rules' => 'required'],
-            ['field' => 'penggugat', 'label' => 'PENGGUGAT/PEMOHON/PELAWAN','rules' => 'required'],
-            ['field' => 'tergugat', 'label' => 'TERGUGAT/TERMOHON/TERLAWAN','rules' => 'required'],
-            ['field' => 'seksi', 'label' => 'SEKSI','rules' => 'required'],
-            ['field' => 'sk_tim', 'label' => 'SP/SK TIM JPN','rules' => 'required'],
-            ['field' => 'posisi_kasus', 'label' => 'POSISI KASUS/PERMASALAHAN/OBYEK PERKARA','rules' => 'required'],
-            ['field' => 'tahap', 'label' => 'TAHAP','rules' => 'required'],
-            ['field' => 'periode', 'label' => 'PERIODE','rules' => 'required'],
-            ['field' => 'keterangan', 'label' => 'KETERANGAN']
+            // ['field' => 'skk', 'label' => 'SURAT PERMOHONAN/SKK', 'rules' => 'required'],
+            // ['field' => 'kegiatan', 'label' => 'KEGIATAN','rules' => 'required'],
+            // ['field' => 'penggugat', 'label' => 'PENGGUGAT/PEMOHON/PELAWAN','rules' => 'required'],
+            // ['field' => 'tergugat', 'label' => 'TERGUGAT/TERMOHON/TERLAWAN','rules' => 'required'],
+            // ['field' => 'seksi', 'label' => 'SEKSI','rules' => 'required'],
+            // ['field' => 'sk_tim', 'label' => 'SP/SK TIM JPN','rules' => 'required'],
+            // ['field' => 'posisi_kasus', 'label' => 'POSISI KASUS/PERMASALAHAN/OBYEK PERKARA','rules' => 'required'],
+            // ['field' => 'tahap', 'label' => 'TAHAP','rules' => 'required'],
+            // ['field' => 'periode', 'label' => 'PERIODE','rules' => 'required'],
+            // ['field' => 'keterangan', 'label' => 'KETERANGAN'],
+            ['field' => 'kegiatan', 'label' => 'JENIS KEGIATAN','rules' => 'required'],
+            ['field' => 'pemohon', 'label' => 'PEMOHON','rules' => 'required'],
+            ['field' => 'jenis_perkara', 'label' => 'JENIS PERKARA','rules' => 'required'],
+            ['field' => 'skk', 'label' => 'SURAT PERMOHONAN/SKK','rules' => 'required'],
+            ['field' => 'kasus_posisi', 'label' => 'KASUS POSISI','rules' => 'required'],
+            ['field' => 'dok_sp1', 'label' => 'SP-1','rules' => 'required'],
+            ['field' => 'dok_telaah', 'label' => 'TELAAHAN S-5','rules' => 'required'],
+            ['field' => 'dok_sp2', 'label' => 'SP-2','rules' => 'required'],
+            ['field' => 'tahap', 'label' => 'TAHAPAN KEGIATAN / PERKARA','rules' => 'required'],
+            ['field' => 'laporan_kegiatan', 'label' => 'LAPORAN KEGIATAN','rules' => 'required'],
+            ['field' => 'uang_selamat', 'label' => 'UANG YANG DISELAMATKAN','rules' => 'required'],
+            ['field' => 'uang_dipulihkan', 'label' => 'UANG YANG DIPULIHKAN','rules' => 'required'],
+            ['field' => 'petunjuk_kajari', 'label' => 'PETUNJUK KAJARI','rules' => 'required'],
+            ['field' => 'saran_kasi', 'label' => 'SARAN KASI','rules' => 'required'],
+            ['field' => 'keterangan', 'label' => 'KETERANGAN'],
         ];
     }
 
