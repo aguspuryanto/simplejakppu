@@ -51,12 +51,17 @@ class M_datun extends CI_Model {
         }
     }
 
-    public function select_all($options = "") {
+    public function select_all($options = "", $search_type='where', $search_val='') {
         if($options) {
             $this->db->where($options);
         }
 
+        if(!$options && $search_type == 'like') {
+            $this->db->like('kegiatan', $search_val);
+        }
+
         $data = $this->db->get($this->table_name);
+        // print_r($this->db->last_query());
         return $data->result();
     }
 

@@ -2,21 +2,26 @@
     <table id="example1" class="table table-striped table-bordered" style="width:100%">
         <thead>
             <tr>
-                <th>NO</th>
-                <th>SURAT PERMOHONAN/ SKK</th>
-                <th>KEGIATAN</th>
-                <th>PENGGUGAT/ PEMOHON/PELAWAN</th>
-                <th>TERGUGAT/ TERMOHON/TERLAWAN</th>
-                <th>SEKSI</th>
-                <th>SP/SK TIM JPN</th>
-                <th>POSISI KASUS</th>
-                <th>TAHAP</th>
-                <th>KET.</th>
+                <th rowspan="2" class="text-center">NO</th>
+                <th rowspan="2" class="text-center"><?=form_label($model->rules()[0]['label']); ?></th>
+                <th rowspan="2" class="text-center"><?=form_label($model->rules()[1]['label']); ?></th>
+                <th rowspan="2" class="text-center"><?=form_label($model->rules()[2]['label']); ?></th>
+                <th rowspan="2" class="text-center"><?=form_label($model->rules()[3]['label']); ?></th>                
+                <th rowspan="2" class="text-center"><?=form_label($model->rules()[4]['label']); ?></th>
+                <th colspan="3" class="text-center">DOKUMEN ADMINISTRASI</th>
+                <th rowspan="2" class="text-center"><?=form_label($model->rules()[8]['label']); ?></th>
+                <th rowspan="2" class="text-center"><?=form_label($model->rules()[9]['label']); ?></th>
+                <th rowspan="2" class="text-center"><?=form_label($model->rules()[10]['label']); ?></th>
+                <th rowspan="2" class="text-center"><?=form_label($model->rules()[11]['label']); ?></th>
+                <th rowspan="2" class="text-center"><?=form_label($model->rules()[12]['label']); ?></th>
+                <th rowspan="2" class="text-center"><?=form_label($model->rules()[13]['label']); ?></th>
+                <th rowspan="2" class="text-center"><?=form_label($model->rules()[14]['label']); ?></th>
             </tr>
-            <!-- <tr>
-                <th>Penggugat/ Pemohon/Pelawan</th>
-                <th>Tergugat/ Termohon/Terlawan</th>
-            </tr> -->
+            <tr>
+                <th class="text-center"><?=form_label($model->rules()[5]['label']); ?></th>
+                <th class="text-center"><?=form_label($model->rules()[6]['label']); ?></th>
+                <th class="text-center"><?=form_label($model->rules()[7]['label']); ?></th> 
+            </tr>
         </thead>
         <tbody>
             <?php
@@ -25,14 +30,20 @@
                 foreach($dataDatun as $row) {
                     echo '<tr>
                         <td>'.$row->id.'</td>
-                        <td>'.$row->skk.'</td>
                         <td>'.$row->kegiatan.'</td>
-                        <td>'.$row->penggugat.'</td>
-                        <td>'.$row->tergugat.'</td>
-                        <td>'.$row->seksi.'</td>
-                        <td>'.$row->sk_tim.'</td>
-                        <td>'.$row->posisi_kasus.'</td>
+                        <td>'.$row->pemohon.'</td>
+                        <td>'.$row->jenis_perkara.'</td>
+                        <td>'.$row->skk.'</td>
+                        <td>'.$row->kasus_posisi.'</td>
+                        <td>'.$row->dok_sp1.'</td>
+                        <td>'.$row->dok_telaah.'</td>
+                        <td>'.$row->dok_sp2.'</td>
                         <td>'.$row->tahap.'</td>
+                        <td>'.$row->laporan_kegiatan.'</td>
+                        <td>'.$row->uang_selamat.'</td>
+                        <td>'.$row->uang_dipulihkan.'</td>
+                        <td>'.$row->petunjuk_kajari.'</td>
+                        <td>'.$row->saran_kasi.'</td>
                         <td>'.$row->keterangan.'</td>
                     </tr>';
                 }
@@ -42,76 +53,7 @@
     </table>
 </div>
 
-<!-- Modal -->
-<div id="myModalPerkara" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Tambah Data</h4>
-      </div>
-      <div class="modal-body">        
-        <?=form_open('Datun/datun_add', array('id' => 'form', 'role' => 'form'));?>
-            <div class="form-group">
-                <label><?=form_label($model->rules()[8]['label']); ?></label>
-                <?=form_input('periode', '', array('class' => 'form-control', 'id' => 'input-periode'));?>
-                <div id="error"></div>
-            </div>
-            <div class="form-group">
-                <label><?=form_label($model->rules()[0]['label']); ?></label>
-                <?=form_input('skk', '', array('class' => 'form-control', 'id' => 'input-skk'));?>
-                <div id="error"></div>
-            </div>
-            <div class="form-group">
-                <label><?=form_label($model->rules()[1]['label']); ?></label>
-                <?=form_input('kegiatan', '', array('class' => 'form-control', 'id' => 'input-kegiatan'));?>
-                <div id="error"></div>
-            </div>
-            <div class="form-group">
-                <label><?=form_label($model->rules()[2]['label']); ?></label>
-                <?=form_input('penggugat', '', array('class' => 'form-control', 'id' => 'input-penggugat'));?>
-                <div id="error"></div>
-            </div>
-            <div class="form-group">
-                <label><?=form_label($model->rules()[3]['label']); ?></label>
-                <?=form_input('tergugat', '', array('class' => 'form-control', 'id' => 'input-tergugat'));?>
-                <div id="error"></div>
-            </div>
-            <div class="form-group">
-                <label><?=form_label($model->rules()[4]['label']); ?></label>
-                <?=form_input('seksi', '', array('class' => 'form-control', 'id' => 'input-seksi'));?>
-                <div id="error"></div>
-            </div>
-            <div class="form-group">
-                <label><?=form_label($model->rules()[5]['label']); ?></label>
-                <?=form_input('sk_tim', '', array('class' => 'form-control', 'id' => 'input-sk_tim'));?>
-                <div id="error"></div>
-            </div>
-            <div class="form-group">
-                <label><?=form_label($model->rules()[6]['label']); ?></label>
-                <?=form_input('posisi_kasus', '', array('class' => 'form-control', 'id' => 'input-posisi_kasus'));?>
-                <div id="error"></div>
-            </div>
-            <div class="form-group">
-                <label><?=form_label($model->rules()[7]['label']); ?></label>
-                <?=form_input('tahap', '', array('class' => 'form-control', 'id' => 'input-tahap'));?>
-                <div id="error"></div>
-            </div>
-            <div class="form-group">
-                <label><?=form_label($model->rules()[9]['label']); ?></label>
-                <?=form_input('description', '', array('class' => 'form-control', 'id' => 'input-description'));?>
-                <div id="error"></div>
-            </div>
-            <button type="submit" class="btn btn-primary" id="form-submit">Simpan Data</button>
-            <button type="reset" class="btn btn-default">Kosongkan Data</button>
-        <?=form_close();?>
-      </div>
-    </div>
-
-  </div>
-</div>
+<?php include_once('_modal_datun.php'); ?>
 
 <script type="text/javascript">
 $( document ).ready(function() {
