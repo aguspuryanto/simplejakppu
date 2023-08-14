@@ -25,6 +25,14 @@ class Datun extends AUTH_Controller {
 		// 9.	Kegiatan penanggulangan kemisikinan ekstrim
 		// 10.	Kegiatan dukungan UMKM
 		// 11.	Kegiatan suporting IKN
+
+		// GAKKUM 
+		// TIMKUM
+		// BANKUM
+		// THL
+		// YANKUM
+		// Penyelamatan KN
+		// Pemulihan KN
 		
 		$data['userdata'] 		= $this->userdata;
 
@@ -102,57 +110,92 @@ class Datun extends AUTH_Controller {
 	public function gakkum() {
 		$data['userdata'] 	= $this->userdata;
 
-		$data['page'] 		= "DATUN";
+		$data['model'] = $this->M_datun;
+		$data['dataDatun'] = $this->M_datun->select_all();
 
-		$this->template->views('_under_develop', $data);
+		$data['page'] 		= "DATUN";
+		$data['judul'] 		= "Penegakan Hukum (Gakkum)";
+
+		// $this->template->views('_under_develop', $data);
+		$this->template->views('datun/_gakkum', $data);
 	}
 
 	public function timkum() {
 		$data['userdata'] 	= $this->userdata;
 
-		$data['page'] 		= "DATUN";
+		$data['model'] = $this->M_datun;
+		$data['dataDatun'] = $this->M_datun->select_all();
 
-		$this->template->views('_under_develop', $data);
+		$data['page'] 		= "DATUN";
+		$data['judul'] 		= "Timkum";
+
+		// $this->template->views('_under_develop', $data);
+		$this->template->views('datun/_timkum', $data);
 	}
 
 	public function bankum() {
 		$data['userdata'] 	= $this->userdata;
 
-		$data['page'] 		= "DATUN";
+		$data['model'] = $this->M_datun;
+		$data['dataDatun'] = $this->M_datun->select_all();
 
-		$this->template->views('_under_develop', $data);
+		$data['page'] 		= "DATUN";
+		$data['judul'] 		= "Bantuan Hukum (Bankum)";
+
+		// $this->template->views('_under_develop', $data);
+		$this->template->views('datun/_bankum', $data);
 	}
 
 	public function thl() {
 		$data['userdata'] 	= $this->userdata;
 
-		$data['page'] 		= "DATUN";
+		$data['model'] = $this->M_datun;
+		$data['dataDatun'] = $this->M_datun->select_all();
 
-		$this->template->views('_under_develop', $data);
+		$data['page'] 		= "DATUN";
+		$data['judul'] 		= "THL";
+
+		// $this->template->views('_under_develop', $data);
+		$this->template->views('datun/_thl', $data);
 	}
 
 	public function yankum() {
 		$data['userdata'] 	= $this->userdata;
 
-		$data['page'] 		= "DATUN";
+		$data['model'] = $this->M_datun;
+		$data['dataDatun'] = $this->M_datun->select_all();
 
-		$this->template->views('_under_develop', $data);
+		$data['page'] 		= "DATUN";
+		$data['judul'] 		= "Pelayanan Hukum (YANKUM)";
+
+		// $this->template->views('_under_develop', $data);
+		$this->template->views('datun/_yankum', $data);
 	}
 
 	public function penyelamatan_kn() {
 		$data['userdata'] 	= $this->userdata;
 
-		$data['page'] 		= "DATUN";
+		$data['model'] = $this->M_datun;
+		$data['dataDatun'] = $this->M_datun->select_all();
 
-		$this->template->views('_under_develop', $data);
+		$data['page'] 		= "DATUN";
+		$data['judul'] 		= "Penyelamatan KN";
+
+		// $this->template->views('_under_develop', $data);
+		$this->template->views('datun/_penyelamatan_kn', $data);
 	}
 
 	public function pemulihan_kn() {
 		$data['userdata'] 	= $this->userdata;
 
-		$data['page'] 		= "DATUN";
+		$data['model'] = $this->M_datun;
+		$data['dataDatun'] = $this->M_datun->select_all();
 
-		$this->template->views('_under_develop', $data);
+		$data['page'] 		= "DATUN";
+		$data['judul'] 		= "Pemulihan KN";
+
+		// $this->template->views('_under_develop', $data);
+		$this->template->views('datun/_pemulihan_kn', $data);
 	}
 }
 

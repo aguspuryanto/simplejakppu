@@ -78,8 +78,8 @@
           'url' => 'Datun',
           'show_menu' => show_my_menu($userdata, 'datun'),
           'submenu' => array(
-            array('title' => 'Statistik', 'url' => 'index'),
-            array('title' => 'Data Perkara', 'url' => 'datun'),
+            // array('title' => 'Statistik', 'url' => 'index'),
+            // array('title' => 'Data Perkara', 'url' => 'datun'),
             array('title' => 'GAKKUM', 'url' => 'gakkum'),
             array('title' => 'TIMKUM', 'url' => 'timkum'),
             array('title' => 'BANKUM', 'url' => 'bankum'),
