@@ -23,10 +23,39 @@
 
 <?php
 // $newArra = [];
+$yearArr = [];
+$collectedData = ['dikembalikan' => 0, 'dirampas' => 0, 'dimusnahkan' => 0];
 foreach($dataInkracth as $row) {
-  $newArra[] = array('year' => $row->tahun, 'bb' => $row->jmlbb, 'perkara' => $row->jmlperkara);
+  // $newArra[] = array('year' => $row->tahun, 'bb' => $row->jmlbb, 'perkara' => $row->jmlperkara);
+
+  if (!in_array($row->tahun, $yearArr)) {
+    $yearArr['year'] = $row->tahun;
+  }
+
+  if ($row->eksekusi == 'dikembalikan' && !isset($collectedData[$row->eksekusi])) {
+    $collectedData['dikembalikan'] = 0;
+  } else {
+    $collectedData['dikembalikan'] += 1;
+  }
+
+  if ($row->eksekusi == 'dirampas' && !isset($collectedData[$row->eksekusi])) {
+    $collectedData['dirampas'] = 0;
+  } else {
+    $collectedData['dirampas'] += 1;
+  }
+
+  if ($row->eksekusi == 'dimusnahkan' && !isset($collectedData[$row->eksekusi])) {
+    $collectedData['dimusnahkan'] = 0;
+  } else {
+    $collectedData['dimusnahkan'] += 1;
+  }
+  
 }
-// echo json_encode($newArra);
+
+$newArra = array_merge($yearArr, $collectedData);
+echo json_encode($newArra);
+// echo json_encode($yearArr);
+// echo json_encode($collectedData);
 ?>
 
 <script src="<?= base_url(); ?>assets/plugins/chartjs/v4.3.3/Chart.min.js"></script>
@@ -40,12 +69,22 @@ foreach($dataInkracth as $row) {
     data: {
       labels: data.map(row => row.year),
       datasets: [{
-        label: 'Barang Bukti',
-        data: data.map(row => row.bb),
+        label: 'Di Kembalikan',
+        data: data.map(row => {
+          return (row.eksekusi == 'dikembalikan') ? 1 : 0
+        }),
         borderWidth: 1
       }, {
-        label: 'Perkara',
-        data: data.map(row => row.perkara),
+        label: 'Di Rampas',
+        data: data.map(row => {
+          return (row.eksekusi === 'dirampas') ? 1 : 0
+        }),
+        borderWidth: 1
+      }, {
+        label: 'Di Musnahkan',
+        data: data.map(row => {
+          return (row.eksekusi === 'dimusnahkan') ? 1 : 0
+        }),
         borderWidth: 1
       }]
     },

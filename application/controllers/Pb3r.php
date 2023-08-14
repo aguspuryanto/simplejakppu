@@ -78,16 +78,17 @@ class Pb3r extends AUTH_Controller {
 				'eksekusi' => $this->input->post('eksekusi'),
 				'dokumen' => $this->input->post('dokumen'),
 				'petunjuk' => $this->input->post('petunjuk'),
+				'tahun' => ($this->input->post('tahun')) ?? date('Y'),
 			);
 
-			if($model->save($data)) {
-				// $model->save($data);
+			// if($model->save($data) == 1) {
+				$model->save($data);
 				$this->session->set_flashdata('success', 'Berhasil disimpan');
 				$json = array('success' => true, 'message' => 'Berhasil disimpan');
-			} else {
-				$this->session->set_flashdata('error', 'Gagal disimpan');
-				$json = array('success' => false, 'message' => 'Gagal disimpan');
-			}
+			// } else {
+				// $this->session->set_flashdata('error', 'Gagal disimpan');
+				// $json = array('success' => false, 'message' => 'Gagal disimpan');
+			// }
 		}
 
 		$this->output

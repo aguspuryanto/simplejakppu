@@ -79,13 +79,33 @@
 
             <?=get_form_input($model, 'nama_terdakwa'); ?>     
             <?=get_form_input($model, 'pasal_disangka'); ?>     
-            <?=get_form_input($model, 'bb'); ?>     
+            <?=get_form_input($model, 'bb', array('type' => 'textarea', 'rows' => '3', 'cols' => '10')); ?>     
             <?=get_form_input($model, 'pasal_terbukti'); ?>     
-            <?=get_form_input($model, 'putusan'); ?>     
-            <?=get_form_input($model, 'eksekusi'); ?>     
+            
+            <?//=get_form_input($model, 'putusan'); ?>
+            <?//=get_form_input($model, 'eksekusi'); ?> 
+            <div class="form-group">
+                <label>Putusan</label>
+                <?php
+                $options = [
+                    'dikembalikan'  => 'Di Kembalikan',
+                    'dirampas'    => 'Di Rampas',
+                    'dimusnahkan'  => 'Di Musnahkan',
+                ];
+
+                echo form_dropdown('putusan', $options, '', 'id="input-putusan" class="form-control"');
+                ?>
+            </div>
+
+            <div class="form-group">
+                <label>Eksekusi</label>
+                <?=form_dropdown('eksekusi', $options, '', 'id="input-eksekusi" class="form-control"'); ?>
+            </div>
+
             <?=get_form_input($model, 'dokumen'); ?>     
 
-            <label>Petunjuk Kajari</label>
+            <div class="form-group">
+                <label>Petunjuk Kajari</label>
                 <?=form_input('petunjuk', '', array('class' => 'form-control', 'id' => 'input-petunjuk'));?>
                 <div id="error"></div>
             </div>
