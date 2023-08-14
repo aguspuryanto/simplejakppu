@@ -39,7 +39,7 @@ class Pb3r extends AUTH_Controller {
 		$data['dataInkracth'] = $this->M_bbkelola->select_all($options);
 
 		$data['page'] 		= "PB3R";
-		$data['judul'] 		= "BARANG BUKTI YANG DI KELOLA";
+		$data['judul'] 		= "BARANG BUKTI & BARANG RAMPASAN";
 		$data['deskripsi'] 	= "";
 
 		// $this->template->views('pb3r/bbkelola', $data);
@@ -62,21 +62,32 @@ class Pb3r extends AUTH_Controller {
 				));
 			}
 		} else {
+			// $data = array(
+			// 	'tahun' => $this->input->post('tahun'),
+			// 	'jmlbb' => $this->input->post('jmlbb'),
+			// 	'jmlperkara' => $this->input->post('jmlperkara'),
+			// 	'keterangan' => $this->input->post('keterangan'),
+			// );
+
 			$data = array(
-				'tahun' => $this->input->post('tahun'),
-				'jmlbb' => $this->input->post('jmlbb'),
-				'jmlperkara' => $this->input->post('jmlperkara'),
-				'keterangan' => $this->input->post('keterangan'),
+				'nama_terdakwa' => $this->input->post('nama_terdakwa'),
+				'pasal_disangka' => $this->input->post('pasal_disangka'),
+				'bb' => $this->input->post('bb'),
+				'pasal_terbukti' => $this->input->post('pasal_terbukti'),
+				'putusan' => $this->input->post('putusan'),
+				'eksekusi' => $this->input->post('eksekusi'),
+				'dokumen' => $this->input->post('dokumen'),
+				'petunjuk' => $this->input->post('petunjuk'),
 			);
 
-			// if($model->save($data)) {
-				$model->save($data);
+			if($model->save($data)) {
+				// $model->save($data);
 				$this->session->set_flashdata('success', 'Berhasil disimpan');
 				$json = array('success' => true, 'message' => 'Berhasil disimpan');
-			// } else {
-			// 	$this->session->set_flashdata('error', 'Gagal disimpan');
-			// 	$json = array('success' => false, 'message' => 'Gagal disimpan');
-			// }
+			} else {
+				$this->session->set_flashdata('error', 'Gagal disimpan');
+				$json = array('success' => false, 'message' => 'Gagal disimpan');
+			}
 		}
 
 		$this->output

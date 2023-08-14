@@ -7,10 +7,15 @@
         <thead>
             <?//=get_header_table($model);?>
             <tr>
-                <th>Tahun</th>
+                <!-- <th>Tahun</th>
                 <th>Jumlah BB</th>
                 <th>Jumlah Perkara</th>
-                <th>Keterangan</th>
+                <th>Keterangan</th> -->
+                <?php
+                foreach($model->rules() as $key => $val) {
+                    echo '<th>'.$val['label'].'</th>';
+                }
+                ?>
             </tr>
         </thead>
         <tbody>
@@ -19,11 +24,22 @@
             if($dataInkracth) :
                 $id=1;
                 foreach($dataInkracth as $row) {
+                    // echo '<tr>
+                    //     <td>'.$row->tahun.'</td>
+                    //     <td>'.$row->jmlbb.'</td>
+                    //     <td>'.$row->jmlperkara.'</td>
+                    //     <td>'.$row->keterangan.'</td>
+                    // </tr>';
+
                     echo '<tr>
-                        <td>'.$row->tahun.'</td>
-                        <td>'.$row->jmlbb.'</td>
-                        <td>'.$row->jmlperkara.'</td>
-                        <td>'.$row->keterangan.'</td>
+                        <td>'.$row->nama_terdakwa.'</td>
+                        <td>'.$row->pasal_disangka.'</td>
+                        <td>'.$row->bb.'</td>
+                        <td>'.$row->pasal_terbukti.'</td>
+                        <td>'.$row->putusan.'</td>
+                        <td>'.$row->eksekusi.'</td>
+                        <td>'.$row->dokumen.'</td>
+                        <td>'.$row->petunjuk.'</td>
                     </tr>';
                     $id++;
                 }
@@ -46,20 +62,33 @@
       </div>
       <div class="modal-body">
         <?=form_open('', array('id' => 'formInkracth', 'role' => 'form'));?>
-            <?=get_form_input($model, 'tahun'); ?>
+            <?//=get_form_input($model, 'tahun'); ?>
 
-            <?=get_form_input($model, 'jmlbb'); ?>
+            <?//=get_form_input($model, 'jmlbb'); ?>
 
-            <?=get_form_input($model, 'jmlperkara'); ?>      
+            <?//=get_form_input($model, 'jmlperkara'); ?>      
 
-            <div class="form-group">
+            <!-- <div class="form-group">
                 <label>KETERANGAN</label>
                 <?=form_input('keterangan', '', array('class' => 'form-control', 'id' => 'input-keterangan'));?>
                 <div id="error"></div>
-            </div>
+            </div> -->
 
             <!-- one field -->
-            <?=form_hidden('jenis_module', 'bbkembali'); ?>
+            <?//=form_hidden('jenis_module', 'bbkembali'); ?>
+
+            <?=get_form_input($model, 'nama_terdakwa'); ?>     
+            <?=get_form_input($model, 'pasal_disangka'); ?>     
+            <?=get_form_input($model, 'bb'); ?>     
+            <?=get_form_input($model, 'pasal_terbukti'); ?>     
+            <?=get_form_input($model, 'putusan'); ?>     
+            <?=get_form_input($model, 'eksekusi'); ?>     
+            <?=get_form_input($model, 'dokumen'); ?>     
+
+            <label>Petunjuk Kajari</label>
+                <?=form_input('petunjuk', '', array('class' => 'form-control', 'id' => 'input-petunjuk'));?>
+                <div id="error"></div>
+            </div>
 
             <button type="submit" class="btn btn-primary" id="formInkracth">Simpan Data</button>
             <button type="reset" class="btn btn-default">Kosongkan Data</button>
