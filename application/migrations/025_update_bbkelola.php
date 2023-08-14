@@ -48,6 +48,10 @@ class Migration_Update_bbkelola extends CI_Migration {
             )
         );
 
+        // if (!$this->db->field_exists('nama_terdakwa', $this->table_name)) {
+
+        // }
+
         $this->dbforge->add_column($this->table_name, $fields);
     }
 
