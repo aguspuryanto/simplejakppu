@@ -10,7 +10,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Login</title>
+    <title>SIMPLEJAK PPU - Login</title>
 
     <!-- Custom fonts for this template-->
     <link href="<?= base_url(); ?>public/themes/sb-admin-2/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
