@@ -32,28 +32,28 @@ foreach($dataInkracth as $row) {
     $yearArr['year'] = $row->tahun;
   }
 
-  if ($row->eksekusi == 'dikembalikan' && !isset($collectedData[$row->eksekusi])) {
-    $collectedData['dikembalikan'] = 0;
+  if (!isset($collectedData[$row->eksekusi])) {
+    if($row->eksekusi == 'dikembalikan') $collectedData['dikembalikan'] = 0;
   } else {
-    $collectedData['dikembalikan'] += 1;
+    if($row->eksekusi == 'dikembalikan') $collectedData['dikembalikan'] += 1;
   }
 
   if ($row->eksekusi == 'dirampas' && !isset($collectedData[$row->eksekusi])) {
-    $collectedData['dirampas'] = 0;
+    if($row->eksekusi == 'dirampas') $collectedData['dirampas'] = 0;
   } else {
-    $collectedData['dirampas'] += 1;
+    if($row->eksekusi == 'dirampas') $collectedData['dirampas'] += 1;
   }
 
   if ($row->eksekusi == 'dimusnahkan' && !isset($collectedData[$row->eksekusi])) {
-    $collectedData['dimusnahkan'] = 0;
+    if($row->eksekusi == 'dimusnahkan') $collectedData['dimusnahkan'] = 0;
   } else {
-    $collectedData['dimusnahkan'] += 1;
+    if($row->eksekusi == 'dimusnahkan') $collectedData['dimusnahkan'] += 1;
   }
   
 }
 
-$newArra = array_merge($yearArr, $collectedData);
-echo json_encode($newArra);
+$newArra[] = array_merge($yearArr, $collectedData);
+// echo json_encode($newArra);
 // echo json_encode($yearArr);
 // echo json_encode($collectedData);
 ?>
@@ -70,21 +70,15 @@ echo json_encode($newArra);
       labels: data.map(row => row.year),
       datasets: [{
         label: 'Di Kembalikan',
-        data: data.map(row => {
-          return (row.eksekusi == 'dikembalikan') ? 1 : 0
-        }),
+        data: data.map(row => row.dikembalikan),
         borderWidth: 1
       }, {
         label: 'Di Rampas',
-        data: data.map(row => {
-          return (row.eksekusi === 'dirampas') ? 1 : 0
-        }),
+        data: data.map(row => row.dirampas),
         borderWidth: 1
       }, {
         label: 'Di Musnahkan',
-        data: data.map(row => {
-          return (row.eksekusi === 'dimusnahkan') ? 1 : 0
-        }),
+        data: data.map(row => row.dimusnahkan),
         borderWidth: 1
       }]
     },
