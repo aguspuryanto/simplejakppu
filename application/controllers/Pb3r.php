@@ -356,6 +356,16 @@ class Pb3r extends AUTH_Controller {
 
 	public function bb_statistik() {
 		$data['userdata'] 	= $this->userdata;
+
+		$data['model'] = $this->M_bbkelola;
+		$options = array();
+		$data['dataInkracth'] = $this->M_bbkelola->select_all($options);
+
+		$data['page'] 		= "PB3R";
+		$data['judul'] 		= "STATISTIK BB & RAMPASAN";
+		$data['deskripsi'] 	= "";
+		
+		$this->template->views('pb3r/_statistik', $data);
 	}
 
 }
