@@ -27,9 +27,10 @@
             <?php
             // echo json_encode($dataDatun);
             if($dataDatun) :
+                $id=1;
                 foreach($dataDatun as $row) {
                     echo '<tr>
-                        <td>'.$row->id.'</td>
+                        <td>'.$id.'.</td>
                         <td>'.$row->kegiatan.'</td>
                         <td>'.$row->pemohon.'</td>
                         <td>'.$row->jenis_perkara.'</td>
@@ -46,6 +47,8 @@
                         <td>'.$row->saran_kasi.'</td>
                         <td>'.$row->keterangan.'</td>
                     </tr>';
+
+                    $id++;
                 }
             endif;
             ?>
