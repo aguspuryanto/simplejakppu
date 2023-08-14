@@ -106,13 +106,16 @@
           'url' => 'pb3r',
           'show_menu' => show_my_menu($userdata, 'pb3r'),
           'submenu' => array(            
-            array('title' => 'Barang Bukti Dikelola', 'url' => 'bbkelola'),
-            array('title' => 'Barang Bukti Disita', 'url' => 'bbsita'),
-            array('title' => 'Barang Bukti Dikembalikan', 'url' => 'bbkembali'),
-            array('title' => 'Barang Bukti Dilelang', 'url' => 'bblelang'),
+            // array('title' => 'Barang Bukti Dikelola', 'url' => 'bbkelola'),
+            // array('title' => 'Barang Bukti Disita', 'url' => 'bbsita'),
+            // array('title' => 'Barang Bukti Dikembalikan', 'url' => 'bbkembali'),
+            // array('title' => 'Barang Bukti Dilelang', 'url' => 'bblelang'),
+            // array('title' => 'Uang Pengganti', 'url' => 'uangganti'),
+            // array('title' => 'Denda', 'url' => 'uangdenda'),
+            // array('title' => 'Uang Rampasan', 'url' => 'uangrampas'),
+            array('title' => 'Statistik', 'url' => 'bb_statistik'),
+            array('title' => 'Barang Bukti & Rampasan', 'url' => 'bbkelola'),
             array('title' => 'Uang Pengganti', 'url' => 'uangganti'),
-            array('title' => 'Denda', 'url' => 'uangdenda'),
-            array('title' => 'Uang Rampasan', 'url' => 'uangrampas'),
           )
         )
       ];

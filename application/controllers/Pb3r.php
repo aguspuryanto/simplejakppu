@@ -341,4 +341,8 @@ class Pb3r extends AUTH_Controller {
         ->set_output(json_encode($json));		
 	}
 
+	public function bb_statistik() {
+		$data['userdata'] 	= $this->userdata;
+	}
+
 }
