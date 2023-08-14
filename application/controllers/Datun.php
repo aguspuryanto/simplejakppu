@@ -194,7 +194,7 @@ class Datun extends AUTH_Controller {
 		$data['userdata'] 	= $this->userdata;
 
 		$data['model'] = $this->M_datun;
-		$data['dataDatun'] = $this->M_datun->select_all();
+		$data['dataDatun'] = $this->M_datun->select_all([], 'like', 'Penyelamatan');
 
 		$data['page'] 		= "DATUN";
 		$data['judul'] 		= "Penyelamatan Keuangan Negara (Penyelamatan KN)";
@@ -207,7 +207,7 @@ class Datun extends AUTH_Controller {
 		$data['userdata'] 	= $this->userdata;
 
 		$data['model'] = $this->M_datun;
-		$data['dataDatun'] = $this->M_datun->select_all();
+		$data['dataDatun'] = $this->M_datun->select_all([], 'like', 'Pemulihan');
 
 		$data['page'] 		= "DATUN";
 		$data['judul'] 		= "Pemulihan Keuangan Negara (Pemulihan KN)";
