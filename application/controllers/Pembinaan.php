@@ -144,10 +144,13 @@ class Pembinaan extends AUTH_Controller {
 
 	public function penyerapan() {
 		$data['userdata'] 	= $this->userdata;
+		$data['model'] = $this->M_realisasi;
+		$data['dataRealisasi'] = $this->M_realisasi->select_all(['tgl' => date('Y-m-d')]);
 
 		$data['page'] 		= "PEMBINAAN";
 
-		$this->template->views('_under_develop', $data);
+		// $this->template->views('_under_develop', $data);
+		$this->template->views('pembinaan/penyerapan', $data);
 		
 	}
 }
