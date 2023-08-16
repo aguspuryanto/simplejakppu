@@ -24,7 +24,7 @@
                         <td>'.$row->putusan_perkara.'</td>
                         <td>'.$row->pasal_terbukti.'</td>
                         <td>'.$row->jenis_pnpb.'</td>
-                        <td>'.$row->jumlah_pnpb.'</td>
+                        <td>'.number_format($row->jumlah_pnpb).'</td>
                         <td>'.$row->bukti_pnpb.'</td>
                         <td>'.$row->keterangan.'</td>
                     </tr>';
