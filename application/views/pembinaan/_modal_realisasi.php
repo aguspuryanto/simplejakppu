@@ -10,36 +10,17 @@
       </div>
       <div class="modal-body">        
         <?=form_open('Pembinaan/realisasi_add', array('id' => 'form', 'role' => 'form'));?>
-            <div class="form-group hide">
-                <label><?=form_label($model->rules()[0]['label']); ?></label>
-                <?=form_input('tgl', '', array('class' => 'form-control', 'id' => 'input-kode_nama_kegiatan'));?>
-                <div id="error"></div>
-            </div>
-            <div class="form-group">
-                <label><?=form_label($model->rules()[1]['label']); ?></label>
-                <?=form_input('kode_nama_kegiatan', '', array('class' => 'form-control', 'id' => 'input-kode_nama_kegiatan'));?>
-                <div id="error"></div>
-            </div>
-            <div class="form-group">
-                <label><?=form_label($model->rules()[2]['label']); ?></label>
-                <?=form_input('pagu', '', array('class' => 'form-control', 'id' => 'input-pagu'));?>
-                <div id="error"></div>
-            </div>
-            <div class="form-group">
-                <label><?=form_label($model->rules()[3]['label']); ?></label>
-                <?=form_input('periode_lalu', '', array('class' => 'form-control', 'id' => 'input-periode_lalu'));?>
-                <div id="error"></div>
-            </div>
-            <div class="form-group">
-                <label><?=form_label($model->rules()[4]['label']); ?></label>
-                <?=form_input('periode_ini', '', array('class' => 'form-control', 'id' => 'input-periode_ini'));?>
-                <div id="error"></div>
-            </div>
-            <div class="form-group">
-                <label><?=form_label($model->rules()[5]['label']); ?></label>
-                <?=form_input('periode_total', '', array('class' => 'form-control', 'id' => 'input-periode_total'));?>
-                <div id="error"></div>
-            </div>
+            
+            <?php
+            foreach($model->rules() as $key => $val) {
+              // unset
+              // if($val['field'] == 'jenis_module') continue;
+              if(in_array($val['field'], array('periode_persen', 'sisa_anggaran'))) continue;
+
+              echo get_form_input($model, $val['field']);
+            }
+            ?>
+
             <div class="row">
               <div class="form-group col-md-5">
                   <label><?=form_label($model->rules()[6]['label']); ?></label>

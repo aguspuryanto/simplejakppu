@@ -7,6 +7,7 @@ class Pembinaan extends AUTH_Controller {
 		$this->load->model('M_asset');
 		$this->load->model('M_realisasi');
 		$this->load->model('M_pnbp');
+		$this->load->model('M_bmnkelola');
 	}
 
 	public function index() {
@@ -74,7 +75,6 @@ class Pembinaan extends AUTH_Controller {
         $json = array();
 		// $this->form_validation->set_rules('pulbaket_no', 'PULBAKET NO', 'required');
 		$this->form_validation->set_rules($model->rules());
-
 		$this->form_validation->set_message('required', 'Mohon lengkapi {field}!');
 
 		if (!$this->form_validation->run()) {			
@@ -113,7 +113,6 @@ class Pembinaan extends AUTH_Controller {
         $json = array();
 		// $this->form_validation->set_rules('pulbaket_no', 'PULBAKET NO', 'required');
 		$this->form_validation->set_rules($model->rules());
-
 		$this->form_validation->set_message('required', 'Mohon lengkapi {field}!');
 
 		if (!$this->form_validation->run()) {			
@@ -162,10 +161,57 @@ class Pembinaan extends AUTH_Controller {
 		$data['judul'] 		= "Barang Milik Negara (BMN)";
 		$data['title'] 		= "Data BMN";
 
-		$data['dataPnbp'] = []; //$this->M_pnbp->select_all($options);
+		$data['model'] = $this->M_bmnkelola;
+		$data['dataPnbp'] = $this->M_bmnkelola->select_all();
 
 		$this->template->views('pembinaan/bmn', $data);
+	}
 
+	public function add_bmn() {
+		$this->load->library('form_validation');
+		
+		$model = $this->M_bmnkelola;
+
+		$json = array();
+		$this->form_validation->set_rules($model->rules());
+		$this->form_validation->set_message('required', 'Mohon lengkapi {field}!');
+
+		if (!$this->form_validation->run()) {
+			foreach($model->rules() as $key => $val) {
+				$json = array_merge($json, array(
+					$val['field'] => form_error($val['field'], '<p class="mt-3 text-danger">', '</p>')
+				));
+			}
+			$json = array_merge($json, array('success' => false, 'message' => 'Gagal tersimpan!'));
+		}
+		else {
+			$data = array(
+				'kelompok' => $this->input->post('kelompok'),
+				'kode_barang' => $this->input->post('kode_barang'),
+				'nama_barang' => $this->input->post('nama_barang'),
+				'nup' => $this->input->post('nup'),
+				'kondisi' => $this->input->post('kondisi'),
+				'merk_tipe' => $this->input->post('merk_tipe'),
+				'tgl_perolehan' => $this->input->post('tgl_perolehan'),
+				'nilai_perolehan' => $this->input->post('nilai_perolehan'),
+				'kuantiti' => preg_replace("/[^0-9]/", "", $this->input->post('kuantiti')),
+				'status_kelola' => $this->input->post('status_kelola'),
+				'no_psp' => $this->input->post('no_psp'),
+				'tgl_psp' => $this->input->post('tgl_psp'),
+				'nobpkb' => $this->input->post('nobpkb'),
+				'nopol' => $this->input->post('nopol'),
+				'pemakai' => $this->input->post('pemakai'),
+				'jml_kib' => $this->input->post('jml_kib'),
+			);
+
+			$model->save($data);
+			$this->session->set_flashdata('success', 'Berhasil disimpan');
+			$json = array('success' => true, 'message' => 'Berhasil disimpan');
+		}
+
+		$this->output
+		->set_content_type('application/json')
+		->set_output(json_encode($json));
 	}
 
 	public function pnbp() {

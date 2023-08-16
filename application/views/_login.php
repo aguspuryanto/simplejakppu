@@ -34,8 +34,8 @@
     </style>
   </head>
   <body class="hold-transition login-page">
-    <div class="content">
-      <div class="container">
+    <!-- <div class="content"> -->
+      <div class="container-fluid">
         <div class="row">
           <div class="col-xs-12 col-sm-6 col-md-8 hidden-xs">
             <img src="assets/img/undraw_remotely_2j6y.svg" alt="Image" class="img-fluid">
@@ -44,7 +44,7 @@
 
             <div class="login-box">
               <div class="login-logo">
-                <a href="<?php echo base_url(); ?>assets/index2.html"><b>SIMPLE JAK</b>PPU</a>
+                <b>SIMPLE JAK</b>PPU
               </div>
 
               <!-- /.login-logo -->
@@ -91,7 +91,7 @@
 
           </div>
         </div>
-      </div>
+      <!-- </div> -->
     </div>
 
     <!-- jQuery 2.2.3 -->

@@ -48,6 +48,10 @@
               </div>
             </div>
             <?php
+            // foreach($model->rules() as $key => $val) {
+            //   echo get_form_input($model, $val['field']);
+            // }
+
             echo form_hidden(array('jenis_module' => 'gedung'));
             ?>
             <button type="submit" class="btn btn-primary" id="form-submit">Simpan Data</button>

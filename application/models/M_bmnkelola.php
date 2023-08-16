@@ -7,15 +7,15 @@ class M_bmnkelola extends CI_Model {
     public function rules()
     {
         return [
-            ['field' => 'kelompok', 'label' => 'KELOMPOK'],
-            ['field' => 'kode_barang', 'label' => 'KODE BARANG'],
-            ['field' => 'nama_barang', 'label' => 'NAMA BARANG'],
+            ['field' => 'kelompok', 'label' => 'KELOMPOK', 'rules' => 'required'],
+            ['field' => 'kode_barang', 'label' => 'KODE BARANG', 'rules' => 'required'],
+            ['field' => 'nama_barang', 'label' => 'NAMA BARANG', 'rules' => 'required'],
             ['field' => 'nup', 'label' => 'NUP'],
             ['field' => 'kondisi', 'label' => 'KONDISI'],
             ['field' => 'merk_tipe', 'label' => 'MERK/TIPE'],
             ['field' => 'tgl_perolehan', 'label' => 'TGL PEROLEHAN'],
             ['field' => 'nilai_perolehan', 'label' => 'NILAI PEROLEHAN'],
-            ['field' => 'kuantiti', 'label' => 'JUMLAH'],
+            ['field' => 'kuantiti', 'label' => 'KUANTITAS'],
             ['field' => 'status_kelola', 'label' => 'STATUS PENGELOLAAN'],
             ['field' => 'no_psp', 'label' => 'NO PSP'],
             ['field' => 'tgl_psp', 'label' => 'TGL PSP'],
