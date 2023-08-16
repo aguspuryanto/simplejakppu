@@ -6,6 +6,7 @@ class Pembinaan extends AUTH_Controller {
 		parent::__construct();
 		$this->load->model('M_asset');
 		$this->load->model('M_realisasi');
+		$this->load->model('M_pnbp');
 	}
 
 	public function index() {
@@ -152,6 +153,26 @@ class Pembinaan extends AUTH_Controller {
 		// $this->template->views('_under_develop', $data);
 		$this->template->views('pembinaan/penyerapan', $data);
 		
+	}
+
+	public function bmn() {
+		$data['userdata'] 	= $this->userdata;
+
+		$data['page'] 		= "PEMBINAAN";
+		$this->template->views('pembinaan/bmn', $data);
+
+	}
+
+	public function pnbp() {
+		$data['userdata'] 	= $this->userdata;
+
+		$data['page'] 		= "PEMBINAAN";
+
+		$options = array('jenis_module' => 'bin');
+		$data['dataPnbp'] = $this->M_pnbp->select_all($options);
+
+		$this->template->views('pembinaan/pnbp', $data);
+
 	}
 }
 

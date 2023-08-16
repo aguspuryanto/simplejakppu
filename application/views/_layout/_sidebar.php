@@ -95,10 +95,12 @@
           'show_menu' => show_my_menu($userdata, 'bin'),
           'submenu' => array(
             array('title' => 'Realisasi Anggaran', 'url' => 'realisasi'),
-            array('title' => 'Penyerapan Anggaran', 'url' => 'penyerapan'),
-            array('title' => 'Rumah Dinas', 'url' => 'rumdinas'),
-            array('title' => 'Gedung Kantor', 'url' => 'gedung'),
-            array('title' => 'Kendaraan Dinas', 'url' => 'kendaraan'),
+            // array('title' => 'Penyerapan Anggaran', 'url' => 'penyerapan'),
+            // array('title' => 'Rumah Dinas', 'url' => 'rumdinas'),
+            // array('title' => 'Gedung Kantor', 'url' => 'gedung'),
+            // array('title' => 'Kendaraan Dinas', 'url' => 'kendaraan'),
+            array('title' => 'BMN', 'url' => 'bmn'),
+            array('title' => 'PNBP', 'url' => 'pnbp'),
           )
         ),
         array(
