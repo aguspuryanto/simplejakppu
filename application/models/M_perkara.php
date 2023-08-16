@@ -26,7 +26,7 @@ class M_perkara extends CI_Model {
             ['field' => 'eksekusi_pn', 'label' => 'EKSEKUSI','rules' => ''],
             ['field' => 'grasi_pn', 'label' => 'GRASI','rules' => ''],
             ['field' => 'pk_pn', 'label' => 'PK','rules' => ''],
-            ['field' => 'pekating_pn', 'label' => 'PEKATING','rules' => ''],
+            // ['field' => 'pekating_pn', 'label' => 'PEKATING','rules' => ''],
             ['field' => 'jenis_perkara', 'label' => 'JENIS PERKARA','rules' => ''],
             ['field' => 'keterangan', 'label' => 'KETERANGAN']
         ];

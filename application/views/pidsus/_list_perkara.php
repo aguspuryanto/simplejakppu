@@ -20,7 +20,7 @@
                 <th>EKSEKUSI</th>
                 <th>GRASI</th>
                 <th>PK</th>
-                <th>PEKATING</th>
+                <!-- <th>PEKATING</th> -->
                 <th>KET.</th>
             </tr>
         </thead>
