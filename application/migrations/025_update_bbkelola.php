@@ -5,54 +5,53 @@ class Migration_Update_bbkelola extends CI_Migration {
 
     public function up() {
         // update table
-        $fields = array(
-            'nama_terdakwa' => array(
-                'type' => 'VARCHAR',
-                'constraint' => 100,
-                'after' => 'id'
-            ),
-            'pasal_disangka' => array(
-                'type' => 'VARCHAR',
-                'constraint' => 100,
-                'after' => 'nama_terdakwa'
-            ),
-            'bb' => array(
-                'type' => 'VARCHAR',
-                'constraint' => 100,
-                'after' => 'pasal_disangka'
-            ),
-            'pasal_terbukti' => array(
-                'type' => 'VARCHAR',
-                'constraint' => 100,
-                'after' => 'bb'
-            ),
-            'putusan' => array(
-                'type' => 'VARCHAR',
-                'constraint' => 100,
-                'after' => 'pasal_terbukti'
-            ),
-            'eksekusi' => array(
-                'type' => 'VARCHAR',
-                'constraint' => 100,
-                'after' => 'putusan'
-            ),
-            'dokumen' => array(
-                'type' => 'VARCHAR',
-                'constraint' => 100,
-                'after' => 'eksekusi'
-            ),
-            'petunjuk' => array(
-                'type' => 'VARCHAR',
-                'constraint' => 100,
-                'after' => 'dokumen'
-            )
-        );
+        if (!$this->db->field_exists('nama_terdakwa', $this->table_name)) {
+            $this->dbforge->add_column($this->table_name, array(
+                'nama_terdakwa' => array('type' => 'VARCHAR', 'constraint' => 100, 'after' => 'id'))
+            );
+        }
 
-        // if (!$this->db->field_exists('nama_terdakwa', $this->table_name)) {
+        if (!$this->db->field_exists('pasal_disangka', $this->table_name)) {
+            $this->dbforge->add_column($this->table_name, array(
+                'pasal_disangka' => array('type' => 'VARCHAR', 'constraint' => 100, 'after' => 'nama_terdakwa'))
+            );
+        }
 
-        // }
+        if (!$this->db->field_exists('bb', $this->table_name)) {
+            $this->dbforge->add_column($this->table_name, array(
+                'bb' => array('type' => 'VARCHAR', 'constraint' => 100, 'after' => 'pasal_disangka'))
+            );
+        }
 
-        $this->dbforge->add_column($this->table_name, $fields);
+        if (!$this->db->field_exists('pasal_terbukti', $this->table_name)) {
+            $this->dbforge->add_column($this->table_name, array(
+                'pasal_terbukti' => array('type' => 'VARCHAR', 'constraint' => 100, 'after' => 'bb'))
+            );
+        }
+
+        if (!$this->db->field_exists('putusan', $this->table_name)) {
+            $this->dbforge->add_column($this->table_name, array(
+                'putusan' => array('type' => 'VARCHAR', 'constraint' => 100, 'after' => 'pasal_terbukti'))
+            );
+        }
+
+        if (!$this->db->field_exists('eksekusi', $this->table_name)) {
+            $this->dbforge->add_column($this->table_name, array(
+                'eksekusi' => array('type' => 'VARCHAR', 'constraint' => 100, 'after' => 'putusan'))
+            );
+        }
+
+        if (!$this->db->field_exists('dokumen', $this->table_name)) {
+            $this->dbforge->add_column($this->table_name, array(
+                'dokumen' => array('type' => 'VARCHAR', 'constraint' => 100, 'after' => 'eksekusi'))
+            );
+        }
+
+        if (!$this->db->field_exists('petunjuk', $this->table_name)) {
+            $this->dbforge->add_column($this->table_name, array(
+                'petunjuk' => array('type' => 'VARCHAR', 'constraint' => 100, 'after' => 'dokumen'))
+            );
+        }
     }
 
     public function down()
