@@ -168,7 +168,7 @@ class Pembinaan extends AUTH_Controller {
 
 		$data['page'] 		= "PEMBINAAN";
 
-		$options = array('jenis_module' => 'bin');
+		$options = array('jenis_module' => 'bin_pnbp');
 		$data['dataPnbp'] = $this->M_pnbp->select_all($options);
 
 		$this->template->views('pembinaan/pnbp', $data);

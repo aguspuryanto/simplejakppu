@@ -58,7 +58,7 @@
                 <div id="error"></div>
             </div>
             
-            <?= form_hidden(array('jenis_module' => 'pidsus')); ?>
+            <?= form_hidden(array('jenis_module' => 'bin_pnbp')); ?>
 
             <button type="submit" class="btn btn-primary" id="form-pnbp">Simpan Data</button>
             <button type="reset" class="btn btn-default">Kosongkan Data</button>
