@@ -35,7 +35,7 @@
     </table>
 </div>
 
-<?php include_once('_modal_pnbp.php'); ?>
+<?php include_once('_modal_bmn.php'); ?>
 
 <script type="text/javascript">
 $( document ).ready(function() {

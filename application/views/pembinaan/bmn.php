@@ -13,7 +13,7 @@
                 <div class="clearfix"></div>
             </div>
             <div class="panel-body">
-                <?php include_once('_list_pnbp.php'); ?>
+                <?php include_once('_list_bmn.php'); ?>
             </div>
         </div>
   </div>
