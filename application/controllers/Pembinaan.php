@@ -160,6 +160,8 @@ class Pembinaan extends AUTH_Controller {
 
 		$data['page'] 		= "PEMBINAAN";
 		$data['judul'] 		= "Barang Milik Negara (BMN)";
+		$data['title'] 		= "Data BMN";
+
 		$data['dataPnbp'] = []; //$this->M_pnbp->select_all($options);
 
 		$this->template->views('pembinaan/bmn', $data);
