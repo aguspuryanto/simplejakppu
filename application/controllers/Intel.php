@@ -537,6 +537,23 @@ class Intel extends AUTH_Controller {
 		->set_content_type('application/json')
 		->set_output(json_encode($json));				
 	}
+
+	// Awas WNA
+	public function wna_detail($id) {
+		$data['userdata'] 	= $this->userdata;
+		$data['data'] = $this->M_trafikwna->select_by_id($id);
+
+		$json = array();
+		if($data['data']) {
+			$json = array('success' => true, 'data' => $data['data']);
+		} else {
+			$json = array('success' => false, 'data' => []);
+		}
+
+		$this->output
+        ->set_content_type('application/json')
+        ->set_output(json_encode($json));
+	}
 }
 
 /* End of file Intel.php */
