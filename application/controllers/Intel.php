@@ -537,35 +537,6 @@ class Intel extends AUTH_Controller {
 		->set_content_type('application/json')
 		->set_output(json_encode($json));				
 	}
-
-	// OPERASI INTELIJEN
-	public function opintel_detail($id) {
-		$data['userdata'] 	= $this->userdata;
-		$data['data'] = $this->M_sptugas->select_by_id($id);
-
-		$json = array();
-		if($data['data']) {
-			$json = array('success' => true, 'data' => $data['data']);
-		} else {
-			$json = array('success' => false, 'data' => []);
-		}
-
-		$this->output
-        ->set_content_type('application/json')
-        ->set_output(json_encode($json));
-	}
-
-	public function opintel_note() {
-		$data['userdata'] 	= $this->userdata;
-		
-		return $this->sptugas_note();
-	}
-
-	public function opintel_remove() {
-		$data['userdata'] 	= $this->userdata;
-		
-		return $this->sptugas_remove();	
-	}
 }
 
 /* End of file Intel.php */
