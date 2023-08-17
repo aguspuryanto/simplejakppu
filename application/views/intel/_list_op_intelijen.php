@@ -85,7 +85,7 @@ $( document ).ready(function() {
         // console.log(dataId, '_dataId');
         $('#formNote input[name=id]').val(dataId);
 
-        $.get("<?=site_url('Intel/opintel_detail');?>/" + dataId, function(data, status){
+        $.get("<?=site_url('Intel/sptugas_detail');?>/" + dataId, function(data, status){
             console.log(data.data, "data");
             $('#formNote').find('#input-kajari_note').val(data.data.kajari_note);
         });        
@@ -96,7 +96,7 @@ $( document ).ready(function() {
 
         $.ajax({
             type: "POST",
-            url: "<?=site_url('Intel/opintel_note');?>", 
+            url: "<?=site_url('Intel/sptugas_note');?>", 
             data: $("#formNote").serialize(),
             dataType: "json",  
             beforeSend : function(xhr, opts){
@@ -121,7 +121,7 @@ $( document ).ready(function() {
 
         $('#form input[name=id]').val(dataId);
 
-        $.get("<?=site_url('Intel/opintel_detail');?>/" + dataId, function(data, status){
+        $.get("<?=site_url('Intel/sptugas_detail');?>/" + dataId, function(data, status){
             $.each(data.data, function(key, value) {
                 $('#input-' + key).val(value);
             });
@@ -134,7 +134,7 @@ $( document ).ready(function() {
         console.log(dataId, '_dataId');
 
         if (confirm("Apakah anda yakin ingin menghapus data ini?")==true){
-            $.post("<?=site_url('Intel/opintel_remove');?>/", {id: dataId}, function(result){
+            $.post("<?=site_url('Intel/sptugas_remove');?>/", {id: dataId}, function(result){
                 console.log(result, "_result");
                 $(this).closest("tr").remove();
             });
