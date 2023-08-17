@@ -56,7 +56,7 @@ class Migration_add_bmnkelola extends CI_Migration {
             'jml_kib' => array(
                 'type' => 'VARCHAR', 'constraint' => '100'
             ),
-            'created_at' => array('type' => 'timestamp')
+            'created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP'
         ));
 
         $this->dbforge->add_key('id', TRUE);
