@@ -100,6 +100,7 @@ class Pidsus extends AUTH_Controller {
 
 		// $this->load->model('M_mafia');
 		$data['model'] = $this->M_mafia;
+		$data['dataProvider'] = $this->M_mafia->select_all();
 
 		$options = array('jenis_module' => $this->jenis_module);
 		$data['dataPidum'] = $this->M_perkara->select_all($options);
