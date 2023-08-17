@@ -30,9 +30,7 @@ class Migration_add_bmnkelola extends CI_Migration {
             'merk_tipe' => array(
                 'type' => 'VARCHAR', 'constraint' => '100'
             ),
-            'tgl_perolehan' => array(
-                'type' => 'timestamp', 'default' => 'CURRENT_TIMESTAMP'
-            ),
+            'tgl_perolehan TIMESTAMP DEFAULT CURRENT_TIMESTAMP',
             'nilai_perolehan' => array(
                 'type' => 'VARCHAR', 'constraint' => '100'
             ),
@@ -45,9 +43,7 @@ class Migration_add_bmnkelola extends CI_Migration {
             'no_psp' => array(
                 'type' => 'VARCHAR', 'constraint' => '100'
             ),
-            'tgl_psp' => array(
-                'type' => 'timestamp', 'default' => 'CURRENT_TIMESTAMP'
-            ),
+            'tgl_psp TIMESTAMP DEFAULT CURRENT_TIMESTAMP',
             'nobpkb' => array(
                 'type' => 'VARCHAR', 'constraint' => '100'
             ),
@@ -60,9 +56,7 @@ class Migration_add_bmnkelola extends CI_Migration {
             'jml_kib' => array(
                 'type' => 'VARCHAR', 'constraint' => '100'
             ),
-            'created_at' => array(
-                'type' => 'timestamp', 'default' => 'CURRENT_TIMESTAMP'
-            )
+            'created_at' => array('type' => 'timestamp')
         ));
 
         $this->dbforge->add_key('id', TRUE);
