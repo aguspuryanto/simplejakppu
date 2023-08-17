@@ -2,7 +2,8 @@
     <table id="example1" class="table table-striped table-bordered" style="width:100%">
         <thead>
             <?=get_header_table($model, '<th>CATATAN KAJARI</th>
-                <th>#</th>');?>
+                <th>#</th>'
+            );?>
         </thead>
         <tbody>
             <?php
@@ -39,36 +40,7 @@
 </div>
 
 <?php include_once('_modal_sp_tugas.php'); ?>
-
-<!-- Modal -->
-<div id="myModalNote" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Catatan Kajari</h4>
-      </div>
-      <div class="modal-body">
-        <?=form_open('', array('id' => 'formNote', 'role' => 'form'));?>
-
-            <div class="form-group">
-                <!-- <label>Catatan Kajari</label> -->
-                <?=form_textarea('kajari_note', '', array('class' => 'form-control', 'id' => 'input-kajari_note', 'rows' => '4', 'cols' => '40'));?>
-                <div id="error"></div>
-            </div>
-
-            <?=form_hidden('id', ''); ?>
-
-            <button type="submit" class="btn btn-primary" id="formNote">Simpan Data</button>
-            <button type="reset" class="btn btn-default">Kosongkan Data</button>
-        <?=form_close();?>
-      </div>
-    </div>
-
-  </div>
-</div>
+<?php include_once('_modal_note.php'); ?>
 
 <script type="text/javascript">
 $( document ).ready(function() {
@@ -113,7 +85,7 @@ $( document ).ready(function() {
         // console.log(dataId, '_dataId');
         $('#formNote input[name=id]').val(dataId);
 
-        $.get("<?=site_url('Intel/intel_detail');?>/" + dataId, function(data, status){
+        $.get("<?=site_url('Intel/sptugas_detail');?>/" + dataId, function(data, status){
             console.log(data.data, "data");
             $('#formNote').find('#input-kajari_note').val(data.data.kajari_note);
         });        
@@ -124,7 +96,7 @@ $( document ).ready(function() {
 
         $.ajax({
             type: "POST",
-            url: "<?=site_url('Intel/intel_note');?>", 
+            url: "<?=site_url('Intel/sptugas_note');?>", 
             data: $("#formNote").serialize(),
             dataType: "json",  
             success: function(data){
@@ -146,7 +118,7 @@ $( document ).ready(function() {
 
         $('#form input[name=id]').val(dataId);
 
-        $.get("<?=site_url('Intel/intel_detail');?>/" + dataId, function(data, status){
+        $.get("<?=site_url('Intel/sptugas_detail');?>/" + dataId, function(data, status){
             $.each(data.data, function(key, value) {
                 $('#input-' + key).val(value);
             });
@@ -159,7 +131,7 @@ $( document ).ready(function() {
         console.log(dataId, '_dataId');
 
         if (confirm("Apakah anda yakin ingin menghapus data ini?")==true){
-            $.post("<?=site_url('Intel/intel_remove');?>/", {id: dataId}, function(result){
+            $.post("<?=site_url('Intel/sptugas_remove');?>/", {id: dataId}, function(result){
                 console.log(result, "_result");
                 $(this).closest("tr").remove();
             });

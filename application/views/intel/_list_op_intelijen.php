@@ -1,7 +1,9 @@
 <div class="table-responsive">
     <table id="example1" class="table table-striped table-bordered" style="width:100%">
         <thead>
-            <?=get_header_table($model);?>
+            <?=get_header_table($model, '<th>CATATAN KAJARI</th>
+                <th>#</th>'
+            );?>
         </thead>
         <tbody>
             <?php
@@ -75,6 +77,65 @@ $( document ).ready(function() {
     $('#form input').on('keyup', function () { 
         $(this).removeClass('is-invalid').addClass('is-valid');
         $(this).parents('.form-group').find('#error').html(" ");
+    });
+
+    $('.btnNote').on('click', function (e) {
+        e.preventDefault();
+        var dataId = $(this).attr("data-id");
+        // console.log(dataId, '_dataId');
+        $('#formNote input[name=id]').val(dataId);
+
+        $.get("<?=site_url('Intel/opintel_detail');?>/" + dataId, function(data, status){
+            console.log(data.data, "data");
+            $('#formNote').find('#input-kajari_note').val(data.data.kajari_note);
+        });        
+    });
+
+    $('#formNote').submit(function (e) {
+        e.preventDefault();
+
+        $.ajax({
+            type: "POST",
+            url: "<?=site_url('Intel/opintel_note');?>", 
+            data: $("#formNote").serialize(),
+            dataType: "json",  
+            success: function(data){
+                console.log(data, "data");
+                if(data.success) {
+                    $('#myModalNote').modal('hide'); 
+                    setTimeout(function(){
+                        window.location.reload();
+                    }, 1000);
+                }
+            }
+        });
+    });
+
+    $('.btnEdit').on('click', function (e) {
+        e.preventDefault();
+        var dataId = $(this).attr("data-id");
+        console.log(dataId, '_dataId');
+
+        $('#form input[name=id]').val(dataId);
+
+        $.get("<?=site_url('Intel/opintel_detail');?>/" + dataId, function(data, status){
+            $.each(data.data, function(key, value) {
+                $('#input-' + key).val(value);
+            });
+        });
+    });
+
+    $('.btnRemove').on('click', function (e) {
+        e.preventDefault();
+        var dataId = $(this).attr("data-id");
+        console.log(dataId, '_dataId');
+
+        if (confirm("Apakah anda yakin ingin menghapus data ini?")==true){
+            $.post("<?=site_url('Intel/opintel_remove');?>/", {id: dataId}, function(result){
+                console.log(result, "_result");
+                $(this).closest("tr").remove();
+            });
+        };
     });
 });
 </script>

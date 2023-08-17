@@ -185,7 +185,13 @@ class Intel extends AUTH_Controller {
 				'jenis_module' => $this->input->post('jenis_module'),
 			);
 
-			$model->save($data);
+			if($this->input->post('id')) {
+				$id = $this->input->post('id');
+				$model->update($id, $data);				
+			} else {
+				$model->save($data);
+			}
+
 			$this->session->set_flashdata('success', 'Berhasil disimpan');
 			$json = array('success' => true, 'message' => 'Berhasil disimpan');
 			
@@ -477,7 +483,62 @@ class Intel extends AUTH_Controller {
 		->set_output(json_encode($json));
 	}
 
-	public function intel_note() {
+	// SPTUGAS
+	public function sptugas_detail($id) {
+		$data['userdata'] 	= $this->userdata;
+		$data['data'] = $this->M_sptugas->select_by_id($id);
+
+		$json = array();
+		if($data['data']) {
+			$json = array('success' => true, 'data' => $data['data']);
+		} else {
+			$json = array('success' => false, 'data' => []);
+		}
+
+		$this->output
+        ->set_content_type('application/json')
+        ->set_output(json_encode($json));
+	}
+
+	public function sptugas_note() {
+		$data['userdata'] 	= $this->userdata;
+
+		$json = array();
+		$model = $this->M_sptugas;
+
+		if($this->input->post('id')) {
+			$id = $this->input->post('id');
+			$model->update($id, array(
+				'kajari_note' => $this->input->post('kajari_note')
+			));
+
+			$this->session->set_flashdata('success', 'Berhasil disimpan');
+			$json = array('success' => true, 'message' => 'Berhasil disimpan');
+		}
+
+		$this->output
+		->set_content_type('application/json')
+		->set_output(json_encode($json));
+	}
+
+	// OPERASI INTELIJEN
+	public function opintel_detail($id) {
+		$data['userdata'] 	= $this->userdata;
+		$data['data'] = $this->M_sptugas->select_by_id($id);
+
+		$json = array();
+		if($data['data']) {
+			$json = array('success' => true, 'data' => $data['data']);
+		} else {
+			$json = array('success' => false, 'data' => []);
+		}
+
+		$this->output
+        ->set_content_type('application/json')
+        ->set_output(json_encode($json));
+	}
+
+	public function opintel_note() {
 		$data['userdata'] 	= $this->userdata;
 
 		$json = array();
