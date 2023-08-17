@@ -132,7 +132,16 @@ $( document ).ready(function() {
 
     $('#formNote').on('click', function (e) {
         e.preventDefault();
-        console.log($(this).serialize());
+
+        $.ajax({
+            type: "POST",
+            url: "<?=site_url('Pidum/kajari_note');?>", 
+            data: $("#formNote").serialize(),
+            dataType: "json",  
+            success: function(data){
+                console.log(data, "data");
+            }
+        });
     });
 
     $('.btnEdit').on('click', function (e) {

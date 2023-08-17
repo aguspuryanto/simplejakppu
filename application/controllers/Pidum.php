@@ -386,6 +386,12 @@ class Pidum extends AUTH_Controller {
 
 		$this->template->views('pidum/bblelang', $data);
 	}
+
+	public function kajari_note() {
+		$data['userdata'] 	= $this->userdata;
+
+		
+	}
 }
 
 /* End of file Pidum.php */

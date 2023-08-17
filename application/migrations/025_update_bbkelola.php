@@ -1,6 +1,6 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); 
 
-class Migration_Update_bbkelola extends CI_Migration { 
+class Migration_update_bbkelola extends CI_Migration { 
     public $table_name = 'epak_bbkelola';
 
     public function up() {
