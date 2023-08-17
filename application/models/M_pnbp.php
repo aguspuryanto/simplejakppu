@@ -29,7 +29,7 @@ class M_pnbp extends CI_Model {
         if($options) {
             $this->db->where($options);
         }
-        $this->db->group_by('jenis_pnpb');
+        // $this->db->group_by('jenis_pnpb');
         $data = $this->db->get($this->table_name);
         return $data->result();
     }

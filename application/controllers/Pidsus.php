@@ -102,6 +102,7 @@ class Pidsus extends AUTH_Controller {
 		$data['dataPnbp'] = $this->M_pnbp->select_all($options);
 
 		$data['page'] 		= "PIDSUS";
+		$data['judul'] 		= "Mafia Pelabuhan";
 
 		$this->template->views('pidsus/pnbp', $data);
 	}
