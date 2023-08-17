@@ -60,10 +60,11 @@ class Pidsus extends AUTH_Controller {
 
 		$options = array('jenis_module' => $this->jenis_module);
 		$data['dataPidum'] = $this->M_perkara->select_all($options);
-		$data['dataPenahanan'] = $this->M_penahanan->select_all($options);
-		$data['dataPnbp'] = $this->M_pnbp->select_all($options);
+		// $data['dataPenahanan'] = $this->M_penahanan->select_all($options);
+		// $data['dataPnbp'] = $this->M_pnbp->select_all($options);
 		
 		$data['page'] 		= "PIDSUS";
+		$data['judul'] 		= "Data Perkara";
 
 		$this->template->views('pidsus/index', $data);
 	}
@@ -77,6 +78,7 @@ class Pidsus extends AUTH_Controller {
 		$data['dataPnbp'] = $this->M_pnbp->select_all($options);
 		
 		$data['page'] 		= "PIDSUS";
+		$data['judul'] 		= "Penahanan";
 
 		$this->template->views('pidsus/penahanan', $data);
 	}
@@ -116,7 +118,7 @@ class Pidsus extends AUTH_Controller {
 	public function pidsus_add() {
 		$this->load->library('form_validation');
 		
-		$model = $this->M_perkara_pidsus;
+		$model = $this->M_perkara;
 
         $json = array();
 		// $this->form_validation->set_rules('pulbaket_no', 'PULBAKET NO', 'required');
@@ -150,11 +152,17 @@ class Pidsus extends AUTH_Controller {
 				'grasi_pn' => $this->input->post('grasi_pn'),
 				'pk_pn' => $this->input->post('pk_pn'),
 				'pekating_pn' => $this->input->post('pekating_pn'),
-				'jenis_module' => $this->jenis_module,
+				'jenis_module' => 'pidsus',
 				'keterangan' => $this->input->post('description'),
 			);
 
-			$model->save($data);
+			if($this->input->post('id')) {
+				$id = $this->input->post('id');
+				$model->update($id, $data);				
+			} else {
+				$model->save($data);
+			}
+
             $this->session->set_flashdata('success', 'Berhasil disimpan');
 			$json = array('success' => true, 'message' => 'Berhasil disimpan');
 		}
@@ -162,6 +170,62 @@ class Pidsus extends AUTH_Controller {
 		$this->output
         ->set_content_type('application/json')
         ->set_output(json_encode($json));
+	}
+
+	public function pidsus_detail($id) {
+		$data['userdata'] 	= $this->userdata;
+
+		// $model = $this->M_perkara;
+		$data['data'] = $this->M_perkara->select_by_id($id);
+
+		$json = array();
+		if($data['data']) {
+			$json = array('success' => true, 'data' => $data['data']);
+		} else {
+			$json = array('success' => false, 'data' => []);
+		}
+
+		$this->output
+        ->set_content_type('application/json')
+        ->set_output(json_encode($json));
+	}
+
+	public function pidsus_note() {
+		$data['userdata'] 	= $this->userdata;
+
+		$json = array();
+		$model = $this->M_perkara;
+
+		if($this->input->post('id')) {
+			$id = $this->input->post('id');
+			$model->update($id, array(
+				'kajari_note' => $this->input->post('kajari_note')
+			));
+
+			$this->session->set_flashdata('success', 'Berhasil disimpan');
+			$json = array('success' => true, 'message' => 'Berhasil disimpan');
+		}
+
+		$this->output
+		->set_content_type('application/json')
+		->set_output(json_encode($json));
+	}
+
+	public function pidsus_remove() {
+		$json = array();
+		$model = $this->M_perkara;
+
+		if($this->input->post('id')) {
+			$id = $this->input->post('id');
+			$model->delete($id);
+
+			$this->session->set_flashdata('success', 'Berhasil terhapus');
+			$json = array('success' => true, 'message' => 'Berhasil terhapus');
+		}
+
+		$this->output
+		->set_content_type('application/json')
+		->set_output(json_encode($json));
 	}
 }
 

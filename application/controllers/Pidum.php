@@ -217,8 +217,7 @@ class Pidum extends AUTH_Controller {
 				$id = $this->input->post('id');	
 				// $this->db->where('id', $id);
 				// $this->db->update('$this->table_name', $data);
-				$model->update($id, $data);
-				
+				$model->update($id, $data);				
 			} else {
 				$model->save($data);
 			}
