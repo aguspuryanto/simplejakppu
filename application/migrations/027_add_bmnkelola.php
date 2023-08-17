@@ -31,7 +31,7 @@ class Migration_add_bmnkelola extends CI_Migration {
                 'type' => 'VARCHAR', 'constraint' => '100'
             ),
             'tgl_perolehan' => array(
-                'type' => 'timestamp'
+                'type' => 'timestamp', 'default' => 'CURRENT_TIMESTAMP'
             ),
             'nilai_perolehan' => array(
                 'type' => 'VARCHAR', 'constraint' => '100'
@@ -46,7 +46,7 @@ class Migration_add_bmnkelola extends CI_Migration {
                 'type' => 'VARCHAR', 'constraint' => '100'
             ),
             'tgl_psp' => array(
-                'type' => 'timestamp'
+                'type' => 'timestamp', 'default' => 'CURRENT_TIMESTAMP'
             ),
             'nobpkb' => array(
                 'type' => 'VARCHAR', 'constraint' => '100'
