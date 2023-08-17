@@ -143,7 +143,7 @@ $( document ).ready(function() {
         $('#formNote input[name=id]').val(dataId);
     });
 
-    $('#formNote').on('click', function (e) {
+    $('#formNote').submit(function (event) {
         e.preventDefault();
 
         $.ajax({

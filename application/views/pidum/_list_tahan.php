@@ -126,7 +126,7 @@ $( document ).ready(function() {
         $('#formNote input[name=id]').val(dataId);
     });
 
-    $('#formNote').on('click', function (e) {
+    $('#formNote').submit(function (event) {
         e.preventDefault();
 
         $.ajax({
@@ -136,7 +136,7 @@ $( document ).ready(function() {
             dataType: "json",  
             success: function(data){
                 console.log(data, "data");
-                $('#myModalNote').modal('toggle'); 
+                // $('#myModalNote').modal('hide'); 
             }
         });
     });
