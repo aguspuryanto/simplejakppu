@@ -143,7 +143,7 @@ $( document ).ready(function() {
         $('#formNote input[name=id]').val(dataId);
     });
 
-    $('#formNote').submit(function (event) {
+    $('#formNote').on('click', function (e) {
         e.preventDefault();
 
         $.ajax({
@@ -153,7 +153,9 @@ $( document ).ready(function() {
             dataType: "json",  
             success: function(data){
                 console.log(data, "data");
-                $('#myModalNote').modal('toggle'); 
+                if(data.success) {
+                    ('#myModalNote').modal('hide'); 
+                }
             }
         });
     });
