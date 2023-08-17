@@ -55,7 +55,7 @@ foreach($dataInkracth as $row) {
 $newArra[] = array_merge($yearArr, $collectedData);
 ?>
 
-<script src="<?= base_url(); ?>assets/plugins/chartjs/v4.3.3/Chart.min.js"></script>
+
 <script>
   const ctx = document.getElementById('myChart');
 
