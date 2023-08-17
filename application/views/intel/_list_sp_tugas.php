@@ -98,7 +98,10 @@ $( document ).ready(function() {
             type: "POST",
             url: "<?=site_url('Intel/sptugas_note');?>", 
             data: $("#formNote").serialize(),
-            dataType: "json",  
+            dataType: "json",
+            beforeSend : function(xhr, opts){
+                $('#formNote').text('Loading...').prop("disabled", true);
+            },
             success: function(data){
                 console.log(data, "data");
                 if(data.success) {
