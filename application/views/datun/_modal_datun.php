@@ -11,7 +11,7 @@
       </div>
       <div class="modal-body">        
         <?=form_open('Datun/datun_add', array('id' => 'form', 'role' => 'form'));?>
-            <div class="form-group">
+            <!-- <div class="form-group">
                 <label><?=form_label($model->rules()[0]['label']); ?></label>
                 <?=form_input('kegiatan', '', array('class' => 'form-control', 'id' => 'input-kegiatan'));?>
                 <div id="error"></div>
@@ -85,8 +85,16 @@
                 <label><?=form_label($model->rules()[14]['label']); ?></label>
                 <?=form_input('keterangan', '', array('class' => 'form-control', 'id' => 'input-keterangan'));?>
                 <div id="error"></div>
-            </div>
+            </div> -->
             
+            <?php
+            foreach($model->rules() as $key => $val) {
+                // unset
+                // if($val['field'] == 'jenis_module') continue;
+                echo get_form_input($model, $val['field']);
+            }
+            ?>
+
             <?=form_hidden('id', ''); ?>
 
             <button type="submit" class="btn btn-primary" id="form-submit">Simpan Data</button>
