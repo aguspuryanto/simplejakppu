@@ -9,6 +9,7 @@ class Pidsus extends AUTH_Controller {
 		$this->load->model('M_perkara_pidsus');
 		$this->load->model('M_penahanan');
 		$this->load->model('M_pnbp');
+		$this->load->model('M_mafia');
 	}
 
 	public function index() {
@@ -96,6 +97,9 @@ class Pidsus extends AUTH_Controller {
 
 	public function pidsus_mafia_pelabuhan() {
 		$data['userdata'] 	= $this->userdata;
+
+		// $this->load->model('M_mafia');
+		$data['model'] = $this->M_mafia;
 
 		$options = array('jenis_module' => $this->jenis_module);
 		$data['dataPidum'] = $this->M_perkara->select_all($options);
