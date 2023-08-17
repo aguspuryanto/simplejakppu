@@ -11,10 +11,10 @@
       <div class="modal-body">
         <?=form_open('', array('id' => 'form', 'role' => 'form'));?>
             <?php
-            echo form_hidden(array(
-                'pulbaket_no' => '-',
-                'penyelidik_no' => '-'
-            ));
+            // echo form_hidden(array(
+            //     'pulbaket_no' => '-',
+            //     'penyelidik_no' => '-'
+            // ));
             ?>
             <div class="form-group">
                 <label>SPDP & P-16 NO/ TGL/NAMA JAKSA</label>
@@ -113,7 +113,7 @@
             </div>
 
             <?=form_hidden('id', ''); ?>
-            
+
             <button type="submit" class="btn btn-primary" id="form-submit">Simpan Data</button>
             <button type="reset" class="btn btn-default">Kosongkan Data</button>
         <?=form_close();?>

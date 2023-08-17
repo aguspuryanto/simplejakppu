@@ -137,8 +137,8 @@ class Pidum extends AUTH_Controller {
 			}
 		} else {
 			$data = array(
-				'pulbaket_no' => $this->input->post('pulbaket_no'),
-				'penyelidik_no' => $this->input->post('penyelidik_no'),
+				'pulbaket_no' => $this->input->post('pulbaket_no') ?? '-',
+				'penyelidik_no' => $this->input->post('penyelidik_no') ?? '-',
 				'penyidikan_no' => $this->input->post('penyidikan_no'),
 				'instansi_asal' => $this->input->post('instansi_asal'),
 				'nama_tsk' => $this->input->post('nama_tsk'),
