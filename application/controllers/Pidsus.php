@@ -105,7 +105,7 @@ class Pidsus extends AUTH_Controller {
 		$data['page'] 		= "PIDSUS";
 		$data['judul'] 		= "Mafia Pelabuhan";
 
-		$this->template->views('pidsus/pnbp', $data);
+		$this->template->views('pidsus/mafia_pelabuhan', $data);
 	}
 
 	public function pidsus_add() {
