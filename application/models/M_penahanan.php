@@ -23,6 +23,16 @@ class M_penahanan extends CI_Model {
         $this->db->insert($this->table_name, $data);
     }
 
+    public function update($id, $data) {
+        $this->db->where('id', $id);
+        $this->db->update($this->table_name, $data);
+    }
+
+    public function delete($id) {
+        $this->db->where('id', $id);
+        $this->db->delete($this->table_name);
+    }
+
     public function select_all($options = "") {
         if($options) {
             $this->db->where($options);

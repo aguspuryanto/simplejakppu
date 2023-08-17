@@ -165,8 +165,9 @@ class Pidum extends AUTH_Controller {
 
 			if($this->input->post('id')) {
 				$id = $this->input->post('id');	
-				$this->db->where('id', $id);
-				$this->db->update('$this->table_name', $data);
+				// $this->db->where('id', $id);
+				// $this->db->update('$this->table_name', $data);
+				$model->update($id, $data);
 				
 			} else {
 				$model->save($data);
@@ -212,7 +213,16 @@ class Pidum extends AUTH_Controller {
 				'keterangan' => $this->input->post('description'),
 			);
 
-			$model->save($data);
+			if($this->input->post('id')) {
+				$id = $this->input->post('id');	
+				// $this->db->where('id', $id);
+				// $this->db->update('$this->table_name', $data);
+				$model->update($id, $data);
+				
+			} else {
+				$model->save($data);
+			}
+
             $this->session->set_flashdata('success', 'Berhasil disimpan');
 			$json = array('success' => true, 'message' => 'Berhasil disimpan');
 		}
@@ -419,14 +429,16 @@ class Pidum extends AUTH_Controller {
 	public function kajari_note() {
 		$data['userdata'] 	= $this->userdata;
 
-		// $model = $this->M_perkara;
+		$model = $this->M_perkara;
 		$json = array();
 
 		if($this->input->post('id')) {
 			$id = $this->input->post('id');
-
-			$this->db->where('id', $id);
-			$this->db->update($this->table_name, array(
+			// $this->db->where('id', $id);
+			// $this->db->update($this->table_name, array(
+			// 	'kajari_note' => $this->input->post('kajari_note')
+			// ));
+			$model->update($id, array(
 				'kajari_note' => $this->input->post('kajari_note')
 			));
 
@@ -441,13 +453,15 @@ class Pidum extends AUTH_Controller {
 
 	public function pidum_remove() {
 		$data['userdata'] 	= $this->userdata;
-		$json = array();
 
+		$model = $this->M_perkara;
+
+		$json = array();
 		if($this->input->post('id')) {
 			$id = $this->input->post('id');
-			$this->db->where('id', $id);
-			$this->db->delete($this->table_name);
-
+			// $this->db->where('id', $id);
+			// $this->db->delete($this->table_name);
+			$model->delete($id);
             $this->session->set_flashdata('success', 'Berhasil terhapus');
 			$json = array('success' => true, 'message' => 'Berhasil terhapus');
 		}
@@ -462,12 +476,15 @@ class Pidum extends AUTH_Controller {
 		$data['userdata'] 	= $this->userdata;
 		
 		$json = array();
-		$this->table_name = 'epak_tahan';
+		$model = $this->M_penahanan;
 
 		if($this->input->post('id')) {
 			$id = $this->input->post('id');
-			$this->db->where('id', $id);
-			$this->db->update($this->table_name, array(
+			// $this->db->where('id', $id);
+			// $this->db->update($this->table_name, array(
+			// 	'kajari_note' => $this->input->post('kajari_note')
+			// ));
+			$model->update($id, array(
 				'kajari_note' => $this->input->post('kajari_note')
 			));
 

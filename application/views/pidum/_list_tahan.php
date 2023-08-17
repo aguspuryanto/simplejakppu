@@ -39,7 +39,7 @@
                                 <button type="button" data-id="'.$row->id.'" class="btn btn-info btn-block btnNote" data-toggle="modal" data-target="#myModalNote">Tambah Note</button>
                             </p>
                             <div class="btn-group" role="group">
-                                <button type="button" data-id="'.$row->id.'" class="btn btn-default btnEdit" data-toggle="modal" data-target="#myModalPerkara">Edit</button>
+                                <button type="button" data-id="'.$row->id.'" class="btn btn-default btnEdit" data-toggle="modal" data-target="#myModalTahan">Edit</button>
                                 <button type="button" data-id="'.$row->id.'" class="btn btn-danger btnRemove">Hapus</button>
                             </div>
                         </td>
@@ -124,9 +124,14 @@ $( document ).ready(function() {
         var dataId = $(this).attr("data-id");
         // console.log(dataId, '_dataId');
         $('#formNote input[name=id]').val(dataId);
+
+        $.get("<?=site_url('Pidum/tahan_detail');?>/" + dataId, function(data, status){
+            console.log(data.data, "data");
+            $('#formNote').find('#input-kajari_note').val(data.data.kajari_note);
+        });        
     });
 
-    $('#formNote').on('click', function (e) {
+    $('#formNote').submit(function (e) {
         e.preventDefault();
 
         $.ajax({
@@ -140,7 +145,7 @@ $( document ).ready(function() {
                     $('#myModalNote').modal('hide'); 
                     setTimeout(function(){
                         window.location.reload();
-                    }, 3000);
+                    }, 1000);
                 }
             }
         });
