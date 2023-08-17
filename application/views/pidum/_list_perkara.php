@@ -28,9 +28,10 @@
         <tbody>
             <?php
             if($dataPidum) :
+                $id=1;
                 foreach($dataPidum as $row) {
                     echo '<tr>
-                        <td>'.$row->id.'</td>
+                        <td>'.$id.'</td>
                         <td>'.$row->penyidikan_no.'</td>
                         <td>'.$row->instansi_asal.'</td>
                         <td>'.$row->nama_tsk.'</td>
@@ -59,6 +60,7 @@
                             </div>
                         </td>
                     </tr>';
+                    $id++;
                 }
             endif;
             ?>
@@ -179,7 +181,10 @@ $( document ).ready(function() {
         if (confirm("Apakah anda yakin ingin menghapus data ini?")==true){
             $.post("<?=site_url('Pidum/pidum_remove');?>/", {id: dataId}, function(result){
                 console.log(result, "_result");
-                $('#myModalPerkara').modal('toggle'); 
+                // $('#myModalPerkara').modal('hide');
+                setTimeout(function(){
+                    window.location.reload();
+                }, 3000);
             })
         };
     });
