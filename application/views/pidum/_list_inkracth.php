@@ -26,15 +26,7 @@
                         <td>'.$row->alamat_bb.'</td>
                         <td>'.$row->no_telp.'</td>
                         <td>'.$row->kajari_note.'</td>
-                        <td style="min-width:115px">
-                            <p>
-                                <button type="button" data-id="'.$row->id.'" class="btn btn-info btn-block btnNote">Tambah Note</button>
-                            </p>
-                            <div class="btn-group" role="group">
-                                <button type="button" data-id="'.$row->id.'" class="btn btn-default btnEdit" data-toggle="modal" data-target="#myModalInkracth">Edit</button>
-                                <button type="button" data-id="'.$row->id.'" class="btn btn-danger btnRemove">Hapus</button>
-                            </div>
-                        </td>
+                        '. get_header_table_admin($row, $userdata) . '
                     </tr>';
                     $id++;
                 }
