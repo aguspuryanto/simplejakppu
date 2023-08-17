@@ -22,6 +22,8 @@
                 <th>PK</th>
                 <!-- <th>PEKATING</th> -->
                 <th>KET.</th>
+                <th>CATATAN KAJARI</th>
+                <th>#</th>
             </tr>
         </thead>
         <tbody>
@@ -31,6 +33,8 @@
                 foreach($dataPidum as $row) {
                     echo '<tr>
                         <td>'.$id.'</td>
+                        <td>'.$row->pulbaket_no.'</td>
+                        <td>'.$row->penyelidik_no.'</td>
                         <td>'.$row->penyidikan_no.'</td>
                         <td>'.$row->instansi_asal.'</td>
                         <td>'.$row->nama_tsk.'</td>
@@ -46,7 +50,6 @@
                         <td>'.$row->eksekusi_pn.'</td>
                         <td>'.$row->grasi_pn.'</td>
                         <td>'.$row->pk_pn.'</td>
-                        <td>'.$row->pekating_pn.'</td>
                         <td>'.$row->keterangan.'</td>
                         <td>'.$row->kajari_note.'</td>
                         <td style="min-width:115px">

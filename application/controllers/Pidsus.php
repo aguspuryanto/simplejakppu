@@ -58,6 +58,7 @@ class Pidsus extends AUTH_Controller {
 	public function pidsus() {
 		$data['userdata'] 	= $this->userdata;
 
+		$data['model'] = $this->M_perkara;
 		$options = array('jenis_module' => $this->jenis_module);
 		$data['dataPidum'] = $this->M_perkara->select_all($options);
 		// $data['dataPenahanan'] = $this->M_penahanan->select_all($options);
@@ -226,6 +227,24 @@ class Pidsus extends AUTH_Controller {
 		$this->output
 		->set_content_type('application/json')
 		->set_output(json_encode($json));
+	}
+
+	public function tahan_detail($id) {
+		$data['userdata'] 	= $this->userdata;
+
+		// $model = $this->M_perkara;
+		$data['data'] = $this->M_penahanan->select_by_id($id);
+
+		$json = array();
+		if($data['data']) {
+			$json = array('success' => true, 'data' => $data['data']);
+		} else {
+			$json = array('success' => false, 'data' => []);
+		}
+
+		$this->output
+		->set_content_type('application/json')
+		->set_output(json_encode($json));		
 	}
 }
 
