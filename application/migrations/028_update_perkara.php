@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed'); 
 
-class Migration_Update_bbkelola extends CI_Migration { 
+class Migration_update_perkara extends CI_Migration { 
     public function up() {
         // update table
         $table_name = 'epak_perkara'; //$this->db->dbprefix('epak_perkara');
