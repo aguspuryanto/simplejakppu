@@ -18,9 +18,10 @@
 
         <?php
             if($dataPenahanan) : 
+                $id=1;
                 foreach($dataPenahanan as $row) {
                     echo '<tr>
-                        <td>'.$row->id.'</td>
+                        <td>'.$id.'</td>
                         <td>'.$row->nama_tsk.'</td>
                         <td>'.$row->jenis_kelamin.'</td>
                         <td>'.$row->jenis_perkara.'</td>
@@ -30,7 +31,18 @@
                         <td>'.$row->keadaan_tahan.'</td>
                         <td>'.$row->tahap_perkara.'</td>
                         <td>'.$row->keterangan.'</td>
+                        <td>'.$row->kajari_note.'</td>
+                        <td style="min-width:115px">
+                            <p>
+                                <button type="button" data-id="'.$row->id.'" class="btn btn-info btn-block btnNote" data-toggle="modal" data-target="#myModalNote">Tambah Note</button>
+                            </p>
+                            <div class="btn-group" role="group">
+                                <button type="button" data-id="'.$row->id.'" class="btn btn-default btnEdit" data-toggle="modal" data-target="#myModalPerkara">Edit</button>
+                                <button type="button" data-id="'.$row->id.'" class="btn btn-danger btnRemove">Hapus</button>
+                            </div>
+                        </td>
                     </tr>';
+                    $id++;
                 }
             endif;
             ?>

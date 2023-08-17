@@ -105,6 +105,7 @@ class Pidum extends AUTH_Controller {
 		$data['dataPnbp'] = $this->M_pnbp->select_all();
 		
 		$data['page'] 		= "PIDUM";
+		$data['judul'] 		= "Penahanan";
 
 		$this->template->views('pidum/penahanan', $data);
 	}
