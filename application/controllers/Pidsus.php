@@ -89,6 +89,7 @@ class Pidsus extends AUTH_Controller {
 		$data['dataPnbp'] = $this->M_pnbp->select_all($options);
 
 		$data['page'] 		= "PIDSUS";
+		$data['judul'] 		= "Penerimaan Negara Bukan Pajak (PNBP)";
 
 		$this->template->views('pidsus/pnbp', $data);
 	}
