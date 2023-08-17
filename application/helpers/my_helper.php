@@ -105,7 +105,7 @@
 	}
 
 	function get_header_table($model, $extra="") {
-		if(empty($extra)) $extra = '<th>#</th>';
+		if(empty($extra)) $extra = '<th>AKSI</th>';
 
 		$header_tag = '<tr><th>NO</th>';
 		foreach ($model->rules() as $key => $val) {
@@ -154,6 +154,23 @@
 		$header_tag .= '</tr>';
 
 		return $header_tag;
+	}
+
+	function get_header_table_admin($row, $userdata="") {
+		$tableHeader = '';
+		if(!isUserStaff($userdata)) {
+			$tableHeader = '<td style="min-width:115px">
+				<p>
+					<button type="button" data-id="'.$row->id.'" class="btn btn-info btn-block btnNote" data-toggle="modal" data-target="#myModalNote">Tambah Note</button>
+				</p>
+				<div class="btn-group" role="group">
+					<button type="button" data-id="'.$row->id.'" class="btn btn-default btnEdit" data-toggle="modal" data-target="#myModalPerkara">Edit</button>
+					<button type="button" data-id="'.$row->id.'" class="btn btn-danger btnRemove">Hapus</button>
+				</div>
+			</td>';
+		}
+
+		return $tableHeader;
 	}
 
 	function get_form_input($model, $field="", $options=array()) {
