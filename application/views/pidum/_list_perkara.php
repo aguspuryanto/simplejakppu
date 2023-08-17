@@ -173,7 +173,15 @@ $( document ).ready(function() {
 
     $('.btnRemove').on('click', function (e) {
         e.preventDefault();
+        var dataId = $(this).attr("data-id");
+        console.log(dataId, '_dataId');
 
+        if (confirm("Apakah anda yakin ingin menghapus data ini?")==true){
+            $.post("<?=site_url('Pidum/pidum_remove');?>/", {id: dataId}, function(result){
+                console.log(result, "_result");
+                $('#myModalPerkara').modal('toggle'); 
+            })
+        };
     });
 
 });

@@ -2,7 +2,9 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Pidum extends AUTH_Controller {
+	public $table_name = 'epak_perkara';
 	public $jenis_module = 'pidum';
+
 	public function __construct() {
 		parent::__construct();
 		$this->load->model('M_perkara');
@@ -163,7 +165,7 @@ class Pidum extends AUTH_Controller {
 			if($this->input->post('id')) {
 				$id = $this->input->post('id');	
 				$this->db->where('id', $id);
-				$this->db->update('epak_perkara', $data);
+				$this->db->update('$this->table_name', $data);
 				
 			} else {
 				$model->save($data);
@@ -423,7 +425,7 @@ class Pidum extends AUTH_Controller {
 			$id = $this->input->post('id');
 
 			$this->db->where('id', $id);
-			$this->db->update('epak_perkara', array(
+			$this->db->update($this->table_name, array(
 				'kajari_note' => $this->input->post('kajari_note')
 			));
 
@@ -434,7 +436,25 @@ class Pidum extends AUTH_Controller {
 		$this->output
         ->set_content_type('application/json')
         ->set_output(json_encode($json));
+	}
 
+	public function pidum_remove() {
+		$data['userdata'] 	= $this->userdata;
+		$json = array();
+
+		if($this->input->post('id')) {
+			$id = $this->input->post('id');
+			$this->db->where('id', $id);
+			$this->db->delete($this->table_name);
+
+            $this->session->set_flashdata('success', 'Berhasil terhapus');
+			$json = array('success' => true, 'message' => 'Berhasil terhapus');
+		}
+
+		$this->output
+        ->set_content_type('application/json')
+        ->set_output(json_encode($json));
+		
 	}
 }
 
