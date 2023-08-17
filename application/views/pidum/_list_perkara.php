@@ -20,6 +20,7 @@
                 <th>PK</th>
                 <th>PEKATING</th>
                 <th>KET.</th>
+                <th>CATATAN KAJARI</th>
                 <th>#</th>
             </tr>
             <?//=get_header_table($model);?>
@@ -47,6 +48,7 @@
                         <td>'.$row->pk_pn.'</td>
                         <td>'.$row->pekating_pn.'</td>
                         <td>'.$row->keterangan.'</td>
+                        <td>'.$row->kajari_note.'</td>
                         <td style="min-width:115px">
                             <p>
                                 <button type="button" data-id="'.$row->id.'" class="btn btn-info btn-block btnNote" data-toggle="modal" data-target="#myModalNote">Tambah Note</button>
@@ -84,6 +86,8 @@
                 <?=form_textarea('kajari_note', '', array('class' => 'form-control', 'id' => 'input-kajari_note', 'rows' => '4', 'cols' => '40'));?>
                 <div id="error"></div>
             </div>
+
+            <?=form_hidden('id', ''); ?>
 
             <button type="submit" class="btn btn-primary" id="formNote">Simpan Data</button>
             <button type="reset" class="btn btn-default">Kosongkan Data</button>
@@ -130,6 +134,13 @@ $( document ).ready(function() {
         $(this).parents('.form-group').find('#error').html(" ");
     });
 
+    $('.btnNote').on('click', function (e) {
+        e.preventDefault();
+        var dataId = $(this).attr("data-id");
+        // console.log(dataId, '_dataId');
+        $('#formNote input[name=id]').val(dataId);
+    });
+
     $('#formNote').on('click', function (e) {
         e.preventDefault();
 
@@ -140,6 +151,7 @@ $( document ).ready(function() {
             dataType: "json",  
             success: function(data){
                 console.log(data, "data");
+                $('#myModalNote').modal('toggle'); 
             }
         });
     });
@@ -149,10 +161,13 @@ $( document ).ready(function() {
         var dataId = $(this).attr("data-id");
         console.log(dataId, '_dataId');
 
-        $('#formInkracth input[name=id]').val(dataId);
+        $('#form input[name=id]').val(dataId);
 
-        $.get("demo_test.asp", function(data, status){
-            // alert("Data: " + data + "\nStatus: " + status);
+        $.get("<?=site_url('Pidum/pidum_detail');?>/" + dataId, function(data, status){
+            // console.log("Data: " + data + "\nStatus: " + status);
+            $.each(data.data, function(key, value) {
+                $('#input-' + key).val(value);
+            });
         });
     });
 

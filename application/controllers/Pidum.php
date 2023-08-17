@@ -78,6 +78,24 @@ class Pidum extends AUTH_Controller {
 		$this->template->views('pidum/index', $data);
 	}
 
+	public function pidum_detail($id) {
+		$data['userdata'] 	= $this->userdata;
+
+		$data['model'] = $this->M_perkara;
+		$data['dataPidum'] = $this->M_perkara->select_by_id($id);
+
+		$json = array();
+		if($data['dataPidum']) {
+			$json = array('success' => true, 'data' => $data['dataPidum']);
+		} else {
+			$json = array('success' => false, 'data' => []);
+		}
+
+		$this->output
+        ->set_content_type('application/json')
+        ->set_output(json_encode($json));
+	}
+
 	public function pidum_penahanan() {
 		$data['userdata'] 	= $this->userdata;
 		$data['dataPidum'] = $this->M_perkara->select_all();
@@ -139,7 +157,7 @@ class Pidum extends AUTH_Controller {
 				'pk_pn' => $this->input->post('pk_pn'),
 				'pekating_pn' => $this->input->post('pekating_pn'),
 				'jenis_module' => $this->jenis_module,
-				'keterangan' => $this->input->post('description'),
+				'keterangan' => $this->input->post('keterangan'),
 			);
 
 			$model->save($data);
@@ -390,7 +408,25 @@ class Pidum extends AUTH_Controller {
 	public function kajari_note() {
 		$data['userdata'] 	= $this->userdata;
 
-		
+		// $model = $this->M_perkara;
+		$json = array();
+
+		if($this->input->post('id')) {
+			$id = $this->input->post('id');
+
+			$this->db->where('id', $id);
+			$this->db->update('epak_perkara', array(
+				'kajari_note' => $this->input->post('kajari_note')
+			));
+
+            $this->session->set_flashdata('success', 'Berhasil disimpan');
+			$json = array('success' => true, 'message' => 'Berhasil disimpan');
+		}
+
+		$this->output
+        ->set_content_type('application/json')
+        ->set_output(json_encode($json));
+
 	}
 }
 

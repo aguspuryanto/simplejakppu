@@ -61,6 +61,12 @@ class M_perkara extends CI_Model {
         return $data->num_rows();
     }
 
+    public function select_by_id($id) {
+        $this->db->where('id', $id);
+        $data = $this->db->get($this->table_name);
+        return $data->row();
+    }
+
     public function select_by($module=[]) {
         $key = array_keys($module)[0];
         $value = array_values($module)[0];

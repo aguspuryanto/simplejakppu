@@ -108,9 +108,12 @@
             </div>
             <div class="form-group">
                 <label>KETERANGAN</label>
-                <?=form_input('description', '', array('class' => 'form-control', 'id' => 'input-description'));?>
+                <?=form_input('keterangan', '', array('class' => 'form-control', 'id' => 'input-keterangan'));?>
                 <div id="error"></div>
             </div>
+
+            <?=form_hidden('id', ''); ?>
+            
             <button type="submit" class="btn btn-primary" id="form-submit">Simpan Data</button>
             <button type="reset" class="btn btn-default">Kosongkan Data</button>
         <?=form_close();?>
