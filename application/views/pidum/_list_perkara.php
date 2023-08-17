@@ -130,9 +130,9 @@ $( document ).ready(function() {
         $(this).parents('.form-group').find('#error').html(" ");
     });
 
-    $('.btnNote').on('click', function (e) {
+    $('#formNote').on('click', function (e) {
         e.preventDefault();
-        console.log($('#formNote').serialize());
+        console.log($(this).serialize());
     });
 
     $('.btnEdit').on('click', function (e) {
