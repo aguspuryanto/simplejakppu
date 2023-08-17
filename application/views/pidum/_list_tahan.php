@@ -138,6 +138,9 @@ $( document ).ready(function() {
                 console.log(data, "data");
                 if(data.success) {
                     ('#myModalNote').modal('hide'); 
+                    setTimeout(function(){
+                        window.location.reload();
+                    }, 3000);
                 }
             }
         });
