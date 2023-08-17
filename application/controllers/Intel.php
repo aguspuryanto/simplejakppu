@@ -130,7 +130,7 @@ class Intel extends AUTH_Controller {
 				'pk_pn' => $this->input->post('pk_pn'),
 				'pekating_pn' => $this->input->post('pekating_pn'),
 				'jenis_module' => 'intelijen',
-				'keterangan' => $this->input->post('description'),
+				'keterangan' => $this->input->post('keterangan'),
 			);
 
 			$model->save($data);

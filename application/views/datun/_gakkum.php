@@ -53,7 +53,7 @@ $newArra[] = array_merge($yearArr, $collectedData);
 // echo json_encode($newArra);
 ?>
 
-
+<script src="<?= base_url(); ?>assets/plugins/chartjs/v4.3.3/Chart.min.js"></script>
 <script>
     const ctx = document.getElementById('myChart');
 
@@ -127,5 +127,66 @@ $( document ).ready(function() {
         $(this).parents('.form-group').find('#error').html(" ");
     });
 
+    $('.btnNote').on('click', function (e) {
+        e.preventDefault();
+        var dataId = $(this).attr("data-id");
+        // console.log(dataId, '_dataId');
+        $('#formNote input[name=id]').val(dataId);
+
+        $.get("<?=site_url('Datun/datun_detail');?>/" + dataId, function(data, status){
+            console.log(data.data, "data");
+            $('#formNote').find('#input-kajari_note').val(data.data.kajari_note);
+        });        
+    });
+
+    $('#formNote').submit(function (e) {
+        e.preventDefault();
+
+        $.ajax({
+            type: "POST",
+            url: "<?=site_url('Datun/datun_note');?>", 
+            data: $("#formNote").serialize(),
+            dataType: "json",  
+            beforeSend : function(xhr, opts){
+                $('#form-submit').text('Loading...').prop("disabled", true);
+            },
+            success: function(data){
+                console.log(data, "data");
+                if(data.success) {
+                    $('#myModalNote').modal('hide'); 
+                    setTimeout(function(){
+                        window.location.reload();
+                    }, 1000);
+                }
+            }
+        });
+    });
+
+    $('.btnEdit').on('click', function (e) {
+        e.preventDefault();
+        var dataId = $(this).attr("data-id");
+        console.log(dataId, '_dataId');
+
+        $('#form input[name=id]').val(dataId);
+
+        $.get("<?=site_url('Datun/datun_detail');?>/" + dataId, function(data, status){
+            $.each(data.data, function(key, value) {
+                $('#input-' + key).val(value);
+            });
+        });
+    });
+
+    $('.btnRemove').on('click', function (e) {
+        e.preventDefault();
+        var dataId = $(this).attr("data-id");
+        console.log(dataId, '_dataId');
+
+        if (confirm("Apakah anda yakin ingin menghapus data ini?")==true){
+            $.post("<?=site_url('Datun/datun_remove');?>/", {id: dataId}, function(result){
+                console.log(result, "_result");
+                $(this).closest("tr").remove();
+            });
+        };
+    });
 });
 </script>

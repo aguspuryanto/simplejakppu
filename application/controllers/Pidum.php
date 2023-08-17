@@ -210,7 +210,7 @@ class Pidum extends AUTH_Controller {
 				'keadaan_tahan' => $this->input->post('keadaan_tahan'),
 				'tahap_perkara' => $this->input->post('tahap_perkara'),
 				'jenis_module' => ($this->input->post('jenis_module')) ? $this->input->post('jenis_module') : $this->jenis_module,
-				'keterangan' => $this->input->post('description'),
+				'keterangan' => $this->input->post('keterangan'),
 			);
 
 			if($this->input->post('id')) {
@@ -259,7 +259,7 @@ class Pidum extends AUTH_Controller {
 				'jumlah_pnpb' => $this->input->post('jumlah_pnpb'),
 				'bukti_pnpb' => $this->input->post('bukti_pnpb'),
 				'jenis_module' => ($this->input->post('jenis_module')) ? $this->input->post('jenis_module') : $this->jenis_module,
-				'keterangan' => $this->input->post('description'),
+				'keterangan' => $this->input->post('keterangan'),
 			);
 
 			$model->save($data);

@@ -154,7 +154,7 @@ class Pidsus extends AUTH_Controller {
 				'pk_pn' => $this->input->post('pk_pn'),
 				'pekating_pn' => $this->input->post('pekating_pn'),
 				'jenis_module' => 'pidsus',
-				'keterangan' => $this->input->post('description'),
+				'keterangan' => $this->input->post('keterangan'),
 			);
 
 			if($this->input->post('id')) {

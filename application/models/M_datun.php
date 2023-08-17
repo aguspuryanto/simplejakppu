@@ -51,6 +51,22 @@ class M_datun extends CI_Model {
         }
     }
 
+    public function update($id, $data) {
+        $this->db->where('id', $id);
+        $this->db->update($this->table_name, $data);
+    }
+
+    public function delete($id) {
+        $this->db->where('id', $id);
+        $this->db->delete($this->table_name);
+    }
+
+    public function select_by_id($id) {
+        $this->db->where('id', $id);
+        $data = $this->db->get($this->table_name);
+        return $data->row();
+    }
+
     public function select_all($options = "", $search_type='where', $search_val='') {
         if($options) {
             $this->db->where($options);

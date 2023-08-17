@@ -73,7 +73,7 @@ class PapanKontrol extends AUTH_Controller {
 				'pk_pn' => $this->input->post('pk_pn'),
 				'pekating_pn' => $this->input->post('pekating_pn'),
 				'jenis_module' => 'pidum',
-				'keterangan' => $this->input->post('description'),
+				'keterangan' => $this->input->post('keterangan'),
 			);
 
 			$model->save($data);
@@ -114,7 +114,7 @@ class PapanKontrol extends AUTH_Controller {
 				'keadaan_tahan' => $this->input->post('keadaan_tahan'),
 				'tahap_perkara' => $this->input->post('tahap_perkara'),
 				'jenis_module' => ($this->input->post('jenis_module')) ? $this->input->post('jenis_module') : 'pidum',
-				'keterangan' => $this->input->post('description'),
+				'keterangan' => $this->input->post('keterangan'),
 			);
 
 			$model->save($data);
@@ -155,7 +155,7 @@ class PapanKontrol extends AUTH_Controller {
 				'jumlah_pnpb' => $this->input->post('jumlah_pnpb'),
 				'bukti_pnpb' => $this->input->post('bukti_pnpb'),
 				'jenis_module' => ($this->input->post('jenis_module')) ? $this->input->post('jenis_module') : 'pidum',
-				'keterangan' => $this->input->post('description'),
+				'keterangan' => $this->input->post('keterangan'),
 			);
 
 			$model->save($data);
@@ -219,7 +219,7 @@ class PapanKontrol extends AUTH_Controller {
 				'pk_pn' => $this->input->post('pk_pn'),
 				'pekating_pn' => $this->input->post('pekating_pn'),
 				'jenis_module' => 'pidsus',
-				'keterangan' => $this->input->post('description'),
+				'keterangan' => $this->input->post('keterangan'),
 			);
 
 			$model->save($data);
@@ -284,7 +284,7 @@ class PapanKontrol extends AUTH_Controller {
 				'pk_pn' => $this->input->post('pk_pn'),
 				'pekating_pn' => $this->input->post('pekating_pn'),
 				'jenis_module' => 'intelijen',
-				'keterangan' => $this->input->post('description'),
+				'keterangan' => $this->input->post('keterangan'),
 			);
 
 			$model->save($data);
@@ -349,7 +349,7 @@ class PapanKontrol extends AUTH_Controller {
 				'pk_pn' => $this->input->post('pk_pn'),
 				'pekating_pn' => $this->input->post('pekating_pn'),
 				'jenis_module' => 'datun',
-				'keterangan' => $this->input->post('description'),
+				'keterangan' => $this->input->post('keterangan'),
 			);
 
 			$model->save($data);

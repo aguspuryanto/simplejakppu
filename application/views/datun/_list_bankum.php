@@ -16,6 +16,7 @@
                 <th rowspan="2" class="text-center"><?=form_label($model->rules()[12]['label']); ?></th>
                 <th rowspan="2" class="text-center"><?=form_label($model->rules()[13]['label']); ?></th>
                 <th rowspan="2" class="text-center"><?=form_label($model->rules()[14]['label']); ?></th>
+                <th rowspan="2" class="text-center">#</th>
             </tr>
             <tr>
                 <th class="text-center"><?=form_label($model->rules()[5]['label']); ?></th>
@@ -46,6 +47,15 @@
                         <td>'.$row->petunjuk_kajari.'</td>
                         <td>'.$row->saran_kasi.'</td>
                         <td>'.$row->keterangan.'</td>
+                        <td style="min-width:115px">
+                            <p class="hide">
+                                <button type="button" data-id="'.$row->id.'" class="btn btn-info btn-block btnNote" data-toggle="modal" data-target="#myModalNote">Tambah Note</button>
+                            </p>
+                            <div class="btn-group" role="group">
+                                <button type="button" data-id="'.$row->id.'" class="btn btn-default btnEdit" data-toggle="modal" data-target="#myModalPerkara">Edit</button>
+                                <button type="button" data-id="'.$row->id.'" class="btn btn-danger btnRemove">Hapus</button>
+                            </div>
+                        </td>
                     </tr>';
 
                     $id++;
@@ -57,45 +67,4 @@
 </div>
 
 <?php include_once('_modal_datun.php'); ?>
-
-<script type="text/javascript">
-$( document ).ready(function() {
-    $.fn.datepicker.defaults.format = "dd/mm/yyyy";
-    $("#input-periode").datepicker({
-        viewMode: "months", 
-        minViewMode: "months",
-        format: 'MM-yyyy',
-    });
-    $('#error').html(" ");
-
-    $('#form-submit').on('click', function (e) {
-        e.preventDefault();
-
-        $.ajax({
-            type: "POST",
-            url: "<?=site_url('Datun/datun_add');?>", 
-            data: $("#form").serialize(),
-            dataType: "json",  
-            success: function(data){
-                console.log(data, "data");
-                if(data.success == true){
-                    setTimeout(function(){
-                        window.location.reload();
-                    }, 3000);
-                } else {
-                    $.each(data, function(key, value) {
-                        $('#input-' + key).addClass('is-invalid');
-                        $('#input-' + key).parents('.form-group').find('#error').html(value);
-                    });
-                }
-            }
-        });
-    });
-
-    $('#form input').on('keyup', function () { 
-        $(this).removeClass('is-invalid').addClass('is-valid');
-        $(this).parents('.form-group').find('#error').html(" ");
-    });
-
-});
-</script>
+<?php //include_once('_modal_note.php'); ?>

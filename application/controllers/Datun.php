@@ -93,7 +93,7 @@ class Datun extends AUTH_Controller {
 			// 	'posisi_kasus' => $this->input->post('posisi_kasus'),
 			// 	'tahap' => $this->input->post('tahap'),
 			// 	'periode' => $this->input->post('periode'),
-			// 	'keterangan' => $this->input->post('description'),
+			// 	'keterangan' => $this->input->post('keterangan'),
 			// );
 
 			$data = array(
@@ -114,7 +114,13 @@ class Datun extends AUTH_Controller {
 				'keterangan' => $this->input->post('keterangan'),
 			);
 
-			$model->save($data);
+			if($this->input->post('id')) {
+				$id = $this->input->post('id');
+				$model->update($id, $data);				
+			} else {
+				$model->save($data);
+			}
+
             $this->session->set_flashdata('success', 'Berhasil disimpan');
 			$json = array('success' => true, 'message' => 'Berhasil disimpan');
 		}
@@ -214,6 +220,23 @@ class Datun extends AUTH_Controller {
 
 		// $this->template->views('_under_develop', $data);
 		$this->template->views('datun/_pemulihan_kn', $data);
+	}
+
+	public function datun_detail($id) {
+		$data['userdata'] 	= $this->userdata;
+
+		$data['data'] = $this->M_datun->select_by_id($id);
+
+		$json = array();
+		if($data['data']) {
+			$json = array('success' => true, 'data' => $data['data']);
+		} else {
+			$json = array('success' => false, 'data' => []);
+		}
+
+		$this->output
+        ->set_content_type('application/json')
+        ->set_output(json_encode($json));
 	}
 }
 
