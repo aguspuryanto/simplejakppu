@@ -39,6 +39,7 @@
             </div>
             
             <?//=form_hidden('jenis_module', 'opintelijen'); ?>
+            <?=form_hidden('id', ''); ?>
 
             <button type="submit" class="btn btn-primary" id="form-submit">Simpan Data</button>
             <button type="reset" class="btn btn-default">Kosongkan Data</button>
