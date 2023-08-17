@@ -518,11 +518,75 @@ class Pidum extends AUTH_Controller {
 		$data['userdata'] 	= $this->userdata;
 
 		$json = array();
-		$this->table_name = 'epak_tahan';
+		$model = $this->M_penahanan;
+
 		if($this->input->post('id')) {
 			$id = $this->input->post('id');
-			$this->db->where('id', $id);
-			$this->db->delete($this->table_name);
+			// $this->db->where('id', $id);
+			// $this->db->delete($this->table_name);
+			$model->delete($id);
+
+			$this->session->set_flashdata('success', 'Berhasil terhapus');
+			$json = array('success' => true, 'message' => 'Berhasil terhapus');
+		}
+
+		$this->output
+		->set_content_type('application/json')
+		->set_output(json_encode($json));
+	}
+
+	// inkracth
+	public function inkracth_note() {
+		$data['userdata'] 	= $this->userdata;
+
+		$json = array();
+		$model = $this->M_inkracth;
+
+		if($this->input->post('id')) {
+			$id = $this->input->post('id');
+			// $this->db->where('id', $id);
+			// $this->db->update($this->table_name, array(
+			// 	'kajari_note' => $this->input->post('kajari_note')
+			// ));
+			$model->update($id, array(
+				'kajari_note' => $this->input->post('kajari_note')
+			));
+
+			$this->session->set_flashdata('success', 'Berhasil disimpan');
+			$json = array('success' => true, 'message' => 'Berhasil disimpan');
+		}
+
+		$this->output
+		->set_content_type('application/json')
+		->set_output(json_encode($json));
+	}
+
+	public function inkracth_detail($id) {
+		$data['userdata'] 	= $this->userdata;
+		$data['data'] = $this->M_inkracth->select_by_id($id);
+
+		$json = array();
+		if($data['data']) {
+			$json = array('success' => true, 'data' => $data['data']);
+		} else {
+			$json = array('success' => false, 'data' => []);
+		}
+
+		$this->output
+        ->set_content_type('application/json')
+        ->set_output(json_encode($json));
+	}
+	public function inkracth_remove() {
+		$data['userdata'] 	= $this->userdata;
+
+		$json = array();
+		$model = $this->M_inkracth;
+
+		if($this->input->post('id')) {
+			$id = $this->input->post('id');
+			// $this->db->where('id', $id);
+			// $this->db->delete($this->table_name);
+			$model->delete($id);
 
 			$this->session->set_flashdata('success', 'Berhasil terhapus');
 			$json = array('success' => true, 'message' => 'Berhasil terhapus');

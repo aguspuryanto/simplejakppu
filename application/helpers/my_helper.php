@@ -122,7 +122,7 @@
 	function get_header_table_inkracth($model, $field="", $extra="") {
 		if(!$field && empty($field)) $field = array('setor_negara', 'ntb', 'ntpn', 'b18', 'bast_barang', 'ba21', 'pendapat_hkm', 'p48', 'putusan', 'pnetapan', 'ba_sita', 'sp_sita');
 
-		return get_header_table_custom($model, $field);
+		return get_header_table_custom($model, $field, $extra);
 	}
 
 	function get_header_table_lelang($model, $field="", $extra="") {
@@ -145,10 +145,11 @@
 			$header_tag .= '<th>' . $val['label'] . '</th>';
 		}
 
-		if(empty($extra)) {
-			$extra = '<th>#</th>';
-			$header_tag .= $extra;
-		}
+		// if(empty($extra)) {
+		// 	$extra = '<th>#</th>';
+		// 	$header_tag .= $extra;
+		// }
+		$header_tag .= ($extra) ? $extra : '<th>#</th>';
 		
 		$header_tag .= '</tr>';
 

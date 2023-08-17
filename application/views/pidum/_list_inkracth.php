@@ -5,7 +5,7 @@
 <div class="table-responsive">
     <table id="example1" class="table table-striped table-bordered" style="width:100%">
         <thead>
-            <?=get_header_table_inkracth($model);?>
+            <?=get_header_table_inkracth($model, '', '<th>CATATAN KAJARI</th><th>#</th>');?>
         </thead>
         <tbody>
             <?php
@@ -25,6 +25,7 @@
                         <td>'.$row->ba20_pengembalin.'</td>
                         <td>'.$row->alamat_bb.'</td>
                         <td>'.$row->no_telp.'</td>
+                        <td>'.$row->kajari_note.'</td>
                         <td style="min-width:115px">
                             <p>
                                 <button type="button" data-id="'.$row->id.'" class="btn btn-info btn-block btnNote">Tambah Note</button>
@@ -112,7 +113,34 @@ $( document ).ready(function() {
 
     $('.btnNote').on('click', function (e) {
         e.preventDefault();
+        var dataId = $(this).attr("data-id");
+        // console.log(dataId, '_dataId');
+        $('#formNote input[name=id]').val(dataId);
 
+        $.get("<?=site_url('Pidum/inkracth_detail');?>/" + dataId, function(data, status){
+            console.log(data.data, "data");
+            $('#formNote').find('#input-kajari_note').val(data.data.kajari_note);
+        });        
+    });
+
+    $('#formNote').submit(function (e) {
+        e.preventDefault();
+
+        $.ajax({
+            type: "POST",
+            url: "<?=site_url('Pidum/inkracth_note');?>", 
+            data: $("#formNote").serialize(),
+            dataType: "json",  
+            success: function(data){
+                console.log(data, "data");
+                if(data.success) {
+                    $('#myModalNote').modal('hide'); 
+                    setTimeout(function(){
+                        window.location.reload();
+                    }, 1000);
+                }
+            }
+        });
     });
 
     $('.btnEdit').on('click', function (e) {
@@ -120,13 +148,30 @@ $( document ).ready(function() {
         var dataId = $(this).attr("data-id");
         console.log(dataId, '_dataId');
 
-        $('#formInkracth input[name=id]').val(dataId);
+        $('#form input[name=id]').val(dataId);
+
+        $.get("<?=site_url('Pidum/inkracth_detail');?>/" + dataId, function(data, status){
+            // console.log("Data: " + data + "\nStatus: " + status);
+            $.each(data.data, function(key, value) {
+                $('#input-' + key).val(value);
+            });
+        });
     });
 
     $('.btnRemove').on('click', function (e) {
         e.preventDefault();
+        var dataId = $(this).attr("data-id");
+        console.log(dataId, '_dataId');
 
+        if (confirm("Apakah anda yakin ingin menghapus data ini?")==true){
+            $.post("<?=site_url('Pidum/inkracth_remove');?>/", {id: dataId}, function(result){
+                console.log(result, "_result");
+                // $('#myModalPerkara').modal('hide');
+                setTimeout(function(){
+                    window.location.reload();
+                }, 3000);
+            })
+        };
     });
-
 });
 </script>
