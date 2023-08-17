@@ -454,8 +454,66 @@ class Pidum extends AUTH_Controller {
 
 		$this->output
         ->set_content_type('application/json')
+        ->set_output(json_encode($json));		
+	}
+
+	// tahan
+	public function tahan_note() {
+		$data['userdata'] 	= $this->userdata;
+		
+		$json = array();
+		$this->table_name = 'epak_tahan';
+
+		if($this->input->post('id')) {
+			$id = $this->input->post('id');
+			$this->db->where('id', $id);
+			$this->db->update($this->table_name, array(
+				'kajari_note' => $this->input->post('kajari_note')
+			));
+
+            $this->session->set_flashdata('success', 'Berhasil disimpan');
+			$json = array('success' => true, 'message' => 'Berhasil disimpan');
+		}
+
+		$this->output
+        ->set_content_type('application/json')
+        ->set_output(json_encode($json));		
+	}
+
+	public function tahan_detail($id) {
+		$data['userdata'] 	= $this->userdata;		
+		$data['data'] = $this->M_penahanan->select_by_id($id);
+
+		$json = array();
+		if($data['data']) {
+			$json = array('success' => true, 'data' => $data['data']);
+		} else {
+			$json = array('success' => false, 'data' => []);
+		}
+
+		$this->output
+        ->set_content_type('application/json')
         ->set_output(json_encode($json));
 		
+	}
+
+	public function tahan_remove() {
+		$data['userdata'] 	= $this->userdata;
+
+		$json = array();
+		$this->table_name = 'epak_tahan';
+		if($this->input->post('id')) {
+			$id = $this->input->post('id');
+			$this->db->where('id', $id);
+			$this->db->delete($this->table_name);
+
+			$this->session->set_flashdata('success', 'Berhasil terhapus');
+			$json = array('success' => true, 'message' => 'Berhasil terhapus');
+		}
+
+		$this->output
+		->set_content_type('application/json')
+		->set_output(json_encode($json));
 	}
 }
 
