@@ -186,10 +186,7 @@ $( document ).ready(function() {
         if (confirm("Apakah anda yakin ingin menghapus data ini?")==true){
             $.post("<?=site_url('Pidum/pidum_remove');?>/", {id: dataId}, function(result){
                 console.log(result, "_result");
-                // $('#myModalPerkara').modal('hide');
-                setTimeout(function(){
-                    window.location.reload();
-                }, 3000);
+                $(this).closest("tr").remove();
             })
         };
     });
