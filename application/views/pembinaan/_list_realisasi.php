@@ -33,6 +33,7 @@
                         <td>'.number_format($row->periode_total, 0).'</td>
                         <td>'.$row->periode_persen.'%</td>
                         <td>'.number_format($row->sisa_anggaran, 0).'</td>
+                        <td>'.$row->kajari_note.'</td>
                         '. get_header_table_admin($row, $userdata) . '
                     </tr>';
                     $id++;
@@ -43,6 +44,8 @@
         <tfoot>
             <tr>
                 <th colspan="2" style="text-align:right">Total</th>
+                <th></th>
+                <th></th>
                 <th></th>
                 <th></th>
                 <th></th>
