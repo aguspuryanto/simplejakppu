@@ -158,7 +158,13 @@ class PapanKontrol extends AUTH_Controller {
 				'keterangan' => $this->input->post('keterangan'),
 			);
 
-			$model->save($data);
+			if($this->input->post('id')) {
+				$id = $this->input->post('id');
+				$model->update($id, $data);				
+			} else {
+				$model->save($data);
+			}
+			
             $this->session->set_flashdata('success', 'Berhasil disimpan');
 			$json = array('success' => true, 'message' => 'Berhasil disimpan');
 		}
@@ -222,7 +228,13 @@ class PapanKontrol extends AUTH_Controller {
 				'keterangan' => $this->input->post('keterangan'),
 			);
 
-			$model->save($data);
+			if($this->input->post('id')) {
+				$id = $this->input->post('id');
+				$model->update($id, $data);				
+			} else {
+				$model->save($data);
+			}
+
             $this->session->set_flashdata('success', 'Berhasil disimpan');
 			$json = array('success' => true, 'message' => 'Berhasil disimpan');
 		}

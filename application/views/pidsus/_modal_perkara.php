@@ -9,7 +9,7 @@
         <h4 class="modal-title">Tambah Data</h4>
       </div>
       <div class="modal-body">
-        <?=form_open('papan-kontrol/pidsus', array('id' => 'form', 'role' => 'form'));?>
+        <?=form_open('', array('id' => 'form', 'role' => 'form'));?>
             <div class="form-group">
                 <label>PULBAKET NO/ TGL/NAMA JAKSA</label>
                 <?=form_input('pulbaket_no', '', array('class' => 'form-control', 'id' => 'input-pulbaket_no'));?>
@@ -115,6 +115,9 @@
                 <?=form_input('description', '', array('class' => 'form-control', 'id' => 'input-keterangan'));?>
                 <div id="error"></div>
             </div>
+
+            <?=form_hidden('id', ''); ?>
+
             <button type="submit" class="btn btn-primary" id="form-submit">Simpan Data</button>
             <button type="reset" class="btn btn-default">Kosongkan Data</button>
         <?=form_close();?>

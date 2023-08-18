@@ -146,7 +146,13 @@ class Pidsus extends AUTH_Controller {
 				'jenis_module' => $this->input->post('jenis_module')
 			);
 
-			$model->save($data);
+			if($this->input->post('id')) {
+				$id = $this->input->post('id');
+				$model->update($id, $data);				
+			} else {
+				$model->save($data);
+			}
+			
 			$this->session->set_flashdata('success', 'Berhasil disimpan');
 			$json = array('success' => true, 'message' => 'Berhasil disimpan');
 			
