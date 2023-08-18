@@ -16,6 +16,7 @@
                 <th rowspan="2" class="text-center"><?=form_label($model->rules()[12]['label']); ?></th>
                 <th rowspan="2" class="text-center"><?=form_label($model->rules()[13]['label']); ?></th>
                 <th rowspan="2" class="text-center"><?=form_label($model->rules()[14]['label']); ?></th>
+                <th rowspan="2" class="text-center">CATATAN KAJARI</th>
                 <th rowspan="2" class="text-center">#</th>
             </tr>
             <tr>
@@ -47,15 +48,8 @@
                         <td>'.$row->petunjuk_kajari.'</td>
                         <td>'.$row->saran_kasi.'</td>
                         <td>'.$row->keterangan.'</td>
-                        <td style="min-width:115px">
-                            <p class="hide">
-                                <button type="button" data-id="'.$row->id.'" class="btn btn-info btn-block btnNote" data-toggle="modal" data-target="#myModalNote">Tambah Note</button>
-                            </p>
-                            <div class="btn-group" role="group">
-                                <button type="button" data-id="'.$row->id.'" class="btn btn-default btnEdit" data-toggle="modal" data-target="#myModalPerkara">Edit</button>
-                                <button type="button" data-id="'.$row->id.'" class="btn btn-danger btnRemove">Hapus</button>
-                            </div>
-                        </td>
+                        <td>'.$row->kajari_note.'</td>
+                        '. get_header_table_admin($row, $userdata) . '
                     </tr>';
 
                     $id++;
