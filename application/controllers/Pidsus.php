@@ -70,7 +70,7 @@ class Pidsus extends AUTH_Controller {
 		$this->template->views('pidsus/index', $data);
 	}
 
-	public function pidsus_penahanan() {
+	public function penahanan() {
 		$data['userdata'] 	= $this->userdata;
 
 		$options = array('jenis_module' => $this->jenis_module);
@@ -98,7 +98,7 @@ class Pidsus extends AUTH_Controller {
 		$this->template->views('pidsus/pnbp', $data);
 	}
 
-	public function pidsus_mafia_pelabuhan() {
+	public function mafia_pelabuhan() {
 		$data['userdata'] 	= $this->userdata;
 
 		// $this->load->model('M_mafia');

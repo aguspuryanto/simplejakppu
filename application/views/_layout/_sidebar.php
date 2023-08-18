@@ -51,9 +51,9 @@
           'submenu' => array(
             array('title' => 'Statistik', 'url' => 'index'),
             array('title' => 'Data Perkara', 'url' => 'pidsus'),
-            array('title' => 'Penahanan', 'url' => 'pidsus_penahanan'),
+            array('title' => 'Penahanan', 'url' => 'penahanan'),
             // array('title' => 'PNBP', 'url' => 'pidsus_pnbp'),
-            array('title' => 'Mafia Pelabuhan', 'url' => 'pidsus_mafia_pelabuhan'),
+            array('title' => 'Mafia Pelabuhan', 'url' => 'mafia_pelabuhan'),
           ),
         ),
         array(
