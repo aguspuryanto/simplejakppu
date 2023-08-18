@@ -185,9 +185,9 @@ $( document ).ready(function() {
         console.log(dataId, '_dataId');
 
         if (confirm("Apakah anda yakin ingin menghapus data ini?")==true){
+            $(this).closest("tr").remove();
             $.post("<?=site_url('Datun/datun_remove');?>/", {id: dataId}, function(result){
                 console.log(result, "_result");
-                $(this).closest("tr").remove();
             });
         };
     });
