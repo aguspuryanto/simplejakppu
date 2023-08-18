@@ -8,6 +8,8 @@
                     echo '<th>'.$val['label'].'</th>';
                 }
                 ?>
+                <th>CATATAN KAJARI</th>
+                <th>#</th>
             </tr>
         </thead>
         <tbody>
@@ -33,6 +35,8 @@
                         <td>'.$row->nopol.'</td>
                         <td>'.$row->pemakai.'</td>
                         <td>'.$row->jml_kib.'</td>
+                        <td>'.$row->kajari_note.'</td>
+                        '. get_header_table_admin($row, $userdata) . '
                     </tr>';
                     $id++;
                 }
@@ -43,38 +47,4 @@
 </div>
 
 <?php include_once('_modal_bmn.php'); ?>
-
-<script type="text/javascript">
-$( document ).ready(function() {
-    $(".datepicker").datepicker();
-    $('#error').html(" ");
-
-    $('#form-pnbp').on('click', function (e) {
-        e.preventDefault();
-
-        $.ajax({
-            type: "POST",
-            url: $('#formPnbp').attr('action'),
-            data: $("#formPnbp").serialize(),
-            dataType: "json",  
-            success: function(data){
-                console.log(data, "data");
-                if(data.success == true){
-                    setTimeout(function(){ window.location.reload(); }, 3000);
-                } else {
-                    $.each(data, function(key, value) {
-                        $('#input-' + key).addClass('is-invalid');
-                        $('#input-' + key).parents('.form-group').find('#error').html(value);
-                    });
-                }
-            }
-        });
-    });
-
-    $('#formPnbp input').on('keyup', function () { 
-        $(this).removeClass('is-invalid').addClass('is-valid');
-        $(this).parents('.form-group').find('#error').html(" ");
-    });
-
-});
-</script>
+<?php include_once('_modal_note.php'); ?>

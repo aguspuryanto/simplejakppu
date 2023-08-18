@@ -138,7 +138,7 @@ class Pembinaan extends AUTH_Controller {
 			} else {
 				$model->save($data);
 			}
-			
+
             $this->session->set_flashdata('success', 'Berhasil disimpan');
 			$json = array('success' => true, 'message' => 'Berhasil disimpan');
 		}
@@ -281,6 +281,23 @@ class Pembinaan extends AUTH_Controller {
 		$this->output
 		->set_content_type('application/json')
 		->set_output(json_encode($json));
+	}
+
+	// BMN
+	public function bmn_detail($id) {
+		$data['userdata'] 	= $this->userdata;
+		$data['data'] = $this->M_bmnkelola->select_by_id($id);
+
+		$json = array();
+		if($data['data']) {
+			$json = array('success' => true, 'data' => $data['data']);
+		} else {
+			$json = array('success' => false, 'data' => []);
+		}
+
+		$this->output
+        ->set_content_type('application/json')
+        ->set_output(json_encode($json));
 	}
 }
 
