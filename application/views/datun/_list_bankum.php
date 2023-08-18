@@ -48,7 +48,7 @@
                         <td>'.$row->petunjuk_kajari.'</td>
                         <td>'.$row->saran_kasi.'</td>
                         <td>'.$row->keterangan.'</td>
-                        <td>-</td>
+                        <td>'.$row->kajari_note.'</td>
                         '. get_header_table_admin($row, $userdata) . '
                     </tr>';
 
