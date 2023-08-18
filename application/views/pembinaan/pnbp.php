@@ -14,7 +14,7 @@
             <div class="panel-heading">
                 <h4 class="pull-left">DATA PNBP</h4>
                 <div class="pull-right">
-                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModalPnbp"><i class="glyphicon glyphicon-plus"></i> Tambah Data</button>
+                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModalPerkara"><i class="glyphicon glyphicon-plus"></i> Tambah Data</button>
                 </div>
                 <div class="clearfix"></div>
             </div>
