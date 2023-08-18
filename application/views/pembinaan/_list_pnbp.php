@@ -11,6 +11,8 @@
                 <th>JUMLAH</th>
                 <th>BUKTI SETOR</th>
                 <th>KET.</th>
+                <th>CATATAN KAJARI</th>
+                <th>#</th>
             </tr>
         </thead>
         <tbody>
@@ -27,6 +29,8 @@
                         <td>'.number_format($row->jumlah_pnpb).'</td>
                         <td>'.$row->bukti_pnpb.'</td>
                         <td>'.$row->keterangan.'</td>
+                        <td>'.$row->kajari_note.'</td>
+                        '. get_header_table_admin($row, $userdata) . '
                     </tr>';
                 }
             endif;
@@ -36,40 +40,4 @@
 </div>
 
 <?php include_once('_modal_pnbp.php'); ?>
-
-<script type="text/javascript">
-$( document ).ready(function() {
-    // $(".datepicker").datepicker();
-    $('#error').html(" ");
-
-    $('#form-pnbp').on('click', function (e) {
-        e.preventDefault();
-
-        $.ajax({
-            type: "POST",
-            url: "<?=site_url('papan-kontrol/pidum_pnbp');?>", 
-            data: $("#formPnbp").serialize(),
-            dataType: "json",  
-            success: function(data){
-                console.log(data, "data");
-                if(data.success == true){
-                    setTimeout(function(){
-                        window.location.reload();
-                    }, 3000);
-                } else {
-                    $.each(data, function(key, value) {
-                        $('#input-' + key).addClass('is-invalid');
-                        $('#input-' + key).parents('.form-group').find('#error').html(value);
-                    });
-                }
-            }
-        });
-    });
-
-    $('#formPnbp input').on('keyup', function () { 
-        $(this).removeClass('is-invalid').addClass('is-valid');
-        $(this).parents('.form-group').find('#error').html(" ");
-    });
-
-});
-</script>
+<?php include_once('_modal_note.php'); ?>

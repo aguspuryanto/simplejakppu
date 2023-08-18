@@ -339,6 +339,42 @@ class Pembinaan extends AUTH_Controller {
 		->set_content_type('application/json')
 		->set_output(json_encode($json));
 	}
+
+	// PNBP
+	public function pnbp_detail($id) {
+		$data['userdata'] 	= $this->userdata;
+		$data['data'] = $this->M_pnbp->select_by_id($id);
+
+		$json = array();
+		if($data['data']) {
+			$json = array('success' => true, 'data' => $data['data']);
+		} else {
+			$json = array('success' => false, 'data' => []);
+		}
+
+		$this->output
+        ->set_content_type('application/json')
+        ->set_output(json_encode($json));
+	}
+
+	public function pnbp_note() {
+		$data['userdata'] 	= $this->userdata;
+
+		$json = array();
+		$model = $this->M_pnbp;
+		if($this->input->post('id')) {
+			$id = $this->input->post('id');
+			$model->update($id, array(
+				'kajari_note' => $this->input->post('kajari_note')
+			));
+			$this->session->set_flashdata('success', 'Berhasil disimpan');
+			$json = array('success' => true, 'message' => 'Berhasil disimpan');
+		}
+
+		$this->output
+		->set_content_type('application/json')
+		->set_output(json_encode($json));
+	}
 }
 
 /* End of file Pembinaan.php */
