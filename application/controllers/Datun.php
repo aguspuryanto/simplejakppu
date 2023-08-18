@@ -148,10 +148,10 @@ class Datun extends AUTH_Controller {
 		$data['userdata'] 	= $this->userdata;
 
 		$data['model'] = $this->M_datun;
-		$data['dataDatun'] = $this->M_datun->select_all([], 'like', 'Tindakan Hukum');
+		$data['dataDatun'] = $this->M_datun->select_all([], 'like', 'Pendapat Hukum');
 
 		$data['page'] 		= "DATUN";
-		$data['judul'] 		= "Tindakan Hukum (Timkum)";
+		$data['judul'] 		= "Pendapat Hukum (Timkum)";
 
 		// $this->template->views('_under_develop', $data);
 		$this->template->views('datun/_timkum', $data);

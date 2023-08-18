@@ -88,7 +88,7 @@ $newArra[] = array_merge($yearArr, $collectedData);
 </script>
 <script type="text/javascript">
 $( document ).ready(function() {
-    $('#example1').DataTable();
+    var table = $('#example1').DataTable();
 
     $.fn.datepicker.defaults.format = "dd/mm/yyyy";
     $("#input-periode").datepicker({
