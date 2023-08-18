@@ -21,6 +21,7 @@
                         <td>'.$row->potensi_mafia.'</td>
                         <td>'.$row->tahapan.'</td>
                         <td>'.$row->keterangan.'</td>
+                        <td>'.$row->kajari_note.'</td>
                         '. get_header_table_admin($row, $userdata) . '
                     </tr>';
                     $id++;

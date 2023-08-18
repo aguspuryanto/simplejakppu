@@ -9,7 +9,7 @@
         <h4 class="modal-title">Tambah Data</h4>
       </div>
       <div class="modal-body">
-        <?=form_open('Intel/sp_tugas', array('id' => 'form', 'role' => 'form'));?>
+        <?=form_open('', array('id' => 'form', 'role' => 'form'));?>
             <?=get_form_input($model, 'sumber_info'); ?>
 
             <?=get_form_input($model, 'lokasi'); ?>
@@ -34,7 +34,7 @@
                 <div id="error"></div>
             </div>
             
-            <?//=form_hidden('jenis_module', 'opintelijen'); ?>
+            <?=form_hidden('jenis_module', 'pidsus'); ?>
 
             <button type="submit" class="btn btn-primary" id="form-submit">Simpan Data</button>
             <button type="reset" class="btn btn-default">Kosongkan Data</button>

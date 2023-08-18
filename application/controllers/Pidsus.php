@@ -103,17 +103,58 @@ class Pidsus extends AUTH_Controller {
 
 		// $this->load->model('M_mafia');
 		$data['model'] = $this->M_mafia;
-		$data['dataProvider'] = $this->M_mafia->select_all();
-
 		$options = array('jenis_module' => $this->jenis_module);
-		$data['dataPidum'] = $this->M_perkara->select_all($options);
-		$data['dataPenahanan'] = $this->M_penahanan->select_all($options);
-		$data['dataPnbp'] = $this->M_pnbp->select_all($options);
+		$data['dataProvider'] = $this->M_mafia->select_all($options);
+
+		// $options = array('jenis_module' => $this->jenis_module);
+		// $data['dataPidum'] = $this->M_perkara->select_all($options);
+		// $data['dataPenahanan'] = $this->M_penahanan->select_all($options);
+		// $data['dataPnbp'] = $this->M_pnbp->select_all($options);
 
 		$data['page'] 		= "PIDSUS";
 		$data['judul'] 		= "Mafia Pelabuhan";
 
 		$this->template->views('pidsus/mafia_pelabuhan', $data);
+	}
+
+	public function berantasmafia_add() {
+		$this->load->library('form_validation');
+
+		$model = $this->M_mafia;
+		$this->form_validation->set_rules($model->rules());
+		$this->form_validation->set_message('required', 'Mohon lengkapi {field}!');
+
+		$json = array();
+		if (!$this->form_validation->run()) {
+			foreach($model->rules() as $key => $val) {
+				$json = array_merge($json, array(
+					$val['field'] => form_error($val['field'], '<p class="mt-3 text-danger">', '</p>')
+				));
+			}
+		} else {
+			$data = array(
+				'sumber_info' => $this->input->post('sumber_info'),
+				'lokasi' => $this->input->post('lokasi'),
+				'pemilik' => $this->input->post('pemilik'),
+				'bukti' => $this->input->post('bukti'),
+				'luas' => $this->input->post('luas'),
+				'ksus_posisi' => $this->input->post('ksus_posisi'),
+				'prmasalahan' => $this->input->post('prmasalahan'),
+				'potensi_mafia' => $this->input->post('potensi_mafia'),
+				'tahapan' => $this->input->post('tahapan'),
+				'keterangan' => $this->input->post('keterangan'),
+				'jenis_module' => $this->input->post('jenis_module')
+			);
+
+			$model->save($data);
+			$this->session->set_flashdata('success', 'Berhasil disimpan');
+			$json = array('success' => true, 'message' => 'Berhasil disimpan');
+			
+		}
+
+		$this->output
+		->set_content_type('application/json')
+		->set_output(json_encode($json));
 	}
 
 	public function pidsus_add() {
@@ -245,6 +286,62 @@ class Pidsus extends AUTH_Controller {
 		$this->output
 		->set_content_type('application/json')
 		->set_output(json_encode($json));		
+	}
+
+	// Mafia
+	public function mafia_detail($id) {
+		$data['userdata'] 	= $this->userdata;
+
+		// $model = $this->M_perkara;
+		$data['data'] = $this->M_mafia->select_by_id($id);
+
+		$json = array();
+		if($data['data']) {
+			$json = array('success' => true, 'data' => $data['data']);
+		} else {
+			$json = array('success' => false, 'data' => []);
+		}
+
+		$this->output
+        ->set_content_type('application/json')
+        ->set_output(json_encode($json));
+	}
+
+	public function mafia_note() {
+		$data['userdata'] 	= $this->userdata;
+
+		$json = array();
+		$model = $this->M_mafia;
+		if($this->input->post('id')) {
+			$id = $this->input->post('id');
+			$model->update($id, array(
+				'kajari_note' => $this->input->post('kajari_note')
+			));
+
+			$this->session->set_flashdata('success', 'Berhasil disimpan');
+			$json = array('success' => true, 'message' => 'Berhasil disimpan');
+		}
+
+		$this->output
+		->set_content_type('application/json')
+		->set_output(json_encode($json));
+	}
+
+	public function mafia_remove() {
+		$json = array();
+		$model = $this->M_mafia;
+
+		if($this->input->post('id')) {
+			$id = $this->input->post('id');
+			$model->delete($id);
+
+			$this->session->set_flashdata('success', 'Berhasil terhapus');
+			$json = array('success' => true, 'message' => 'Berhasil terhapus');
+		}
+
+		$this->output
+		->set_content_type('application/json')
+		->set_output(json_encode($json));
 	}
 }
 

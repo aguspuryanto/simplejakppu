@@ -23,7 +23,7 @@
 $( document ).ready(function() {
     var table = $('#example1').DataTable();
 
-    $(".datepicker").datepicker();
+    // $(".datepicker").datepicker();
     $('#error').html(" ");
 
     $('#form-submit').on('click', function (e) {
@@ -31,7 +31,7 @@ $( document ).ready(function() {
 
         $.ajax({
             type: "POST",
-            url: "<?=site_url('Intel/berantasmafia_add');?>", 
+            url: "<?=site_url('Pidsus/berantasmafia_add');?>", 
             data: $("#form").serialize(),
             dataType: "json",
             beforeSend : function(xhr, opts){
@@ -40,9 +40,9 @@ $( document ).ready(function() {
             success: function(data){
                 console.log(data, "data");
                 if(data.success == true){
-                    setTimeout(function(){
-                        window.location.reload();
-                    }, 3000);
+                    // setTimeout(function(){
+                    //     window.location.reload();
+                    // }, 3000);
                 } else {
                     $.each(data, function(key, value) {
                         $('#input-' + key).addClass('is-invalid');
@@ -67,7 +67,7 @@ $( document ).ready(function() {
         // console.log(dataId, '_dataId');
         $('#formNote input[name=id]').val(dataId);
 
-        $.get("<?=site_url('Pidsus/bmn_detail');?>/" + dataId, function(data, status){
+        $.get("<?=site_url('Pidsus/mafia_detail');?>/" + dataId, function(data, status){
             console.log(data.data, "data");
             $('#formNote').find('#input-kajari_note').val(data.data.kajari_note);
         });        
@@ -78,7 +78,7 @@ $( document ).ready(function() {
 
         $.ajax({
             type: "POST",
-            url: "<?=site_url('Pidsus/bmn_note');?>", 
+            url: "<?=site_url('Pidsus/mafia_note');?>", 
             data: $("#formNote").serialize(),
             dataType: "json",  
             beforeSend : function(xhr, opts){
@@ -103,7 +103,7 @@ $( document ).ready(function() {
 
         $('#form input[name=id]').val(dataId);
 
-        $.get("<?=site_url('Pidsus/bmn_detail');?>/" + dataId, function(data, status){
+        $.get("<?=site_url('Pidsus/mafia_detail');?>/" + dataId, function(data, status){
             $.each(data.data, function(key, value) {
                 $('#input-' + key).val(value);
             });
@@ -116,9 +116,10 @@ $( document ).ready(function() {
         console.log(dataId, '_dataId');
 
         if (confirm("Apakah anda yakin ingin menghapus data ini?")==true){
-            $.post("<?=site_url('Pidsus/bmn_remove');?>/", {id: dataId}, function(result){
+            // $(this).closest("tr").remove();
+            table.row( $(this).parents('tr') ).remove().draw();
+            $.post("<?=site_url('Pidsus/mafia_remove');?>/", {id: dataId}, function(result){
                 console.log(result, "_result");
-                $(this).closest("tr").remove();
             });
         };
     });
