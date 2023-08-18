@@ -33,6 +33,7 @@ class M_datun extends CI_Model {
             ['field' => 'petunjuk_kajari', 'label' => 'PETUNJUK KAJARI','rules' => 'required'],
             ['field' => 'saran_kasi', 'label' => 'SARAN KASI','rules' => 'required'],
             ['field' => 'keterangan', 'label' => 'KETERANGAN'],
+            ['field' => 'Kajari_note', 'label' => 'CATATAN KAJARI'],
         ];
     }
 

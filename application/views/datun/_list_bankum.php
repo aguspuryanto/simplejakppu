@@ -48,7 +48,7 @@
                         <td>'.$row->petunjuk_kajari.'</td>
                         <td>'.$row->saran_kasi.'</td>
                         <td>'.$row->keterangan.'</td>
-                        <td>'.$row->kajari_note.'</td>
+                        <td>-</td>
                         '. get_header_table_admin($row, $userdata) . '
                     </tr>';
 
@@ -61,4 +61,4 @@
 </div>
 
 <?php include_once('_modal_datun.php'); ?>
-<?php //include_once('_modal_note.php'); ?>
+<?php include_once('_modal_note.php'); ?>
