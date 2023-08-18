@@ -210,7 +210,13 @@ class Pembinaan extends AUTH_Controller {
 				'jml_kib' => $this->input->post('jml_kib'),
 			);
 
-			$model->save($data);
+			if($this->input->post('id')) {
+				$id = $this->input->post('id');
+				$model->update($id, $data);				
+			} else {
+				$model->save($data);
+			}
+			
 			$this->session->set_flashdata('success', 'Berhasil disimpan');
 			$json = array('success' => true, 'message' => 'Berhasil disimpan');
 		}
