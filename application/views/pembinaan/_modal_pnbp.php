@@ -1,5 +1,5 @@
 <!-- Modal -->
-<div id="myModalPnbp" class="modal fade" role="dialog">
+<div id="myModalPerkara" class="modal fade" role="dialog">
   <div class="modal-dialog">
 
     <!-- Modal content-->
