@@ -152,7 +152,7 @@ class Pidsus extends AUTH_Controller {
 			} else {
 				$model->save($data);
 			}
-			
+
 			$this->session->set_flashdata('success', 'Berhasil disimpan');
 			$json = array('success' => true, 'message' => 'Berhasil disimpan');
 			
@@ -169,9 +169,7 @@ class Pidsus extends AUTH_Controller {
 		$model = $this->M_perkara;
 
         $json = array();
-		// $this->form_validation->set_rules('pulbaket_no', 'PULBAKET NO', 'required');
 		$this->form_validation->set_rules($model->rules());
-
 		$this->form_validation->set_message('required', 'Mohon lengkapi {field}!');
 
 		if (!$this->form_validation->run()) {			

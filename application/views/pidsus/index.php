@@ -35,11 +35,16 @@ $( document ).ready(function() {
             success: function(data){
                 console.log(data, "data");
                 if(data.success == true){
-                    window.location.reload();
+                    // window.location.reload();
                 } else {
                     $.each(data, function(key, value) {
-                        $('#input-' + key).addClass('is-invalid');
-                        $('#input-' + key).parents('.form-group').find('#error').html(value);
+                        console.log(key, '_key');
+                        $("#form").find('#input-' + key).addClass('is-invalid');
+                        if(key != 'tahap_1_tipe') {
+                            $("#form").find('#input-' + key).parents('.form-group').find('#error').html(value);
+                        } else {
+                            $("#form").find('select#input-' + key).parents('.form-group').find('#error').html(value);
+                        }
                     });
                 }
             }
