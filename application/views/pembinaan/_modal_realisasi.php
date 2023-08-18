@@ -15,7 +15,7 @@
             foreach($model->rules() as $key => $val) {
               // unset
               // if($val['field'] == 'jenis_module') continue;
-              if(in_array($val['field'], array('periode_persen', 'sisa_anggaran'))) continue;
+              if(in_array($val['field'], array('tgl', 'periode_persen', 'sisa_anggaran'))) continue;
 
               echo get_form_input($model, $val['field']);
             }
@@ -33,7 +33,10 @@
                   <div id="error"></div>
               </div>
             </div>
+            
             <?//=form_field($model, 'sisa_anggaran'); ?>
+            <?=form_hidden('id', ''); ?>
+
             <button type="submit" class="btn btn-primary" id="form-submit">Simpan Data</button>
             <button type="reset" class="btn btn-default">Kosongkan Data</button>
         <?=form_close();?>

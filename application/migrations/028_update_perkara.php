@@ -42,14 +42,14 @@ class Migration_update_perkara extends CI_Migration {
         $table_name = 'epak_realisasi';
         if (!$this->db->field_exists('kajari_note', $table_name)) {
             $this->dbforge->add_column($table_name, array(
-                'kajari_note' => array('type' => 'VARCHAR', 'constraint' => 100, 'after' => 'keterangan'))
+                'kajari_note' => array('type' => 'VARCHAR', 'constraint' => 100, 'after' => 'sisa_anggaran'))
             );
         }
 
         $table_name = 'epak_bmnkelola';
         if (!$this->db->field_exists('kajari_note', $table_name)) {
             $this->dbforge->add_column($table_name, array(
-                'kajari_note' => array('type' => 'VARCHAR', 'constraint' => 100, 'after' => 'keterangan'))
+                'kajari_note' => array('type' => 'VARCHAR', 'constraint' => 100, 'after' => 'jml_kib'))
             );
         }
 
