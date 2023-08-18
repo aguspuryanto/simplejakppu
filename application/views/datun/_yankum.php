@@ -28,7 +28,7 @@
 <?php
 // $newArra = [];
 $yearArr = [];
-$collectedData = ['perdata' => 0, 'tun' => 0];
+$collectedData = ['perdata' => 0, 'tun' => 0, 'konsul' => 0];
 foreach($dataDatun as $row) {
     //   $newArra[] = array('tahun' => $row->tahun, 'perkara' => $row->perkara, 'hasil' => preg_replace('/[^0-9\s]/', '', $row->hasil));
     if (!in_array($row->created_at, $yearArr)) {
@@ -46,6 +46,12 @@ foreach($dataDatun as $row) {
         if($jenis_perkara == 'tun') $collectedData['tun'] = 0;
     } else {
         if($jenis_perkara == 'tun') $collectedData['tun'] += 1;
+    }
+
+    if (!isset($collectedData[$jenis_perkara])) {
+        if($jenis_perkara == 'konsultasi hukum') $collectedData['konsultasi hukum'] = 0;
+    } else {
+        if($jenis_perkara == 'konsultasi hukum') $collectedData['konsultasi hukum'] += 1;
     }
 }
 
