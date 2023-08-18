@@ -58,3 +58,4 @@
 </div>
 
 <?php include_once('_modal_realisasi.php'); ?>
+<?php include_once('_modal_note.php'); ?>
