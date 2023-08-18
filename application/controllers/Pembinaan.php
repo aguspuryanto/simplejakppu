@@ -220,7 +220,7 @@ class Pembinaan extends AUTH_Controller {
 		$data['page'] 		= "PEMBINAAN";
 		$data['judul'] 		= "Penerimaan Negara Bukan Pajak (PNBP)";
 
-		$data['model'] = $this->M_bmnkelola;
+		$data['model'] = $this->M_pnbp;
 		$data['dataPnbp'] = $this->M_pnbp->select_all();
 
 		$this->template->views('pembinaan/pnbp', $data);
