@@ -162,6 +162,8 @@
 			$tableHeader = '<td style="min-width:115px">
 				<p>
 					<button type="button" data-id="'.$row->id.'" class="btn btn-info btn-block btnNote" data-toggle="modal" data-target="#myModalNote">Tambah Note</button>
+					<button type="button" data-id="'.$row->id.'" class="btn btn-info btn-block btnNote" data-toggle="modal" data-target="#myModalTinjut">Tindak Lanjut</button>
+					<button type="button" data-id="'.$row->id.'" class="btn btn-info btn-block btnNote" data-toggle="modal" data-target="#myModalDokumen">Dokumen</button>
 				</p>
 				<div class="btn-group" role="group">
 					<button type="button" data-id="'.$row->id.'" class="btn btn-default btnEdit" data-toggle="modal" data-target="#myModalPerkara">Edit</button>
