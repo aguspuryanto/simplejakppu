@@ -56,7 +56,7 @@
 
 <?php //include_once('_modal_kembali.php'); ?>
 <!-- Modal -->
-<div id="#myModalPerkara" class="modal fade" role="dialog">
+<div id="myModalPerkara" class="modal fade" role="dialog">
   <div class="modal-dialog">
 
     <!-- Modal content-->
@@ -83,6 +83,7 @@
             <?//=form_hidden('jenis_module', 'bbkembali'); ?>
 
             <?=get_form_input($model, 'nama_terdakwa'); ?>     
+            <?=get_form_input($model, 'reg_bb'); ?>     
             <?=get_form_input($model, 'pasal_disangka'); ?>     
             <?=get_form_input($model, 'bb', array('type' => 'textarea', 'rows' => '3', 'cols' => '10')); ?>     
             <?=get_form_input($model, 'pasal_terbukti'); ?>     

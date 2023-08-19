@@ -23,13 +23,6 @@ $( document ).ready(function() {
     $('#error').html(" ");
 
     var table = $('#example1').DataTable();
-    // var table = $('#example1').DataTable({
-    //     "bFilter": false, //hide Search bar
-    //     "bInfo": false, //Dont display info e.g. "Showing 1 to 4 of 4 entries"
-    //     "paging": false,//Dont want paging                
-    //     "bPaginate": false,//Dont want paging
-    // });
-
     $('button#formInkracth').on('click', function (e) {
         e.preventDefault();
 
