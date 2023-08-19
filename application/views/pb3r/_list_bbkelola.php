@@ -56,7 +56,7 @@
 
 <?php //include_once('_modal_kembali.php'); ?>
 <!-- Modal -->
-<div id="##myModalInkracth" class="modal fade" role="dialog">
+<div id="#myModalPerkara" class="modal fade" role="dialog">
   <div class="modal-dialog">
 
     <!-- Modal content-->
