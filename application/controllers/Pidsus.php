@@ -178,6 +178,8 @@ class Pidsus extends AUTH_Controller {
 					$val['field'] => form_error($val['field'], '<p class="mt-3 text-danger">', '</p>')
 				));
 			}
+			$json['success'] = false;
+			$json['message'] = validation_errors();
 		} else {
 			$data = array(
 				'pulbaket_no' => $this->input->post('pulbaket_no'),

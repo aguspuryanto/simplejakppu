@@ -32,11 +32,15 @@ $( document ).ready(function() {
             url: "<?php echo site_url('Pidsus/pidsus_add');?>", 
             data: $("#form").serialize(),
             dataType: "json",  
+            beforeSend : function(xhr, opts){
+                $('#form-submit').text('Loading...').prop("disabled", true);
+            },
             success: function(data){
                 console.log(data, "data");
                 if(data.success == true){
                     // window.location.reload();
                 } else {
+                    $("#form").find('#showError').html(data.message);
                     $.each(data, function(key, value) {
                         console.log(key, '_key');
                         $("#form").find('#input-' + key).addClass('is-invalid');
@@ -75,7 +79,10 @@ $( document ).ready(function() {
             type: "POST",
             url: "<?=site_url('Pidsus/pidsus_note');?>", 
             data: $("#formNote").serialize(),
-            dataType: "json",  
+            dataType: "json",
+            beforeSend : function(xhr, opts){
+                $('#formNote').text('Loading...').prop("disabled", true);
+            },
             success: function(data){
                 console.log(data, "data");
                 if(data.success) {

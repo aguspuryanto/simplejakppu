@@ -73,7 +73,7 @@ $( document ).ready(function() {
             data: $("#formNote").serialize(),
             dataType: "json",  
             beforeSend : function(xhr, opts){
-                $('#form-submit').text('Loading...').prop("disabled", true);
+                $('#formNote').text('Loading...').prop("disabled", true);
             },
             success: function(data){
                 console.log(data, "data");

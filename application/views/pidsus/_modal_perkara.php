@@ -118,6 +118,8 @@
 
             <?=form_hidden('id', ''); ?>
 
+            <div id="showError" class="form-group"></div>
+
             <button type="submit" class="btn btn-primary" id="form-submit">Simpan Data</button>
             <button type="reset" class="btn btn-default">Kosongkan Data</button>
         <?=form_close();?>
