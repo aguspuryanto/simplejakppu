@@ -190,6 +190,7 @@ class Pidsus extends AUTH_Controller {
 				'pasal_tsk' => $this->input->post('pasal_tsk'),
 				'jenis_perkara' => $this->input->post('jenis_perkara'),
 				'tahap_1' => $this->input->post('tahap_1'),
+				'tahap_1_tipe' => $this->input->post('tahap_1_tipe'),
 				'tahap_1_proses' => $this->input->post('tahap_1_proses'),
 				'tahap_2' => $this->input->post('tahap_2'),
 				'limpah_pn' => $this->input->post('limpah_pn'),

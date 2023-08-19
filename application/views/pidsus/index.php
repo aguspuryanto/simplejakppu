@@ -38,17 +38,13 @@ $( document ).ready(function() {
             success: function(data){
                 console.log(data, "data");
                 if(data.success == true){
-                    // window.location.reload();
+                    window.location.reload();
                 } else {
                     $("#form").find('#showError').html(data.message);
                     $.each(data, function(key, value) {
                         console.log(key, '_key');
                         $("#form").find('#input-' + key).addClass('is-invalid');
-                        if(key != 'tahap_1_tipe') {
-                            $("#form").find('#input-' + key).parents('.form-group').find('#error').html(value);
-                        } else {
-                            $("#form").find('select#input-' + key).parents('.form-group').find('#error').html(value);
-                        }
+                        $("#form").find('#input-' + key).parents('.form-group').find('#error').html(value);
                     });
                 }
             }
@@ -104,7 +100,7 @@ $( document ).ready(function() {
 
         $.get("<?=site_url('Pidsus/pidsus_detail');?>/" + dataId, function(data, status){
             $.each(data.data, function(key, value) {
-                $('#input-' + key).val(value);
+                $('#form').find('#input-' + key).val(value);
             });
         });
     });
