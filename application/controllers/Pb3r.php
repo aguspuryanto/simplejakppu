@@ -368,4 +368,22 @@ class Pb3r extends AUTH_Controller {
 		$this->template->views('pb3r/_statistik', $data);
 	}
 
+	// BB Kelola
+	public function bbkelola_detail($id) {
+		$data['userdata'] 	= $this->userdata;
+
+		// $model = $this->M_perkara;
+		$data['data'] = $this->M_bbkelola->select_by_id($id);
+		$json = array();
+		if($data['data']) {
+			$json = array('success' => true, 'data' => $data['data']);
+		} else {
+			$json = array('success' => false, 'data' => []);
+		}
+
+		$this->output
+		->set_content_type('application/json')
+		->set_output(json_encode($json));	
+	}
+
 }
