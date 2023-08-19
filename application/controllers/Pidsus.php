@@ -277,6 +277,7 @@ class Pidsus extends AUTH_Controller {
 		->set_output(json_encode($json));
 	}
 
+	// Penahanan
 	public function tahan_detail($id) {
 		$data['userdata'] 	= $this->userdata;
 
@@ -293,6 +294,42 @@ class Pidsus extends AUTH_Controller {
 		$this->output
 		->set_content_type('application/json')
 		->set_output(json_encode($json));		
+	}
+
+	public function tahan_note() {
+		$data['userdata'] 	= $this->userdata;
+
+		$json = array();
+		$model = $this->M_penahanan;
+		if($this->input->post('id')) {
+			$id = $this->input->post('id');
+			$model->update($id, array(
+				'kajari_note' => $this->input->post('kajari_note')
+			));
+
+			$this->session->set_flashdata('success', 'Berhasil disimpan');
+			$json = array('success' => true, 'message' => 'Berhasil disimpan');
+		}
+
+		$this->output
+		->set_content_type('application/json')
+		->set_output(json_encode($json));
+	}
+
+	public function tahan_remove() {
+		$json = array();
+		$model = $this->M_penahanan;
+		if($this->input->post('id')) {
+			$id = $this->input->post('id');
+			$model->delete($id);
+
+			$this->session->set_flashdata('success', 'Berhasil terhapus');
+			$json = array('success' => true, 'message' => 'Berhasil terhapus');
+		}
+
+		$this->output
+		->set_content_type('application/json')
+		->set_output(json_encode($json));
 	}
 
 	// Mafia
