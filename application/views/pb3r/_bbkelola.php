@@ -55,38 +55,37 @@ foreach($dataInkracth as $row) {
 $newArra[] = array_merge($yearArr, $collectedData);
 ?>
 
-
+<script src="<?= base_url(); ?>assets/plugins/chartjs/v4.3.3/Chart.min.js"></script>
 <script>
-  const ctx = document.getElementById('myChart');
+  // const ctx = document.getElementById('myChart');
+  // const data = <?=json_encode($newArra);?>;
 
-  const data = <?=json_encode($newArra);?>;
-
-  new Chart(ctx, {
-    type: 'bar',
-    data: {
-      labels: data.map(row => row.year),
-      datasets: [{
-        label: 'Di Kembalikan',
-        data: data.map(row => row.dikembalikan),
-        borderWidth: 1
-      }, {
-        label: 'Di Rampas',
-        data: data.map(row => row.dirampas),
-        borderWidth: 1
-      }, {
-        label: 'Di Musnahkan',
-        data: data.map(row => row.dimusnahkan),
-        borderWidth: 1
-      }]
-    },
-    options: {
-      scales: {
-        y: {
-          beginAtZero: true
-        }
-      }
-    }
-  });
+  // new Chart(ctx, {
+  //   type: 'bar',
+  //   data: {
+  //     labels: data.map(row => row.year),
+  //     datasets: [{
+  //       label: 'Di Kembalikan',
+  //       data: data.map(row => row.dikembalikan),
+  //       borderWidth: 1
+  //     }, {
+  //       label: 'Di Rampas',
+  //       data: data.map(row => row.dirampas),
+  //       borderWidth: 1
+  //     }, {
+  //       label: 'Di Musnahkan',
+  //       data: data.map(row => row.dimusnahkan),
+  //       borderWidth: 1
+  //     }]
+  //   },
+  //   options: {
+  //     scales: {
+  //       y: {
+  //         beginAtZero: true
+  //       }
+  //     }
+  //   }
+  // });
 </script>
 
 <script type="text/javascript">
@@ -95,7 +94,7 @@ $( document ).ready(function() {
     $(".datepicker").datepicker();
     $('#error').html(" ");
 
-    // $('#example1').DataTable();
+    var table = $('#example1').DataTable();
     // var table = $('#example1').DataTable({
     //     "bFilter": false, //hide Search bar
     //     "bInfo": false, //Dont display info e.g. "Showing 1 to 4 of 4 entries"
@@ -173,7 +172,7 @@ $( document ).ready(function() {
         var dataId = $(this).attr("data-id");
         console.log(dataId, '_dataId');
 
-        $('#form input[name=id]').val(dataId);
+        $('#formInkracth input[name=id]').val(dataId);
 
         $.get("<?=site_url('pb3r/bbkelola_detail');?>/" + dataId, function(data, status){
             $.each(data.data, function(key, value) {

@@ -35,6 +35,7 @@
 
                     echo '<tr>
                         <td>'.$row->nama_terdakwa.'</td>
+                        <td>'.$row->reg_bb.'</td>
                         <td>'.$row->pasal_disangka.'</td>
                         <td>'.$row->bb.'</td>
                         <td>'.$row->pasal_terbukti.'</td>
@@ -55,7 +56,7 @@
 
 <?php //include_once('_modal_kembali.php'); ?>
 <!-- Modal -->
-<div id="myModalInkracth" class="modal fade" role="dialog">
+<div id="##myModalInkracth" class="modal fade" role="dialog">
   <div class="modal-dialog">
 
     <!-- Modal content-->
@@ -113,6 +114,8 @@
                 <?=form_input('petunjuk', '', array('class' => 'form-control', 'id' => 'input-petunjuk'));?>
                 <div id="error"></div>
             </div>
+            
+            <?=form_hidden('id', ''); ?>
 
             <button type="submit" class="btn btn-primary" id="formInkracth">Simpan Data</button>
             <button type="reset" class="btn btn-default">Kosongkan Data</button>

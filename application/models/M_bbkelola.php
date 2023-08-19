@@ -12,6 +12,7 @@ class M_bbkelola extends CI_Model {
             // ['field' => 'jmlperkara', 'label' => 'JUMLAH PERKARA','rules' => 'required'],
             // ['field' => 'keterangan', 'label' => 'KETERANGAN'],
             ['field' => 'nama_terdakwa', 'label' => 'Nama Terdakwa','rules' => 'required'],
+            ['field' => 'reg_bb', 'label' => 'Registrasi Barang Bukti','rules' => 'required'],
             ['field' => 'pasal_disangka', 'label' => 'Pasal Disangkakan','rules' => 'required'],
             ['field' => 'bb', 'label' => 'Barang Bukti','rules' => 'required'],
             ['field' => 'pasal_terbukti', 'label' => 'Pasal Terbukti','rules' => 'required'],

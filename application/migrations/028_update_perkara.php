@@ -85,5 +85,10 @@ class Migration_update_perkara extends CI_Migration {
                 'kajari_note' => array('type' => 'VARCHAR', 'constraint' => 100, 'after' => 'keterangan'))
             );
         }
+        if (!$this->db->field_exists('reg_bb', $table_name)) {
+            $this->dbforge->add_column($table_name, array(
+                'reg_bb' => array('type' => 'VARCHAR', 'constraint' => 100, 'after' => 'nama_terdakwa'))
+            );
+        }
     }
 }
