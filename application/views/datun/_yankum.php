@@ -136,6 +136,18 @@ $( document ).ready(function() {
         $(this).parents('.form-group').find('#error').html(" ");
     });
 
+    $('#form').find('select#kategori').on('change', function(e) {
+        e.preventDefault();
+        var valueId = $(this).val(); //$(this).find(":selected").val();
+        console.log(valueId, '_valueId');
+
+        $.get("<?=site_url('Datun/datun_kegiatan');?>/" + valueId, function(data, status){
+            console.log(data, "data");
+            $('#form').find('#kegiatan option').remove();
+            $('#form').find('#kegiatan').append(data);
+        });   
+    });
+
     $('.btnNote').on('click', function (e) {
         e.preventDefault();
         var dataId = $(this).attr("data-id");

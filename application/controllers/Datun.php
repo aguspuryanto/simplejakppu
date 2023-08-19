@@ -98,6 +98,7 @@ class Datun extends AUTH_Controller {
 
 			$data = array(
 				'skk' => $this->input->post('skk'),
+				'kategori' => $this->input->post('kategori'),
 				'kegiatan' => $this->input->post('kegiatan'),
 				'pemohon' => $this->input->post('pemohon'),
 				'jenis_perkara' => $this->input->post('jenis_perkara'),
@@ -135,7 +136,8 @@ class Datun extends AUTH_Controller {
 		$data['userdata'] 	= $this->userdata;
 
 		$data['model'] = $this->M_datun;
-		$data['dataDatun'] = $this->M_datun->select_all([], 'like', 'Penegakan Hukum');
+		// $data['dataDatun'] = $this->M_datun->select_all([], 'like', 'Penegakan Hukum');
+		$data['dataDatun'] = $this->M_datun->select_all(['kategori' => 'gakkum']);
 
 		$data['page'] 		= "DATUN";
 		$data['judul'] 		= "Penegakan Hukum (Gakkum)";
@@ -149,7 +151,8 @@ class Datun extends AUTH_Controller {
 
 		$data['model'] = $this->M_datun;
 		// Legal Opinian (LO), Legal Assistant (LA)
-		$data['dataDatun'] = $this->M_datun->select_all([], 'like', 'Pendapat Hukum');
+		// $data['dataDatun'] = $this->M_datun->select_all([], 'like', 'Pendapat Hukum');
+		$data['dataDatun'] = $this->M_datun->select_all(['kategori' => 'timkum']);
 
 		$data['page'] 		= "DATUN";
 		$data['judul'] 		= "Pendapat Hukum (Timkum)";
@@ -162,7 +165,8 @@ class Datun extends AUTH_Controller {
 		$data['userdata'] 	= $this->userdata;
 
 		$data['model'] = $this->M_datun;
-		$data['dataDatun'] = $this->M_datun->select_all([], 'like', 'Bantuan Hukum');
+		// $data['dataDatun'] = $this->M_datun->select_all([], 'like', 'Bantuan Hukum');
+		$data['dataDatun'] = $this->M_datun->select_all(['kategori' => 'bankum']);
 
 		$data['page'] 		= "DATUN";
 		$data['judul'] 		= "Bantuan Hukum (Bankum)";
@@ -176,7 +180,8 @@ class Datun extends AUTH_Controller {
 
 		$data['model'] = $this->M_datun;
 		// Tindakan Hukum Lain, Konsiliasi, Mediasi, Fasilitasi
-		$data['dataDatun'] = $this->M_datun->select_all([], 'like', 'Tindakan Hukum Lain');
+		// $data['dataDatun'] = $this->M_datun->select_all([], 'like', 'Tindakan Hukum Lain');
+		$data['dataDatun'] = $this->M_datun->select_all(['kategori' => 'thl']);
 
 		$data['page'] 		= "DATUN";
 		$data['judul'] 		= "Tindakan Hukum Lain (THL)";
@@ -189,7 +194,8 @@ class Datun extends AUTH_Controller {
 		$data['userdata'] 	= $this->userdata;
 
 		$data['model'] = $this->M_datun;
-		$data['dataDatun'] = $this->M_datun->select_all([], 'like', 'Pelayanan Hukum');
+		// $data['dataDatun'] = $this->M_datun->select_all([], 'like', 'Pelayanan Hukum');
+		$data['dataDatun'] = $this->M_datun->select_all(['kategori' => 'yankum']);
 
 		$data['page'] 		= "DATUN";
 		$data['judul'] 		= "Pelayanan Hukum (YANKUM)";
