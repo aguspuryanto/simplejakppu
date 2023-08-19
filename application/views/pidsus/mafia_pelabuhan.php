@@ -19,6 +19,15 @@
   </div>
 </div>
 
+<?php
+$berantasmafia_add = base_url('Pidsus/berantasmafia_add');
+$mafia_detail = base_url('Pidsus/mafia_detail');
+$mafia_note = base_url('Pidsus/mafia_note');
+$mafia_remove = base_url('Pidsus/mafia_remove');
+$mafia_tinjut = base_url('Pidsus/mafia_tinjut');
+$mafia_dokumen = base_url('Pidsus/mafia_dokumen');
+?>
+
 <script type="text/javascript">
 $( document ).ready(function() {
     var table = $('#example1').DataTable();
@@ -31,7 +40,7 @@ $( document ).ready(function() {
 
         $.ajax({
             type: "POST",
-            url: "<?=site_url('Pidsus/berantasmafia_add');?>", 
+            url: "<?=$berantasmafia_add;?>", 
             data: $("#form").serialize(),
             dataType: "json",
             beforeSend : function(xhr, opts){
@@ -61,18 +70,20 @@ $( document ).ready(function() {
         $(this).parents('.form-group').find('#error').html(" ");
     });
 
+    // Tambah Note Id
     $('.btnNote').on('click', function (e) {
         e.preventDefault();
         var dataId = $(this).attr("data-id");
         // console.log(dataId, '_dataId');
         $('#formNote input[name=id]').val(dataId);
 
-        $.get("<?=site_url('Pidsus/mafia_detail');?>/" + dataId, function(data, status){
+        $.get("<?=$mafia_detail;?>/" + dataId, function(data, status){
             console.log(data.data, "data");
             $('#formNote').find('#input-kajari_note').val(data.data.kajari_note);
         });        
     });
 
+    // Tambah Note Submit
     $('#formNote').submit(function (e) {
         e.preventDefault();
 
@@ -96,6 +107,7 @@ $( document ).ready(function() {
         });
     });
 
+    // Edit
     $('.btnEdit').on('click', function (e) {
         e.preventDefault();
         var dataId = $(this).attr("data-id");
@@ -103,13 +115,14 @@ $( document ).ready(function() {
 
         $('#form input[name=id]').val(dataId);
 
-        $.get("<?=site_url('Pidsus/mafia_detail');?>/" + dataId, function(data, status){
+        $.get("<?=$mafia_detail;?>/" + dataId, function(data, status){
             $.each(data.data, function(key, value) {
                 $('#input-' + key).val(value);
             });
         });
     });
 
+    // Remove
     $('.btnRemove').on('click', function (e) {
         e.preventDefault();
         var dataId = $(this).attr("data-id");
@@ -118,10 +131,78 @@ $( document ).ready(function() {
         if (confirm("Apakah anda yakin ingin menghapus data ini?")==true){
             // $(this).closest("tr").remove();
             table.row( $(this).parents('tr') ).remove().draw();
-            $.post("<?=site_url('Pidsus/mafia_remove');?>/", {id: dataId}, function(result){
+            $.post("<?=$mafia_remove;?>/", {id: dataId}, function(result){
                 console.log(result, "_result");
             });
         };
+    });
+
+    // Tindak Lanjut Id
+    var formTinjut = $('#formTinjut');
+    $('.btnTinjut').on('click', function (e) {
+        e.preventDefault();
+        var dataId = $(this).attr("data-id");
+        // console.log(dataId, '_dataId');
+        $(formTinjut).find('input[name=id]').val(dataId);
+
+        $.get("<?=$mafia_detail;?>/" + dataId, function(data, status){
+            console.log(data.data, "data");
+            $(formTinjut).find('#input-tindak_lanjut').val(data.data.tindak_lanjut);
+        });        
+    });
+
+    // Tindak Lanjut Submit
+    $('form#formTinjut').submit(function (e) {
+        e.preventDefault();
+
+        $.ajax({
+            type: "POST",
+            url: "<?=$mafia_tinjut;?>", 
+            data: $(formTinjut).serialize(),
+            dataType: "json",  
+            beforeSend : function(xhr, opts){
+                $(formTinjut).text('Loading...').prop("disabled", true);
+            },
+            success: function(data){
+                console.log(data, "data");
+                if(data.success) {
+                    $('#myModalTinjut').modal('hide'); 
+                    setTimeout(function(){
+                        window.location.reload();
+                    }, 1000);
+                }
+            }
+        });
+    });
+
+    // Unggah Dokumen
+    var formDokumen = $('#formDokumen');
+    $('form#formDokumen').submit(function (e) {
+        e.preventDefault();
+
+        var fd = new FormData();
+        var files = $('#input-dokumen')[0].files[0];
+        fd.append('file',files);
+
+        $.ajax({
+            type: "POST",
+            url: "<?=$mafia_dokumen;?>", 
+            data: fd,
+            contentType: false,
+            processData: false,
+            beforeSend : function(xhr, opts){
+                $(formDokumen).text('Loading...').prop("disabled", true);
+            },
+            success: function(data){
+                console.log(data, "data");
+                if(data.success) {
+                    $('#myModalDokumen').modal('hide'); 
+                    setTimeout(function(){
+                        window.location.reload();
+                    }, 1000);
+                }
+            }
+        });
     });
 });
 </script>
