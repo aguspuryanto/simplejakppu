@@ -148,6 +148,7 @@ class Datun extends AUTH_Controller {
 		$data['userdata'] 	= $this->userdata;
 
 		$data['model'] = $this->M_datun;
+		// Legal Opinian (LO), Legal Assistant (LA)
 		$data['dataDatun'] = $this->M_datun->select_all([], 'like', 'Pendapat Hukum');
 
 		$data['page'] 		= "DATUN";
@@ -174,6 +175,7 @@ class Datun extends AUTH_Controller {
 		$data['userdata'] 	= $this->userdata;
 
 		$data['model'] = $this->M_datun;
+		// Tindakan Hukum Lain, Konsiliasi, Mediasi, Fasilitasi
 		$data['dataDatun'] = $this->M_datun->select_all([], 'like', 'Tindakan Hukum Lain');
 
 		$data['page'] 		= "DATUN";
@@ -273,6 +275,30 @@ class Datun extends AUTH_Controller {
 		$this->output
 		->set_content_type('application/json')
 		->set_output(json_encode($json));
+	}
+
+	public function datun_kegiatan($kat) {
+		$data['userdata'] 	= $this->userdata;
+		
+		if($kat == 'gakkum') {
+			$html = '<option value="gakkum_ligitasi">Ligitasi</option>
+			<option value="gakkum_nonligitasi">Non Ligitasi</option>';
+		} elseif ($kat == 'timkum') {
+			$html = '<option value="timkum_lo">Legal Opinian (LO)</option>
+			<option value="timkum_la">Legal Assistant (LA)</option>';
+		} elseif ($kat == 'bankum') {
+			$html = '<option value="bankum_ligitasi">Ligitasi</option>
+			<option value="bankum_nonligitasi">Non Ligitasi</option>';
+		} elseif ($kat == 'thl') {
+			$html = '<option value="thl_kosiliasi">Kosiliasi</option>
+			<option value="thl_mediasi">Mediasi</option>
+			<option value="thl_fasilitasi">Fasilitasi</option>';
+		} elseif ($kat == 'yankum') {
+			$html = '<option value="yankum">Pelayanan Hukum</option>
+			<option value="yankum_lisan">Pelayanan Hukum Lisan</option>';
+		}
+
+		echo $html;
 	}
 }
 

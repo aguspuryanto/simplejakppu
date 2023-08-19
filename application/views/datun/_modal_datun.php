@@ -86,11 +86,40 @@
                 <?=form_input('keterangan', '', array('class' => 'form-control', 'id' => 'input-keterangan'));?>
                 <div id="error"></div>
             </div> -->
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>KATEGORI</label>
+                            <select class="form-control" name="kategori" id="kategori">
+                                <option value="">Pilih Kategori</option>
+                                <option value="gakkum">GAKKUM</option>
+                                <option value="timkum">TIMKUM</option>
+                                <option value="bankum">BANKUM</option>
+                                <option value="thl">THL</option>
+                                <option value="yankum">YANKUM</option>
+                            </select>
+                            <div id="error"></div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <?//=get_form_input($model, 'kegiatan'); ?>                        
+                        <label>KEGIATAN</label>
+                        <select class="form-control" name="kegiatan" id="kegiatan">
+                            <option value="">Pilih Kegiatan</option>
+                        </select>
+                        <div id="error"></div>
+                    </div>
+                </div>
+            </div>
             
             <?php
             foreach($model->rules() as $key => $val) {
                 // unset
                 // if($val['field'] == 'jenis_module') continue;
+                if($val['field'] == 'kegiatan') continue;
+
                 echo get_form_input($model, $val['field']);
             }
             ?>
