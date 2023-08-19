@@ -93,6 +93,12 @@ class Migration_update_perkara extends CI_Migration {
                 );
             }
         }
+        
+        if (!$this->db->field_exists('kat_kegiatan', $table_name)) {
+            $this->dbforge->add_column($table_name, array(
+                'kat_kegiatan' => array('type' => 'VARCHAR', 'constraint' => 100, 'after' => 'id'))
+            );
+        }
 
         $table_name = 'epak_mafia';
         $field_arra = ['kajari_note', 'jenis_module', 'tindak_lanjut', 'dokumen'];
