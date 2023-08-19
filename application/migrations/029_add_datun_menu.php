@@ -1,7 +1,7 @@
 <?php 
 defined('BASEPATH') OR exit('No direct script access allowed'); 
 
-class Migration_add_datun_rev extends CI_Migration { 
+class Migration_add_datun_menu extends CI_Migration { 
     public $table_name = 'epak_datun_menu';
 
     public function up() { 
