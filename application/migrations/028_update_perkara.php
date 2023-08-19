@@ -78,5 +78,12 @@ class Migration_update_perkara extends CI_Migration {
                 'jenis_module' => array('type' => 'VARCHAR', 'constraint' => 100, 'after' => 'keterangan'))
             );
         }
+
+        $table_name = 'epak_bbkelola';
+        if (!$this->db->field_exists('kajari_note', $table_name)) {
+            $this->dbforge->add_column($table_name, array(
+                'kajari_note' => array('type' => 'VARCHAR', 'constraint' => 100, 'after' => 'keterangan'))
+            );
+        }
     }
 }

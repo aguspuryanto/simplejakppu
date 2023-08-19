@@ -16,6 +16,8 @@
                     echo '<th>'.$val['label'].'</th>';
                 }
                 ?>
+                <th>CATATAN KAJARI</th>
+                <th>#</th>
             </tr>
         </thead>
         <tbody>
@@ -40,6 +42,8 @@
                         <td>'.$row->eksekusi.'</td>
                         <td>'.$row->dokumen.'</td>
                         <td>'.$row->petunjuk.'</td>
+                        <td>'.$row->kajari_note.'</td>
+                        '. get_header_table_admin($row, $userdata) . '
                     </tr>';
                     $id++;
                 }
