@@ -8,7 +8,6 @@ class Pidum extends AUTH_Controller {
 	public function __construct() {
 		parent::__construct();
 		$this->load->model('M_perkara');
-		$this->load->model('M_perkara_pidsus');
 		$this->load->model('M_penahanan');
 		$this->load->model('M_pnbp');
 		$this->load->model('M_inkracth');

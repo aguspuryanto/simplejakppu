@@ -8,8 +8,8 @@ class M_perkara extends CI_Model {
     public function rules()
     {
         return [
-            ['field' => 'pulbaket_no', 'label' => 'PULBAKET NO/ TGL/NAMA JAKSA', 'rules' => 'required'],
-            ['field' => 'penyelidik_no', 'label' => 'PENYELIDIKAN NO/ TGL/NAMA JAKSA','rules' => 'required'],
+            ['field' => 'pulbaket_no', 'label' => 'PULBAKET NO/ TGL/NAMA JAKSA', 'rules' => ''],
+            ['field' => 'penyelidik_no', 'label' => 'PENYELIDIKAN NO/ TGL/NAMA JAKSA','rules' => ''],
             ['field' => 'penyidikan_no', 'label' => 'PENYIDIKAN SPDP & P-16 NO/ TGL/NAMA JAKSA','rules' => 'required'],
             ['field' => 'instansi_asal', 'label' => 'INSTANSI ASAL','rules' => 'required'],
             ['field' => 'nama_tsk', 'label' => 'NAMA TSK/TDKW/TPDANA','rules' => 'required'],
