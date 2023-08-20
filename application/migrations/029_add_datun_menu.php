@@ -29,7 +29,6 @@ class Migration_add_datun_menu extends CI_Migration {
         $this->dbforge->add_key('id', TRUE);
         $this->dbforge->create_table($this->table_name, TRUE);
 
-
         $menu_datun = array(array(
             'nama' => "gakkum",
             'deskripsi' => "GAKKUM",
@@ -52,7 +51,30 @@ class Migration_add_datun_menu extends CI_Migration {
             'parent' => 0,
         ));
 
-        // $menu_datun = array_merge($menu_datun, []);
+        $submenu_gakkun = array(array(
+            'nama' => "gakkum_ligitasi",
+            'deskripsi' => "Ligitasi",
+            'parent' => 1,
+        ), array(
+            'nama' => "gakkum_nonligitasi",
+            'deskripsi' => "Non Ligitasi",
+            'parent' => 1,
+        ));
+
+        $menu_datun = array_merge($menu_datun, $submenu_gakkun);
+
+        $submenu_timkum = array(array(
+            'nama' => "timkum_lo",
+            'deskripsi' => "Legal Opinian (LO)",
+            'parent' => 2,
+        ), array(
+            'nama' => "timkum_la",
+            'deskripsi' => "Legal Assistant (LA)",
+            'parent' => 2,
+        ));
+
+        $menu_datun = array_merge($menu_datun, $submenu_timkum);
+        
         $this->db->insert_batch($this->table_name, $menu_datun);
     }
 
