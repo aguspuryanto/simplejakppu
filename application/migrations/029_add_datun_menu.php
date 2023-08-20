@@ -49,9 +49,7 @@ class Migration_add_datun_menu extends CI_Migration {
             'nama' => "yankum",
             'deskripsi' => "YANKUM",
             'parent' => 0,
-        ));
-
-        $submenu_gakkun = array(array(
+        ), array(
             'nama' => "gakkum_ligitasi",
             'deskripsi' => "Ligitasi",
             'parent' => 1,
@@ -59,11 +57,7 @@ class Migration_add_datun_menu extends CI_Migration {
             'nama' => "gakkum_nonligitasi",
             'deskripsi' => "Non Ligitasi",
             'parent' => 1,
-        ));
-
-        $menu_datun = array_merge($menu_datun, $submenu_gakkun);
-
-        $submenu_timkum = array(array(
+        ), array(
             'nama' => "timkum_lo",
             'deskripsi' => "Legal Opinian (LO)",
             'parent' => 2,
@@ -71,10 +65,35 @@ class Migration_add_datun_menu extends CI_Migration {
             'nama' => "timkum_la",
             'deskripsi' => "Legal Assistant (LA)",
             'parent' => 2,
-        ));
-
-        $menu_datun = array_merge($menu_datun, $submenu_timkum);
-        
+        ), array(
+            'nama' => "bankum_ligitasi",
+            'deskripsi' => "Ligitasi",
+            'parent' => 3,
+        ), array(
+            'nama' => "bankum_nonligitasi",
+            'deskripsi' => "Non Ligitasi",
+            'parent' => 3,
+        ), array(
+            'nama' => "thl_kosiliasi",
+            'deskripsi' => "Kosiliasi",
+            'parent' => 4,
+        ), array(
+            'nama' => "thl_mediasi",
+            'deskripsi' => "Mediasi",
+            'parent' => 4,
+        ), array(
+            'nama' => "thl_fasilitasi",
+            'deskripsi' => "Fasilitasi",
+            'parent' => 4,
+        ), array(
+            'nama' => "yankum",
+            'deskripsi' => "Pelayanan Hukum",
+            'parent' => 5,
+        ), array(
+            'nama' => "yankum_lisan",
+            'deskripsi' => "Pelayanan Hukum Lisan",
+            'parent' => 5,
+        ));        
         $this->db->insert_batch($this->table_name, $menu_datun);
     }
 

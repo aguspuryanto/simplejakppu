@@ -286,22 +286,29 @@ class Datun extends AUTH_Controller {
 	public function datun_kegiatan($kat) {
 		$data['userdata'] 	= $this->userdata;
 		
-		if($kat == 'gakkum') {
-			$html = '<option value="gakkum_ligitasi">Ligitasi</option>
-			<option value="gakkum_nonligitasi">Non Ligitasi</option>';
-		} elseif ($kat == 'timkum') {
-			$html = '<option value="timkum_lo">Legal Opinian (LO)</option>
-			<option value="timkum_la">Legal Assistant (LA)</option>';
-		} elseif ($kat == 'bankum') {
-			$html = '<option value="bankum_ligitasi">Ligitasi</option>
-			<option value="bankum_nonligitasi">Non Ligitasi</option>';
-		} elseif ($kat == 'thl') {
-			$html = '<option value="thl_kosiliasi">Kosiliasi</option>
-			<option value="thl_mediasi">Mediasi</option>
-			<option value="thl_fasilitasi">Fasilitasi</option>';
-		} elseif ($kat == 'yankum') {
-			$html = '<option value="yankum">Pelayanan Hukum</option>
-			<option value="yankum_lisan">Pelayanan Hukum Lisan</option>';
+		$this->load->model('M_datun_menu');
+		// if($kat == 'gakkum') {
+		// 	$html = '<option value="gakkum_ligitasi">Ligitasi</option>
+		// 	<option value="gakkum_nonligitasi">Non Ligitasi</option>';
+		// } elseif ($kat == 'timkum') {
+		// 	$html = '<option value="timkum_lo">Legal Opinian (LO)</option>
+		// 	<option value="timkum_la">Legal Assistant (LA)</option>';
+		// } elseif ($kat == 'bankum') {
+		// 	$html = '<option value="bankum_ligitasi">Ligitasi</option>
+		// 	<option value="bankum_nonligitasi">Non Ligitasi</option>';
+		// } elseif ($kat == 'thl') {
+		// 	$html = '<option value="thl_kosiliasi">Kosiliasi</option>
+		// 	<option value="thl_mediasi">Mediasi</option>
+		// 	<option value="thl_fasilitasi">Fasilitasi</option>';
+		// } elseif ($kat == 'yankum') {
+		// 	$html = '<option value="yankum">Pelayanan Hukum</option>
+		// 	<option value="yankum_lisan">Pelayanan Hukum Lisan</option>';
+		// }
+
+		$menu = $this->M_datun_menu->select_all(['parent' => $kat]);
+		$html = '';
+		foreach($menu as $key => $val) {
+			$html .= '<option value="'.$val->nama.'">'.$val->deskripsi.'</option>';
 		}
 
 		echo $html;

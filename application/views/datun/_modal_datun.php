@@ -94,11 +94,11 @@
                             <label>KATEGORI</label>
                             <select class="form-control" name="kategori" id="kategori">
                                 <option value="">Pilih Kategori</option>
-                                <option value="gakkum">GAKKUM</option>
-                                <option value="timkum">TIMKUM</option>
-                                <option value="bankum">BANKUM</option>
-                                <option value="thl">THL</option>
-                                <option value="yankum">YANKUM</option>
+                                <option value="1">GAKKUM</option>
+                                <option value="2">TIMKUM</option>
+                                <option value="3">BANKUM</option>
+                                <option value="4">THL</option>
+                                <option value="5">YANKUM</option>
                             </select>
                             <div id="error"></div>
                         </div>

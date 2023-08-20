@@ -134,12 +134,14 @@ $( document ).ready(function() {
         e.preventDefault();
         var valueId = $(this).val(); //$(this).find(":selected").val();
         console.log(valueId, '_valueId');
-
-        $.get("<?=site_url('Datun/datun_kegiatan');?>/" + valueId, function(data, status){
-            console.log(data, "data");
-            $('#form').find('#kegiatan option').remove();
-            $('#form').find('#kegiatan').append(data);
-        });   
+        
+        if(valueId) {
+            $.get("<?=site_url('Datun/datun_kegiatan');?>/" + valueId, function(data, status){
+                console.log(data, "data");
+                $('#form').find('#kegiatan option').remove();
+                $('#form').find('#kegiatan').append(data);
+            });
+        }
     });
 
     $('.btnNote').on('click', function (e) {
