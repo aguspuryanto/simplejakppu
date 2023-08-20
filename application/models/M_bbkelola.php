@@ -18,7 +18,7 @@ class M_bbkelola extends CI_Model {
             ['field' => 'pasal_terbukti', 'label' => 'Pasal Terbukti','rules' => 'required'],
             ['field' => 'putusan', 'label' => 'Putusan','rules' => 'required'],
             ['field' => 'eksekusi', 'label' => 'Eksekusi','rules' => 'required'],
-            ['field' => 'dokumen', 'label' => 'Dokumen','rules' => 'required'],
+            ['field' => 'dokumen', 'label' => 'Dokumen','rules' => ''],
             ['field' => 'petunjuk', 'label' => 'Petunjuk Kajari']
         ];
     }
@@ -59,6 +59,7 @@ class M_bbkelola extends CI_Model {
             $this->db->where($options);
         }
 
+        // $this->db->order_by('id', 'asc');
         $data = $this->db->get($this->table_name);
         return $data->result();
     }

@@ -97,6 +97,7 @@
                     'dikembalikan'  => 'Di Kembalikan',
                     'dirampas'    => 'Di Rampas',
                     'dimusnahkan'  => 'Di Musnahkan',
+                    'dikelola'  => 'Dalam Pengelolaan',
                 ];
 
                 echo form_dropdown('putusan', $options, '', 'id="input-putusan" class="form-control"');

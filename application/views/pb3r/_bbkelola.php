@@ -22,7 +22,10 @@ $( document ).ready(function() {
     $(".datepicker").datepicker();
     $('#error').html(" ");
 
-    var table = $('#example1').DataTable();
+    var table = $('#example1').DataTable({
+        order: [[0, 'desc']]
+    });
+
     $('button#formInkracth').on('click', function (e) {
         e.preventDefault();
 

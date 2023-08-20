@@ -35,8 +35,8 @@ class Pb3r extends AUTH_Controller {
 		$data['userdata'] 	= $this->userdata;
 
 		$data['model'] = $this->M_bbkelola;
-		$options = array();
-		$data['dataInkracth'] = $this->M_bbkelola->select_all($options);
+		// $options = array();
+		$data['dataInkracth'] = $this->M_bbkelola->select_all();
 
 		$data['page'] 		= "PB3R";
 		$data['judul'] 		= "BARANG BUKTI & BARANG RAMPASAN";
@@ -71,6 +71,7 @@ class Pb3r extends AUTH_Controller {
 
 			$data = array(
 				'nama_terdakwa' => $this->input->post('nama_terdakwa'),
+				'reg_bb' => $this->input->post('reg_bb'),
 				'pasal_disangka' => $this->input->post('pasal_disangka'),
 				'bb' => $this->input->post('bb'),
 				'pasal_terbukti' => $this->input->post('pasal_terbukti'),
