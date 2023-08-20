@@ -137,7 +137,7 @@ class Datun extends AUTH_Controller {
 
 		$data['model'] = $this->M_datun;
 		// $data['dataDatun'] = $this->M_datun->select_all([], 'like', 'Penegakan Hukum');
-		$data['dataDatun'] = $this->M_datun->select_all(['kategori' => 'gakkum']);
+		$data['dataDatun'] = $this->M_datun->select_all(['kategori' => 1]);
 
 		$data['page'] 		= "DATUN";
 		$data['judul'] 		= "Penegakan Hukum (Gakkum)";
@@ -152,7 +152,7 @@ class Datun extends AUTH_Controller {
 		$data['model'] = $this->M_datun;
 		// Legal Opinian (LO), Legal Assistant (LA)
 		// $data['dataDatun'] = $this->M_datun->select_all([], 'like', 'Pendapat Hukum');
-		$data['dataDatun'] = $this->M_datun->select_all(['kategori' => 'timkum']);
+		$data['dataDatun'] = $this->M_datun->select_all(['kategori' => 2]);
 
 		$data['page'] 		= "DATUN";
 		$data['judul'] 		= "Pendapat Hukum (Timkum)";
@@ -166,7 +166,7 @@ class Datun extends AUTH_Controller {
 
 		$data['model'] = $this->M_datun;
 		// $data['dataDatun'] = $this->M_datun->select_all([], 'like', 'Bantuan Hukum');
-		$data['dataDatun'] = $this->M_datun->select_all(['kategori' => 'bankum']);
+		$data['dataDatun'] = $this->M_datun->select_all(['kategori' => 3]);
 
 		$data['page'] 		= "DATUN";
 		$data['judul'] 		= "Bantuan Hukum (Bankum)";
@@ -181,7 +181,7 @@ class Datun extends AUTH_Controller {
 		$data['model'] = $this->M_datun;
 		// Tindakan Hukum Lain, Konsiliasi, Mediasi, Fasilitasi
 		// $data['dataDatun'] = $this->M_datun->select_all([], 'like', 'Tindakan Hukum Lain');
-		$data['dataDatun'] = $this->M_datun->select_all(['kategori' => 'thl']);
+		$data['dataDatun'] = $this->M_datun->select_all(['kategori' => 4]);
 
 		$data['page'] 		= "DATUN";
 		$data['judul'] 		= "Tindakan Hukum Lain (THL)";
@@ -195,7 +195,7 @@ class Datun extends AUTH_Controller {
 
 		$data['model'] = $this->M_datun;
 		// $data['dataDatun'] = $this->M_datun->select_all([], 'like', 'Pelayanan Hukum');
-		$data['dataDatun'] = $this->M_datun->select_all(['kategori' => 'yankum']);
+		$data['dataDatun'] = $this->M_datun->select_all(['kategori' => 5]);
 
 		$data['page'] 		= "DATUN";
 		$data['judul'] 		= "Pelayanan Hukum (YANKUM)";

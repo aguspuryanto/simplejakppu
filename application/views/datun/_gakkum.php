@@ -134,7 +134,7 @@ $( document ).ready(function() {
         e.preventDefault();
         var valueId = $(this).val(); //$(this).find(":selected").val();
         console.log(valueId, '_valueId');
-        
+
         if(valueId) {
             $.get("<?=site_url('Datun/datun_kegiatan');?>/" + valueId, function(data, status){
                 console.log(data, "data");
@@ -187,6 +187,7 @@ $( document ).ready(function() {
         $('#form input[name=id]').val(dataId);
 
         $.get("<?=site_url('Datun/datun_detail');?>/" + dataId, function(data, status){
+            console.log(data, "data");
             $.each(data.data, function(key, value) {
                 $('#input-' + key).val(value);
             });
