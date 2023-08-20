@@ -2,7 +2,6 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Pidum extends AUTH_Controller {
-	public $table_name = 'epak_perkara';
 	public $jenis_module = 'pidum';
 
 	public function __construct() {
@@ -69,7 +68,7 @@ class Pidum extends AUTH_Controller {
 		$data['userdata'] 	= $this->userdata;
 
 		$data['model'] = $this->M_perkara;
-		$data['dataPidum'] = $this->M_perkara->select_all();
+		$data['dataPidum'] = $this->M_perkara->select_all(['jenis_module'=>$this->jenis_module]);
 		$data['dataPenahanan'] = $this->M_penahanan->select_all();
 		$data['dataPnbp'] = $this->M_pnbp->select_all();
 		
@@ -164,8 +163,6 @@ class Pidum extends AUTH_Controller {
 
 			if($this->input->post('id')) {
 				$id = $this->input->post('id');	
-				// $this->db->where('id', $id);
-				// $this->db->update('$this->table_name', $data);
 				$model->update($id, $data);
 				
 			} else {
@@ -214,8 +211,6 @@ class Pidum extends AUTH_Controller {
 
 			if($this->input->post('id')) {
 				$id = $this->input->post('id');	
-				// $this->db->where('id', $id);
-				// $this->db->update('$this->table_name', $data);
 				$model->update($id, $data);				
 			} else {
 				$model->save($data);
@@ -432,10 +427,6 @@ class Pidum extends AUTH_Controller {
 
 		if($this->input->post('id')) {
 			$id = $this->input->post('id');
-			// $this->db->where('id', $id);
-			// $this->db->update($this->table_name, array(
-			// 	'kajari_note' => $this->input->post('kajari_note')
-			// ));
 			$model->update($id, array(
 				'kajari_note' => $this->input->post('kajari_note')
 			));
@@ -457,8 +448,6 @@ class Pidum extends AUTH_Controller {
 		$json = array();
 		if($this->input->post('id')) {
 			$id = $this->input->post('id');
-			// $this->db->where('id', $id);
-			// $this->db->delete($this->table_name);
 			$model->delete($id);
             $this->session->set_flashdata('success', 'Berhasil terhapus');
 			$json = array('success' => true, 'message' => 'Berhasil terhapus');
@@ -478,10 +467,6 @@ class Pidum extends AUTH_Controller {
 
 		if($this->input->post('id')) {
 			$id = $this->input->post('id');
-			// $this->db->where('id', $id);
-			// $this->db->update($this->table_name, array(
-			// 	'kajari_note' => $this->input->post('kajari_note')
-			// ));
 			$model->update($id, array(
 				'kajari_note' => $this->input->post('kajari_note')
 			));
@@ -520,8 +505,6 @@ class Pidum extends AUTH_Controller {
 
 		if($this->input->post('id')) {
 			$id = $this->input->post('id');
-			// $this->db->where('id', $id);
-			// $this->db->delete($this->table_name);
 			$model->delete($id);
 
 			$this->session->set_flashdata('success', 'Berhasil terhapus');
@@ -542,10 +525,6 @@ class Pidum extends AUTH_Controller {
 
 		if($this->input->post('id')) {
 			$id = $this->input->post('id');
-			// $this->db->where('id', $id);
-			// $this->db->update($this->table_name, array(
-			// 	'kajari_note' => $this->input->post('kajari_note')
-			// ));
 			$model->update($id, array(
 				'kajari_note' => $this->input->post('kajari_note')
 			));
@@ -582,8 +561,6 @@ class Pidum extends AUTH_Controller {
 
 		if($this->input->post('id')) {
 			$id = $this->input->post('id');
-			// $this->db->where('id', $id);
-			// $this->db->delete($this->table_name);
 			$model->delete($id);
 
 			$this->session->set_flashdata('success', 'Berhasil terhapus');

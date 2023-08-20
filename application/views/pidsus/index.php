@@ -33,19 +33,20 @@ $( document ).ready(function() {
             data: $("#form").serialize(),
             dataType: "json",  
             beforeSend : function(xhr, opts){
-                $('#form-submit').text('Loading...').prop("disabled", true);
+                // $('#form-submit').text('Loading...').prop("disabled", true);
             },
             success: function(data){
                 console.log(data, "data");
                 if(data.success == true){
                     window.location.reload();
                 } else {
-                    $("#form").find('#showError').html(data.message);
+                    // $("#form").find('#showError').html(data.message);
                     $.each(data, function(key, value) {
                         console.log(key, '_key');
                         $("#form").find('#input-' + key).addClass('is-invalid');
                         $("#form").find('#input-' + key).parents('.form-group').find('#error').html(value);
                     });
+                    $("#myModalPerkara").animate({ scrollTop: 0 }, "slow");
                 }
             }
         });
