@@ -45,6 +45,14 @@ class M_datun_menu extends CI_Model {
         return $data->row();
     }
 
+    public function select_by_kolom($options) {
+        if($options) {
+            $this->db->where($options);
+        }
+        $data = $this->db->get($this->table_name);
+        return $data->row();
+    }
+
     public function select_all($options = "", $search_type='where', $search_val='') {
         if($options) {
             $this->db->where($options);

@@ -10,6 +10,7 @@ class Datun extends AUTH_Controller {
 		$this->load->model('M_penahanan');
 		$this->load->model('M_pnbp');
 		$this->load->model('M_datun');
+		$this->load->model('M_datun_menu');
 	}
 
 	public function index() {
@@ -96,10 +97,13 @@ class Datun extends AUTH_Controller {
 			// 	'keterangan' => $this->input->post('keterangan'),
 			// );
 
+			// kategori
+			$kegiatanRow = $this->M_datun_menu->select_by_kolom(['nama' => $this->input->post('kegiatan')]);
+
 			$data = array(
 				'skk' => $this->input->post('skk'),
 				'kategori' => $this->input->post('kategori'),
-				'kegiatan' => $this->input->post('kegiatan'),
+				'kegiatan' => ($kegiatanRow) ? $kegiatanRow->deskripsi : $this->input->post('kegiatan'),
 				'pemohon' => $this->input->post('pemohon'),
 				'jenis_perkara' => $this->input->post('jenis_perkara'),
 				'dok_sp1' => $this->input->post('dok_sp1'),
@@ -306,7 +310,7 @@ class Datun extends AUTH_Controller {
 		// }
 
 		$menu = $this->M_datun_menu->select_all(['parent' => $kat]);
-		$html = '';
+		$html = '<option value="">Pilih Kegiatan</option>';
 		foreach($menu as $key => $val) {
 			$html .= '<option value="'.$val->nama.'">'.$val->deskripsi.'</option>';
 		}

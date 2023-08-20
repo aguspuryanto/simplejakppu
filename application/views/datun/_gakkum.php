@@ -138,8 +138,9 @@ $( document ).ready(function() {
         if(valueId) {
             $.get("<?=site_url('Datun/datun_kegiatan');?>/" + valueId, function(data, status){
                 console.log(data, "data");
-                $('#form').find('#kegiatan option').remove();
-                $('#form').find('#kegiatan').append(data);
+                // $('#form').find('#kegiatan option').remove().end();
+                // $('#form').find('#kegiatan').append(data);
+                $('#kegiatan').find('option').remove().end().append(data);
             });
         }
     });
@@ -186,11 +187,21 @@ $( document ).ready(function() {
 
         $('#form input[name=id]').val(dataId);
 
+        let promise = new Promise(function(resolve, reject) {
+            // resolve(dataId);
+        });
+
         $.get("<?=site_url('Datun/datun_detail');?>/" + dataId, function(data, status){
             console.log(data, "data");
             $.each(data.data, function(key, value) {
-                $('#input-' + key).val(value);
+                if(key == 'kategori') {
+                    $('#kategori').val(value).change();
+                } else {
+                    $('#input-' + key).val(value);
+                }
             });
+
+            $('#form input[name=kegiatan]').val(data.data.kegiatan);
         });
     });
 
