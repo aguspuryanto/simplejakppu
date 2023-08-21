@@ -1,20 +1,6 @@
 <div class="table-responsive">
     <table id="example1" class="table table-striped table-bordered" style="width:100%">
         <thead>
-            <!-- <tr>
-                <th>NO</th>
-                <th>NAMA TERSANGKA/TERDAKWA/TERPIDANA</th>
-                <th>JENIS KELAMIN</th>
-                <th>JENIS PERKARA/PERMASALAHAN</th>
-                <th>PASAL DISANGKAKAN/ DIDAKWAKAN/ DITUNTUTAN/ TERBUKTI</th>
-                <th>SURAT PERINTAH PENAHANAN/JENIS PENAHANAN</th>
-                <th>LOKASI PENAHANAN</th>
-                <th>KEADAAN TAHANAN</th>
-                <th>TAHAP PERKARA</th>
-                <th>KET.</th>
-                <th>CATATAN KAJARI</th>
-                <th>#</th>
-            </tr> -->
             <?=get_header_table_inkracth($model, [], '<th>CATATAN KAJARI</th>
             <th>TINDAK LANJUT</th>
             <th>DOKUMEN</th>
