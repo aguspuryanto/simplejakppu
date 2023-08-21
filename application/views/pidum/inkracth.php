@@ -198,6 +198,8 @@ $( document ).ready(function() {
                     setTimeout(function(){
                         window.location.reload();
                     }, 1000);
+                } else {
+                    $('<p class="text-danger">' + data.message + '</p>').insertBefore('#formDokumen');
                 }
             }
         });

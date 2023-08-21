@@ -596,6 +596,10 @@ class Pidum extends AUTH_Controller {
 	public function inkracth_dokumen() {
 		$data['userdata'] 	= $this->userdata;
 
+		if (!file_exists('./uploads')) {
+			mkdir('./uploads', 0777, true);
+		}
+
 		$config['upload_path']="./uploads"; //path folder file upload
         $config['allowed_types']='pdf|doc|docx|gif|jpg|png'; //type file yang boleh di upload
         $config['encrypt_name'] = TRUE; //enkripsi file name upload
