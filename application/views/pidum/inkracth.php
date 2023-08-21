@@ -165,6 +165,13 @@ $( document ).ready(function() {
 
     // Unggah Dokumen
     var formDokumen = $('#formDokumen');
+    $(document).on('click', '.btnDokumen', function (e) {
+        e.preventDefault();
+        var dataId = $(this).attr("data-id");
+        // console.log(dataId, '_dataId');
+        $(formDokumen).find('input[name=id]').val(dataId);
+    });
+
     $('form#formDokumen').submit(function (e) {
         e.preventDefault();
 
@@ -175,11 +182,14 @@ $( document ).ready(function() {
         $.ajax({
             type: "POST",
             url: "<?=$inkracth_dokumen;?>", 
-            data: fd,
+            // data: fd,
+            data:new FormData(this),
             contentType: false,
             processData: false,
+            cache: false,
+            async: false,
             beforeSend : function(xhr, opts){
-                $(formDokumen).text('Loading...').prop("disabled", true);
+                // $(formDokumen).text('Loading...').prop("disabled", true);
             },
             success: function(data){
                 console.log(data, "data");

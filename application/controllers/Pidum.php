@@ -571,6 +571,67 @@ class Pidum extends AUTH_Controller {
 		->set_content_type('application/json')
 		->set_output(json_encode($json));
 	}
+
+	public function inkracth_tinjut() {
+		$data['userdata'] 	= $this->userdata;
+
+		$json = array();
+		$model = $this->M_inkracth;
+
+		if($this->input->post('id')) {
+			$id = $this->input->post('id');
+			$model->update($id, array(
+				'tindak_lanjut' => $this->input->post('tindak_lanjut')
+			));
+
+			$this->session->set_flashdata('success', 'Berhasil disimpan');
+			$json = array('success' => true, 'message' => 'Berhasil disimpan');
+		}
+
+		$this->output
+		->set_content_type('application/json')
+		->set_output(json_encode($json));
+	}
+
+	public function inkracth_dokumen() {
+		$data['userdata'] 	= $this->userdata;
+
+		$config['upload_path']="./uploads"; //path folder file upload
+        $config['allowed_types']='pdf|doc|docx|gif|jpg|png'; //type file yang boleh di upload
+        $config['encrypt_name'] = TRUE; //enkripsi file name upload
+         
+        $this->load->library('upload',$config); //call library upload 
+
+		$json = array();
+		$model = $this->M_inkracth;
+
+		if (!$this->upload->do_upload('dokumen')) {
+			$json = array(
+				'success' => false,
+				'message' => $this->upload->display_errors()
+			);
+		} else {
+			//upload file
+			$data = array('upload_data' => $this->upload->data()); //ambil file name yang diupload
+			$dokumen = $data['upload_data']['file_name']; //set file name ke variable image
+
+			$id = $this->input->post('id');
+			$model->update($id, array(
+				'dokumen' => $dokumen
+			));
+
+			$this->session->set_flashdata('success', 'Berhasil disimpan');
+			$json = array('success' => true, 'message' => 'Berhasil disimpan');
+			$json = array_merge($json, array(
+				'data' => $data,
+				'dokumen' => $dokumen,
+			));
+		}
+
+		$this->output
+		->set_content_type('application/json')
+		->set_output(json_encode($json));
+	}
 }
 
 /* End of file Pidum.php */
