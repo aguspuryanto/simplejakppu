@@ -5,20 +5,10 @@
 <div class="table-responsive">
     <table id="example1" class="table table-striped table-bordered" style="width:100%">
         <thead>
-            <?//=get_header_table($model);?>
-            <tr>
-                <!-- <th>Tahun</th>
-                <th>Jumlah BB</th>
-                <th>Jumlah Perkara</th>
-                <th>Keterangan</th> -->
-                <?php
-                foreach($model->rules() as $key => $val) {
-                    echo '<th>'.$val['label'].'</th>';
-                }
-                ?>
-                <th>CATATAN KAJARI</th>
-                <th>#</th>
-            </tr>
+            <?=get_header_table_inkracth($model, ['dokumen'], '<th>CATATAN KAJARI</th>
+            <th>TINDAK LANJUT</th>
+            <th>DOKUMEN</th>
+            <th>#</th>');?>
         </thead>
         <tbody>
             <?php
@@ -26,12 +16,7 @@
             if($dataInkracth) :
                 $id=1;
                 foreach($dataInkracth as $row) {
-                    // echo '<tr>
-                    //     <td>'.$row->tahun.'</td>
-                    //     <td>'.$row->jmlbb.'</td>
-                    //     <td>'.$row->jmlperkara.'</td>
-                    //     <td>'.$row->keterangan.'</td>
-                    // </tr>';
+                    $dokUrl = ($row->dokumen) ? '<a href="'.base_url('Pidum/download/') . $row->dokumen.'" class="btn btn-link btn-block">Dokumen</a>' : '#';
 
                     echo '<tr>
                         <td>'.$row->nama_terdakwa.'</td>
@@ -44,6 +29,8 @@
                         <td>'.$row->dokumen.'</td>
                         <td>'.$row->petunjuk.'</td>
                         <td>'.$row->kajari_note.'</td>
+                        <td>'.$row->tindak_lanjut.'</td>
+                        <td>'.$dokUrl.'</td>
                         '. get_header_table_admin($row, $userdata) . '
                     </tr>';
                     $id++;

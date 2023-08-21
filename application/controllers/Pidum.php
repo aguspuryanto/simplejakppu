@@ -780,8 +780,8 @@ class Pidum extends AUTH_Controller {
 		// $data['data'] = $this->M_inkracth->select_by_id($id);
 		// $filename = $data['data']->dokumen;
 
-		$data = file_get_contents(base_url('/uploads/'.$filename));
-		force_download($filename, $data);
+		$data = @file_get_contents(base_url('/uploads/'.$filename));
+		if($data) force_download($filename, $data);
 	}
 }
 
