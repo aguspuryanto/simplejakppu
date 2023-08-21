@@ -25,12 +25,12 @@
                         <td>'.$row->nup.'</td>
                         <td>'.$row->kondisi.'</td>
                         <td>'.$row->merk_tipe.'</td>
-                        <td>'.$row->tgl_perolehan.'</td>
+                        <td>'.date('Y-m-d', strtotime($row->tgl_perolehan)).'</td>
                         <td>'.$row->nilai_perolehan.'</td>
                         <td>'.$row->kuantiti.'</td>
                         <td>'.$row->status_kelola.'</td>
                         <td>'.$row->no_psp.'</td>
-                        <td>'.$row->tgl_psp.'</td>
+                        <td>'.date('Y-m-d', strtotime($row->tgl_psp)).'</td>
                         <td>'.$row->nobpkb.'</td>
                         <td>'.$row->nopol.'</td>
                         <td>'.$row->pemakai.'</td>
