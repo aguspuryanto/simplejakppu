@@ -20,12 +20,12 @@
 </div>
 
 <?php
-$berantasmafia_add = base_url('Pidsus/berantasmafia_add');
-$mafia_detail = base_url('Pidsus/mafia_detail');
-$mafia_note = base_url('Pidsus/mafia_note');
-$mafia_remove = base_url('Pidsus/mafia_remove');
-$mafia_tinjut = base_url('Pidsus/mafia_tinjut');
-$mafia_dokumen = base_url('Pidsus/mafia_dokumen');
+$Urladd = base_url('Pidsus/berantasmafia_add');
+$Urldetail = base_url('Pidsus/mafia_detail');
+$Urlnote = base_url('Pidsus/mafia_note');
+$Urlremove = base_url('Pidsus/mafia_remove');
+$Urltinjut = base_url('Pidsus/mafia_tinjut');
+$Urldokumen = base_url('Pidsus/mafia_dokumen');
 ?>
 
 <script type="text/javascript">
@@ -40,7 +40,7 @@ $( document ).ready(function() {
 
         $.ajax({
             type: "POST",
-            url: "<?=$berantasmafia_add;?>", 
+            url: "<?=$Urladd;?>", 
             data: $("#form").serialize(),
             dataType: "json",
             beforeSend : function(xhr, opts){
@@ -77,7 +77,7 @@ $( document ).ready(function() {
         // console.log(dataId, '_dataId');
         $('#formNote input[name=id]').val(dataId);
 
-        $.get("<?=$mafia_detail;?>/" + dataId, function(data, status){
+        $.get("<?=$Urldetail;?>/" + dataId, function(data, status){
             console.log(data.data, "data");
             $('#formNote').find('#input-kajari_note').val(data.data.kajari_note);
         });        
@@ -89,7 +89,7 @@ $( document ).ready(function() {
 
         $.ajax({
             type: "POST",
-            url: "<?=site_url('Pidsus/mafia_note');?>", 
+            url: "<?=$Urlnote;?>", 
             data: $("#formNote").serialize(),
             dataType: "json",  
             beforeSend : function(xhr, opts){
@@ -115,7 +115,7 @@ $( document ).ready(function() {
 
         $('#form input[name=id]').val(dataId);
 
-        $.get("<?=$mafia_detail;?>/" + dataId, function(data, status){
+        $.get("<?=$Urldetail;?>/" + dataId, function(data, status){
             $.each(data.data, function(key, value) {
                 $('#input-' + key).val(value);
             });
@@ -131,7 +131,7 @@ $( document ).ready(function() {
         if (confirm("Apakah anda yakin ingin menghapus data ini?")==true){
             // $(this).closest("tr").remove();
             table.row( $(this).parents('tr') ).remove().draw();
-            $.post("<?=$mafia_remove;?>/", {id: dataId}, function(result){
+            $.post("<?=$Urlremove;?>/", {id: dataId}, function(result){
                 console.log(result, "_result");
             });
         };
@@ -139,13 +139,13 @@ $( document ).ready(function() {
 
     // Tindak Lanjut Id
     var formTinjut = $('#formTinjut');
-    $('.btnTinjut').on('click', function (e) {
+    $(document).on('click', '.btnTinjut', function (e) {
         e.preventDefault();
         var dataId = $(this).attr("data-id");
         // console.log(dataId, '_dataId');
         $(formTinjut).find('input[name=id]').val(dataId);
 
-        $.get("<?=$mafia_detail;?>/" + dataId, function(data, status){
+        $.get("<?=$Urldetail;?>/" + dataId, function(data, status){
             console.log(data.data, "data");
             $(formTinjut).find('#input-tindak_lanjut').val(data.data.tindak_lanjut);
         });        
@@ -157,7 +157,7 @@ $( document ).ready(function() {
 
         $.ajax({
             type: "POST",
-            url: "<?=$mafia_tinjut;?>", 
+            url: "<?=$Urltinjut;?>", 
             data: $(formTinjut).serialize(),
             dataType: "json",  
             beforeSend : function(xhr, opts){
@@ -177,6 +177,13 @@ $( document ).ready(function() {
 
     // Unggah Dokumen
     var formDokumen = $('#formDokumen');
+    $(document).on('click', '.btnDokumen', function (e) {
+        e.preventDefault();
+        var dataId = $(this).attr("data-id");
+        // console.log(dataId, '_dataId');
+        $(formDokumen).find('input[name=id]').val(dataId);
+    });
+
     $('form#formDokumen').submit(function (e) {
         e.preventDefault();
 
@@ -186,12 +193,15 @@ $( document ).ready(function() {
 
         $.ajax({
             type: "POST",
-            url: "<?=$mafia_dokumen;?>", 
-            data: fd,
+            url: "<?=$Urldokumen;?>", 
+            // data: fd,
+            data:new FormData(this),
             contentType: false,
             processData: false,
+            cache: false,
+            async: false,
             beforeSend : function(xhr, opts){
-                $(formDokumen).text('Loading...').prop("disabled", true);
+                // $(formDokumen).text('Loading...').prop("disabled", true);
             },
             success: function(data){
                 console.log(data, "data");
@@ -200,6 +210,8 @@ $( document ).ready(function() {
                     setTimeout(function(){
                         window.location.reload();
                     }, 1000);
+                } else {
+                    $('<p class="text-danger">' + data.message + '</p>').insertBefore('#formDokumen');
                 }
             }
         });
