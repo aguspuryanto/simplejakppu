@@ -25,7 +25,7 @@
                 <th>DOKUMEN</th>
                 <?=(!isUserStaff($userdata)) ? '<th>#</th>' : ''; ?>
             </tr> -->
-            <?=get_header_table_custom($model, '', '<th>CATATAN KAJARI</th>
+            <?=get_header_table_custom($model, ['pulbaket_no', 'penyelidik_no', 'jenis_module'], '<th>CATATAN KAJARI</th>
             <th>TINDAK LANJUT</th>
             <th>DOKUMEN</th>
             <th>#</th>');?>

@@ -138,7 +138,7 @@
 		// echo json_encode($field);
 		if(!$field || empty($field)) {
 			$field = array('jenis_module');
-			echo json_encode($field);
+			// echo json_encode($field);
 		}
 
 		foreach ($model->rules() as $key => $object) {
