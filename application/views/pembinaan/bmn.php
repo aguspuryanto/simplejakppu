@@ -21,7 +21,7 @@
 
 <script type="text/javascript">
 $( document ).ready(function() {
-    $('#example1').DataTable();
+    var table = $('#example1').DataTable();
     $(".datepicker").datepicker();
     $('#error').html(" ");
 
@@ -92,7 +92,7 @@ $( document ).ready(function() {
         var dataId = $(this).attr("data-id");
         console.log(dataId, '_dataId');
 
-        $('#form input[name=id]').val(dataId);
+        $('#formPnbp input[name=id]').val(dataId);
 
         $.get("<?=site_url('Pembinaan/bmn_detail');?>/" + dataId, function(data, status){
             $.each(data.data, function(key, value) {
@@ -107,9 +107,10 @@ $( document ).ready(function() {
         console.log(dataId, '_dataId');
 
         if (confirm("Apakah anda yakin ingin menghapus data ini?")==true){
+            // $(this).closest("tr").remove();
+            table.row( $(this).parents('tr') ).remove().draw();
             $.post("<?=site_url('Pembinaan/bmn_remove');?>/", {id: dataId}, function(result){
                 console.log(result, "_result");
-                $(this).closest("tr").remove();
             });
         };
     });
