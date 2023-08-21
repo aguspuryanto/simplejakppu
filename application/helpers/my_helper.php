@@ -120,7 +120,10 @@
 	}
 
 	function get_header_table_inkracth($model, $field="", $extra="") {
-		if(!$field && empty($field)) $field = array('setor_negara', 'ntb', 'ntpn', 'b18', 'bast_barang', 'ba21', 'pendapat_hkm', 'p48', 'putusan', 'pnetapan', 'ba_sita', 'sp_sita');
+		// echo json_encode($field);
+		if(!$field && empty($field)) {
+			$field = array('setor_negara', 'ntb', 'ntpn', 'b18', 'bast_barang', 'ba21', 'pendapat_hkm', 'p48', 'putusan', 'pnetapan', 'ba_sita', 'sp_sita');
+		}
 
 		return get_header_table_custom($model, $field, $extra);
 	}
@@ -131,8 +134,12 @@
 		return get_header_table_custom($model, $field);
 	}
 
-	function get_header_table_custom($model, $field="", $extra="") {
-		if(!$field && empty($field)) $field = array('jenis_module');
+	function get_header_table_custom($model, $field=[], $extra="") {
+		// echo json_encode($field);
+		if(!$field || empty($field)) {
+			$field = array('jenis_module');
+			echo json_encode($field);
+		}
 
 		foreach ($model->rules() as $key => $object) {
 			if (!in_array($object['field'], $field)) {

@@ -5,7 +5,10 @@
 <div class="table-responsive">
     <table id="example1" class="table table-striped table-bordered" style="width:100%">
         <thead>
-            <?=get_header_table_inkracth($model, '', '<th>CATATAN KAJARI</th><th>#</th>');?>
+            <?=get_header_table_inkracth($model, '', '<th>CATATAN KAJARI</th>
+            <th>TINDAK LANJUT</th>
+            <th>DOKUMEN</th>
+            <th>#</th>');?>
         </thead>
         <tbody>
             <?php
@@ -13,6 +16,8 @@
             if($dataInkracth) :
                 $id=1;
                 foreach($dataInkracth as $row) {
+                    $dokUrl = ($row->dokumen) ? '<a href="'.base_url('Pidum/download/') . $row->dokumen.'" class="btn btn-link btn-block">Dokumen</a>' : '#';
+
                     echo '<tr>
                         <td>'.$id.'</td>
                         <td>'.$row->nama_terdakwa.'</td>
@@ -25,7 +30,9 @@
                         <td>'.$row->ba20_pengembalin.'</td>
                         <td>'.$row->alamat_bb.'</td>
                         <td>'.$row->no_telp.'</td>
-                        <td>'.$row->kajari_note.'</td>
+                        <td>'.$row->kajari_note.'</td>		
+                        <td>'.$row->tindak_lanjut.'</td>
+                        <td>'.$dokUrl.'</td>
                         '. get_header_table_admin($row, $userdata) . '
                     </tr>';
                     $id++;

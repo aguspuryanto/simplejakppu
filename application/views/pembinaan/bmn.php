@@ -58,10 +58,17 @@ $( document ).ready(function() {
         // console.log(dataId, '_dataId');
         $('#formNote input[name=id]').val(dataId);
 
-        $.get("<?=site_url('Pembinaan/bmn_detail');?>/" + dataId, function(data, status){
-            console.log(data.data, "data");
+        // $.get("<?=site_url('Pembinaan/bmn_detail');?>/" + dataId, function(data, status){
+        //     console.log(data.data, "data");
+        //     $('#formNote').find('#input-kajari_note').val(data.data.kajari_note);
+        // });
+        
+        const fetchData = fetch("<?=site_url('Pembinaan/bmn_detail');?>/" + dataId).then((res => res.json()));
+        fetchData.then((data) => {
             $('#formNote').find('#input-kajari_note').val(data.data.kajari_note);
-        });        
+        }).catch(error => {
+            console.error('Error fetching data:', error);
+        });
     });
 
     $('#formNote').submit(function (e) {
@@ -94,10 +101,19 @@ $( document ).ready(function() {
 
         $('#formPnbp input[name=id]').val(dataId);
 
-        $.get("<?=site_url('Pembinaan/bmn_detail');?>/" + dataId, function(data, status){
+        // $.get("<?=site_url('Pembinaan/bmn_detail');?>/" + dataId, function(data, status){
+        //     $.each(data.data, function(key, value) {
+        //         $('#input-' + key).val(value);
+        //     });
+        // });
+        
+        const fetchData = fetch("<?=site_url('Pembinaan/bmn_detail');?>/" + dataId).then((res => res.json()));
+        fetchData.then((data) => {
             $.each(data.data, function(key, value) {
                 $('#input-' + key).val(value);
             });
+        }).catch(error => {
+            console.error('Error fetching data:', error);
         });
     });
 

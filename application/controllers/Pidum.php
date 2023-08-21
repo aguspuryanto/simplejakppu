@@ -98,6 +98,8 @@ class Pidum extends AUTH_Controller {
 
 	public function pidum_penahanan() {
 		$data['userdata'] 	= $this->userdata;
+		
+		$data['model'] = $this->M_penahanan;
 		$data['dataPidum'] = $this->M_perkara->select_all();
 		$data['dataPenahanan'] = $this->M_penahanan->select_all();
 		$data['dataPnbp'] = $this->M_pnbp->select_all();
@@ -115,6 +117,7 @@ class Pidum extends AUTH_Controller {
 		$data['dataPnbp'] = $this->M_pnbp->select_all();
 		
 		$data['page'] 		= "PIDUM";
+		$data['judul'] 		= "Penerimaan Negara Bukan Pajak (PNBP)";
 
 		$this->template->views('pidum/pnbp', $data);
 	}
@@ -274,6 +277,7 @@ class Pidum extends AUTH_Controller {
 		$data['dataInkracth'] = $this->M_inkracth->select_all();
 		
 		$data['page'] 		= "PIDUM";
+		$data['judul'] 		= "Inkracth";
 
 		$this->template->views('pidum/inkracth', $data);
 	}
@@ -458,6 +462,71 @@ class Pidum extends AUTH_Controller {
         ->set_output(json_encode($json));		
 	}
 
+	public function pidum_tinjut() {
+		$data['userdata'] 	= $this->userdata;
+
+		$json = array();
+		$model = $this->M_perkara;
+
+		if($this->input->post('id')) {
+			$id = $this->input->post('id');
+			$model->update($id, array(
+				'tindak_lanjut' => $this->input->post('tindak_lanjut')
+			));
+
+			$this->session->set_flashdata('success', 'Berhasil disimpan');
+			$json = array('success' => true, 'message' => 'Berhasil disimpan');
+		}
+
+		$this->output
+		->set_content_type('application/json')
+		->set_output(json_encode($json));
+	}
+
+	public function pidum_dokumen() {
+		$data['userdata'] 	= $this->userdata;
+
+		if (!file_exists('./uploads')) {
+			mkdir('./uploads', 0777, true);
+		}
+
+		$config['upload_path']="./uploads"; //path folder file upload
+        $config['allowed_types']='pdf|doc|docx|gif|jpg|png'; //type file yang boleh di upload
+        $config['encrypt_name'] = TRUE; //enkripsi file name upload
+         
+        $this->load->library('upload',$config); //call library upload 
+
+		$json = array();
+		$model = $this->M_perkara;
+
+		if (!$this->upload->do_upload('dokumen')) {
+			$json = array(
+				'success' => false,
+				'message' => $this->upload->display_errors()
+			);
+		} else {
+			//upload file
+			$data = array('upload_data' => $this->upload->data()); //ambil file name yang diupload
+			$dokumen = $data['upload_data']['file_name']; //set file name ke variable image
+
+			$id = $this->input->post('id');
+			$model->update($id, array(
+				'dokumen' => $dokumen
+			));
+
+			$this->session->set_flashdata('success', 'Berhasil disimpan');
+			$json = array('success' => true, 'message' => 'Berhasil disimpan');
+			$json = array_merge($json, array(
+				'data' => $data,
+				'dokumen' => $dokumen,
+			));
+		}
+
+		$this->output
+		->set_content_type('application/json')
+		->set_output(json_encode($json));
+	}
+
 	// tahan
 	public function tahan_note() {
 		$data['userdata'] 	= $this->userdata;
@@ -509,6 +578,71 @@ class Pidum extends AUTH_Controller {
 
 			$this->session->set_flashdata('success', 'Berhasil terhapus');
 			$json = array('success' => true, 'message' => 'Berhasil terhapus');
+		}
+
+		$this->output
+		->set_content_type('application/json')
+		->set_output(json_encode($json));
+	}
+
+	public function tahan_tinjut() {
+		$data['userdata'] 	= $this->userdata;
+
+		$json = array();
+		$model = $this->M_penahanan;
+
+		if($this->input->post('id')) {
+			$id = $this->input->post('id');
+			$model->update($id, array(
+				'tindak_lanjut' => $this->input->post('tindak_lanjut')
+			));
+
+			$this->session->set_flashdata('success', 'Berhasil disimpan');
+			$json = array('success' => true, 'message' => 'Berhasil disimpan');
+		}
+
+		$this->output
+		->set_content_type('application/json')
+		->set_output(json_encode($json));
+	}
+
+	public function tahan_dokumen() {
+		$data['userdata'] 	= $this->userdata;
+
+		if (!file_exists('./uploads')) {
+			mkdir('./uploads', 0777, true);
+		}
+
+		$config['upload_path']="./uploads"; //path folder file upload
+        $config['allowed_types']='pdf|doc|docx|gif|jpg|png'; //type file yang boleh di upload
+        $config['encrypt_name'] = TRUE; //enkripsi file name upload
+         
+        $this->load->library('upload',$config); //call library upload 
+
+		$json = array();
+		$model = $this->M_penahanan;
+
+		if (!$this->upload->do_upload('dokumen')) {
+			$json = array(
+				'success' => false,
+				'message' => $this->upload->display_errors()
+			);
+		} else {
+			//upload file
+			$data = array('upload_data' => $this->upload->data()); //ambil file name yang diupload
+			$dokumen = $data['upload_data']['file_name']; //set file name ke variable image
+
+			$id = $this->input->post('id');
+			$model->update($id, array(
+				'dokumen' => $dokumen
+			));
+
+			$this->session->set_flashdata('success', 'Berhasil disimpan');
+			$json = array('success' => true, 'message' => 'Berhasil disimpan');
+			$json = array_merge($json, array(
+				'data' => $data,
+				'dokumen' => $dokumen,
+			));
 		}
 
 		$this->output
@@ -635,6 +769,19 @@ class Pidum extends AUTH_Controller {
 		$this->output
 		->set_content_type('application/json')
 		->set_output(json_encode($json));
+	}
+
+	public function download($filename = null) {
+		$data['userdata'] 	= $this->userdata;
+
+		// load download helder
+		$this->load->helper('download');
+		// read file contents
+		// $data['data'] = $this->M_inkracth->select_by_id($id);
+		// $filename = $data['data']->dokumen;
+
+		$data = file_get_contents(base_url('/uploads/'.$filename));
+		force_download($filename, $data);
 	}
 }
 

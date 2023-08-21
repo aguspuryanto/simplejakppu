@@ -3,29 +3,25 @@
 </div>
 
 <div class="panel panel-default">
+    <div class="panel-heading">
+        <h4 class="pull-left"><?=@$judul; ?></h4>
+        <div class="pull-right">
+            <button type="button" class="btn btn-info btnAdd" data-toggle="modal" data-target="#myModalInkracth"><i class="glyphicon glyphicon-plus"></i> Tambah Data</button>
+        </div>
+        <div class="clearfix"></div>
+    </div>
   <div class="panel-body m0">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h4 class="pull-left">DATA PERKARA INKRACHT</h4>
-                <div class="pull-right">
-                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModalInkracth"><i class="glyphicon glyphicon-plus"></i> Tambah Data</button>
-                </div>
-                <div class="clearfix"></div>
-            </div>
-            <div class="panel-body">
-                <?php include_once('_list_inkracth.php'); ?>
-            </div>
-        </div>    
+        <?php include_once('_list_inkracth.php'); ?>
   </div>
 </div>
 
 <?php
-$inkracth_add = base_url('Pidum/pidum_inkracth_add');
-$inkracth_detail = base_url('Pidum/inkracth_detail');
-$inkracth_note = base_url('Pidum/inkracth_note');
-$inkracth_remove = base_url('Pidum/inkracth_remove');
-$inkracth_tinjut = base_url('Pidum/inkracth_tinjut');
-$inkracth_dokumen = base_url('Pidum/inkracth_dokumen');
+$Urladd = base_url('Pidum/pidum_inkracth_add');
+$Urldetail = base_url('Pidum/inkracth_detail');
+$Urlnote = base_url('Pidum/inkracth_note');
+$Urlremove = base_url('Pidum/inkracth_remove');
+$Urltinjut = base_url('Pidum/inkracth_tinjut');
+$Urldokumen = base_url('Pidum/inkracth_dokumen');
 ?>
 
 <script type="text/javascript">
@@ -41,7 +37,7 @@ $( document ).ready(function() {
 
         $.ajax({
             type: "POST",
-            url: "<?=site_url('Pidum/pidum_inkracth_add');?>", 
+            url: "<?=$Urladd;?>", 
             data: $("#formInkracth").serialize(),
             dataType: "json",  
             success: function(data){
@@ -65,13 +61,18 @@ $( document ).ready(function() {
         $(this).parents('.form-group').find('#error').html(" ");
     });
 
+    $(document).on('click', '.btnAdd', function (e){
+        e.preventDefault();
+        $('#formInkracth')[0].reset();
+    });
+
     $(document).on('click', '.btnNote', function (e){
         e.preventDefault();
         var dataId = $(this).attr("data-id");
         // console.log(dataId, '_dataId');
         $('#formNote input[name=id]').val(dataId);
 
-        $.get("<?=site_url('Pidum/inkracth_detail');?>/" + dataId, function(data, status){
+        $.get("<?=$Urldetail;?>/" + dataId, function(data, status){
             console.log(data.data, "data");
             $('#formNote').find('#input-kajari_note').val(data.data.kajari_note);
         });        
@@ -82,7 +83,7 @@ $( document ).ready(function() {
 
         $.ajax({
             type: "POST",
-            url: "<?=site_url('Pidum/inkracth_note');?>", 
+            url: "<?=$Urlnote;?>", 
             data: $("#formNote").serialize(),
             dataType: "json",  
             success: function(data){
@@ -104,9 +105,10 @@ $( document ).ready(function() {
 
         $('#form input[name=id]').val(dataId);
 
-        $.get("<?=site_url('Pidum/inkracth_detail');?>/" + dataId, function(data, status){
+        $.get("<?=$Urldetail;?>/" + dataId, function(data, status){
             // console.log("Data: " + data + "\nStatus: " + status);
             $.each(data.data, function(key, value) {
+                if(key == 'dokumen') return;
                 $('#input-' + key).val(value);
             });
         });
@@ -118,7 +120,7 @@ $( document ).ready(function() {
         console.log(dataId, '_dataId');
 
         if (confirm("Apakah anda yakin ingin menghapus data ini?")==true){
-            $.post("<?=site_url('Pidum/inkracth_remove');?>/", {id: dataId}, function(result){
+            $.post("<?=$Urlremove;?>/", {id: dataId}, function(result){
                 console.log(result, "_result");
                 $(this).closest("tr").remove();
             })
@@ -133,7 +135,7 @@ $( document ).ready(function() {
         // console.log(dataId, '_dataId');
         $(formTinjut).find('input[name=id]').val(dataId);
 
-        $.get("<?=$inkracth_detail;?>/" + dataId, function(data, status){
+        $.get("<?=$Urldetail;?>/" + dataId, function(data, status){
             console.log(data.data, "data");
             $(formTinjut).find('#input-tindak_lanjut').val(data.data.tindak_lanjut);
         });        
@@ -145,7 +147,7 @@ $( document ).ready(function() {
 
         $.ajax({
             type: "POST",
-            url: "<?=$inkracth_tinjut;?>", 
+            url: "<?=$Urltinjut;?>", 
             data: $(formTinjut).serialize(),
             dataType: "json",  
             beforeSend : function(xhr, opts){
@@ -181,7 +183,7 @@ $( document ).ready(function() {
 
         $.ajax({
             type: "POST",
-            url: "<?=$inkracth_dokumen;?>", 
+            url: "<?=$Urldokumen;?>", 
             // data: fd,
             data:new FormData(this),
             contentType: false,
