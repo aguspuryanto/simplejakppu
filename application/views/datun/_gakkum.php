@@ -145,7 +145,7 @@ $( document ).ready(function() {
         }
     });
 
-    $('.btnNote').on('click', function (e) {
+    $(document).on('click', '.btnNote', function (e){
         e.preventDefault();
         var dataId = $(this).attr("data-id");
         // console.log(dataId, '_dataId');
@@ -180,7 +180,7 @@ $( document ).ready(function() {
         });
     });
 
-    $('.btnEdit').on('click', function (e) {
+    $(document).on('click', '.btnEdit', function (e) {
         e.preventDefault();
         var dataId = $(this).attr("data-id");
         console.log(dataId, '_dataId');
@@ -205,7 +205,7 @@ $( document ).ready(function() {
         });
     });
 
-    $('.btnRemove').on('click', function (e) {
+    $(document).on('click', '.btnRemove', function (e) {
         e.preventDefault();
         var dataId = $(this).attr("data-id");
         console.log(dataId, '_dataId');
