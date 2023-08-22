@@ -19,6 +19,15 @@
                 <div class="clearfix"></div>
             </div>
             <div class="panel-body">
+
+<?php
+$Urladd = base_url('Datun/datun_add');
+$Urldetail = base_url('Datun/datun_detail');
+$Urlnote = base_url('Datun/datun_note');
+$Urlremove = base_url('Datun/datun_remove');
+$Urltinjut = base_url('Datun/datun_tinjut');
+$Urldokumen = base_url('Datun/datun_dokumen');
+?>
                 <?php include_once('_list_bankum.php'); ?>
             </div>
         </div>    
@@ -56,12 +65,11 @@ $newArra[] = array_merge($yearArr, $collectedData);
 <script src="<?= base_url(); ?>assets/plugins/chartjs/v4.3.3/Chart.min.js"></script>
 <script>
     const ctx = document.getElementById('myChart');
+    const data = <?=json_encode($newArra);?>;
 
     Chart.defaults.font.family = "Teko";
     Chart.defaults.font.size = 22;
     Chart.defaults.color = "black";
-
-    const data = <?=json_encode($newArra);?>;
     
     let barChart = new Chart(ctx, {
         type: 'bar',
@@ -86,6 +94,7 @@ $newArra[] = array_merge($yearArr, $collectedData);
         }
     });
 </script>
+
 <script type="text/javascript">
 $( document ).ready(function() {
     var table = $('#example1').DataTable();
@@ -103,7 +112,7 @@ $( document ).ready(function() {
 
         $.ajax({
             type: "POST",
-            url: "<?=site_url('Datun/datun_add');?>", 
+            url: "<?=$Urladd;?>", 
             data: $("#form").serialize(),
             dataType: "json",
             beforeSend : function(xhr, opts){
@@ -148,7 +157,7 @@ $( document ).ready(function() {
         // console.log(dataId, '_dataId');
         $('#formNote input[name=id]').val(dataId);
 
-        $.get("<?=site_url('Datun/datun_detail');?>/" + dataId, function(data, status){
+        $.get("<?=$Urldetail;?>/" + dataId, function(data, status){
             console.log(data.data, "data");
             $('#formNote').find('#input-kajari_note').val(data.data.kajari_note);
         });        
@@ -159,7 +168,7 @@ $( document ).ready(function() {
 
         $.ajax({
             type: "POST",
-            url: "<?=site_url('Datun/datun_note');?>", 
+            url: "<?=$Urlnote;?>", 
             data: $("#formNote").serialize(),
             dataType: "json",  
             beforeSend : function(xhr, opts){
@@ -184,7 +193,7 @@ $( document ).ready(function() {
 
         $('#form input[name=id]').val(dataId);
 
-        $.get("<?=site_url('Datun/datun_detail');?>/" + dataId, function(data, status){
+        $.get("<?=$Urldetail;?>/" + dataId, function(data, status){
             $.each(data.data, function(key, value) {
                 $('#input-' + key).val(value);
             });
@@ -199,7 +208,7 @@ $( document ).ready(function() {
         if (confirm("Apakah anda yakin ingin menghapus data ini?")==true){
             // $(this).closest("tr").remove();
             table.row( $(this).parents('tr') ).remove().draw();
-            $.post("<?=site_url('Datun/datun_remove');?>/", {id: dataId}, function(result){
+            $.post("<?=$Urlremove;?>/", {id: dataId}, function(result){
                 console.log(result, "_result");
             });
         };
