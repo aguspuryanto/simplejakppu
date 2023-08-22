@@ -8,11 +8,20 @@
             <div class="panel-heading">
                 <h4 class="pull-left">DATA SURAT PERINTAH TUGAS</h4>
                 <div class="pull-right">
-                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModalPerkara"><i class="glyphicon glyphicon-plus"></i> Tambah Data</button>
+                    <button type="button" class="btn btn-info btnAdd" data-toggle="modal" data-target="#myModalPerkara"><i class="glyphicon glyphicon-plus"></i> Tambah Data</button>
                 </div>
                 <div class="clearfix"></div>
             </div>
             <div class="panel-body">
+
+<?php
+$Urladd = base_url('Intel/sptugas_add');
+$Urldetail = base_url('Intel/sptugas_detail');
+$Urlnote = base_url('Intel/sptugas_note');
+$Urlremove = base_url('Intel/sptugas_remove');
+$Urltinjut = base_url('Intel/sptugas_tinjut');
+$Urldokumen = base_url('Intel/sptugas_dokumen');
+?>
                 <?php include_once('_list_sp_tugas.php'); ?>
             </div>
         </div>
@@ -22,7 +31,7 @@
 
 <script>
 $(document).ready(function () {
-    $('#example1').DataTable();
+    var table = $('#example1').DataTable();
     $(".datepicker").datepicker();
     $('#error').html(" ");
 
@@ -31,7 +40,7 @@ $(document).ready(function () {
 
         $.ajax({
             type: "POST",
-            url: "<?=site_url('Intel/sp_tugas_add');?>", 
+            url: "<?=$Urladd;?>", 
             data: $("#form").serialize(),
             dataType: "json",  
             beforeSend : function(xhr, opts){
@@ -58,13 +67,18 @@ $(document).ready(function () {
         $(this).parents('.form-group').find('#error').html(" ");
     });
 
+    $(document).on('click', '.btnAdd', function (e){
+        e.preventDefault();
+        $('#form')[0].reset();
+    });
+
     $(document).on('click', '.btnNote', function (e){
         e.preventDefault();
         var dataId = $(this).attr("data-id");
         // console.log(dataId, '_dataId');
         $('#formNote input[name=id]').val(dataId);
 
-        $.get("<?=site_url('Intel/sptugas_detail');?>/" + dataId, function(data, status){
+        $.get("<?=$Urldetail;?>/" + dataId, function(data, status){
             console.log(data.data, "data");
             $('#formNote').find('#input-kajari_note').val(data.data.kajari_note);
         });        
@@ -75,7 +89,7 @@ $(document).ready(function () {
 
         $.ajax({
             type: "POST",
-            url: "<?=site_url('Intel/sptugas_note');?>", 
+            url: "<?=$Urlnote;?>", 
             data: $("#formNote").serialize(),
             dataType: "json",
             beforeSend : function(xhr, opts){
@@ -100,7 +114,7 @@ $(document).ready(function () {
 
         $('#form input[name=id]').val(dataId);
 
-        $.get("<?=site_url('Intel/sptugas_detail');?>/" + dataId, function(data, status){
+        $.get("<?=$Urldetail;?>/" + dataId, function(data, status){
             $.each(data.data, function(key, value) {
                 $('#input-' + key).val(value);
             });
@@ -113,9 +127,10 @@ $(document).ready(function () {
         console.log(dataId, '_dataId');
 
         if (confirm("Apakah anda yakin ingin menghapus data ini?")==true){
-            $.post("<?=site_url('Intel/sptugas_remove');?>/", {id: dataId}, function(result){
+            // $(this).closest("tr").remove();
+            table.row( $(this).parents('tr') ).remove().draw();
+            $.post("<?=$Urlremove;?>/", {id: dataId}, function(result){
                 console.log(result, "_result");
-                $(this).closest("tr").remove();
             });
         };
     });

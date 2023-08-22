@@ -13,6 +13,15 @@
                 <div class="clearfix"></div>
             </div>
             <div class="panel-body">
+
+<?php
+$Urladd = base_url('Datun/datun_add');
+$Urldetail = base_url('Datun/datun_detail');
+$Urlnote = base_url('Datun/datun_note');
+$Urlremove = base_url('Datun/datun_remove');
+$Urltinjut = base_url('Datun/datun_tinjut');
+$Urldokumen = base_url('Datun/datun_dokumen');
+?>
                 <?php include_once('_list_bankum.php'); ?>
             </div>
         </div>    

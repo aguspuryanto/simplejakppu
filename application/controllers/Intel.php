@@ -157,7 +157,7 @@ class Intel extends AUTH_Controller {
 		$this->template->views('intel/sp_tugas', $data);
 	}
 
-	public function sp_tugas_add() {		
+	public function sptugas_add() {		
 		$this->load->library('form_validation');
 
 		$model = $this->M_sptugas;

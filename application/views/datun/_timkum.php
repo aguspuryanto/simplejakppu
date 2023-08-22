@@ -14,7 +14,7 @@
             <div class="panel-heading">
                 <h4 class="pull-left">DATA PERKARA</h4>
                 <div class="pull-right">
-                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModalPerkara"><i class="glyphicon glyphicon-plus"></i> Tambah Data</button>
+                    <button type="button" class="btn btn-info btnAdd" data-toggle="modal" data-target="#myModalPerkara"><i class="glyphicon glyphicon-plus"></i> Tambah Data</button>
                 </div>
                 <div class="clearfix"></div>
             </div>
@@ -139,16 +139,24 @@ $( document ).ready(function() {
         $(this).parents('.form-group').find('#error').html(" ");
     });
 
+    $(document).on('click', '.btnAdd', function (e){
+        e.preventDefault();
+        $('#form')[0].reset();
+    });
+
     $('#form').find('select#kategori').on('change', function(e) {
         e.preventDefault();
         var valueId = $(this).val(); //$(this).find(":selected").val();
         console.log(valueId, '_valueId');
 
-        $.get("<?=site_url('Datun/datun_kegiatan');?>/" + valueId, function(data, status){
-            console.log(data, "data");
-            $('#form').find('#kegiatan option').remove();
-            $('#form').find('#kegiatan').append(data);
-        });   
+        if(valueId) {
+            $.get("<?=site_url('Datun/datun_kegiatan');?>/" + valueId, function(data, status){
+                console.log(data, "data");
+                // $('#form').find('#kegiatan option').remove().end();
+                // $('#form').find('#kegiatan').append(data);
+                $('#kegiatan').find('option').remove().end().append(data);
+            });
+        }
     });
 
     $(document).on('click', '.btnNote', function (e){
@@ -193,10 +201,21 @@ $( document ).ready(function() {
 
         $('#form input[name=id]').val(dataId);
 
+        let promise = new Promise(function(resolve, reject) {
+            // resolve(dataId);
+        });
+
         $.get("<?=$Urldetail;?>/" + dataId, function(data, status){
+            console.log(data, "data");
             $.each(data.data, function(key, value) {
-                $('#input-' + key).val(value);
+                if(key == 'kategori') {
+                    $('#kategori').val(value).change();
+                } else {
+                    $('#input-' + key).val(value);
+                }
             });
+
+            $('#form input[name=kegiatan]').val(data.data.kegiatan);
         });
     });
 

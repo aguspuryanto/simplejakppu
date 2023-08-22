@@ -14,7 +14,7 @@
             <div class="panel-heading">
                 <h4 class="pull-left">DATA PERKARA</h4>
                 <div class="pull-right">
-                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModalPerkara"><i class="glyphicon glyphicon-plus"></i> Tambah Data</button>
+                    <button type="button" class="btn btn-info bntAdd" data-toggle="modal" data-target="#myModalPerkara"><i class="glyphicon glyphicon-plus"></i> Tambah Data</button>
                 </div>
                 <div class="clearfix"></div>
             </div>
@@ -137,6 +137,11 @@ $( document ).ready(function() {
     $('#form input').on('keyup', function () { 
         $(this).removeClass('is-invalid').addClass('is-valid');
         $(this).parents('.form-group').find('#error').html(" ");
+    });
+
+    $(document).on('click', '.btnAdd', function (e){
+        e.preventDefault();
+        $('#form')[0].reset();
     });
 
     $('#form').find('select#kategori').on('change', function(e) {
