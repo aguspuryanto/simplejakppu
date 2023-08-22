@@ -1,22 +1,18 @@
 <div class="table-responsive">
     <table id="example1" class="table table-striped table-bordered" style="width:100%">
         <thead>
-            <tr>
-                <th>NO</th>
-                <?php
-                foreach($model->rules() as $key => $val) {
-                    echo '<th>'.$val['label'].'</th>';
-                }
-                ?>
-                <th>CATATAN KAJARI</th>
-                <th>#</th>
-            </tr>
+            <?=get_header_table_inkracth($model, [], '<th>CATATAN KAJARI</th>
+            <th>TINDAK LANJUT</th>
+            <th>DOKUMEN</th>
+            <th>#</th>');?>
         </thead>
         <tbody>
             <?php
             if($dataPnbp) : 
                 $id=1;
                 foreach($dataPnbp as $row) {
+                    $dokUrl = ($row->dokumen) ? '<a target="_blank" href="'.base_url('Pidum/download/') . $row->dokumen.'" class="btn btn-link btn-block">Dokumen</a>' : '#';
+
                     echo '<tr>
                         <td>'.$id.'</td>
                         <td>'.$row->kelompok.'</td>
@@ -36,6 +32,8 @@
                         <td>'.$row->pemakai.'</td>
                         <td>'.$row->jml_kib.'</td>
                         <td>'.$row->kajari_note.'</td>
+                        <td>'.$row->tindak_lanjut.'</td>
+                        <td>'.$dokUrl.'</td>
                         '. get_header_table_admin($row, $userdata) . '
                     </tr>';
                     $id++;

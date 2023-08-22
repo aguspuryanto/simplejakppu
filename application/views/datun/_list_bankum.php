@@ -17,6 +17,8 @@
                 <th rowspan="2" class="text-center"><?=form_label($model->rules()[13]['label']); ?></th>
                 <th rowspan="2" class="text-center"><?=form_label($model->rules()[14]['label']); ?></th>
                 <th rowspan="2" class="text-center">CATATAN KAJARI</th>
+                <th rowspan="2" class="text-center">TINDAK LANJUT</th>
+                <th rowspan="2" class="text-center">DOKUMEN</th>
                 <th rowspan="2" class="text-center">#</th>
             </tr>
             <tr>
@@ -31,6 +33,8 @@
             if($dataDatun) :
                 $id=1;
                 foreach($dataDatun as $row) {
+                    $dokUrl = ($row->dokumen) ? '<a target="_blank" href="'.base_url('Pidum/download/') . $row->dokumen.'" class="btn btn-link btn-block">Dokumen</a>' : '#';
+
                     echo '<tr>
                         <td>'.$id.'.</td>
                         <td>'.$row->kegiatan.'</td>
@@ -49,6 +53,8 @@
                         <td>'.$row->saran_kasi.'</td>
                         <td>'.$row->keterangan.'</td>
                         <td>'.$row->kajari_note.'</td>
+                        <td>'.$row->tindak_lanjut.'</td>
+                        <td>'.$dokUrl.'</td>
                         '. get_header_table_admin($row, $userdata) . '
                     </tr>';
 

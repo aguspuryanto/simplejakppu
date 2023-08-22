@@ -1,18 +1,6 @@
 <div class="table-responsive">
     <table id="example1" class="table table-striped table-bordered display" style="width:100%">
         <thead>
-            <!-- <tr>
-                <th>NO</th>
-                <th>KODE | NAMA KEGIATAN</th>
-                <th>PAGU</th>
-                <th>S/D PERIODE LALU</th>
-                <th>PERIODE INI</th>
-                <th>TOTAL S/D PERIODE</th>
-                <th>PRESENTASE</th>
-                <th>SISA ANGGARAN</th>
-                <th>CATATAN KAJARI</th>
-                <th>#</th>
-            </tr> -->
             <?=get_header_table_inkracth($model, ['tgl'], '<th>CATATAN KAJARI</th>
             <th>TINDAK LANJUT</th>
             <th>DOKUMEN</th>
