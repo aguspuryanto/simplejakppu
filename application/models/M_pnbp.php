@@ -41,10 +41,15 @@ class M_pnbp extends CI_Model {
         return $data->row();
     }
 
-    public function select_all($options = "") {
+    public function select_all($options = "", $group_by = "") {
         if($options) {
             $this->db->where($options);
         }
+        
+        if($group_by) {
+            $this->db->group_by($group_by);
+        }
+
         // $this->db->group_by('jenis_pnpb');
         $data = $this->db->get($this->table_name);
         return $data->result();
@@ -72,7 +77,7 @@ class M_pnbp extends CI_Model {
 
 		// $pnbp = $this->select_all();
 		$index = 0;
-		foreach ($this->select_all() as $value) {
+		foreach ($this->select_all('', 'jenis_pnpb') as $value) {
 		    $color = '#'.$rand[rand(0,15)].$rand[rand(0,15)].$rand[rand(0,15)].$rand[rand(0,15)].$rand[rand(0,15)].$rand[rand(0,15)];
 
 			// $pegawai_by_kota = $this->M_pegawai->select_by_kota($value->id);

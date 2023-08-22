@@ -36,26 +36,8 @@
     </div>
   </div>
 
-  <div class="col-lg-6 col-xs-12">
+  <div class="col-lg-8 col-xs-12">
     <div class="box box-info">
-      <div class="box-header with-border">
-        <i class="fa fa-briefcase"></i>
-        <h3 class="box-title">Statistik Data Perkara</h3>
-
-        <div class="box-tools pull-right">
-          <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-          </button>
-          <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-        </div>
-      </div>
-      <div class="box-body">
-        <canvas id="data-posisi" style="height:250px"></canvas>
-      </div>
-    </div>
-  </div>
-
-  <div class="col-lg-6 col-xs-12">
-    <div class="box box-primary">
       <div class="box-header with-border">
         <i class="fa fa-briefcase"></i>
         <h3 class="box-title">Statistik Data PNBP</h3>
@@ -67,53 +49,102 @@
         </div>
       </div>
       <div class="box-body">
-        <canvas id="data-pnbp" style="height:250px"></canvas>
+        <canvas id="myChart"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-4 col-xs-12">
+    <div class="box box-primary">
+      <div class="box-header with-border">
+        <i class="fa fa-briefcase"></i>
+        <h3 class="box-title">Statistik Data Perkara</h3>
+
+        <div class="box-tools pull-right">
+          <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+          </button>
+          <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+        </div>
+      </div>
+      <div class="box-body">
+        <canvas id="myChart2"></canvas>
       </div>
     </div>
   </div>
 </div>
 
-<script src="<?php echo base_url(); ?>assets/plugins/chartjs/Chart.min.js"></script>
-<script>
-  //data posisi
-  var pieChartCanvas = $("#data-posisi").get(0).getContext("2d");
-  var pieChart = new Chart(pieChartCanvas);
-  var PieData = <?php echo json_encode($data_perkara); ?>;
+<?php
+// $newArra = [];
+// foreach($data_pnbp as $row) {
+//   $newArra[] = array('label' => $row['label'], 'value' => $row['value']);
+// }
+// echo json_encode($newArra);
 
-  var pieOptions = {
-    segmentShowStroke: true,
-    segmentStrokeColor: "#fff",
-    segmentStrokeWidth: 2,
-    percentageInnerCutout: 50,
-    animationSteps: 100,
-    animationEasing: "easeOutBounce",
-    animateRotate: true,
-    animateScale: false,
-    responsive: true,
-    maintainAspectRatio: true,
-    legendTemplate: "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<segments.length; i++){%><li><span style=\"background-color:<%=segments[i].fillColor%>\"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>"
+$pnbp_labels = array_map(function($item) {
+  return strtoupper($item['label']);
+}, $data_pnbp);
+
+$pnbp_data = array_map(function($item) {
+  return ($item['value']);
+}, $data_pnbp);
+
+
+// echo json_encode($data_perkara);
+$perkara_labels = array_map(function($item) {
+  return strtoupper($item['label']);
+}, $data_perkara);
+
+$perkara_data = array_map(function($item) {
+  return ($item['value']);
+}, $data_perkara);
+?>
+
+<script src="<?= base_url(); ?>assets/plugins/chartjs/v4.3.3/Chart.min.js"></script>
+<script type="text/javascript">
+  const ctxpnbp = document.getElementById('myChart');
+  const ctxperkara = document.getElementById('myChart2');
+
+  const perkara = new Chart(ctxpnbp, {
+    type: 'bar',
+    data: {
+      datasets: [{
+        label: 'Data PNBP',
+        data: <?=json_encode($pnbp_data);?>,
+        // this dataset is drawn below
+        order: 2
+      }, {
+        label: 'Data PNBP',
+        data: <?=json_encode($pnbp_data);?>,
+        type: 'line',
+        // this dataset is drawn on top
+        order: 1
+      }],
+      labels: <?=json_encode($pnbp_labels);?>
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+
+  const dataperkara = {
+    labels: <?=json_encode($perkara_labels);?>,
+    datasets: [{
+      label: 'Data perkara',
+      data: <?=json_encode($perkara_data);?>,
+      backgroundColor: [
+        'rgb(255, 99, 132)',
+        'rgb(54, 162, 235)',
+      ],
+      hoverOffset: 4
+    }]
   };
 
-  pieChart.Doughnut(PieData, pieOptions);
-
-  //data kota
-  var pieChartCanvas = $("#data-pnbp").get(0).getContext("2d");
-  var pieChart = new Chart(pieChartCanvas);
-  var PieData = <?php echo json_encode($data_pnbp); ?>;
-
-  var pieOptions = {
-    segmentShowStroke: true,
-    segmentStrokeColor: "#fff",
-    segmentStrokeWidth: 2,
-    percentageInnerCutout: 50,
-    animationSteps: 100,
-    animationEasing: "easeOutBounce",
-    animateRotate: true,
-    animateScale: false,
-    responsive: true,
-    maintainAspectRatio: true,
-    legendTemplate: "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<segments.length; i++){%><li><span style=\"background-color:<%=segments[i].fillColor%>\"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>"
-  };
-
-  pieChart.Doughnut(PieData, pieOptions);
+  const pieperkara = new Chart(ctxperkara, {
+    type: 'pie',
+    data: dataperkara
+  })
 </script>
