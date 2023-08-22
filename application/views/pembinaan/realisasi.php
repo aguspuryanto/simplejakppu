@@ -8,11 +8,20 @@
             <div class="panel-heading">
                 <h4 class="pull-left">DATA REALISASI ANGGARAN</h4>
                 <div class="pull-right">
-                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModalPerkara"><i class="glyphicon glyphicon-plus"></i> Tambah Data</button>
+                    <button type="button" class="btn btn-info btnAdd" data-toggle="modal" data-target="#myModalPerkara"><i class="glyphicon glyphicon-plus"></i> Tambah Data</button>
                 </div>
                 <div class="clearfix"></div>
             </div>
             <div class="panel-body">
+
+<?php
+$Urladd = base_url('Pembinaan/realisasi_add');
+$Urldetail = base_url('Pembinaan/realisasi_detail');
+$Urlnote = base_url('Pembinaan/realisasi_note');
+$Urlremove = base_url('Pembinaan/realisasi_remove');
+$Urltinjut = base_url('Pembinaan/realisasi_tinjut');
+$Urldokumen = base_url('Pembinaan/realisasi_dokumen');
+?>
                 <?php include_once('_list_realisasi.php'); ?>
             </div>
         </div>    
@@ -88,7 +97,7 @@ $( document ).ready(function() {
 
         $.ajax({
             type: "POST",
-            url: "<?=site_url('Pembinaan/realisasi_add');?>", 
+            url: "<?=$Urladd;?>", 
             data: $("#form").serialize(),
             dataType: "json",  
             success: function(data){
@@ -112,13 +121,18 @@ $( document ).ready(function() {
         $(this).parents('.form-group').find('#error').html(" ");
     });
 
+    $(document).on('click', '.btnAdd', function (e){
+        e.preventDefault();
+        $('#form')[0].reset();
+    });
+
     $(document).on('click', '.btnNote', function (e){
         e.preventDefault();
         var dataId = $(this).attr("data-id");
         // console.log(dataId, '_dataId');
         $('#formNote input[name=id]').val(dataId);
 
-        $.get("<?=site_url('Pembinaan/realisasi_detail');?>/" + dataId, function(data, status){
+        $.get("<?=$Urldetail;?>/" + dataId, function(data, status){
             console.log(data.data, "data");
             $('#formNote').find('#input-kajari_note').val(data.data.kajari_note);
         });        
@@ -129,7 +143,7 @@ $( document ).ready(function() {
 
         $.ajax({
             type: "POST",
-            url: "<?=site_url('Pembinaan/realisasi_note');?>", 
+            url: "<?=$Urlnote;?>", 
             data: $("#formNote").serialize(),
             dataType: "json",  
             beforeSend : function(xhr, opts){
@@ -154,7 +168,7 @@ $( document ).ready(function() {
 
         $('#form input[name=id]').val(dataId);
 
-        $.get("<?=site_url('Pembinaan/realisasi_detail');?>/" + dataId, function(data, status){
+        $.get("<?=$Urldetail;?>/" + dataId, function(data, status){
             $.each(data.data, function(key, value) {
                 $('#input-' + key).val(value);
             });
@@ -167,7 +181,7 @@ $( document ).ready(function() {
         console.log(dataId, '_dataId');
 
         if (confirm("Apakah anda yakin ingin menghapus data ini?")==true){
-            $.post("<?=site_url('Pembinaan/realisasi_remove');?>/", {id: dataId}, function(result){
+            $.post("<?=$Urldetail;?>/", {id: dataId}, function(result){
                 console.log(result, "_result");
                 $(this).closest("tr").remove();
             });

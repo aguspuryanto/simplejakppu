@@ -84,3 +84,87 @@
 
   </div>
 </div>
+
+<script type="text/javascript">
+$( document ).ready(function() {
+  // Tindak Lanjut Id
+  var formTinjut = $('#formTinjut');
+  $(document).on('click', '.btnTinjut', function (e) {
+      e.preventDefault();
+      var dataId = $(this).attr("data-id");
+      // console.log(dataId, '_dataId');
+      $(formTinjut).find('input[name=id]').val(dataId);
+
+      $.get("<?=$Urldetail; ?>/" + dataId, function(data, status){
+          console.log(data.data, "data");
+          $(formTinjut).find('#input-tindak_lanjut').val(data.data.tindak_lanjut);
+      });        
+  });
+
+  // Tindak Lanjut Submit
+  $('form#formTinjut').submit(function (e) {
+      e.preventDefault();
+
+      $.ajax({
+          type: "POST",
+          url: "<?=$Urltinjut; ?>", 
+          data: $(formTinjut).serialize(),
+          dataType: "json",  
+          beforeSend : function(xhr, opts){
+              $(formTinjut).text('Loading...').prop("disabled", true);
+          },
+          success: function(data){
+              console.log(data, "data");
+              if(data.success) {
+                  $('#myModalTinjut').modal('hide'); 
+                  setTimeout(function(){
+                      window.location.reload();
+                  }, 1000);
+              }
+          }
+      });
+  });
+
+  // Unggah Dokumen
+  var formDokumen = $('#formDokumen');
+  $(document).on('click', '.btnDokumen', function (e) {
+      e.preventDefault();
+      var dataId = $(this).attr("data-id");
+      // console.log(dataId, '_dataId');
+      $(formDokumen).find('input[name=id]').val(dataId);
+  });
+
+  $('form#formDokumen').submit(function (e) {
+      e.preventDefault();
+
+      var fd = new FormData();
+      var files = $(formDokumen).find('#input-dokumen')[0].files[0];
+      fd.append('file',files);
+
+      $.ajax({
+          type: "POST",
+          url: "<?=$Urldokumen; ?>", 
+          // data: fd,
+          data:new FormData(this),
+          contentType: false,
+          processData: false,
+          cache: false,
+          async: false,
+          beforeSend : function(xhr, opts){
+              // $(formDokumen).text('Loading...').prop("disabled", true);
+          },
+          success: function(data){
+              console.log(data, "data");
+              if(data.success) {
+                  $('#myModalDokumen').modal('hide'); 
+                  setTimeout(function(){
+                      window.location.reload();
+                  }, 1000);
+              } else {
+                  $('<p class="text-danger">' + data.message + '</p>').insertBefore('#formDokumen');
+              }
+          }
+      });
+  });
+});
+</script>

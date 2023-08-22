@@ -1,7 +1,7 @@
 <div class="table-responsive">
     <table id="example1" class="table table-striped table-bordered display" style="width:100%">
         <thead>
-            <tr>
+            <!-- <tr>
                 <th>NO</th>
                 <th>KODE | NAMA KEGIATAN</th>
                 <th>PAGU</th>
@@ -12,11 +12,11 @@
                 <th>SISA ANGGARAN</th>
                 <th>CATATAN KAJARI</th>
                 <th>#</th>
-            </tr>
-            <!-- <tr>
-                <th>Penggugat/ Pemohon/Pelawan</th>
-                <th>Tergugat/ Termohon/Terlawan</th>
             </tr> -->
+            <?=get_header_table_inkracth($model, ['tgl'], '<th>CATATAN KAJARI</th>
+            <th>TINDAK LANJUT</th>
+            <th>DOKUMEN</th>
+            <th>#</th>');?>
         </thead>
         <tbody>
             <?php
@@ -24,6 +24,8 @@
             if($dataRealisasi) :
                 $id=1;
                 foreach($dataRealisasi as $row) {
+                    $dokUrl = ($row->dokumen) ? '<a target="_blank" href="'.base_url('Pidum/download/') . $row->dokumen.'" class="btn btn-link btn-block">Dokumen</a>' : '#';
+
                     echo '<tr>
                         <td>'.$id.'</td>
                         <td>'.$row->kode_nama_kegiatan.'</td>
@@ -33,7 +35,9 @@
                         <td>'.number_format($row->periode_total, 0).'</td>
                         <td>'.$row->periode_persen.'%</td>
                         <td>'.number_format($row->sisa_anggaran, 0).'</td>
-                        <td>'.$row->kajari_note.'</td>
+                        <td>'.$row->kajari_note.'</td>		
+                        <td>'.$row->tindak_lanjut.'</td>
+                        <td>'.$dokUrl.'</td>
                         '. get_header_table_admin($row, $userdata) . '
                     </tr>';
                     $id++;

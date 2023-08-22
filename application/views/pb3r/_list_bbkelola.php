@@ -19,6 +19,7 @@
                     $dokUrl = ($row->dokumen) ? '<a target="_blank" href="'.base_url('Pidum/download/') . $row->dokumen.'" class="btn btn-link btn-block">Dokumen</a>' : '#';
 
                     echo '<tr>
+                        <td>'.$id.'</td>
                         <td>'.$row->nama_terdakwa.'</td>
                         <td>'.$row->reg_bb.'</td>
                         <td>'.$row->pasal_disangka.'</td>
@@ -26,7 +27,6 @@
                         <td>'.$row->pasal_terbukti.'</td>
                         <td>'.$row->putusan.'</td>
                         <td>'.$row->eksekusi.'</td>
-                        <td>'.$row->dokumen.'</td>
                         <td>'.$row->petunjuk.'</td>
                         <td>'.$row->kajari_note.'</td>
                         <td>'.$row->tindak_lanjut.'</td>

@@ -19,6 +19,15 @@
                 <div class="clearfix"></div>
             </div>
             <div class="panel-body">
+
+<?php
+$Urladd = base_url('Pembinaan/pnbp_add');
+$Urldetail = base_url('Pembinaan/pnbp_detail');
+$Urlnote = base_url('Pembinaan/pnbp_note');
+$Urlremove = base_url('Pembinaan/pnbp_remove');
+$Urltinjut = base_url('Pembinaan/pnbp_tinjut');
+$Urldokumen = base_url('Pembinaan/pnbp_dokumen');
+?>
                 <?php include_once('_list_pnbp.php'); ?>
             </div>
         </div>
@@ -81,7 +90,7 @@ $( document ).ready(function() {
 
         $.ajax({
             type: "POST",
-            url: "<?=site_url('papan-kontrol/pidum_pnbp');?>", 
+            url: "<?=$Urladd;?>", 
             data: $("#formPnbp").serialize(),
             dataType: "json",  
             success: function(data){
@@ -111,7 +120,7 @@ $( document ).ready(function() {
         // console.log(dataId, '_dataId');
         $('#formNote input[name=id]').val(dataId);
 
-        $.get("<?=site_url('Pembinaan/pnbp_detail');?>/" + dataId, function(data, status){
+        $.get("<?=$Urldetail;?>/" + dataId, function(data, status){
             console.log(data.data, "data");
             $('#formNote').find('#input-kajari_note').val(data.data.kajari_note);
         });        
@@ -122,7 +131,7 @@ $( document ).ready(function() {
 
         $.ajax({
             type: "POST",
-            url: "<?=site_url('Pembinaan/pnbp_note');?>", 
+            url: "<?=$Urlnote;?>", 
             data: $("#formNote").serialize(),
             dataType: "json",  
             beforeSend : function(xhr, opts){
@@ -147,7 +156,7 @@ $( document ).ready(function() {
 
         $('#form input[name=id]').val(dataId);
 
-        $.get("<?=site_url('Pembinaan/pnbp_detail');?>/" + dataId, function(data, status){
+        $.get("<?=$Urldetail;?>/" + dataId, function(data, status){
             $.each(data.data, function(key, value) {
                 $('#input-' + key).val(value);
             });
@@ -162,7 +171,7 @@ $( document ).ready(function() {
         if (confirm("Apakah anda yakin ingin menghapus data ini?")==true){
             // $(this).closest("tr").remove();
             table.row( $(this).parents('tr') ).remove().draw();
-            $.post("<?=site_url('Pembinaan/pnbp_remove');?>/", {id: dataId}, function(result){
+            $.post("<?=$Urlremove;?>/", {id: dataId}, function(result){
                 console.log(result, "_result");
             });
         };
