@@ -13,6 +13,15 @@
                 <div class="clearfix"></div>
             </div>
             <div class="panel-body">
+
+<?php
+$Urladd = base_url('Intel/awaswna_add');
+$Urldetail = base_url('Intel/wna_detail');
+$Urlnote = base_url('Intel/wna_note');
+$Urlremove = base_url('Intel/wna_remove');
+$Urltinjut = base_url('Intel/sptugas_tinjut');
+$Urldokumen = base_url('Intel/sptugas_dokumen');
+?>
                 <?php include_once('_list_awaswna.php'); ?>
             </div>
         </div>
@@ -22,7 +31,7 @@
 
 <script>
 $(document).ready(function () {
-    $('#example1').DataTable();
+    var table = $('#example1').DataTable();
     $(".datepicker").datepicker();
     $('#error').html(" ");
 
@@ -31,7 +40,7 @@ $(document).ready(function () {
 
         $.ajax({
             type: "POST",
-            url: "<?=site_url('Intel/awaswna_add');?>", 
+            url: "<?=$Urladd;?>", 
             data: $("#form").serialize(),
             dataType: "json",  
             beforeSend : function(xhr, opts){
@@ -59,13 +68,18 @@ $(document).ready(function () {
         $(this).parents('.form-group').find('#error').html(" ");
     });
 
+    $(document).on('click', '.btnAdd', function (e){
+        e.preventDefault();
+        $('#form')[0].reset();
+    });
+
     $(document).on('click', '.btnNote', function (e){
         e.preventDefault();
         var dataId = $(this).attr("data-id");
         // console.log(dataId, '_dataId');
         $('#formNote input[name=id]').val(dataId);
 
-        $.get("<?=site_url('Intel/wna_detail');?>/" + dataId, function(data, status){
+        $.get("<?=$Urldetail;?>/" + dataId, function(data, status){
             console.log(data.data, "data");
             $('#formNote').find('#input-kajari_note').val(data.data.kajari_note);
         });        
@@ -76,11 +90,11 @@ $(document).ready(function () {
 
         $.ajax({
             type: "POST",
-            url: "<?=site_url('Intel/wna_note');?>", 
+            url: "<?=$Urlnote;?>", 
             data: $("#formNote").serialize(),
             dataType: "json",  
             beforeSend : function(xhr, opts){
-                $('#form-submit').text('Loading...').prop("disabled", true);
+                $('#formNote').text('Loading...').prop("disabled", true);
             },
             success: function(data){
                 console.log(data, "data");
@@ -101,7 +115,7 @@ $(document).ready(function () {
 
         $('#form input[name=id]').val(dataId);
 
-        $.get("<?=site_url('Intel/wna_detail');?>/" + dataId, function(data, status){
+        $.get("<?=$Urldetail;?>/" + dataId, function(data, status){
             $.each(data.data, function(key, value) {
                 $('#input-' + key).val(value);
             });
@@ -114,9 +128,10 @@ $(document).ready(function () {
         console.log(dataId, '_dataId');
 
         if (confirm("Apakah anda yakin ingin menghapus data ini?")==true){
-            $.post("<?=site_url('Intel/wna_remove');?>/", {id: dataId}, function(result){
+            // $(this).closest("tr").remove();
+            table.row( $(this).parents('tr') ).remove().draw();
+            $.post("<?=$Urlremove;?>/", {id: dataId}, function(result){
                 console.log(result, "_result");
-                $(this).closest("tr").remove();
             });
         };
     });

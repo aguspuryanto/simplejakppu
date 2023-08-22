@@ -2,14 +2,17 @@
     <table id="example1" class="table table-striped table-bordered" style="width:100%">
         <thead>
             <?=get_header_table($model, '<th>CATATAN KAJARI</th>
-                <th>#</th>'
-            );?>
+            <th>TINDAK LANJUT</th>
+            <th>DOKUMEN</th>
+            <th>#</th>');?>
         </thead>
         <tbody>
             <?php
             if($dataSptugas) :
                 $id=1;
                 foreach($dataSptugas as $row) {
+                    $dokUrl = ($row->dokumen) ? '<a target="_blank" href="'.base_url('Pidum/download/') . $row->dokumen.'" class="btn btn-link btn-block">Dokumen</a>' : '#';
+                    
                     echo '<tr>
                         <td>'.$id.'</td>
                         <td>'.$row->sumber_info.'</td>
@@ -21,15 +24,9 @@
                         <td>'.$row->tahapan.'</td>
                         <td>'.$row->keterangan.'</td>
                         <td>'.$row->kajari_note.'</td>
-                        <td style="min-width:115px">
-                            <p>
-                                <button type="button" data-id="'.$row->id.'" class="btn btn-info btn-block btnNote" data-toggle="modal" data-target="#myModalNote">Tambah Note</button>
-                            </p>
-                            <div class="btn-group" role="group">
-                                <button type="button" data-id="'.$row->id.'" class="btn btn-default btnEdit" data-toggle="modal" data-target="#myModalPerkara">Edit</button>
-                                <button type="button" data-id="'.$row->id.'" class="btn btn-danger btnRemove">Hapus</button>
-                            </div>
-                        </td>
+                        <td>'.$row->tindak_lanjut.'</td>
+                        <td>'.$dokUrl.'</td>
+                        '. get_header_table_admin($row, $userdata) . '
                     </tr>';
                     $id++;
                 }
