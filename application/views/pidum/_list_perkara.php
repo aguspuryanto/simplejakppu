@@ -35,7 +35,7 @@
             if($dataPidum) :
                 $id=1;
                 foreach($dataPidum as $row) {
-                  $dokUrl = ($row->dokumen) ? '<a href="'.base_url('Pidum/download/') . $row->dokumen.'" class="btn btn-link btn-block">Dokumen</a>' : '#';
+                  $dokUrl = ($row->dokumen) ? '<a target="_blank" href="'.base_url('Pidum/download/') . $row->dokumen.'" class="btn btn-link btn-block">Dokumen</a>' : '#';
 
                   echo '<tr>
                       <td>'.$id.'</td>

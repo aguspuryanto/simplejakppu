@@ -423,4 +423,69 @@ class Pb3r extends AUTH_Controller {
 		->set_output(json_encode($json));
 	}
 
+	public function bbkelola_tinjut() {
+		$data['userdata'] 	= $this->userdata;
+
+		$json = array();
+		$model = $this->M_bbkelola;
+
+		if($this->input->post('id')) {
+			$id = $this->input->post('id');
+			$model->update($id, array(
+				'tindak_lanjut' => $this->input->post('tindak_lanjut')
+			));
+
+			$this->session->set_flashdata('success', 'Berhasil disimpan');
+			$json = array('success' => true, 'message' => 'Berhasil disimpan');
+		}
+
+		$this->output
+		->set_content_type('application/json')
+		->set_output(json_encode($json));
+	}
+
+	public function bbkelola_dokumen() {
+		$data['userdata'] 	= $this->userdata;
+
+		if (!file_exists('./uploads')) {
+			mkdir('./uploads', 0777, true);
+		}
+
+		$config['upload_path']="./uploads"; //path folder file upload
+        $config['allowed_types']='pdf|doc|docx|gif|jpg|png'; //type file yang boleh di upload
+        $config['encrypt_name'] = TRUE; //enkripsi file name upload
+         
+        $this->load->library('upload',$config); //call library upload 
+
+		$json = array();
+		$model = $this->M_bbkelola;
+
+		if (!$this->upload->do_upload('dokumen')) {
+			$json = array(
+				'success' => false,
+				'message' => $this->upload->display_errors()
+			);
+		} else {
+			//upload file
+			$data = array('upload_data' => $this->upload->data()); //ambil file name yang diupload
+			$dokumen = $data['upload_data']['file_name']; //set file name ke variable image
+
+			$id = $this->input->post('id');
+			$model->update($id, array(
+				'dokumen' => $dokumen
+			));
+
+			$this->session->set_flashdata('success', 'Berhasil disimpan');
+			$json = array('success' => true, 'message' => 'Berhasil disimpan');
+			$json = array_merge($json, array(
+				'data' => $data,
+				'dokumen' => $dokumen,
+			));
+		}
+
+		$this->output
+		->set_content_type('application/json')
+		->set_output(json_encode($json));
+	}
+
 }
