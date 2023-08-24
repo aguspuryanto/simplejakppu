@@ -122,6 +122,11 @@ $perkara_data = array_map(function($item) {
       labels: <?=json_encode($pnbp_labels);?>
     },
     options: {
+      plugins: {
+          legend: {
+              display: false
+          }
+      },
       scales: {
         y: {
           beginAtZero: true
