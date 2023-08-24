@@ -137,12 +137,13 @@ $perkara_data = array_values($jenis_perkara);
 $( document ).ready(function() {
     var table = $('#example1').DataTable();
 
-    $.fn.datepicker.defaults.format = "dd/mm/yyyy";
-    $("#input-periode").datepicker({
-        viewMode: "months", 
-        minViewMode: "months",
-        format: 'MM-yyyy',
-    });
+    // $.fn.datepicker.defaults.format = "dd/mm/yyyy";
+    // $("#input-periode").datepicker({
+    //     viewMode: "months", 
+    //     minViewMode: "months",
+    //     format: 'MM-yyyy',
+    // });
+    
     $('#error').html(" ");
 
     $('#form-submit').on('click', function (e) {
