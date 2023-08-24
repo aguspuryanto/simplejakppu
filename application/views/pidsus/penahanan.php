@@ -61,7 +61,7 @@ $( document ).ready(function() {
 
     $(document).on('click', '.btnAdd', function (e){
         e.preventDefault();
-        $('#form')[0].reset();
+        $('#formPenahanan')[0].reset();
     });
 
     $(document).on('click', '.btnNote', function (e){

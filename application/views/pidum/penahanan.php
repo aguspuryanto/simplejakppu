@@ -12,7 +12,7 @@
     </div>
   <div class="panel-body m0">
         <?php
-        $Urladd = base_url('Pidum/pidum_tahan');
+        $Urladd = base_url('Pidum/pidum_tahan_add');
         $Urldetail = base_url('Pidum/tahan_detail');
         $Urlnote = base_url('Pidum/tahan_note');
         $Urlremove = base_url('Pidum/tahan_remove');
