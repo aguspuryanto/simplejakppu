@@ -2,36 +2,27 @@
   <?php echo @$this->session->flashdata('msg'); ?>
 </div>
 
-<div class="panel panel-default">
-  <div class="panel-body">
-    <canvas id="myChart"></canvas>
-  </div>
-</div>
+<?php include_once('_statistik.php'); ?>
 
 <div class="panel panel-default">
-  <div class="panel-body m0">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h4 class="pull-left">DATA PERKARA</h4>
-                <div class="pull-right">
-                    <button type="button" class="btn btn-info btnAdd" data-toggle="modal" data-target="#myModalPerkara"><i class="glyphicon glyphicon-plus"></i> Tambah Data</button>
-                </div>
-                <div class="clearfix"></div>
-            </div>
-            <div class="panel-body">
-
-<?php
-$Urladd = base_url('Datun/datun_add');
-$Urldetail = base_url('Datun/datun_detail');
-$Urlnote = base_url('Datun/datun_note');
-$Urlremove = base_url('Datun/datun_remove');
-$Urltinjut = base_url('Datun/datun_tinjut');
-$Urldokumen = base_url('Datun/datun_dokumen');
-?>
-                <?php include_once('_list_bankum.php'); ?>
-            </div>
-        </div>    
-  </div>
+    <div class="panel-heading">
+        <h4 class="pull-left">DATA PERKARA</h4>
+        <div class="pull-right">
+            <button type="button" class="btn btn-info btnAdd" data-toggle="modal" data-target="#myModalPerkara"><i class="glyphicon glyphicon-plus"></i> Tambah Data</button>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="panel-body m0">
+        <?php
+        $Urladd = base_url('Datun/datun_add');
+        $Urldetail = base_url('Datun/datun_detail');
+        $Urlnote = base_url('Datun/datun_note');
+        $Urlremove = base_url('Datun/datun_remove');
+        $Urltinjut = base_url('Datun/datun_tinjut');
+        $Urldokumen = base_url('Datun/datun_dokumen');
+        ?>
+        <?php include_once('_list_bankum.php'); ?>
+    </div>
 </div>
 
 <?php
@@ -60,12 +51,31 @@ foreach($dataDatun as $row) {
 
 $newArra[] = array_merge($yearArr, $collectedData);
 // echo json_encode($newArra);
+
+$kegiatan = array_count_values(array_column($dataDatun, 'kegiatan'));
+// echo json_encode($kegiatan);
+$kegiatan_labels = array_keys($kegiatan);
+$kegiatan_data = array_values($kegiatan);
+
+// echo json_encode($dataDatun);
+// $perkara_labels = array_map(function($item) {
+//   return strtoupper($item->jenis_perkara);
+// }, $dataDatun);
+
+// $perkara_data = array_map(function($item) {
+//   return ($item->kegiatan);
+// }, $dataDatun);
+
+$jenis_perkara = array_count_values(array_column($dataDatun, 'jenis_perkara'));
+$perkara_labels = array_keys($jenis_perkara);
+$perkara_data = array_values($jenis_perkara);
 ?>
 
 <script src="<?= base_url(); ?>assets/plugins/chartjs/v4.3.3/Chart.min.js"></script>
 <script>
     const ctx = document.getElementById('myChart');
-    const data = <?=json_encode($newArra);?>;
+    const ctxperkara = document.getElementById('myChart2');
+    // const data = <?=json_encode($newArra);?>;
 
     Chart.defaults.font.family = "Teko";
     Chart.defaults.font.size = 22;
@@ -74,24 +84,52 @@ $newArra[] = array_merge($yearArr, $collectedData);
     let barChart = new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: data.map(row => row.year),
+            labels: <?=json_encode($kegiatan_labels);?>,
             datasets: [{
-                label: 'Perdata',
-                data: data.map(row => row.perdata),
+                // label: 'Perdata',
+                data: <?=json_encode($kegiatan_data);?>,
+                // this dataset is drawn below
+                order: 2,
                 borderWidth: 1
             }, {
-                label: 'Tun',
-                data: data.map(row => row.tun),
+                // label: 'Tun',
+                data: <?=json_encode($kegiatan_data);?>,
+                type: 'line',
+                // this dataset is drawn on top
+                order: 1,
                 borderWidth: 1
             }]
         },
         options: {
+            plugins: {
+                legend: {
+                    display: false
+                }
+            },
             scales: {
                 y: {
                     beginAtZero: true
                 }
             }
         }
+    });
+
+    const dataperkara = {
+        labels: <?=json_encode($perkara_labels);?>,
+        datasets: [{
+        label: 'Data perkara',
+        data: <?=json_encode($perkara_data);?>,
+        backgroundColor: [
+            'rgb(255, 99, 132)',
+            'rgb(54, 162, 235)',
+        ],
+        hoverOffset: 4
+        }]
+    };
+
+    const pieperkara = new Chart(ctxperkara, {
+        type: 'pie',
+        data: dataperkara
     });
 </script>
 
