@@ -27,7 +27,7 @@
 <script>
 $(document).ready(function () {
     var table = $('#example1').DataTable();
-     
+
     $('#error').html(" ");
 
     $('#form').find('select#kategori').on('change', function(e) {
@@ -54,7 +54,7 @@ $(document).ready(function () {
             data: $("#form").serialize(),
             dataType: "json",
             beforeSend : function(xhr, opts){
-                $('#form-submit').text('Loading...').prop("disabled", true);
+                // $('#form-submit').text('Loading...').prop("disabled", true);
             },
             success: function(data){
                 console.log(data, "data");
