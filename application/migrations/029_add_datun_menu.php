@@ -93,8 +93,16 @@ class Migration_add_datun_menu extends CI_Migration {
             'nama' => "yankum_lisan",
             'deskripsi' => "Pelayanan Hukum Lisan",
             'parent' => 5,
-        ));        
-        $this->db->insert_batch($this->table_name, $menu_datun);
+        ));
+
+        // $this->db->insert_batch($this->table_name, $menu_datun);
+        // $insert_query = $this->db->insert_string($this->table_name, $menu_datun);
+        // $insert_query = str_replace('INSERT INTO','INSERT IGNORE INTO',$insert_query);
+        // $this->db->query($insert_query);
+
+        $sql = $this->db->set($menu_datun)->get_compiled_insert($this->table_name);
+        $sql = str_replace('INSERT INTO', 'INSERT IGNORE INTO', $sql);
+        $this->db->query($sql);
     }
 
     public function down()
