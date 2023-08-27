@@ -48,6 +48,11 @@ foreach($dataPnbp as $row) {
     }
 }
 // echo json_encode($newArra);
+
+$jenis_pnpb = array_count_values(array_column($dataPnbp, 'jenis_pnpb'));
+// echo json_encode($kegiatan);
+$pnpb_labels = array_keys($jenis_pnpb);
+$pnpb_data = array_values($jenis_pnpb);
 ?>
 
 <script src="<?= base_url(); ?>assets/plugins/chartjs/v4.3.3/Chart.min.js"></script>
@@ -58,23 +63,32 @@ foreach($dataPnbp as $row) {
   new Chart(ctx, {
     type: 'bar',
     data: {
-      labels: data.map(row => row.jenis_pnpb),
+      labels: <?=json_encode($pnpb_labels);?>,
       datasets: [{
-        label: 'Jumlah PNPB',
-        data: data.map(row => row.jumlah_pnpb),
-        backgroundColor: [
-            'rgba(54, 162, 235, 0.2)',
-            'rgba(153, 102, 255, 0.2)',
-        ],
+        // label: 'Jumlah PNPB',
+        data: <?=json_encode($pnpb_data);?>,
+        order: 2,
         borderWidth: 1
-      }]
+      }, {
+        // label: 'Tun',
+        data: <?=json_encode($pnpb_data);?>,
+        type: 'line',
+        // this dataset is drawn on top
+        order: 1,
+        borderWidth: 1
+    }]
     },
     options: {
-      scales: {
-        y: {
-          beginAtZero: true
+        plugins: {
+            legend: {
+                display: false
+            }
+        },
+        scales: {
+            y: {
+            beginAtZero: true
+            }
         }
-      }
     }
   });
 </script>
