@@ -174,16 +174,33 @@ $( document ).ready(function() {
         $('#form')[0].reset();
     });
 
+    $('#form').find('select#kategori').on('change', function(e) {
+        e.preventDefault();
+        var valueId = $(this).val(); //$(this).find(":selected").val();
+        console.log(valueId, '_valueId');
+
+        if(valueId) {
+            $.get("<?=site_url('Datun/datun_kegiatan');?>/" + valueId, function(data, status){
+                console.log(data, "data");
+                // $('#form').find('#kegiatan option').remove().end();
+                // $('#form').find('#kegiatan').append(data);
+                $('#kegiatan').find('option').remove().end().append(data);
+            });
+        }
+    });
+
     $(document).on('click', '.btnNote', function (e){
         e.preventDefault();
         var dataId = $(this).attr("data-id");
         // console.log(dataId, '_dataId');
         $('#formNote input[name=id]').val(dataId);
 
-        $.get("<?=$Urldetail;?>/" + dataId, function(data, status){
-            console.log(data.data, "data");
-            $('#formNote').find('#input-kajari_note').val(data.data.kajari_note);
-        });        
+        // $.get("<?=$Urldetail;?>/" + dataId, function(data, status){
+        //     console.log(data.data, "data");
+        //     $('#formNote').find('#input-kajari_note').val(data.data.kajari_note);
+        // });
+        
+        getNoteId("<?=$Urldetail;?>/" + dataId);
     });
 
     $('#formNote').submit(function (e) {
@@ -216,10 +233,6 @@ $( document ).ready(function() {
 
         $('#form input[name=id]').val(dataId);
 
-        let promise = new Promise(function(resolve, reject) {
-            // resolve(dataId);
-        });
-
         $.get("<?=$Urldetail;?>/" + dataId, function(data, status){
             console.log(data, "data");
             $.each(data.data, function(key, value) {
@@ -248,4 +261,14 @@ $( document ).ready(function() {
         };
     });
 });
+
+function getNoteId(url) {        
+    fetch(url)
+    .then(response => response.json())
+    .then(data => {
+        console.log(data.data, "data");
+        $('#formNote').find('#input-kajari_note').val(data.data.kajari_note);
+    })
+    .catch(error => console.error(error));
+}
 </script>
